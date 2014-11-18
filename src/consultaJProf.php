@@ -1,17 +1,8 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-		<meta charset="utf-8">
-		<title>PinchOs</title>
-		<meta name="generator" content="Bootply" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<link href="resources/css/bootstrap.min.css" rel="stylesheet">
-		<!--[if lt IE 9]>
-			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
-		<link href="resources/css/styles.css" rel="stylesheet">
-	</head>
+<?php
+	include "cabecera.php";
+?>
 	<body>
 <div class="wrapper">
     <div class="box">
@@ -110,54 +101,71 @@
                 </div>
                 <!-- /top nav -->
 
-
+				<!--AQUI EMPIEZA LA VENTANA MODAL DE AÑADIR ALBUM -->
 				<div class="margensup" >
-					<div class="column col-lg-9 col-md-9 col-sm-12 col-xs-12 col-md-offset-2" >
+					<div class="column col-lg-10 col-md-10 col-sm-12 col-xs-12 col-md-offset-1" >
 						<div class="modalbox movedown">
-							<div class="row" >
-								<h2 class="alineado">Votar Jurado Profesional</h2>
+							<div class="row">
+								<h2 class="alineado">Mi Perfil</h2>
 							</div>
-							<div class="row separacion">
-								<div class="column col-lg-10 col-md-10 col-sm-12 col-xs-12 ">
-									<form class="form-horizontal" role="form">
-										<div class="form-group separarformulario">
-											<label class="col-lg-3 col-md-3 col-sm-3 col-xs-12 control-label">Código del pincho</label>
-											<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-												<input class="form-control" placeholder="Introduce un código...">
-											</div>
+							<div class="row separacion" >
+								<div class="column col-lg-10 col-md-10 col-sm-12 col-xs-12 col-md-offset-1">
+									<form class="form-horizontal separarformulario" role="form">
+										<div class="form-group alineado ">
+											<label class="control-label">Nombre: </label>
+											<label class=" control-label">Marta Pérez Pérez</label>
 										</div>
-										<div class="form-group separarformulario">
-											<label class="col-lg-3 col-md-3 col-sm-3 col-xs-12 control-label">Puntuación</label>
-											<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-												<select class="form-control">
-												  <option>Introduce la puntuación...</option>
-												  <option>0</option>
-												  <option>1</option>
-												  <option>2</option>
-												  <option>3</option>
-												  <option>4</option>
-												  <option>5</option>
-												  <option>6</option>
-												  <option>7</option>
-												  <option>8</option>
-												  <option>9</option>
-												  <option>10</option>
-												</select>
-											</div>
+										<div class="form-group alineado ">
+											<label class="control-label">Email: </label>
+											<label class=" control-label">marta@gmail.com</label>
 										</div>
 
-
-
-
-
-										<button type="button" class="btn btn-primary col-md-offset-5" >Guardar voto</button>
-										<button type="button" class="btn btn-primary " >Cancelar</button>
 									</form>
 								</div>
 							</div>
+							<div class="row separartabla" >
+								<div class="column col-lg-10 col-md-10 col-sm-12 col-xs-12 col-md-offset-1">
+									<table class="table alineado ">
+										  <!-- Aplicadas en las filas -->
+										  <tr class="activa">
+											<td>Pincho</td>
+											<td>Código</td>
+											<td>Puntuación</td>
+											<td>Local</td>
+										  </tr>
+										  <tr class="tablehover">
+											<td>De jamon</td>
+											<td>445675</td>
+											<td>5</td>
+											<td>Graduado</td>
+										  </tr>
+										  <tr class="tablehover">
+											<td>De queso</td>
+											<td>773654</td>
+											<td>3</td>
+											<td>Cafetería Uni</td>
+										  </tr>
+										  <tr class="tablehover">
+											<td>De pavo</td>
+											<td>263748</td>
+											<td>9</td>
+											<td>escher</td>
+										  </tr>
+									</table>
+								</div>
+							</div>
+							<button type="button" class="btn btn-primary col-md-offset-4" >Eliminar cuenta</button>
+										<button type="button" class="btn btn-primary " >Modificar mi perfil</button>
 						</div>
 					</div>
 				</div>
+				<!--AQUI TERMINA LA VENTANA MODAL DE AÑADIR ALBUM -->
+
+
+
+
+
+
 
 
 

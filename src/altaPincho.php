@@ -1,17 +1,8 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-		<meta charset="utf-8">
-		<title>PinchOs</title>
-		<meta name="generator" content="Bootply" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<link href="resources/css/bootstrap.min.css" rel="stylesheet">
-		<!--[if lt IE 9]>
-			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
-		<link href="resources/css/styles.css" rel="stylesheet">
-	</head>
+<?php
+	include "cabecera.php";
+?>
 	<body>
 <div class="wrapper">
     <div class="box">
@@ -62,6 +53,14 @@
 
                 </ul>
 
+              	<!-- tiny only nav-->
+				<ul class="nav visible-xs" id="xs-menu">
+                  	<li><a href="#featured" class="text-center"><i class="glyphicon glyphicon-list-alt"></i></a></li>
+                    <li><a href="#stories" class="text-center"><i class="glyphicon glyphicon-list"></i></a></li>
+                  	<li><a href="#" class="text-center"><i class="glyphicon glyphicon-paperclip"></i></a></li>
+                    <li><a href="#" class="text-center"><i class="glyphicon glyphicon-refresh"></i></a></li>
+                </ul>
+
             </div>
             <!-- /sidebar -->
 
@@ -110,74 +109,52 @@
                 </div>
                 <!-- /top nav -->
 
-				<!--AQUI EMPIEZA LA VENTANA MODAL DE AÑADIR ALBUM -->
-				<div class="margensup" >
-					<div class="column col-lg-10 col-md-10 col-sm-12 col-xs-12 col-md-offset-1" >
-						<div class="modalbox movedown">
-							<div class="row">
-								<h2 class="alineado">Mi Perfil</h2>
-							</div>
-							<div class="row separacion" >
-								<div class="column col-lg-10 col-md-10 col-sm-12 col-xs-12 col-md-offset-1">
-									<form class="form-horizontal separarformulario" role="form">
-										<div class="form-group alineado ">
-											<label class="control-label">Nombre: </label>
-											<label class=" control-label">Marta Pérez Pérez</label>
-										</div>
-										<div class="form-group alineado ">
-											<label class="control-label">Email: </label>
-											<label class=" control-label">marta@gmail.com</label>
-										</div>
 
+				<div class="margensup" >
+					<div class="column col-lg-9 col-md-9 col-sm-12 col-xs-12 col-md-offset-2" >
+						<div class="modalbox movedown">
+							<div class="row" >
+								<h2 class="alineado">Crear Pincho</h2>
+							</div>
+							<div class="row separacion">
+								<div class="column col-lg-10 col-md-10 col-sm-12 col-xs-12 ">
+									<form class="form-horizontal" role="form">
+										<div class="form-group separarformulario">
+											<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Nombre</label>
+											<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+												<input class="form-control" placeholder="Introduce un nombre...">
+											</div>
+										</div>
+										<div class="form-group separarformulario">
+											<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Precio</label>
+											<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+												<input class="form-control" placeholder="Introduce un precio...">
+											</div>
+										</div>
+										<div class="form-group separarformulario">
+											<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Cocinero</label>
+											<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+												<input class="form-control" placeholder="Introduce un cocinero...">
+											</div>
+										</div>
+										<div class="form-group separarformulario">
+											<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Ingredientes</label>
+											<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+												<textarea class="form-control" placeholder="Introduce algunos de los ingredientes..." rows="3"></textarea>
+											</div>
+										</div>
+										<div class="form-group separarformulario">
+											<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Fotografia</label>
+											<input type="file" id="ejemplo_archivo_1">
+    										<p class="help-block">El tamano maximo permitido es de 3Mb</p>
+										</div>
+										<button type="button" class="btn btn-primary col-md-offset-6" >Confirmar Alta</button>
 									</form>
 								</div>
 							</div>
-							<div class="row separartabla" >
-								<div class="column col-lg-10 col-md-10 col-sm-12 col-xs-12 col-md-offset-1">
-									<table class="table alineado ">
-										  <!-- Aplicadas en las filas -->
-										  <tr class="activa">
-											<td>Pincho</td>
-											<td>Código</td>
-											<td>Puntuación</td>
-											<td>Local</td>
-										  </tr>
-										  <tr class="tablehover">
-											<td>De jamon</td>
-											<td>445675</td>
-											<td>5</td>
-											<td>Graduado</td>
-										  </tr>
-										  <tr class="tablehover">
-											<td>De queso</td>
-											<td>773654</td>
-											<td>3</td>
-											<td>Cafetería Uni</td>
-										  </tr>
-										  <tr class="tablehover">
-											<td>De pavo</td>
-											<td>263748</td>
-											<td>9</td>
-											<td>escher</td>
-										  </tr>
-									</table>
-								</div>
-							</div>
-							<button type="button" class="btn btn-primary col-md-offset-4" >Eliminar cuenta</button>
-										<button type="button" class="btn btn-primary " >Modificar mi perfil</button>
 						</div>
 					</div>
 				</div>
-				<!--AQUI TERMINA LA VENTANA MODAL DE AÑADIR ALBUM -->
-
-
-
-
-
-
-
-
-
             </div>
             <!-- /main -->
 

@@ -1,17 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-		<meta charset="utf-8">
-		<title>PinchOs</title>
-		<meta name="generator" content="Bootply" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<link href="resources/css/bootstrap.min.css" rel="stylesheet">
-		<!--[if lt IE 9]>
-			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
-		<link href="resources/css/styles.css" rel="stylesheet">
-	</head>
+<?php
+	include "cabecera.php";
+?>
 	<body>
 <div class="wrapper">
     <div class="box">
@@ -60,6 +51,14 @@
 						</ul>
 					</li>
 
+                </ul>
+
+              	<!-- tiny only nav-->
+				<ul class="nav visible-xs" id="xs-menu">
+                  	<li><a href="#featured" class="text-center"><i class="glyphicon glyphicon-list-alt"></i></a></li>
+                    <li><a href="#stories" class="text-center"><i class="glyphicon glyphicon-list"></i></a></li>
+                  	<li><a href="#" class="text-center"><i class="glyphicon glyphicon-paperclip"></i></a></li>
+                    <li><a href="#" class="text-center"><i class="glyphicon glyphicon-refresh"></i></a></li>
                 </ul>
 
             </div>
@@ -114,62 +113,38 @@
 				<div class="margensup" >
 					<div class="column col-lg-9 col-md-9 col-sm-12 col-xs-12 col-md-offset-2" >
 						<div class="modalbox movedown">
-							<div class="row " >
-								<h2 class="alineado">Modificar Jurado Profesional</h2>
+							<div class="row" >
+								<h2 class="alineado">Crear Jurado Profesional</h2>
 							</div>
 							<div class="row separacion">
 								<div class="column col-lg-10 col-md-10 col-sm-12 col-xs-12 ">
 									<form class="form-horizontal" role="form">
 										<div class="form-group separarformulario">
+											<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Email</label>
+											<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+												<input class="form-control" placeholder="Introduce un email...">
+											</div>
+										</div>
+										<div class="form-group separarformulario">
 											<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Nombre</label>
 											<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-												<input class="form-control" placeholder="Introduce un nombre...">
+												<input class="form-control" placeholder="Introduce un Nombre...">
 											</div>
-										</div>
-										<div class="form-group separarformulario">
-											<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Precio</label>
-											<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-												<input class="form-control" placeholder="Introduce un precio...">
-											</div>
-										</div>
-										<div class="form-group separarformulario">
-											<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Cocinero</label>
-											<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-												<input class="form-control" placeholder="Introduce un cocinero...">
-											</div>
-										</div>
-										<div class="form-group separarformulario">
-											<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Ingredientes</label>
-											<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-												<textarea class="form-control" placeholder="Introduce algunos de los ingredientes..." rows="3"></textarea>
-											</div>
-										</div>
-										<div class="form-group separarformulario">
-											<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Fotografia</label>
-											<input type="file" id="ejemplo_archivo_1">
-    										<p class="help-block">El tamano maximo permitido es de 3Mb</p>
 										</div>
 										<div class="form-group separarformulario">
 											<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Contraseña</label>
-											<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-												<input class="form-control" placeholder="******">
+											<button type="button" class="btn btn-primary" >Generar contraseña</button>
+											<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+												<input class="form-control" placeholder="Generar contraseña...">
 											</div>
 										</div>
-										<div class="form-group separarformulario">
-											<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Repetir Contraseña</label>
-											<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-												<input class="form-control" placeholder="******">
-											</div>
-										</div>
-										<button type="button" class="btn btn-primary col-md-offset-4" >Guardar modificación</button>
-										<button type="button" class="btn btn-primary " >Cancelar</button>
+										<button type="button" class="btn btn-primary col-md-offset-6" >Añadir</button>
 									</form>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-
 
 
 

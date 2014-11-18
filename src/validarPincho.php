@@ -1,17 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-		<meta charset="utf-8">
-		<title>PinchOs</title>
-		<meta name="generator" content="Bootply" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<link href="resources/css/bootstrap.min.css" rel="stylesheet">
-		<!--[if lt IE 9]>
-			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
-		<link href="resources/css/styles.css" rel="stylesheet">
-	</head>
+<?php
+	include "cabecera.php";
+?>
 	<body>
 <div class="wrapper">
     <div class="box">
@@ -115,39 +106,45 @@
 					<div class="column col-lg-10 col-md-10 col-sm-12 col-xs-12 col-md-offset-1" >
 						<div class="modalbox movedown">
 							<div class="row">
-								<h2 class="alineado">Listado de Pincho</h2>
+								<h2 class="alineado">Consulta de Pincho</h2>
 							</div>
-							<ul>
-								<div class="col-lg-12">
-									<div class="input-group">
-										<input type="text" class="form-control" placeholder="Introcuce filtro para la busqueda...">
-										    <div class="input-group-btn">
-										        <button type="button" class="btn btn-default dropdown-toggle"
-										            data-toggle="dropdown">
-										        	Buscar <span class="caret"></span>
-										        </button>
-										        <ul class="dropdown-menu pull-right" role="menu">
-										        	<li><a href="#">Buscar por nombre</a></li>
-										          	<li><a href="#">Buscar por precio</a></li>
-										          	<li><a href="#">Buscar por ingredientes</a></li>
-										        </ul>
-										    </div>
-									</div>
+							<div class="row separacion" >
+								<div class="column col-lg-10 col-md-10 col-sm-12 col-xs-12 col-md-offset-1">
+									<form class="form-horizontal separarformulario" role="form">
+										<div class="form-group alineado ">
+										<img src="./resources/img/pincho.jpg" alt="./resources/img/pincho.jpg" class="img-thumbnail">
+										</div>
+										<div class="form-group alineado ">
+											<label class="control-label">Nombre: </label>
+											<label class=" control-label">Explosion de sabor</label>
+										</div>
+										<div class="form-group alineado ">
+											<label class="control-label">Precio: </label>
+											<label class=" control-label">2€</label>
+										</div>
+										<div class="form-group alineado ">
+											<label class="control-label">Cocinero: </label>
+											<label class=" control-label">Jorge Hernandez</label>
+										</div>
+										<div class="form-group alineado ">
+											<label class="control-label">Ingredientes: </label>
+											<label class=" control-label">pan, pimientos, queso parmellano</label>
+										</div>
+										<div class="form-group alineado ">
+											<label class="control-label">Numero de votos: </label>
+											<label class=" control-label">4</label>
+										</div>
+										<div class="form-group alineado ">
+											<label class="control-label">Estado: </label>
+											<label class=" control-label">activo</label>
+										</div>
+									</form>
 								</div>
-							</ul>
-							<ul class= "list-inline ">
-								<?php for ($i = 1; $i <= 10; $i++)://bucle que lista los pinchos seleccionados?>
-									<li>
-								      <img src="./resources/img/pincho.jpg" alt="./resources/img/pincho.jpg" class="img-thumbnail">
-								      <div class="caption">
-								        <h4>-Nombre del pincho <?php echo $i;?>-</h4>
-								        <p>
-								          <a href="button" class="btn btn-primary col-md-offset-4" role="button">Consultar</a>
-								        </p>
-								      </div>
-									</li>
-								<?php endfor;?><!-- fin while-->
-							</ul>
+							</div>
+
+							<button type="button" class="btn btn-primary col-md-offset-4" >Eliminar pincho</button>
+							<button type="button" class="btn btn-primary " >Modificar pincho</button>
+							<button type="button" class="btn btn-primary " >Validar pincho</button>
 						</div>
 					</div>
 				</div>

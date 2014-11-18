@@ -1,16 +1,8 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-		<meta charset="utf-8">
-		<title>Bootstrap Login Form</title>
-		<meta name="generator" content="Bootply" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<link href="resources/css/bootstrap.min.css" rel="stylesheet">
-		<!--[if lt IE 9]>
-			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
-	</head>
+<?php
+	include "cabecera.php";
+?>
 	<body>
 		<!--login modal-->
 		<div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
@@ -44,7 +36,7 @@
 					</div>
 					<div class="form-group">
 					  <input type="submit" class="btn btn-primary btn-lg btn-block" value="Registrate">
-					  <span class="pull-right"><a href="index.html">Ir a Login</a></span>
+					  <span class="pull-right"><a href="index.php">Ir a Login</a></span>
 					</div>
 				  </form>
 			  </div>

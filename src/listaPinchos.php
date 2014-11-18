@@ -1,17 +1,8 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-		<meta charset="utf-8">
-		<title>PinchOs</title>
-		<meta name="generator" content="Bootply" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<link href="resources/css/bootstrap.min.css" rel="stylesheet">
-		<!--[if lt IE 9]>
-			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
-		<link href="resources/css/styles.css" rel="stylesheet">
-	</head>
+<?php
+	include "cabecera.php";
+?>
 	<body>
 <div class="wrapper">
     <div class="box">
@@ -110,67 +101,32 @@
                 </div>
                 <!-- /top nav -->
 
-
+				<!--AQUI EMPIEZA LA VENTANA MODAL DE AÑADIR ALBUM -->
 				<div class="margensup" >
-					<div class="column col-lg-9 col-md-9 col-sm-12 col-xs-12 col-md-offset-2" >
+					<div class="column col-lg-10 col-md-10 col-sm-12 col-xs-12 col-md-offset-1" >
 						<div class="modalbox movedown">
-							<div class="row " >
-								<h2 class="alineado">Modificar Concurso</h2>
+							<div class="row">
+								<h2 class="alineado">Listado de Pincho</h2>
 							</div>
-							<div class="row separacion">
-								<div class="column col-lg-10 col-md-10 col-sm-12 col-xs-12 ">
-									<form class="form-horizontal" role="form">
-										<div class="form-group separarformulario">
-											<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Nombre</label>
-											<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-												<input class="form-control" placeholder="Concurso de Pinchos de Ourense">
-											</div>
-										</div>
-										<div class="form-group separarformulario">
-											<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Ciudad</label>
-											<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-												<input class="form-control" placeholder="Ourense">
-											</div>
-										</div>
-										<div class="form-group separarformulario">
-											<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Fecha</label>
-											<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-												<input class="form-control" type="date">
-											</div>
-										</div>
-										<div class="form-group separarformulario">
-											<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Premio</label>
-											<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-												<input class="form-control" placeholder="1000€">
-											</div>
-										</div>
-										<div class="form-group separarformulario">
-											<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Patrocinador</label>
-											<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-												<input class="form-control" placeholder="Coca-Cola">
-											</div>
-										</div>
-										<div class="form-group separarformulario">
-											<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Bases</label>
-											<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-												<textarea class="form-control" rows="6" placeholder="Los mejores pinchos del mundo"></textarea>
-												<input type="file" id="archivo_1">
-											</div>
-										</div>
-										<button type="button" class="btn btn-primary col-md-offset-5" >Guardar modificación</button>
-										<button type="button" class="btn btn-primary " >Cancelar</button>
-									</form>
-								</div>
-							</div>
+							<ul class= "list-inline ">
+								<?php //bucle que lista los pinchos seleccionados
+								$i=0;
+								while ($i <= 12){?>
+									<li>
+								      <img src="./resources/img/pincho.jpg" alt="./resources/img/pincho.jpg" class="img-thumbnail">
+								      <div class="caption">
+								        <h4>-Nombre del pincho -</h4><?php echo $i;?>
+								        <p>
+								          <a href="button" class="btn btn-primary col-md-offset-4" role="button">Consultar</a>
+								        </p>
+								      </div>
+									</li>
+								<?php $i++;}?><!-- fin while-->
+							</ul>
 						</div>
 					</div>
 				</div>
-
-
-
-
-
-
+				<!--AQUI TERMINA LA VENTANA MODAL DE AÑADIR ALBUM -->
 
             </div>
             <!-- /main -->

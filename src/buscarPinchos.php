@@ -1,17 +1,8 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-		<meta charset="utf-8">
-		<title>PinchOs</title>
-		<meta name="generator" content="Bootply" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<link href="resources/css/bootstrap.min.css" rel="stylesheet">
-		<!--[if lt IE 9]>
-			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
-		<link href="resources/css/styles.css" rel="stylesheet">
-	</head>
+<?php
+	include "cabecera.php";
+?>
 	<body>
 <div class="wrapper">
     <div class="box">
@@ -115,68 +106,43 @@
 					<div class="column col-lg-10 col-md-10 col-sm-12 col-xs-12 col-md-offset-1" >
 						<div class="modalbox movedown">
 							<div class="row">
-								<h2 class="alineado">Mi Perfil</h2>
+								<h2 class="alineado">Listado de Pincho</h2>
 							</div>
-							<div class="row separacion" >
-								<div class="column col-lg-10 col-md-10 col-sm-12 col-xs-12 col-md-offset-1">
-									<form class="form-horizontal separarformulario" role="form">
-										<div class="form-group alineado ">
-											<label class="control-label">Nombre: </label>
-											<label class=" control-label">Marta Pérez Pérez</label>
-										</div>
-										<div class="form-group alineado ">
-											<label class="control-label">Email: </label>
-											<label class=" control-label">marta@gmail.com</label>
-										</div>
-
-									</form>
+							<ul>
+								<div class="col-lg-12">
+									<div class="input-group">
+										<input type="text" class="form-control" placeholder="Introcuce filtro para la busqueda...">
+										    <div class="input-group-btn">
+										        <button type="button" class="btn btn-default dropdown-toggle"
+										            data-toggle="dropdown">
+										        	Buscar <span class="caret"></span>
+										        </button>
+										        <ul class="dropdown-menu pull-right" role="menu">
+										        	<li><a href="#">Buscar por nombre</a></li>
+										          	<li><a href="#">Buscar por precio</a></li>
+										          	<li><a href="#">Buscar por ingredientes</a></li>
+										        </ul>
+										    </div>
+									</div>
 								</div>
-							</div>
-							<div class="row separartabla" >
-								<div class="column col-lg-10 col-md-10 col-sm-12 col-xs-12 col-md-offset-1">
-									<table class="table alineado ">
-										  <!-- Aplicadas en las filas -->
-										  <tr class="activa">
-											<td>Pincho</td>
-											<td>Código</td>
-											<td>Puntuación</td>
-											<td>Local</td>
-										  </tr>
-										  <tr class="tablehover">
-											<td>De jamon</td>
-											<td>445675</td>
-											<td>5</td>
-											<td>Graduado</td>
-										  </tr>
-										  <tr class="tablehover">
-											<td>De queso</td>
-											<td>773654</td>
-											<td>3</td>
-											<td>Cafetería Uni</td>
-										  </tr>
-										  <tr class="tablehover">
-											<td>De pavo</td>
-											<td>263748</td>
-											<td>9</td>
-											<td>escher</td>
-										  </tr>
-									</table>
-								</div>
-							</div>
-							<button type="button" class="btn btn-primary col-md-offset-4" >Eliminar cuenta</button>
-										<button type="button" class="btn btn-primary " >Modificar mi perfil</button>
+							</ul>
+							<ul class= "list-inline ">
+								<?php for ($i = 1; $i <= 10; $i++)://bucle que lista los pinchos seleccionados?>
+									<li>
+								      <img src="./resources/img/pincho.jpg" alt="./resources/img/pincho.jpg" class="img-thumbnail">
+								      <div class="caption">
+								        <h4>-Nombre del pincho <?php echo $i;?>-</h4>
+								        <p>
+								          <a href="button" class="btn btn-primary col-md-offset-4" role="button">Consultar</a>
+								        </p>
+								      </div>
+									</li>
+								<?php endfor;?><!-- fin while-->
+							</ul>
 						</div>
 					</div>
 				</div>
 				<!--AQUI TERMINA LA VENTANA MODAL DE AÑADIR ALBUM -->
-
-
-
-
-
-
-
-
 
             </div>
             <!-- /main -->
