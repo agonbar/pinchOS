@@ -21,7 +21,10 @@
               <input type="password" class="form-control input-lg" placeholder="Contraseña">
             </div>
             <div class="form-group">
-              <input type="submit" class="btn btn-primary btn-lg btn-block" value="Entrar">
+							<a href="inicio.php"
+              	<input type="submit" class="btn btn-primary btn-lg btn-block" value="Entrar">
+								Entrar
+							</a>
               <span class="pull-right"><a href="registro.php">Registrate!</a></span>
             </div>
           </form>

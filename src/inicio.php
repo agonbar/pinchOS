@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-<!-- script references -->
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-	<script src="resources/js/bootstrap.min.js"></script>
-	<script src="resources/js/scripts.js"></script>
-
-
 <?php
 	include "cabecera.php";
 ?>
@@ -41,10 +34,10 @@
 					  <h5>Participantes <i class="glyphicon glyphicon-plus"></i></h5>
 					  </a>
 						<ul class="list-unstyled collapse" id="menu2">
-							<li class="desplegable"><a href="#">Lista de participantes</a></li>
-							<li class="desplegable"><a href="#">Baja</a></li>
-							<li class="desplegable"><a href="#">Modificacion</a></li>
-							<li class="desplegable"><a href="#">Consulta</a></li>
+							<li class="desplegable"><a href="listarPart.php">Lista de participantes</a></li>
+							<li class="desplegable"><a href="bajaPart.php">Baja</a></li>
+							<li class="desplegable"><a href="modificacionPart.php">Modificacion</a></li>
+							<li class="desplegable"><a href="consultaPart.php">Consulta</a></li>
 						</ul>
 					</li>
 
@@ -52,10 +45,10 @@
 					  <h5>Pinchos <i class="glyphicon glyphicon-plus"></i></h5>
 					  </a>
 						<ul class="list-unstyled collapse" id="menu3">
-							<li class="desplegable"><a href="#">Lista de pinchos</a></li>
-							<li class="desplegable"><a href="#">Baja</a></li>
-							<li class="desplegable"><a href="#">Modificacion</a></li>
-							<li class="desplegable"><a href="#">Consulta</a></li>
+							<li class="desplegable"><a href="listaPinchos.php">Lista de pinchos</a></li>
+							<li class="desplegable"><a href="bajaPincho.php">Baja</a></li>
+							<li class="desplegable"><a href="modificacionPincho.php">Modificacion</a></li>
+							<li class="desplegable"><a href="validarPincho.php">Consulta</a></li>
 						</ul>
 					</li>
 
@@ -76,7 +69,7 @@
           				<span class="icon-bar"></span>
           				<span class="icon-bar"></span>
                       </button>
-                      <a href="/" class="navbar-brand logo">P</a>
+                      <a href="inicio.php" class="navbar-brand logo">P</a>
                   	</div>
                   	<nav class="collapse navbar-collapse" role="navigation">
                     <form class="navbar-form navbar-left">
