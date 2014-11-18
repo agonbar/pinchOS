@@ -15,7 +15,7 @@
 								$i=0;
 								while ($i <= 12){?>
 									<li>
-								      <img src="./resources/img/pincho.jpg" alt="./resources/img/pincho.jpg" class="img-thumbnail">
+								      <img src="./resources/img/pincho.jpg" alt="Imagen del Pincho" class="img-thumbnail">
 								      <div class="caption">
 								        <h4>-Nombre del pincho -</h4><?php echo $i;?>
 								        <p>

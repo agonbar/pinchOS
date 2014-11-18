@@ -26,13 +26,13 @@
 										</div>
 										<div class="form-group separarformulario">
 											<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Cocinero</label>
-											<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+											<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
 												<input class="form-control" placeholder="Introduce un cocinero...">
 											</div>
 										</div>
 										<div class="form-group separarformulario">
 											<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Ingredientes</label>
-											<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+											<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
 												<textarea class="form-control" placeholder="Introduce algunos de los ingredientes..." rows="3"></textarea>
 											</div>
 										</div>
