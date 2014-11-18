@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
+
+<!-- script references -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+	<script src="resources/js/bootstrap.min.js"></script>
+	<script src="resources/js/scripts.js"></script>
+
+
 <?php
 	include "cabecera.php";
 ?>
-	<body>
+<body>
 <div class="wrapper">
     <div class="box">
         <div class="row row-offcanvas row-offcanvas-left">
@@ -100,19 +108,3 @@
                   	</nav>
                 </div>
                 <!-- /top nav -->
-
-
-            </div>
-            <!-- /main -->
-
-        </div>
-    </div>
-</div>
-
-
-	<!-- script references -->
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-		<script src="resources/js/bootstrap.min.js"></script>
-		<script src="resources/js/scripts.js"></script>
-	</body>
-</html>
