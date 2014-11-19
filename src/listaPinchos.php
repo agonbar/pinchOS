@@ -13,8 +13,8 @@ include "inicio.php"
 				<?php //bucle que lista los pinchos seleccionados
 				$i=0;
 				while ($i <= 12){?>
-					<li>
-						<img src="./resources/img/pincho.jpg" alt="Imagen del Pincho" class="img-thumbnail">
+					<li class= "column col-lg-2 col-md-2 col-sm-4 col-xs-4 col-md-offset-1">
+						<img src="./resources/img/pincho.jpg" alt="Imagen del Pincho" class="img-thumbnail img-responsive">
 						<div class="caption">
 							<h4>-Nombre del pincho -</h4><?php echo $i;?>
 							<p>

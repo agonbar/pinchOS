@@ -13,7 +13,7 @@ include "inicio.php"
 				<div class="column col-lg-10 col-md-10 col-sm-12 col-xs-12 col-md-offset-1">
 					<form class="form-horizontal separarformulario" role="form">
 						<div class="form-group alineado ">
-							<img src="./resources/img/pincho.jpg" alt="./resources/img/pincho.jpg" class="img-thumbnail">
+							<center><img src="./resources/img/pincho.jpg" alt="Imagen del pincho" class="img-thumbnail" width= "20%" heigth= "0%"></center>
 						</div>
 						<div class="form-group alineado ">
 							<label class="control-label">Nombre: </label>
@@ -43,7 +43,7 @@ include "inicio.php"
 				</div>
 			</div>
 
-			<button type="button" class="btn btn-primary col-md-offset-4" >Eliminar pincho</button>
+			<button type="button" class="btn btn-primary col-md-offset-3" >Eliminar pincho</button>
 			<button type="button" class="btn btn-primary " >Modificar pincho</button>
 			<button type="button" class="btn btn-primary " >Validar pincho</button>
 		</div>

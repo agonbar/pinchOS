@@ -43,10 +43,7 @@ include "cabecera.php";
 					<h5>Pinchos <i class="glyphicon glyphicon-plus"></i></h5>
 				</a>
 				<ul class="list-unstyled collapse" id="menu3">
-					<li class="desplegable"><a href="listaPinchos.php">Lista de pinchos</a></li>
-					<li class="desplegable"><a href="bajaPincho.php">Baja</a></li>
-					<li class="desplegable"><a href="modificacionPincho.php">Modificacion</a></li>
-					<li class="desplegable"><a href="validarPincho.php">Consulta</a></li>
+					<li class="desplegable"><a href="listaPinchos.php">Listado</a></li>
 				</ul>
 			</li>
 

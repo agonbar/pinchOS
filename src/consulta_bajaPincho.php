@@ -13,10 +13,10 @@ include "inicio.php"
 				<div class="column col-lg-10 col-md-10 col-sm-12 col-xs-12 col-md-offset-1">
 					<form class="form-horizontal separarformulario" role="form">
 						<div class="form-group alineado ">
-							<img src="./resources/img/pincho.jpg" alt="./resources/img/pincho.jpg" class="img-thumbnail">
+							<center><img src="./resources/img/pincho.jpg" alt="Imagen del pincho" class="img-thumbnail" width= "20%" heigth= "20%"></center>
 						</div>
 						<div class="form-group alineado ">
-							<label class="control-label">Nombre del pincho: </label>
+							<label class="control-label">Nombre: </label>
 							<label class=" control-label">Explosion de sabor</label>
 						</div>
 						<div class="form-group alineado ">

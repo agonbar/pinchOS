@@ -29,8 +29,8 @@ include "inicio.php"
 		</ul>
 		<ul class= "list-inline ">
 			<?php for ($i = 1; $i <= 10; $i++)://bucle que lista los pinchos seleccionados?>
-				<li>
-					<img src="./resources/img/pincho.jpg" alt="./resources/img/pincho.jpg" class="img-thumbnail">
+				<li class= "column col-lg-2 col-md-2 col-sm-4 col-xs-4 col-md-offset-1">
+					<img src="./resources/img/pincho.jpg" alt="./resources/img/pincho.jpg" class="img-thumbnail img-responsive">
 					<div class="caption">
 						<h4>-Nombre del pincho <?php echo $i;?>-</h4>
 						<p>
