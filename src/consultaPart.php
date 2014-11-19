@@ -42,6 +42,10 @@ include "inicio.php"
               <td>Otilio Manuel</td>
             </tr>
           </table>
+          <div class="modalbox movedown">
+            <button type="button" class="btn btn-primary col-md-offset-4" >Eliminar</button>
+            <a href="modificacionPart.php" class="btn btn-primary" role="button">Editar</a>
+          </div>
         </div>
       </div>
     </div>

@@ -35,7 +35,7 @@ include "inicio.php"
           <div class="caption">
             <h4>-Nombre del participante <?php echo $i;?>-</h4>
             <p>
-              <a href="button" class="btn btn-primary col-md-offset-4" role="button">Consultar</a>
+              <a href="consultaPart.php" class="btn btn-primary col-md-offset-4" role="button">Consultar</a>
             </p>
           </div>
         </li>

@@ -34,10 +34,8 @@ include "cabecera.php";
 						<h5>Participantes <i class="glyphicon glyphicon-plus"></i></h5>
 					</a>
 					<ul class="list-unstyled collapse" id="menu2">
-						<li class="desplegable"><a href="listarPart.php">Lista de participantes</a></li>
-						<li class="desplegable"><a href="bajaPart.php">Baja</a></li>
-						<li class="desplegable"><a href="modificacionPart.php">Modificacion</a></li>
-						<li class="desplegable"><a href="consultaPart.php">Consulta</a></li>
+						<li class="desplegable"><a href="listarPart.php">Listado</a></li>
+						<li class="desplegable"><a href="buscarPart.php">Búsqueda</a></li>
 					</ul>
 				</li>
 
@@ -82,10 +80,10 @@ include "cabecera.php";
 				</form>
 				<ul class="nav navbar-nav">
 					<li>
-						<a href="#"><i class="glyphicon glyphicon-plus"></i> Premiados</a>
+						<a href="listarPrem.php"><i class="glyphicon glyphicon-plus"></i> Premiados</a>
 					</li>
 					<li>
-						<a href="#postModal" role="button" data-toggle="modal"><i class="glyphicon glyphicon-plus"></i> Votar</a>
+						<a href="votarJProf.php" role="button"><i class="glyphicon glyphicon-plus"></i> Votar</a>
 					</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
