@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <?php
-include "cabecera.php";
 include "inicio.php"
 ?>
 <!--AQUI EMPIEZA LA VENTANA MODAL DE AÑADIR ALBUM -->
