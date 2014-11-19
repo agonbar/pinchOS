@@ -34,6 +34,5 @@ include "cabecera.php";
 	</div>
 </div>
 <!-- script references -->
-<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
