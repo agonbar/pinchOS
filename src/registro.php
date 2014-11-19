@@ -44,6 +44,5 @@ include "cabecera.php";
 			</div>
 		</div>
 	</div>
-	<!-- script references -->
 </body>
 </html>
