@@ -14,12 +14,10 @@ include "inicio.php"
 				$i=0;
 				while ($i <= 12){?>
 					<li class= "column col-lg-2 col-md-2 col-sm-4 col-xs-4 col-md-offset-1">
-						<img src="./resources/img/pincho.jpg" alt="Imagen del Pincho" class="img-thumbnail img-responsive">
+
+						<a href="validarPincho.php"><img src="./resources/img/pincho.jpg" alt="Imagen del Pincho" class="img-thumbnail img-responsive"></a>
 						<div class="caption">
-							<h4>-Nombre del pincho -</h4><?php echo $i;?>
-							<p>
-								<a href="validarPincho.php" class="btn btn-primary col-md-offset-4" role="button">Consultar</a>
-							</p>
+							<h4>-Nombre del pincho -</h4>
 						</div>
 					</li>
 					<?php $i++;}?><!-- fin while-->

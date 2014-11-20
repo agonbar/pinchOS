@@ -30,12 +30,9 @@ include "inicio.php"
 		<ul class= "list-inline ">
 			<?php for ($i = 1; $i <= 10; $i++)://bucle que lista los pinchos seleccionados?>
 				<li class= "column col-lg-2 col-md-2 col-sm-4 col-xs-4 col-md-offset-1">
-					<img src="./resources/img/pincho.jpg" alt="./resources/img/pincho.jpg" class="img-thumbnail img-responsive">
+					<a href="validarPincho.php"><img src="./resources/img/pincho.jpg" alt="Imagen del pincho" class="img-thumbnail img-responsive"></a>
 					<div class="caption">
-						<h4>-Nombre del pincho <?php echo $i;?>-</h4>
-						<p>
-							<a href="button" class="btn btn-primary col-md-offset-4" role="button">Consultar</a>
-						</p>
+						<h4>-Nombre del pincho-</h4>
 					</div>
 				</li>
 			<?php endfor;?><!-- fin while-->
