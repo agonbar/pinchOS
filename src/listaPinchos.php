@@ -18,7 +18,7 @@ include "inicio.php"
 						<div class="caption">
 							<h4>-Nombre del pincho -</h4><?php echo $i;?>
 							<p>
-								<a href="button" class="btn btn-primary col-md-offset-4" role="button">Consultar</a>
+								<a href="validarPincho.php" class="btn btn-primary col-md-offset-4" role="button">Consultar</a>
 							</p>
 						</div>
 					</li>
