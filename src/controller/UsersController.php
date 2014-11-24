@@ -16,7 +16,7 @@ class UsersController extends DBController {
   }
 
   public function login() {
-  
+  /*
    if (isset($_POST["emailU"])){   
 		  if ($this->user->isValidUser($_POST["emailU"], $_POST["contrasenaU"])) {
 
@@ -32,13 +32,13 @@ class UsersController extends DBController {
 			$this->view->setVariable("errors", $errors);
 		  }
     }     
-	
+	*/
     // renderiza la vista (/view/users/login.php)
     $this->view->render("vistas", "login");    //falta poner bien
   }
 
   public function register() {
-    
+    /*
     $user = new User();
     
     if (isset($_POST["emailU"])){ 
@@ -77,7 +77,7 @@ class UsersController extends DBController {
       }
     } 
     $this->view->setVariable("user", $user);  
-    
+    */
     // renderiza la vista (/view/users/registro.php)
     $this->view->render("vistas", "registro"); 
     
