@@ -23,3 +23,12 @@ User y UserMapper en nuestro caso todo estará junto en User.
 
 Si quereis probar vuestras páginas sin aver hecho todavia lo anterior podeis hacerlo de la siguiente forma:
 http://localhost/gitAbp/pinchOS/src/view/vistas/validarPincho.php, y en lugar de validarPincho poneis la página que quereis ver.
+
+Cuando quereis incluir errores en las paginas html con el array de errores creado para este fin debeis poner la siguiente linea de codigo dentro de php:
+ $errors = $view->getVariable("errors");
+Un ejemplo del uso de errores esta implementado en el registro.
+
+Todas las páginas html que hagais tienen que llevar en la parte de php las siguientes lineas de codigo:
+ require_once(__DIR__."/../../core/ViewManager.php");
+ $view = ViewManager::getInstance();
+Con esto obtenemos una variable view que es una instancia de view manager.. Por ejemplo para que funcionen los errores explicados antes.

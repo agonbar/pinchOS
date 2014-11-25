@@ -4,9 +4,7 @@
  include(__DIR__."/../layouts/cabecera.php");
  require_once(__DIR__."/../../core/ViewManager.php");
  $view = ViewManager::getInstance();
- $view->setVariable("title", "Login");
  $errors = $view->getVariable("errors");
- $user = $view->getVariable("user");
 ?>
 <body>
 	<!--login modal-->
@@ -20,7 +18,7 @@
 				<div class="modal-body">
 					<form class="form col-md-12 center-block" method="POST" action="index.php?controller=users&action=login">
 						<div class="form-group">
-							<input type="text" class="form-control input-lg" placeholder="Email" name="email">
+							<input type="text" class="form-control input-lg" placeholder="Email" name="email"> <?= isset($errors["email"])?$errors["email"]:"" ?><br>
 						</div>
 						<div class="form-group">
 							<input type="password" class="form-control input-lg" placeholder="Contraseña" name="password">

@@ -37,8 +37,8 @@ DROP TABLE IF EXISTS `Usuario` ;
 CREATE TABLE IF NOT EXISTS `Usuario` (
   `emailU` VARCHAR(45) NOT NULL,
   `contrasenaU` VARCHAR(45) NOT NULL,
-  `tipoU` VARCHAR(1) NOT NULL,
-  `estadoU` TINYINT(1) NOT NULL,
+  `tipoU` VARCHAR(1) NOT NULL comment 'J=Jurado popular, S=Jurado profesional, A=admiistador, P=Participante',
+  `estadoU` TINYINT(1) NOT NULL comment '1=activo, 0=incativo',
   `nombreU` VARCHAR(45) NOT NULL,
   `concursoId` INT NOT NULL,
   PRIMARY KEY (`emailU`),
@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `Pincho` (
   `cocineroPi` VARCHAR(45) NOT NULL,
   `numVotosPi` INT NOT NULL,
   `fotoPi` VARCHAR(45) NOT NULL,
-  `estadoPi` TINYINT(1) NOT NULL,
+  `estadoPi` TINYINT(1) NOT NULL comment '1=activo, 0=incativo',
   `ParticipanteEmail` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idPi`),
   FOREIGN KEY (`ParticipanteEmail`) REFERENCES `Participante` (`UsuarioEmail`)

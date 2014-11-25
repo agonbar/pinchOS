@@ -28,16 +28,16 @@ class User {
 
   /* La concurso del User */
   
-  private $Concurso_idC1;
+  private $concursoId;
    
-   public function __construct($emailU=NULL, $contrasenaU=NULL, $tipoU=NULL, $estadoU=NULL, $nombreU=NULL, $Concurso_idC1=NULL) {
+   public function __construct($emailU=NULL, $contrasenaU=NULL, $tipoU=NULL, $estadoU=NULL, $nombreU=NULL, $concursoId=NULL) {
 	$this->db = PDOConnection::getInstance();
     $this->emailU = $emailU;
     $this->contrasenaU = $contrasenaU; 
 	$this->tipoU = $tipoU;
     $this->estadoU = $estadoU; 
 	$this->nombreU = $nombreU;
-    $this->Concurso_idC1 = $Concurso_idC1; 	
+    $this->concursoId = $concursoId; 	
   }
   
   
@@ -62,7 +62,7 @@ class User {
   }
   
    /* Devuelve el tipo del User */  
-  public function getRipoU() {
+  public function getTipoU() {
     return $this->tipoU;
   }
 
@@ -93,34 +93,46 @@ class User {
   
    /* Devuelve el concurso del User */  
   public function getConcursoId() {
-    return $this->ConcursoId;
+    return $this->concursoId;
   }
 
   /* Pone el concurso del User */  
-  public function setConcursoId($ConcursoId) {
-    $this->ConcursoId = $ConcursoId;
+  public function setConcursoId($concursoId) {
+    $this->concursoId = $concursoId;
   }
   
   /* Comprueba si el usuario actual es válido para registrarse en la base de datos */  
   
-  public function checkIsValidForRegister() {
+  public function checkIsValidForRegister($contrasenaU2) {
+  
       $errors = array();
       if (strlen($this->emailU) < 5) {
-	$errors["emailU"] = "El email debe contener al menos 5 caracteres de longitud";
+		$errors["emailU"] = "El email debe contener al menos 5 caracteres de longitud";
+      }
+	  if ($this->tipoU == 'N') {
+		$errors["tipoU"] = "No has escogido el tipo de usuario";
+      }
+	  if (strlen($this->nombreU) < 5) {
+		$errors["nombreU"] = "El nombre debe contener al menos 5 caracteres de longitud";
       }
       if (strlen($this->contrasenaU) < 5) {
-	$errors["contrasenaU"] = "LA contraseña debe contener al menos 5 caracteres de longitud";	
+		$errors["contrasenaU"] = "La contraseña debe contener al menos 5 caracteres de longitud";	
+      }
+	  
+	  if ($this->contrasenaU != $contrasenaU2) {
+		$errors["contrasenaU2"] = "Las contraseñas no coinciden";	
       }
       if (sizeof($errors)>0){
-	throw new ValidationException($errors, "El usuario no es válido");
+		throw new ValidationException($errors, "El usuario no es válido");
       }
+	  
   } 
 
   /* Guarda el User en la base de datos */    
   
   public function save($user) {
     $stmt = $this->db->prepare("INSERT INTO usuario values (?,?,?,?,?,?)");
-    $stmt->execute(array($user->getEmailU(), $user->getContrasenaU(), $user->getTipoU(), $user->getEstadoU(), $user->getNombreU(), $user->getConcurso_idC1()));  
+    $stmt->execute(array($user->getEmailU(), $user->getContrasenaU(), $user->getTipoU(), $user->getEstadoU(), $user->getNombreU(), $user->getConcursoId()));  
   }
   
   /* Comprueba si el email xa existe en la base de datos */
@@ -161,7 +173,7 @@ class User {
 			$users_db["tipoU"],
 			$users_db["estadoU"],
 			$users_db["nombreU"],
-			$users_db["ConcursoId"]
+			$users_db["concursoId"]
 			);
 		}
 	}
