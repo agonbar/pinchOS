@@ -73,7 +73,7 @@
 									<h5>Jurado Profesional <i class="glyphicon glyphicon-plus"></i></h5>
 								</a>
 								<ul class="list-unstyled collapse" id="menu5">
-									<li class="desplegable "><a href="index.php?controller=users&action=login">Crear J.Profesional</a></li>
+									<li class="desplegable "><a href="index.php?controller=profesional&action=registrarProfesional">Crear J.Profesional</a></li>
 									<li class="desplegable "><a href="#">Modificar J.Profesional</a></li>
 									<li class="desplegable "><a href="#">Consultar lista de J.Profesional</a></li>
 									<li class="desplegable"><a href="#">Votar como J.Profesional</a></li>

@@ -126,20 +126,40 @@ class User {
 		throw new ValidationException($errors, "El usuario no es válido");
       }
 	  
-  } 
+  }
+
+  public function checkIsValidForRegisterProf(){
+	$errors = array();
+      if (strlen($this->emailU) < 5) {
+		$errors["emailU"] = "El email debe contener al menos 5 caracteres de longitud";
+      }
+	  if ($this->tipoU != 'S') {
+		$errors["tipoU"] = "Este usuario debe ser un jurado profesional";
+      }
+	  if (strlen($this->nombreU) < 5) {
+		$errors["nombreU"] = "El nombre debe contener al menos 5 caracteres de longitud";
+      }
+	  if (strlen($this->contrasenaU) < 5) {
+		$errors["contrasenaU"] = "La contraseña debe contener al menos 5 caracteres de longitud";	
+      }
+	  if (sizeof($errors)>0){
+		throw new ValidationException($errors, "El usuario no es válido");
+      }
+  }
 
   /* Guarda el User en la base de datos */    
   
-  public function save($user) {
+  public function save() {
     $stmt = $this->db->prepare("INSERT INTO usuario values (?,?,?,?,?,?)");
-    $stmt->execute(array($user->getEmailU(), $user->getContrasenaU(), $user->getTipoU(), $user->getEstadoU(), $user->getNombreU(), $user->getConcursoId()));  
+    $stmt->execute(array($this->emailU, $this->contrasenaU, $this->tipoU, $this->estadoU, $this->nombreU, $this->concursoId));  
   }
   
   /* Comprueba si el email xa existe en la base de datos */
   
-  public function usernameExists($emailU) {
+  public function usernameExists() {
+  
     $stmt = $this->db->prepare("SELECT count(emailU) FROM usuario where emailU=?");
-    $stmt->execute(array($emailU));
+    $stmt->execute(array($this->emailU));
     
     if ($stmt->fetchColumn() > 0) {   
       return true;

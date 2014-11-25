@@ -27,7 +27,7 @@ class UsersController extends DBController {
 		$this->view->setVariable("user", $user_db );
 		
 		// envia al usuario a una area restringida (su zona de usuario)
-		$this->view->redirect("users", "inicio");  //falta poner bien
+		$this->view->redirect("concurso", "consultarConcurso");  //falta poner bien
 	
 	  }else{
 		$errors = array();
@@ -41,9 +41,7 @@ class UsersController extends DBController {
   }
   
   
-  public function inicio() {
-	$this->view->render("vistas", "consultaConcurso"); 
-  }
+ 
   
 
   public function registro() {
@@ -64,10 +62,10 @@ class UsersController extends DBController {
 		$usuario->checkIsValidForRegister($_POST["contrasenaU2"]); 
 		
 		// comprueba si el correo ya existe en la base de datos
-		if (!$this->user->usernameExists($_POST["emailU"])){
+		if (!$usuario->usernameExists()){
 		
 		  // guarda el objeto User en la base de datos
-		  $this->user->save($usuario);
+		  $usuario->save();
 		  
 		  //$this->view->setFlash("Usuario ".$usuario->getNombreU()." corrrectamente añadido");
 		  
