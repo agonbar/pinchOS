@@ -1,5 +1,4 @@
 <?php
-
 require_once(__DIR__."/../core/PDOConnection.php");
 require_once(__DIR__."/../core/ValidationException.php");
 
@@ -93,13 +92,13 @@ class User {
   }
   
    /* Devuelve el concurso del User */  
-  public function getConcurso_idC1() {
-    return $this->Concurso_idC1;
+  public function getConcursoId() {
+    return $this->ConcursoId;
   }
 
   /* Pone el concurso del User */  
-  public function setConcurso_idC1($Concurso_idC1) {
-    $this->Concurso_idC1 = $Concurso_idC1;
+  public function setConcursoId($ConcursoId) {
+    $this->ConcursoId = $ConcursoId;
   }
   
   /* Comprueba si el usuario actual es válido para registrarse en la base de datos */  
@@ -162,7 +161,7 @@ class User {
 			$users_db["tipoU"],
 			$users_db["estadoU"],
 			$users_db["nombreU"],
-			$users_db["Concurso_idC1"]
+			$users_db["ConcursoId"]
 			);
 		}
 	}

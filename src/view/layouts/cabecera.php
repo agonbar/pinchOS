@@ -6,8 +6,7 @@
 <!-- Si trabajas sin internet
 <script src="resources/js/bootstrap.min.js"></script>
 -->
-<script src="resources/js/scripts.js"></script>
-
+<script src="../../resources/js/scripts.js"></script>
 
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">

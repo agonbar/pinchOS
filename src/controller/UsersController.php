@@ -16,29 +16,38 @@ class UsersController extends DBController {
   }
 
   public function login() {
-  /*
-   if (isset($_POST["emailU"])){   
-		  if ($this->user->isValidUser($_POST["emailU"], $_POST["contrasenaU"])) {
+  
+   if (isset($_POST["email"])){ 
+   
+	  if ($this->user->isValidUser($_POST["email"], $_POST["password"])) {
 
-			$user_db=$this->user->ver_datos($POST["emailU"]);
-			$_SESSION["currentuser"]=$user_db;
-			
-			// envia al usuario a una area restringida (su zona de usuario)
-			$this->view->redirect("posts", "index");  //falta poner bien
+		$user_db=$this->user->ver_datos($POST["email"]);
+		$_SESSION["currentuser"]=$user_db;
 		
-		  }else{
-			$errors = array();
-			$errors["general"] = "El email no se encuentra registrado";
-			$this->view->setVariable("errors", $errors);
-		  }
+		$this->view->setVariable("user", $user_db );
+		
+		// envia al usuario a una area restringida (su zona de usuario)
+		$this->view->redirect("users", "inicio");  //falta poner bien
+	
+	  }else{
+		$errors = array();
+		$errors["general"] = "El email no se encuentra registrado";
+		$this->view->setVariable("errors", $errors);
+	  }
     }     
-	*/
+	
     // renderiza la vista (/view/users/login.php)
     $this->view->render("vistas", "login");    //falta poner bien
   }
+  
+  
+  public function inicio() {
+	$this->view->render("vistas", "consultaConcurso"); 
+  }
+  
 
-  public function register() {
-    /*
+  public function registro() {
+    
     $user = new User();
     
     if (isset($_POST["emailU"])){ 
@@ -77,7 +86,7 @@ class UsersController extends DBController {
       }
     } 
     $this->view->setVariable("user", $user);  
-    */
+   
     // renderiza la vista (/view/users/registro.php)
     $this->view->render("vistas", "registro"); 
     

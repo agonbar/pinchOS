@@ -1,8 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <?php
-include "cabecera.php";
+	include(__DIR__."/cabecera.php");
+	require_once(__DIR__."/../../core/ViewManager.php");
+	$view = ViewManager::getInstance();
+	$view->setVariable("title", "Login");
+	$errors = $view->getVariable("errors");
+	$currentuser = $view->getVariable("user");
+   
 ?>
 <body>
 	<div class="wrapper">

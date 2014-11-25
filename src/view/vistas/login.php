@@ -1,7 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <?php
-include(__DIR__."/../layouts/cabecera.php");
+ include(__DIR__."/../layouts/cabecera.php");
+ require_once(__DIR__."/../../core/ViewManager.php");
+ $view = ViewManager::getInstance();
+ $view->setVariable("title", "Login");
+ $errors = $view->getVariable("errors");
+ $user = $view->getVariable("user");
 ?>
 <body>
 	<!--login modal-->
@@ -13,19 +18,17 @@ include(__DIR__."/../layouts/cabecera.php");
 					<h1 class="text-center">Login</h1>
 				</div>
 				<div class="modal-body">
-					<form class="form col-md-12 center-block">
+					<form class="form col-md-12 center-block" method="POST" action="index.php?controller=users&action=login">
 						<div class="form-group">
-							<input type="text" class="form-control input-lg" placeholder="Email">
+							<input type="text" class="form-control input-lg" placeholder="Email" name="email">
 						</div>
 						<div class="form-group">
-							<input type="password" class="form-control input-lg" placeholder="Contraseña">
+							<input type="password" class="form-control input-lg" placeholder="Contraseña" name="password">
 						</div>
 						<div class="form-group">
-							<a href="inicio.php"
-								<input type="submit" class="btn btn-primary btn-lg btn-block" value="Entrar">Entrar
-							</a>
-						<span class="pull-right"><a href="index.php?controller=users&action=registro">Registrate!</a></span>
-					</div>
+							<input type="submit" class="btn btn-primary btn-lg btn-block" value="Entrar">
+							<span class="pull-right"><a href="index.php?controller=users&action=registro">Registrate!</a></span>
+						</div>
 				</form>
 			</div>
 			<div class="modal-footer"></div>
