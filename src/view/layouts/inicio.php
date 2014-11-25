@@ -27,35 +27,62 @@
 
 						<div class="nombreuser">--Nombre de usuario--</div>
 
-						<li class="nav-header"><a href="#" data-toggle="collapse" data-target="#menu1">
-							<h5>Concurso <i class="glyphicon glyphicon-plus"></i></h5>
-						</a>
-						<ul class="list-unstyled collapse" id="menu1">
-							<li class="desplegable "><a href="#">Consultar bases</a></li>
-							<li class="desplegable"><a href="#">Modificar concurso</a></li>
-						</ul>
-					</li>
+							<li class="nav-header">
+								<a href="#" data-toggle="collapse" data-target="#menu1">
+									<h5>Concurso <i class="glyphicon glyphicon-plus"></i></h5>
+								</a>
+								<ul class="list-unstyled collapse" id="menu1">
+									<li class="desplegable "><a href="#">Crear concurso</a></li>
+									<li class="desplegable "><a href="#">Consultar concurso</a></li>
+									<li class="desplegable"><a href="#">Modificar concurso</a></li>
+								</ul>
+							</li>
 
-					<li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#menu2">
-						<h5>Participantes <i class="glyphicon glyphicon-plus"></i></h5>
-					</a>
-					<ul class="list-unstyled collapse" id="menu2">
-						<li class="desplegable"><a href="listarPart.php">Listado</a></li>
-						<li class="desplegable"><a href="buscarPart.php">Búsqueda</a></li>
+							<li class="nav-header"> 
+								<a href="#" data-toggle="collapse" data-target="#menu2">
+									<h5>Participantes <i class="glyphicon glyphicon-plus"></i></h5>
+								</a>
+								<ul class="list-unstyled collapse" id="menu2">
+									<li class="desplegable"><a href="listarPart.php">Listado</a></li>
+									<li class="desplegable"><a href="buscarPart.php">Búsqueda</a></li>
+								</ul>
+							</li>
+
+							<li class="nav-header">
+								<a href="#" data-toggle="collapse" data-target="#menu3">
+									<h5>Pinchos <i class="glyphicon glyphicon-plus"></i></h5>
+								</a>
+								<ul class="list-unstyled collapse" id="menu3">
+									<li class="desplegable"><a href="listaPinchos.php">Listado</a></li>
+								</ul>
+							</li>
+							
+							<li class="nav-header">
+								<a href="#" data-toggle="collapse" data-target="#menu4">
+									<h5>Jurado Popular <i class="glyphicon glyphicon-plus"></i></h5>
+								</a>
+								<ul class="list-unstyled collapse" id="menu4">
+									<li class="desplegable "><a href="#">Modificar J.Popular</a></li>
+									<li class="desplegable "><a href="#">Consultar lista de J.Popular</a></li>
+									<li class="desplegable"><a href="#">Votar como J.Popular</a></li>
+								</ul>
+							</li>
+							
+							<li class="nav-header">
+								<a href="#" data-toggle="collapse" data-target="#menu5">
+									<h5>Jurado Profesional <i class="glyphicon glyphicon-plus"></i></h5>
+								</a>
+								<ul class="list-unstyled collapse" id="menu5">
+									<li class="desplegable "><a href="index.php?controller=users&action=login">Crear J.Profesional</a></li>
+									<li class="desplegable "><a href="#">Modificar J.Profesional</a></li>
+									<li class="desplegable "><a href="#">Consultar lista de J.Profesional</a></li>
+									<li class="desplegable"><a href="#">Votar como J.Profesional</a></li>
+								</ul>
+							</li>
+
 					</ul>
-				</li>
 
-				<li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#menu3">
-					<h5>Pinchos <i class="glyphicon glyphicon-plus"></i></h5>
-				</a>
-				<ul class="list-unstyled collapse" id="menu3">
-					<li class="desplegable"><a href="listaPinchos.php">Listado</a></li>
-				</ul>
-			</li>
-
-		</ul>
-
-	</div>
+			</div>
 	<!-- /sidebar -->
 
 	<!-- main right col -->
