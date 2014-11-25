@@ -18,7 +18,8 @@
 				<div class="modal-body">
 					<form class="form col-md-12 center-block" method="POST" action="index.php?controller=users&action=registro">
 						<div class="form-group">
-							<input type="text" class="form-control input-lg" placeholder="Email" name="emailU"><?= isset($errors["emailU"])?$errors["emailU"]:"" ?><br>
+							<input type="text" class="form-control input-lg" placeholder="Email" name="emailU">
+							<?= isset($errors["emailU"])?$errors["emailU"]:"" ?><br>
 						</div>
 						<div class="form-group">
 							<input type="text" class="form-control input-lg" placeholder="Nombre y apellidos" name="nombreU">

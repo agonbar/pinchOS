@@ -133,9 +133,6 @@ class User {
       if (strlen($this->emailU) < 5) {
 		$errors["emailU"] = "El email debe contener al menos 5 caracteres de longitud";
       }
-	  if ($this->tipoU != 'S') {
-		$errors["tipoU"] = "Este usuario debe ser un jurado profesional";
-      }
 	  if (strlen($this->nombreU) < 5) {
 		$errors["nombreU"] = "El nombre debe contener al menos 5 caracteres de longitud";
       }
