@@ -19,12 +19,11 @@ $concurso = $view->getVariable("concu");
         $i=0;
         while ($i <= 12){?>
           <li>
-            <img src="./resources/img/participante.jpg" alt="./resources/img/participante.jpg" class="img-thumbnail" height="200" width="200">
-            <div class="caption">
-              <h4>-Nombre del participante <?php echo $i;?>-</h4>
-              <p>
-                <a href="index.php?controller=participante&action=consultar" class="btn btn-primary col-md-offset-4" role="button">Consultar</a>
-              </p>
+            <a href="index.php?controller=participante&action=consultar">
+              <img src="./resources/img/participante.jpg" alt="./resources/img/participante.jpg" class="img-thumbnail" height="200" width="200">
+              <div class="caption">
+                <h4>-Nombre del participante <?php echo $i;?>-</h4>
+              </a>
             </div>
           </li>
           <?php $i++;}?><!-- fin while-->

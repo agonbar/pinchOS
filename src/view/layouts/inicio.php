@@ -47,7 +47,7 @@
 									<h5>Pinchos <i class="glyphicon glyphicon-plus"></i></h5>
 								</a>
 								<ul class="list-unstyled collapse" id="menu3">
-									<li class="desplegable"><a href="listaPinchos.php">Listado</a></li>
+									<li class="desplegable"><a href="index.php?controller=pincho&action=listadoPincho">Listado</a></li>
 								</ul>
 							</li>
 
@@ -90,10 +90,10 @@
 				</form>
 				<ul class="nav navbar-nav">
 					<li>
-						<a href="listarPrem.php"><i class="glyphicon glyphicon-plus"></i> Premiados</a>
+						<a href="index.php?controller=concurso&action=listarPremiados"><i class="glyphicon glyphicon-plus"></i> Premiados</a>
 					</li>
 					<li>
-						<a href="votarJProf.php" role="button"><i class="glyphicon glyphicon-plus"></i> Votar</a>
+						<a href="index.php?controller=Users&action=votar" role="button"><i class="glyphicon glyphicon-plus"></i> Votar</a>
 					</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">

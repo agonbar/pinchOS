@@ -53,7 +53,7 @@ include(__DIR__."/../layouts/inicio.php");
 							</div>
 						</div>
 						<button type="button" class="btn btn-primary col-md-offset-4" >Guardar modificación</button>
-						<button type="button" class="btn btn-primary " >Cancelar</button>
+						<a href="index.php?controller=pincho&action=consultaPincho" type="button" class="btn btn-primary " >Cancelar</a>
 					</form>
 				</div>
 			</div>

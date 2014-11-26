@@ -1,7 +1,11 @@
 <?php
-	//include de la clase Pincho
-	//include de la clase PDO(la que conecta con la base de datos)
-	//include de la clase router(la que direcciona las paginas html)
+require_once(__DIR__."/../core/ViewManager.php");
+require_once(__DIR__."/../model/User.php");
+require_once(__DIR__."/../controller/DBController.php");
+
+
+class PinchoController extends DBController {
+
 	function altaPincho(){
 
 	}
@@ -12,15 +16,16 @@
 
 	}
 	function modificacionPincho(){
-		
+		$this->view->render("vistas", "modificacionPincho");
 	}
 	function busquedaPincho(){
-		
+
 	}
 	function consultaPincho(){
-		
+		$this->view->render("vistas", "consulta_bajaPincho");
 	}
 	function listadoPincho(){
-		
+		$this->view->render("vistas", "listaPinchos");
 	}
+}
 ?>
