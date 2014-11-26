@@ -43,7 +43,7 @@ include(__DIR__."/../layouts/inicio.php");
           </table>
           <div class="modalbox movedown">
             <button type="button" class="btn btn-primary col-md-offset-4" >Eliminar</button>
-            <a href="modificacionPart.php" class="btn btn-primary" role="button">Editar</a>
+            <a href="index.php?controller=participante&action=modificar" class="btn btn-primary" role="button">Editar</a>
           </div>
         </div>
       </div>

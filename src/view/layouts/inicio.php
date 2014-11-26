@@ -37,8 +37,8 @@
 									<h5>Participantes <i class="glyphicon glyphicon-plus"></i></h5>
 								</a>
 								<ul class="list-unstyled collapse" id="menu2">
-									<li class="desplegable"><a href="listarPart.php">Listado</a></li>
-									<li class="desplegable"><a href="buscarPart.php">Búsqueda</a></li>
+									<li class="desplegable"><a href="index.php?controller=participante&action=listar">Listado</a></li>
+									<li class="desplegable"><a href="index.php?controller=participante&action=buscar">Búsqueda</a></li>
 								</ul>
 							</li>
 
@@ -77,7 +77,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a href="inicio.php" class="navbar-brand logo">P</a>
+				<a href="index.php?controller=concurso&action=consultarConcurso" class="navbar-brand logo">P</a>
 			</div>
 			<nav class="collapse navbar-collapse" role="navigation">
 				<form class="navbar-form navbar-left">

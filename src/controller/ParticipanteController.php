@@ -13,7 +13,23 @@ class ParticipanteController extends DBController {
 
     $this->user = new User();
   }
-  
+
+  public function listar(){
+    $this->view->render("vistas", "listarPart");
+  }
+
+  public function buscar(){
+    $this->view->render("vistas", "buscarPart");
+  }
+
+  public function consultar(){
+    $this->view->render("vistas", "consultaPart");
+  }
+
+  public function modificar(){
+    $this->view->render("vistas", "modificacionPart");
+  }
+
    public function registrarParticipante() {
 
    $participante = new User();

@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <?php
 include(__DIR__."/../layouts/inicio.php");
+require_once(__DIR__."/../../core/ViewManager.php");
+$view = ViewManager::getInstance();
+$view->setVariable("title", "Login");
+$errors = $view->getVariable("errors");
+$concurso = $view->getVariable("concu");
 ?>
 <!--AQUI EMPIEZA LA VENTANA MODAL DE AÑADIR ALBUM -->
 <div class="margensup" >
@@ -18,7 +23,7 @@ include(__DIR__."/../layouts/inicio.php");
             <div class="caption">
               <h4>-Nombre del participante <?php echo $i;?>-</h4>
               <p>
-                <a href="consultaPart.php" class="btn btn-primary col-md-offset-4" role="button">Consultar</a>
+                <a href="index.php?controller=participante&action=consultar" class="btn btn-primary col-md-offset-4" role="button">Consultar</a>
               </p>
             </div>
           </li>
