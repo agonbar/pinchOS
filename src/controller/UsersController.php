@@ -16,12 +16,14 @@ class UsersController extends DBController {
   }
 
   public function login() {
-  
-   if (isset($_POST["email"])){ 
+	
+	$usuario= new User();
+
+    if (isset($_POST["email"])){ 
    
 	  if ($this->user->isValidUser($_POST["email"], $_POST["password"])) {
 
-		$user_db=$this->user->ver_datos($POST["email"]);
+		$user_db=$usuario->ver_datos($POST["email"]);
 		$_SESSION["currentuser"]=$user_db;
 		
 		$this->view->setVariable("user", $user_db );
@@ -41,9 +43,6 @@ class UsersController extends DBController {
   }
   
   
- 
-  
-
   public function registro() {
   
     $usuario= new User();

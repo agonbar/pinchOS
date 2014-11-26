@@ -1,10 +1,10 @@
 <!DOCTYPE html>
+<html lang="es">
 <?php
 include(__DIR__."/../layouts/inicio.php");
- require_once(__DIR__."/../../core/ViewManager.php");
- $view = ViewManager::getInstance();
- $view->setVariable("title", "Login");
- $errors = $view->getVariable("errors");
+require_once(__DIR__."/../../core/ViewManager.php");
+$view = ViewManager::getInstance();
+$errors = $view->getVariable("errors");
 ?>
 <div class="margensup" >
 	<div class="column col-lg-9 col-md-9 col-sm-12 col-xs-12 col-md-offset-2" >
@@ -14,17 +14,19 @@ include(__DIR__."/../layouts/inicio.php");
 			</div>
 			<div class="row separacion">
 				<div class="column col-lg-10 col-md-10 col-sm-12 col-xs-12 ">
-					<form class="form-horizontal" role="form">
+					<form class="form-horizontal" method="POST" action="index.php?controller=concurso&action=registro">
 						<div class="form-group separarformulario">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Nombre</label>
 							<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-								<input class="form-control" placeholder="Introduce un Nombre...">
+								<input type="text" class="form-control" placeholder="Introduce un Nombre..." name="nombreC">
+								<?= isset($errors["nombreC"])?$errors["nombreC"]:"" ?><br>
 							</div>
 						</div>
 						<div class="form-group separarformulario">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Ciudad</label>
 							<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-								<input class="form-control" placeholder="Introduce una Ciudad...">
+								<input type="text" class="form-control" placeholder="Introduce una Ciudad..." name="ciudadC">
+								<?= isset($errors["ciudadC"])?$errors["ciudadC"]:"" ?><br>
 							</div>
 						</div>
 						<div class="form-group separarformulario">
@@ -36,23 +38,25 @@ include(__DIR__."/../layouts/inicio.php");
 						<div class="form-group separarformulario">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Premio</label>
 							<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-								<input class="form-control" placeholder="Introduce un Premio...">
+								<input type="text" class="form-control" placeholder="Introduce un Premio..." name="premioC">
+								<?= isset($errors["premioC"])?$errors["premioC"]:"" ?><br>
 							</div>
 						</div>
-						<div class="form-group separarformulario">
+						<!--<div class="form-group separarformulario">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Patrocinador</label>
 							<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-								<input class="form-control" placeholder="Introduce un Patrocinador...">
+								<input type="text" class="form-control" placeholder="Introduce un Patrocinador..." name="patrocinadorC">
 							</div>
-						</div>
+						</div>-->
 						<div class="form-group separarformulario">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Bases</label>
 							<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-								<textarea class="form-control" rows="6" placeholder="Introduce las Bases..."></textarea>
+								<textarea class="form-control" rows="6" placeholder="Introduce las Bases..." name="basesC"></textarea>
 								<input type="file" id="archivo_1">
+								<?= isset($errors["basesC"])?$errors["basesC"]:"" ?><br>
 							</div>
 						</div>
-						<button type="button" class="btn btn-primary col-md-offset-7" >Crear</button>
+						<input type="submit" class="btn btn-primary col-md-offset-7" value="Crear">
 					</form>
 				</div>
 			</div>

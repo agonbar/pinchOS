@@ -32,9 +32,9 @@
 									<h5>Concurso <i class="glyphicon glyphicon-plus"></i></h5>
 								</a>
 								<ul class="list-unstyled collapse" id="menu1">
-									<li class="desplegable "><a href="#">Crear concurso</a></li>
-									<li class="desplegable "><a href="#">Consultar concurso</a></li>
-									<li class="desplegable"><a href="#">Modificar concurso</a></li>
+									<li class="desplegable "><a href="index.php?controller=concurso&action=registro">Crear concurso</a></li>
+									<li class="desplegable "><a href="index.php?controller=concurso&action=consultarConcurso">Consultar concurso</a></li>
+									<li class="desplegable"><a href="index.php?controller=concurso&action=modificarConcurso">Modificar concurso</a></li>
 								</ul>
 							</li>
 
@@ -63,7 +63,7 @@
 								</a>
 								<ul class="list-unstyled collapse" id="menu4">
 									<li class="desplegable "><a href="#">Modificar J.Popular</a></li>
-									<li class="desplegable "><a href="#">Consultar lista de J.Popular</a></li>
+									<li class="desplegable "><a href="index.php?controller=users&action=ver_datos">Consultar lista de J.Popular</a></li>
 									<li class="desplegable"><a href="#">Votar como J.Popular</a></li>
 								</ul>
 							</li>
