@@ -37,7 +37,7 @@
 								</ul>
 							</li>
 
-							<li class="nav-header"> 
+							<li class="nav-header">
 								<a href="#" data-toggle="collapse" data-target="#menu2">
 									<h5>Participantes <i class="glyphicon glyphicon-plus"></i></h5>
 								</a>
@@ -55,7 +55,7 @@
 									<li class="desplegable"><a href="listaPinchos.php">Listado</a></li>
 								</ul>
 							</li>
-							
+
 							<li class="nav-header">
 								<a href="#" data-toggle="collapse" data-target="#menu5">
 									<h5>Jurado Profesional <i class="glyphicon glyphicon-plus"></i></h5>
@@ -114,3 +114,10 @@
 			</nav>
 		</div>
 		<!-- /top nav -->
+
+
+<?php
+
+include(__DIR__."/pie.php");
+
+?>
