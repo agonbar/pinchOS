@@ -43,8 +43,8 @@
 									<h5>Participantes <i class="glyphicon glyphicon-plus"></i></h5>
 								</a>
 								<ul class="list-unstyled collapse" id="menu2">
-									<li class="desplegable"><a href="listarPart.php">Listado</a></li>
-									<li class="desplegable"><a href="buscarPart.php">Búsqueda</a></li>
+									<li class="desplegable"><a href="index.php?controller=participante&action=listar">Listado</a></li>
+									<li class="desplegable"><a href="index.php?controller=participante&action=buscar">Búsqueda</a></li>
 								</ul>
 							</li>
 
@@ -53,7 +53,7 @@
 									<h5>Pinchos <i class="glyphicon glyphicon-plus"></i></h5>
 								</a>
 								<ul class="list-unstyled collapse" id="menu3">
-									<li class="desplegable"><a href="listaPinchos.php">Listado</a></li>
+									<li class="desplegable"><a href="index.php?controller=pincho&action=listadoPincho">Listado</a></li>
 								</ul>
 							</li>
 
@@ -83,7 +83,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a href="inicio.php" class="navbar-brand logo">P</a>
+				<a href="index.php?controller=concurso&action=consultarConcurso" class="navbar-brand logo">P</a>
 			</div>
 			<nav class="collapse navbar-collapse" role="navigation">
 				<form class="navbar-form navbar-left">
@@ -96,7 +96,7 @@
 				</form>
 				<ul class="nav navbar-nav">
 					<li>
-						<a href="listarPrem.php"><i class="glyphicon glyphicon-plus"></i> Premiados</a>
+						<a href="index.php?controller=concurso&action=listarPremiados"><i class="glyphicon glyphicon-plus"></i> Premiados</a>
 					</li>
 					<li>
 						<a href="index.php?controller=users&action=seleccionarVotacion"><i class="glyphicon glyphicon-plus"></i> Votar</a>

@@ -31,7 +31,9 @@ class ConcursoController extends DBController {
 	$this->view->render("vistas", "consultaConcurso"); 
   }
   
-   
+   public function listarPremiados(){
+    $this->view->render("vistas", "listarPrem");
+  }
   
   
   

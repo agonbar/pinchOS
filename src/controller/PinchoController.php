@@ -27,5 +27,8 @@ class PinchoController extends DBController {
 	function listadoPincho(){
 		$this->view->render("vistas", "listaPinchos");
 	}
+	function validarPincho(){
+		$this->view->render("vistas", "validarPincho");
+	}
 }
 ?>

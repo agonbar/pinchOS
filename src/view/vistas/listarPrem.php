@@ -18,7 +18,7 @@ include(__DIR__."/../layouts/inicio.php");
             <div class="caption">
               <h4>-Nombre del participante <?php echo $i;?>-</h4>
               <p>
-                <a href="consultaPart.php" class="btn btn-primary col-md-offset-4" role="button">Consultar</a>
+                <a href="index.php?controller=pincho&action=consultaPincho" class="btn btn-primary col-md-offset-4" role="button">Consultar</a>
               </p>
             </div>
           </li>
