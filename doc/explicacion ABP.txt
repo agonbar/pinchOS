@@ -1,0 +1,34 @@
+La estructura para llamar a las páginas aora es diferente por lo que no fincionan los botones que antes si que funcionaban.
+
+-Para que funcione la redireccion a una página hay que hacer lo siguiente (ver ejemplo en login al darle al link registrate!):
+
+	+En la propia pagina (donde esta el html) en lugar de poner lo tipico de href="login.php" para llamar a una página aora hay que poner:
+	href="index.php?controller=users&action=login".  Esto quiere decir que cuando se pulsa el enlace o boton va a realizar el metodo 
+	login que se encuentra el el controlador "UsersController". 
+	
+	+Además, para que funcione hay que crear en el controlador "UsersController" el método login, que tendrá todo el código que queramos meter del login,
+	y al final del metodo, usará el método "$this->view->render("vistas", "login");" que hace que se muestre la vista que esta en la carpeta "vistas" en el 
+	archivo "login.php"
+	
+
+Además, al cambiar la carpeta en la que se encuentran las cosas, alomejor hay alguna imagen o algo que no se visualiza bien y eso seguramente sea porque 
+la direccion es la de antes y hay que poner la actual(intente cambiarlas pero alguna se me pudo pasar).
+
+Siempre que se cree un controlador hay que llamarle cone esta estructura: "UsersController", "PinchosController", "JpopularController" y siempre deben extender
+de BDController
+
+Las clases que creamos para acceso a la base de datos se llamaran con la siguiente estructura: "User", "Pincho", "JPopular". En estas clases irá tanto el acceso
+propio a la base de datos como guardar o recuperar como los gets y los sets de cada clase. Pos lo tanto lo que en el proyecto que os pase esta dividido en 
+User y UserMapper en nuestro caso todo estará junto en User.
+
+Si quereis probar vuestras páginas sin aver hecho todavia lo anterior podeis hacerlo de la siguiente forma:
+http://localhost/gitAbp/pinchOS/src/view/vistas/validarPincho.php, y en lugar de validarPincho poneis la página que quereis ver.
+
+Cuando quereis incluir errores en las paginas html con el array de errores creado para este fin debeis poner la siguiente linea de codigo dentro de php:
+ $errors = $view->getVariable("errors");
+Un ejemplo del uso de errores esta implementado en el registro.
+
+Todas las páginas html que hagais tienen que llevar en la parte de php las siguientes lineas de codigo:
+ require_once(__DIR__."/../../core/ViewManager.php");
+ $view = ViewManager::getInstance();
+Con esto obtenemos una variable view que es una instancia de view manager.. Por ejemplo para que funcionen los errores explicados antes.
