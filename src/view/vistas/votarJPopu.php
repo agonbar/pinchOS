@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <?php
 include(__DIR__."/../layouts/inicio.php");
+require_once(__DIR__."/../../core/ViewManager.php");
+$view = ViewManager::getInstance();
+$errors = $view->getVariable("errors");
 ?>
 <div class="margensup" >
 	<div class="column col-lg-9 col-md-9 col-sm-12 col-xs-12 col-md-offset-2" >
@@ -10,50 +13,69 @@ include(__DIR__."/../layouts/inicio.php");
 			</div>
 			<div class="row separacion">
 				<div class="column col-lg-10 col-md-10 col-sm-12 col-xs-12 ">
-					<form class="form-horizontal" role="form">
+					<form class="form-horizontal" method="POST"  href="index.php?controller=popular&action=votar">
 						<div class="form-group separarformulario">
 							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-12 control-label">Código del pincho 1</label>
 							<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-								<input class="form-control" placeholder="Introduce un código...">
+								<input class="form-control" placeholder="Introduce un código..." name="codigoP1">
+							</div>
+						</div>
+						<div class="form-group separarformulario">
+							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-12 control-label">Puntuación del pincho 1</label>
+							<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+								<select class="form-control" name="puntuacionP1">
+									<option value="N">Introduce la puntuación...</option>
+									<option value="0">0</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+								</select>
 							</div>
 						</div>
 						<div class="form-group separarformulario">
 							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-12 control-label">Código del pincho 2</label>
 							<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-								<input class="form-control" placeholder="Introduce un código...">
+								<input class="form-control" placeholder="Introduce un código..." name="codigoP2">
+							</div>
+						</div>
+						<div class="form-group separarformulario">
+							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-12 control-label">Puntuación del pincho 2</label>
+							<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+								<select class="form-control" name="puntuacionP2">
+									<option value="N">Introduce la puntuación...</option>
+									<option value="0">0</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+								</select>
 							</div>
 						</div>
 						<div class="form-group separarformulario">
 							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-12 control-label">Código del pincho 3</label>
 							<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-								<input class="form-control" placeholder="Introduce un código...">
+								<input class="form-control" placeholder="Introduce un código..." name="codigoP3">
 							</div>
 						</div>
 						<div class="form-group separarformulario">
-							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-12 control-label">Puntuación</label>
+							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-12 control-label">Puntuación del pincho 3</label>
 							<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-								<select class="form-control">
-									<option>Introduce la puntuación...</option>
-									<option>0</option>
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-									<option>5</option>
-									<option>6</option>
-									<option>7</option>
-									<option>8</option>
-									<option>9</option>
-									<option>10</option>
+								<select class="form-control" name="puntuacionP3">
+									<option value="N">Introduce la puntuación...</option>
+									<option value="0">0</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
 								</select>
 							</div>
 						</div>
 
-
-
-
-
-						<button type="button" class="btn btn-primary col-md-offset-5" >Guardar votos</button>
+						<input type="submit" class="btn btn-primary col-md-offset-5" value="Guardar votos" >
 						<button type="button" class="btn btn-primary " >Cancelar</button>
 					</form>
 				</div>
@@ -62,5 +84,5 @@ include(__DIR__."/../layouts/inicio.php");
 	</div>
 </div>
 <?php
-include(__DIR__."../../layouts/pie.php");
+include(__DIR__."/../layouts/pie.php");
 ?>

@@ -76,7 +76,7 @@ class ProfesionalController extends DBController {
    $this->view->render("vistas", "altaJProf");
 
    }
-
-
-
+   public function votar() {
+	$this->view->render("vistas", "votarJProf"); 
+   }
 }

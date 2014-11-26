@@ -3,6 +3,11 @@
 
 <?php
 	include(__DIR__."/cabecera.php");
+	require_once(__DIR__."/../../core/ViewManager.php");
+	$view = ViewManager::getInstance();
+	$view->setVariable("title", "Login");
+	$errors = $view->getVariable("errors");
+	$currentuser = $view->getVariable("currentusername");
 ?>
 <body>
 	<div class="wrapper">
@@ -19,7 +24,7 @@
 
 					<ul class="nav hidden-xs" id="lg-menu">
 
-						<div class="nombreuser">--Nombre de usuario--</div>
+						<div class="nombreuser">-- <?=$currentuser->getNombreU() ?> --</div>
 
 							<li class="nav-header">
 								<a href="#" data-toggle="collapse" data-target="#menu1">
@@ -32,7 +37,7 @@
 								</ul>
 							</li>
 
-							<li class="nav-header">
+							<li class="nav-header"> 
 								<a href="#" data-toggle="collapse" data-target="#menu2">
 									<h5>Participantes <i class="glyphicon glyphicon-plus"></i></h5>
 								</a>
@@ -50,7 +55,6 @@
 									<li class="desplegable"><a href="index.php?controller=pincho&action=listadoPincho">Listado</a></li>
 								</ul>
 							</li>
-
 							<li class="nav-header">
 								<a href="#" data-toggle="collapse" data-target="#menu5">
 									<h5>Jurado Profesional <i class="glyphicon glyphicon-plus"></i></h5>
@@ -93,7 +97,7 @@
 						<a href="index.php?controller=concurso&action=listarPremiados"><i class="glyphicon glyphicon-plus"></i> Premiados</a>
 					</li>
 					<li>
-						<a href="index.php?controller=Users&action=votar" role="button"><i class="glyphicon glyphicon-plus"></i> Votar</a>
+						<a href="index.php?controller=users&action=seleccionarVotacion"><i class="glyphicon glyphicon-plus"></i> Votar</a>
 					</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
