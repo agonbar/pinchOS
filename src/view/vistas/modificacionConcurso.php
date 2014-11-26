@@ -62,5 +62,5 @@
 	</div>
 </div>
 <?php
-include(__DIR__."/../layouts/pie.php");
+include(__DIR__."../../layouts/pie.php");
 ?>

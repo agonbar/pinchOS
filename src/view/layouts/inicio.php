@@ -3,11 +3,6 @@
 
 <?php
 	include(__DIR__."/cabecera.php");
-	require_once(__DIR__."/../../core/ViewManager.php");
-	$view = ViewManager::getInstance();
-	$view->setVariable("title", "Login");
-	$errors = $view->getVariable("errors");
-	$currentuser = $view->getVariable("useractual");
 ?>
 <body>
 	<div class="wrapper">
@@ -114,10 +109,3 @@
 			</nav>
 		</div>
 		<!-- /top nav -->
-
-
-<?php
-
-include(__DIR__."/pie.php");
-
-?>

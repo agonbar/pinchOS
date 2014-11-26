@@ -12,7 +12,7 @@ include(__DIR__."/../layouts/inicio.php");
 				<div class="column col-lg-10 col-md-10 col-sm-12 col-xs-12 ">
 					<form class="form-horizontal" role="form">
 						<div class="form-group separarformulario">
-							<center><img src="./resources/img/pincho.jpg" alt="Imagen del pincho" class="img-thumbnail" width= "20%" heigth= "20%">							
+							<center><img src="./resources/img/pincho.jpg" alt="Imagen del pincho" class="img-thumbnail" width= "20%" heigth= "20%">
 							<input type="file" id="ejemplo_archivo_1">
 							<p class="help-block">El tamano maximo permitido es de 3Mb</p></center>
 						</div>
@@ -39,7 +39,7 @@ include(__DIR__."/../layouts/inicio.php");
 							<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
 								<textarea class="form-control" placeholder="Introduce algunos de los ingredientes..." rows="3"></textarea>
 							</div>
-						</div>						
+						</div>
 						<div class="form-group separarformulario">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Contraseña</label>
 							<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
@@ -61,5 +61,5 @@ include(__DIR__."/../layouts/inicio.php");
 	</div>
 </div>
 <?php
-include(__DIR__."/../layouts/pie.php");
+include(__DIR__."../../layouts/pie.php");
 ?>

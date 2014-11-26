@@ -60,5 +60,7 @@ include(__DIR__."/../layouts/inicio.php");
 </div>
 <!--AQUI TERMINA LA VENTANA MODAL DE AÑADIR ALBUM -->
 <?php
-include(__DIR__."/../layouts/pie.php");
+
+include(__DIR__."../../layouts/pie.php");
+
 ?>

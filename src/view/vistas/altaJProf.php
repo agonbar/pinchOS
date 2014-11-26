@@ -14,7 +14,7 @@
 			</div>
 			<div class="row separacion">
 				<div class="column col-lg-10 col-md-10 col-sm-12 col-xs-12 ">
-				
+
 					<form class="form-horizontal" method="POST" action="index.php?controller=profesional&action=registrarProfesional">
 						<div class="form-group separarformulario">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Email</label>
@@ -46,5 +46,5 @@
 	</div>
 </div>
 <?php
-include(__DIR__."/../layouts/pie.php");
+include(__DIR__."../../layouts/pie.php");
 ?>
