@@ -36,7 +36,7 @@ include(__DIR__."/../layouts/inicio.php");
               </div>
             </div>
             <button type="button" class="btn btn-primary col-md-offset-5" >Guardar modificación</button>
-            <button type="button" class="btn btn-primary " >Cancelar</button>
+            <a href="index.php?controller=participante&action=consultar" type="button" class="btn btn-primary " >Cancelar</a>
           </form>
         </div>
       </div>
@@ -44,5 +44,5 @@ include(__DIR__."/../layouts/inicio.php");
   </div>
 </div>
 <?php
-include(__DIR__."/../layouts/pie.php");
+include(__DIR__."../../layouts/pie.php");
 ?>

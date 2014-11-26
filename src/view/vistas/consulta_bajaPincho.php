@@ -44,11 +44,11 @@ include(__DIR__."/../layouts/inicio.php");
 			</div>
 
 			<button type="button" class="btn btn-primary col-md-offset-4" >Eliminar pincho</button>
-			<button type="button" class="btn btn-primary " >Modificar pincho</button>
+			<a href="index.php?controller=pincho&action=modificacionPincho" type="button" class="btn btn-primary " >Modificar pincho</a>
 		</div>
 	</div>
 </div>
 <!--AQUI TERMINA LA VENTANA MODAL DE AÑADIR ALBUM -->
 <?php
-include(__DIR__."/../layouts/pie.php");
+include(__DIR__."../../layouts/pie.php");
 ?>

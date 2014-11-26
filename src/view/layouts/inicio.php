@@ -3,11 +3,6 @@
 
 <?php
 	include(__DIR__."/cabecera.php");
-	require_once(__DIR__."/../../core/ViewManager.php");
-	$view = ViewManager::getInstance();
-	$view->setVariable("title", "Login");
-	$errors = $view->getVariable("errors");
-	$currentuser = $view->getVariable("useractual");
 ?>
 <body>
 	<div class="wrapper">
@@ -37,13 +32,13 @@
 								</ul>
 							</li>
 
-							<li class="nav-header"> 
+							<li class="nav-header">
 								<a href="#" data-toggle="collapse" data-target="#menu2">
 									<h5>Participantes <i class="glyphicon glyphicon-plus"></i></h5>
 								</a>
 								<ul class="list-unstyled collapse" id="menu2">
-									<li class="desplegable"><a href="listarPart.php">Listado</a></li>
-									<li class="desplegable"><a href="buscarPart.php">Búsqueda</a></li>
+									<li class="desplegable"><a href="index.php?controller=participante&action=listar">Listado</a></li>
+									<li class="desplegable"><a href="index.php?controller=participante&action=buscar">Búsqueda</a></li>
 								</ul>
 							</li>
 
@@ -52,10 +47,10 @@
 									<h5>Pinchos <i class="glyphicon glyphicon-plus"></i></h5>
 								</a>
 								<ul class="list-unstyled collapse" id="menu3">
-									<li class="desplegable"><a href="listaPinchos.php">Listado</a></li>
+									<li class="desplegable"><a href="index.php?controller=pincho&action=listadoPincho">Listado</a></li>
 								</ul>
 							</li>
-							
+
 							<li class="nav-header">
 								<a href="#" data-toggle="collapse" data-target="#menu5">
 									<h5>Jurado Profesional <i class="glyphicon glyphicon-plus"></i></h5>
@@ -82,7 +77,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a href="inicio.php" class="navbar-brand logo">P</a>
+				<a href="index.php?controller=concurso&action=consultarConcurso" class="navbar-brand logo">P</a>
 			</div>
 			<nav class="collapse navbar-collapse" role="navigation">
 				<form class="navbar-form navbar-left">
@@ -95,10 +90,10 @@
 				</form>
 				<ul class="nav navbar-nav">
 					<li>
-						<a href="listarPrem.php"><i class="glyphicon glyphicon-plus"></i> Premiados</a>
+						<a href="index.php?controller=concurso&action=listarPremiados"><i class="glyphicon glyphicon-plus"></i> Premiados</a>
 					</li>
 					<li>
-						<a href="votarJProf.php" role="button"><i class="glyphicon glyphicon-plus"></i> Votar</a>
+						<a href="index.php?controller=Users&action=votar" role="button"><i class="glyphicon glyphicon-plus"></i> Votar</a>
 					</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">

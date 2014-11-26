@@ -15,7 +15,7 @@ include(__DIR__."/../layouts/inicio.php");
 				while ($i <= 12){?>
 					<li class= "column col-lg-2 col-md-2 col-sm-4 col-xs-4 col-md-offset-1">
 
-						<a href="validarPincho.php"><img src="./resources/img/pincho.jpg" alt="Imagen del Pincho" class="img-thumbnail img-responsive"></a>
+						<a href="index.php?controller=pincho&action=consultaPincho"><img src="./resources/img/pincho.jpg" alt="Imagen del Pincho" class="img-thumbnail img-responsive"></a>
 						<div class="caption">
 							<h4>-Nombre del pincho -</h4>
 						</div>
@@ -27,5 +27,5 @@ include(__DIR__."/../layouts/inicio.php");
 	</div>
 	<!--AQUI TERMINA LA VENTANA MODAL DE AÑADIR ALBUM -->
 	<?php
-	include(__DIR__."/../layouts/pie.php");
+	include(__DIR__."../../layouts/pie.php");
 	?>

@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <?php
 include(__DIR__."/../layouts/inicio.php");
+require_once(__DIR__."/../../core/ViewManager.php");
+$view = ViewManager::getInstance();
+$view->setVariable("title", "Login");
+$errors = $view->getVariable("errors");
+$concurso = $view->getVariable("concu");
 ?>
 <!--AQUI EMPIEZA LA VENTANA MODAL DE AÑADIR ALBUM -->
 <div class="margensup" >
@@ -30,12 +35,11 @@ include(__DIR__."/../layouts/inicio.php");
     <ul class= "list-inline ">
       <?php for ($i = 1; $i <= 10; $i++)://bucle que lista los participantes seleccionados?>
         <li>
-          <img src="./resources/img/participante.jpg" alt="./resources/img/participante.jpg" class="img-thumbnail" height="200" width="200">
-          <div class="caption">
-            <h4>-Nombre del participante <?php echo $i;?>-</h4>
-            <p>
-              <a href="consultaPart.php" class="btn btn-primary col-md-offset-4" role="button">Consultar</a>
-            </p>
+          <a href="index.php?controller=participante&action=consultar">
+            <img src="./resources/img/participante.jpg" alt="./resources/img/participante.jpg" class="img-thumbnail" height="200" width="200">
+            <div class="caption">
+              <h4>-Nombre del participante <?php echo $i;?>-</h4>
+            </a>
           </div>
         </li>
       <?php endfor;?><!-- fin while-->
@@ -45,5 +49,5 @@ include(__DIR__."/../layouts/inicio.php");
 </div>
 <!--AQUI TERMINA LA VENTANA MODAL DE AÑADIR ALBUM -->
 <?php
-include(__DIR__."/../layouts/pie.php");
+include(__DIR__."../../layouts/pie.php");
 ?>

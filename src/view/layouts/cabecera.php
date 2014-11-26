@@ -6,7 +6,7 @@
 <!-- Si trabajas sin internet
 <script src="resources/js/bootstrap.min.js"></script>
 -->
-<script src="../../resources/js/scripts.js"></script>
+<script src="./resources/js/scripts.js"></script>
 
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -21,5 +21,5 @@
 	<!--[if lt IE 9]>
 	<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
-	<link href="/gitAbp/pinchOS/src/resources/css/styles.css" rel="stylesheet">
+	<link href="./resources/css/styles.css" rel="stylesheet">
 </head>
