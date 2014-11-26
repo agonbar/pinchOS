@@ -30,41 +30,41 @@ class ParticipanteController extends DBController {
     $this->view->render("vistas", "modificacionPart");
   }
 
-   public function registrarParticipante() {
+  public function registrarParticipante() {
 
-   $participante = new User();
+    $participante = new User();
 
     if (isset($_POST["emailU"])){
 
       $participante->setEmailU($_POST["emailU"]);
       $participante->setContrasenaU($_POST["contrasenaU"]);
-    $participante->setTipoU('S');
+      $participante->setTipoU('S');
       $participante->setEstadoU('1');
-    $participante->setNombreU($_POST["nombreU"]);
+      $participante->setNombreU($_POST["nombreU"]);
       $participante->setConcursoId('1');
 
       try{
 
-    $participante->checkIsValidForRegisterProf();
+        $participante->checkIsValidForRegisterProf();
 
-    if (!$participante->usernameExists()){
+        if (!$participante->usernameExists()){
 
-      $participante->save();
+          $participante->save();
 
-        $this->view->redirect("concurso", "consultarConcurso");
-    } else {
-      $errors = array();
-      $errors["emailU"] = "El email ya se encuentra registrado";
-      $this->view->setVariable("errors", $errors);
-    }
+          $this->view->redirect("concurso", "consultarConcurso");
+        } else {
+          $errors = array();
+          $errors["emailU"] = "El email ya se encuentra registrado";
+          $this->view->setVariable("errors", $errors);
+        }
       }catch(ValidationException $ex) {
 
-    $errors = $ex->getErrors();
-    $this->view->setVariable("errors", $errors);
+        $errors = $ex->getErrors();
+        $this->view->setVariable("errors", $errors);
       }
     }
 
-   $this->view->render("vistas", "altaPart");
+    $this->view->render("vistas", "altaPart");
 
-   }
+  }
 }

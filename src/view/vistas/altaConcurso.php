@@ -43,25 +43,25 @@ $errors = $view->getVariable("errors");
 							</div>
 						</div>
 						<!--<div class="form-group separarformulario">
-							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Patrocinador</label>
-							<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-								<input type="text" class="form-control" placeholder="Introduce un Patrocinador..." name="patrocinadorC">
-							</div>
-						</div>-->
-						<div class="form-group separarformulario">
-							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Bases</label>
-							<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-								<textarea class="form-control" rows="6" placeholder="Introduce las Bases..." name="basesC"></textarea>
-								<input type="file" id="archivo_1">
-								<?= isset($errors["basesC"])?$errors["basesC"]:"" ?><br>
-							</div>
-						</div>
-						<input type="submit" class="btn btn-primary col-md-offset-7" value="Crear">
-					</form>
+						<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Patrocinador</label>
+						<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+						<input type="text" class="form-control" placeholder="Introduce un Patrocinador..." name="patrocinadorC">
+					</div>
+				</div>-->
+				<div class="form-group separarformulario">
+					<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Bases</label>
+					<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+						<textarea class="form-control" rows="6" placeholder="Introduce las Bases..." name="basesC"></textarea>
+						<input type="file" id="archivo_1">
+						<?= isset($errors["basesC"])?$errors["basesC"]:"" ?><br>
+					</div>
 				</div>
-			</div>
+				<input type="submit" class="btn btn-primary col-md-offset-7" value="Crear">
+			</form>
 		</div>
 	</div>
+</div>
+</div>
 </div>
 <?php
 include(__DIR__."../../layouts/pie.php");

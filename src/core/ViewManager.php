@@ -20,8 +20,8 @@ class ViewManager {
   }
 
   public function moveToFragment($name) {
-      $this->saveCurrentFragment();
-      $this->currentFragment = $name;
+    $this->saveCurrentFragment();
+    $this->currentFragment = $name;
   }
 
   public function moveToDefaultFragment(){
@@ -39,10 +39,10 @@ class ViewManager {
     $this->variables[$varname] = $value;
     if ($flash==true) {
       if(!isset($_SESSION["viewmanager__flasharray__"])) {
-	$_SESSION["viewmanager__flasharray__"][ $varname]=$value;
-	print_r($_SESSION["viewmanager__flasharray__"]);
+        $_SESSION["viewmanager__flasharray__"][ $varname]=$value;
+        print_r($_SESSION["viewmanager__flasharray__"]);
       }else{
-	$_SESSION["viewmanager__flasharray__"][$varname]=$value;
+        $_SESSION["viewmanager__flasharray__"][$varname]=$value;
       }
     }
   }
@@ -51,9 +51,9 @@ class ViewManager {
     if (!isset($this->variables[$varname])) {
       if (isset($_SESSION["viewmanager__flasharray__"])
       && isset($_SESSION["viewmanager__flasharray__"][$varname])){
-	$toret=$_SESSION["viewmanager__flasharray__"][$varname];
-	unset($_SESSION["viewmanager__flasharray__"][$varname]);
-	return $toret;
+        $toret=$_SESSION["viewmanager__flasharray__"][$varname];
+        unset($_SESSION["viewmanager__flasharray__"][$varname]);
+        return $toret;
       }
       return $default;
     }
@@ -65,7 +65,7 @@ class ViewManager {
 
   }
 
-    public function popFlash() {
+  public function popFlash() {
     return $this->getVariable("__flashmessage__", "");
   }
 
