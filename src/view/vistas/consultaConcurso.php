@@ -40,12 +40,12 @@ include(__DIR__."/../layouts/inicio.php");
 							<label class=" control-label"><?=$concurso->getPremioC()?></label>
 						</div>
 					</form>
-					<!--<form class="form-horizontal separarformulario" role="form">
+					<form class="form-horizontal separarformulario" role="form">
 						<div class="form-group alineado ">
 							<label class="control-label">Patrocinador: </label>
 							<label class=" control-label">patrocinador</label>
 						</div>
-					</form>-->
+					</form>
 					<form class="form-horizontal separarformulario" role="form">
 						<div class="form-group alineado ">
 							<label class="control-label">Bases: </label>
@@ -54,7 +54,7 @@ include(__DIR__."/../layouts/inicio.php");
 					</form>
 				</div>
 			</div>
-			<button type="button" class="btn btn-primary col-md-offset-5" >Modificar concurso</button>
+			<a href="index.php?controller=concurso&action=modificarConcurso" type="button" class="btn btn-primary col-md-offset-5" >Modificar concurso</a>
 		</div>
 	</div>
 </div>

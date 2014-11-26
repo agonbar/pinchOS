@@ -54,7 +54,7 @@
 							</div>
 						</div>
 						<input type="submit" class="btn btn-primary col-md-offset-5" value="Guardar modificación">
-						<button type="button" class="btn btn-primary " >Cancelar</button>
+						<a href="index.php?controller=concurso&action=consultarConcurso" type="button" class="btn btn-primary " >Cancelar</a>
 					</form>
 				</div>
 			</div>
