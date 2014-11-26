@@ -17,16 +17,17 @@ class UsersController extends DBController {
 
   public function login() {
 	
-	$usuario= new User();
+	$user_db= new User();
 
     if (isset($_POST["email"])){ 
-   
+  
 	  if ($this->user->isValidUser($_POST["email"], $_POST["password"])) {
 
-		$user_db=$usuario->ver_datos($POST["email"]);
+		$user_db=$this->user->ver_datos($_POST["email"]);
+		
 		$_SESSION["currentuser"]=$user_db;
 		
-		$this->view->setVariable("user", $user_db );
+		$this->view->setVariable("useractual", $user_db);
 		
 		// envia al usuario a una area restringida (su zona de usuario)
 		$this->view->redirect("concurso", "consultarConcurso");  //falta poner bien

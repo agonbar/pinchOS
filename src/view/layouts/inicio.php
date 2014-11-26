@@ -7,8 +7,7 @@
 	$view = ViewManager::getInstance();
 	$view->setVariable("title", "Login");
 	$errors = $view->getVariable("errors");
-	$currentuser = $view->getVariable("user");
-   
+	$currentuser = $view->getVariable("useractual");
 ?>
 <body>
 	<div class="wrapper">
@@ -58,25 +57,11 @@
 							</li>
 							
 							<li class="nav-header">
-								<a href="#" data-toggle="collapse" data-target="#menu4">
-									<h5>Jurado Popular <i class="glyphicon glyphicon-plus"></i></h5>
-								</a>
-								<ul class="list-unstyled collapse" id="menu4">
-									<li class="desplegable "><a href="#">Modificar J.Popular</a></li>
-									<li class="desplegable "><a href="index.php?controller=users&action=ver_datos">Consultar lista de J.Popular</a></li>
-									<li class="desplegable"><a href="#">Votar como J.Popular</a></li>
-								</ul>
-							</li>
-							
-							<li class="nav-header">
 								<a href="#" data-toggle="collapse" data-target="#menu5">
 									<h5>Jurado Profesional <i class="glyphicon glyphicon-plus"></i></h5>
 								</a>
 								<ul class="list-unstyled collapse" id="menu5">
 									<li class="desplegable "><a href="index.php?controller=profesional&action=registrarProfesional">Crear J.Profesional</a></li>
-									<li class="desplegable "><a href="#">Modificar J.Profesional</a></li>
-									<li class="desplegable "><a href="#">Consultar lista de J.Profesional</a></li>
-									<li class="desplegable"><a href="#">Votar como J.Profesional</a></li>
 								</ul>
 							</li>
 

@@ -179,18 +179,19 @@ class User {
   public function ver_datos($emailU) {
 		$stmt = $this->db->prepare("SELECT * FROM usuario where emailU=?");
 		$stmt->execute(array($emailU));
-		$users_db=$stmt->fetch(PDO::FETCH_ASSOC);
+		$user_db=$stmt->fetch(PDO::FETCH_ASSOC);
 		
-		if(sizeof($users_db)==0){
+		if(sizeof($user_db)==0){
 			return null;
+			
 		}else{
 			return new User(
-			$users_db["emailU"],
-			$users_db["contrasenaU"],
-			$users_db["tipoU"],
-			$users_db["estadoU"],
-			$users_db["nombreU"],
-			$users_db["concursoId"]
+			$user_db["emailU"],
+			$user_db["contrasenaU"],
+			$user_db["tipoU"],
+			$user_db["estadoU"],
+			$user_db["nombreU"],
+			$user_db["concursoId"]
 			);
 		}
 	}
