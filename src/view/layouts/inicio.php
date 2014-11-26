@@ -25,7 +25,7 @@
 
 					<ul class="nav hidden-xs" id="lg-menu">
 
-						<!-- <div class="nombreuser">-- <?=$currentuser->getNombreU() ?> --</div> -->
+						<div class="nombreuser">-- <?=$currentuser->getNombreU() ?> --</div>
 
 							<li class="nav-header">
 								<a href="#" data-toggle="collapse" data-target="#menu1">
