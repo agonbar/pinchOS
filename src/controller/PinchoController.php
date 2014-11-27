@@ -1,8 +1,8 @@
 <?php
-require_once(__DIR__."/../model/User.php");
 require_once(__DIR__."/../core/ViewManager.php");
+require_once(__DIR__."/../model/User.php");
+require_once(__DIR__."/../model/Pincho.php");
 require_once(__DIR__."/../controller/DBController.php");
-
 
 class PinchoController extends DBController {
 
@@ -16,6 +16,7 @@ class PinchoController extends DBController {
 
 	}
 	function modificacionPincho(){
+
 		$this->view->render("vistas", "modificacionPincho");
 	}
 	function busquedaPincho(){

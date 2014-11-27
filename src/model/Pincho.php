@@ -5,45 +5,27 @@ require_once(__DIR__."/../core/ValidationException.php");
 class Pincho {
 
   private $db;
+  private $idPi;/* El id del Pincho */
+  private $nombrePi;/* La nombre del Pincho */
+  private $precioPi;/* El precio del Pincho */
+  private $descripcionPi;/* La descripcion del Pincho */
+  private $cocineroPi;/* El cocinero del Pincho */
+  private $numVotosPi;/* El numero de votos del Pincho */
+  private $fotoPi;/* La foto del Pincho */
+  private $estadoPi;/* El estado del Pincho */
+  private $numvotePi;/* Es el numero de votos creados para un Pincho*/
+  private $ParticipanteEmail;/* El ParticipanteEmail del Pincho */
 
-  /* El id del Pincho */
-
-  private $idPi;
-
-  /* La nombre del Pincho */
-
-  private $nombrePi;
-
-  /* El precio del Pincho */
-
-  private $precioPi;
-
-  /* La descripcion del Pincho */
-
-  private $descripcionPi;
-
-  /* El cocinero del Pincho */
-
-  private $cocineroPi;
-
-  /* El numero de votos del Pincho */
-
-  private $numVotosPi;
-
-  /* La foto del Pincho */
-
-  private $fotoPi;
-
-  /* El estado del Pincho */
-
-  private $estadoPi;
-
-  /* El ParticipanteEmail del Pincho */
-
-  private $ParticipanteEmail;
-
-  public function __construct($idPi=NULL, $nombrePi=NULL, $precioPi=NULL, $descripcionPi=NULL, $cocineroPi=NULL, $numVotosPi=NULL, $fotoPi=NULL, $estadoPi=NULL, $ParticipanteEmail=NULL) {
-    $this->db = PDOConnection::getInstance();
+  public function __construct($idPi=NULL,
+                              $nombrePi=NULL,
+                              $precioPi=NULL,
+                              $descripcionPi=NULL,
+                              $cocineroPi=NULL,
+                              $numVotosPi=NULL,
+                              $fotoPi=NULL,
+                              $estadoPi=NULL,
+                              $numvotePi=NULL,
+                              $ParticipanteEmail=NULL) {
     $this->idPi = $idPi;
     $this->nombrePi = $nombrePi;
     $this->precioPi = $precioPi;
@@ -52,6 +34,7 @@ class Pincho {
     $this->numVotosPi = $numVotosPi;
     $this->fotoPi = $fotoPi;
     $this->estadoPi = $estadoPi;
+    $this->numvotePi = $lastvotePi;
     $this->ParticipanteEmail = $ParticipanteEmail;
   }
 
@@ -137,16 +120,25 @@ class Pincho {
   }
 
   /* Devuelve el ParticipanteEmail del Pincho */
+  public function getNumVotePi() {
+    return $this->numvotePi;
+  }
+
+  /* Pone el ParticipanteEmail del Pincho */
+  public function SetNumVotePi($numvotePi) {
+    $this->numvotePi = $numvotePi;
+  }
+  /* Devuelve el ultimo codigo de voto asignado a un Pincho */
   public function getParticipanteEmail() {
     return $this->ParticipanteEmail;
   }
 
-  /* Pone el ParticipanteEmail del Pincho */
+  /* Pone el ultimo codigo de voto asignado a un Pincho */
   public function SetParticipanteEmail($ParticipanteEmail) {
     $this->ParticipanteEmail = $ParticipanteEmail;
   }
 
-  /* Comprueba si el Pincho es v�lido para registrarse en la base de datos */
+  /* Comprueba si el Pincho es valido para registrarse en la base de datos */
 
   public function checkIsValidForRegister($idPi) {
 
@@ -156,7 +148,7 @@ class Pincho {
     }
 
     if (sizeof($errors)>0){
-      throw new ValidationException($errors, "El pincho no es v�lido");
+      throw new ValidationException($errors, "El pincho no es válido");
     }
 
   }
@@ -166,7 +158,16 @@ class Pincho {
   public function save() {
     $db = PDOConnection::getInstance();
     $stmt = $db->prepare("INSERT INTO pincho values (?,?,?,?,?,?,?,?,?)");
-    $stmt->execute(array($this->idPi, $this->nombrePi, $this->precioPi, $this->descripcionPi, $this->cocineroPi, $this->numVotosPi, $this->fotoPi, $this->estadoPi, $this->ParticipanteEmail));
+    $stmt->execute(array($this->idPi,
+                         $this->nombrePi,
+                         $this->precioPi,
+                         $this->descripcionPi,
+                         $this->cocineroPi,
+                         $this->numVotosPi,
+                         $this->fotoPi,
+                         $this->estadoPi,
+                         $this->lastvotePi,
+                         $this->ParticipanteEmail));
   }
 
   /* Comprueba si el id xa existe en la base de datos */
@@ -179,5 +180,17 @@ class Pincho {
     if ($stmt->fetchColumn() > 0) {
       return true;
     }
+  }
+
+  public function generateIdVote($idPi){
+    $db = PDOConnection::getInstance();
+    $stmt = $db->prepare("SELECT numvotePi FROM pincho where idPi =?");
+    $stmt->execute(array($this->idPi));
+    $numvoto=1;//es el numero de votos que se han generado para un pincho
+
+    if ($stmt->fetchColumn() > 0){
+      $numvoto = $this->numvotePi;
+    }
+    $this->numvotePi = $this->idPi.$numvoto;
   }
 }
