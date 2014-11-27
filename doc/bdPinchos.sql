@@ -91,6 +91,7 @@ CREATE TABLE IF NOT EXISTS `pincho` (
   `fotoPi` VARCHAR(45) NOT NULL,
   `estadoPi` TINYINT(1) NOT NULL comment '1=activo, 0=incativo',
   `participanteEmail` VARCHAR(45) NOT NULL,
+  `lastvotePi` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idPi`),
   FOREIGN KEY (`participanteEmail`) REFERENCES `participante` (`usuarioEmail`)
   )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
