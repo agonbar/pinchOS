@@ -20,24 +20,21 @@ $currentuser = $view->getVariable("currentusername");
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Nombre</label>
 							<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
 								<input class="form-control" placeholder="<?=$currentuser->getNombreU()?>" name="nombreU">
-							</div>
-						</div>
-						<div class="form-group separarformulario">
-							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Email</label>
-							<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-								<input class="form-control" placeholder="<?=$currentuser->getEmailU()?>" name="emailU">
+								<?= isset($errors["nombreU"])?$errors["nombreU"]:"" ?><br>
 							</div>
 						</div>
 						<div class="form-group separarformulario">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Contraseña</label>
 							<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
 								<input class="form-control" placeholder="<?=$currentuser->getContrasenaU()?>" name="contrasenaU">
+								<?= isset($errors["contrasenaU"])?$errors["contrasenaU"]:"" ?><br>
 							</div>
 						</div>
 						<div class="form-group separarformulario">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Repetir Contraseña</label>
 							<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-								<input class="form-control" placeholder="******" name="contrasenaU2">
+								<input class="form-control" placeholder="<?=$currentuser->getContrasenaU()?>" name="contrasenaU2">
+								<?= isset($errors["contrasenaU2"])?$errors["contrasenaU2"]:"" ?><br>
 							</div>
 						</div>
 						 <input type="submit" class="btn btn-primary col-md-offset-5" value="Guardar modificación">

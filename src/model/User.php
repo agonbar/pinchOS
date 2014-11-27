@@ -128,14 +128,14 @@ class User {
 
   }
   
-  public function checkIsValidForRegister2($contrasenaU2) {
+  public function checkIsValidForModificacionJPopu($contrasenaU2) {
 
     $errors = array();
-    if (strlen($this->emailU) < 5) {
-      $errors["emailU"] = "El email debe contener al menos 5 caracteres de longitud";
-    }
     if (strlen($this->nombreU) < 3) {
       $errors["nombreU"] = "El nombre debe contener al menos 3 caracteres de longitud";
+    }
+	if (strlen($this->contrasenaU) < 5) {
+      $errors["contrasenaU"] = "La contraseña debe contener al menos 5 caracteres de longitud";
     }
 	if ($this->contrasenaU != $contrasenaU2) {
       $errors["contrasenaU2"] = "Las contraseñas no coinciden";
@@ -173,10 +173,10 @@ class User {
   
   /* Actualiza el User en la base de datos */
 
-  public function update() {
+  public function update($currentuserEmail) {
     $db = PDOConnection::getInstance();
-    $stmt = $db->prepare("UPDATE usuario SET emailU=?, contrasenaU=?, tipoU=?, estadoU=?, nombreU=?, concursoId=?");
-    $stmt->execute(array($this->emailU, $this->contrasenaU, $this->tipoU, $this->estadoU, $this->nombreU, $this->concursoId));
+    $stmt = $db->prepare("UPDATE usuario SET contrasenaU=?, nombreU=? where emailU=?");
+    $stmt->execute(array($this->contrasenaU, $this->nombreU, $currentuserEmail));
   }
   
 
