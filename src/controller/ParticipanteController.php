@@ -17,12 +17,12 @@ class ParticipanteController extends DBController {
 
   public function listar(){
     $participantes_array = array();
-    $participantes_array = $this->$participante->listar();
-    print_r($participantes_array); die();
+    $participantes_array = $this->participante->listar();
+    print_r($participantes_array);
     if ($participantes_array == NULL) {
       throw new Exception("No hay participantes");
     }
-    $this->view->setVariable("participantes", $participantes);
+    $this->view->setVariable("participantes", $participantes_array);
     $this->view->render("vistas", "listarPart");
   }
 
