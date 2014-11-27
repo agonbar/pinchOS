@@ -17,7 +17,7 @@ class ParticipanteController extends DBController {
 
   public function listar(){
     $participantes_array = array();
-    $participantes_array = $this->$patticipante->listar();
+    $participantes_array = $this->$participante->listar();
     if ($participantes == NULL) {
       throw new Exception("No hay participantes");
     }

@@ -3,7 +3,7 @@
 include(__DIR__."/../layouts/inicio.php");
 require_once(__DIR__."/../../core/ViewManager.php");
 $view = ViewManager::getInstance();
-//$participantes = $view->getVariable("participantes");
+$participantes = $view->getVariable("participantes");
 ?>
 <!--AQUI EMPIEZA LA VENTANA MODAL DE AÑADIR ALBUM -->
 <div class="margensup" >
