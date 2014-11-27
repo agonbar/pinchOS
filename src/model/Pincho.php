@@ -8,7 +8,7 @@ class Pincho {
   private $idPi;/* El id del Pincho */
   private $nombrePi;/* La nombre del Pincho */
   private $precioPi;/* El precio del Pincho */
-  private $descripcionPi;/* La descripcion del Pincho */
+  private $ingredientesPi;/* La ingredientes del Pincho */
   private $cocineroPi;/* El cocinero del Pincho */
   private $numVotosPi;/* El numero de votos del Pincho */
   private $fotoPi;/* La foto del Pincho */
@@ -19,7 +19,7 @@ class Pincho {
   public function __construct($idPi=NULL,
                               $nombrePi=NULL,
                               $precioPi=NULL,
-                              $descripcionPi=NULL,
+                              $ingredientesPi=NULL,
                               $cocineroPi=NULL,
                               $numVotosPi=NULL,
                               $fotoPi=NULL,
@@ -29,7 +29,7 @@ class Pincho {
     $this->idPi = $idPi;
     $this->nombrePi = $nombrePi;
     $this->precioPi = $precioPi;
-    $this->descripcionPi = $descripcionPi;
+    $this->ingredientesPi = $ingredientesPi;
     $this->cocineroPi = $cocineroPi;
     $this->numVotosPi = $numVotosPi;
     $this->fotoPi = $fotoPi;
@@ -69,14 +69,14 @@ class Pincho {
     $this->precioPi = $precioPi;
   }
 
-  /* Devuelve la descripcion del Pincho */
-  public function getDescripcionPi() {
-    return $this->descripcionPi;
+  /* Devuelve la ingredientes del Pincho */
+  public function getingredientesPi() {
+    return $this->ingredientesPi;
   }
 
-  /* Pone la descripcion del Pincho */
-  public function setDescripcionPi($descripcionPi) {
-    $this->descripcionPi = $descripcionPi;
+  /* Pone la ingredientes del Pincho */
+  public function setingredientesPi($ingredientesPi) {
+    $this->ingredientesPi = $ingredientesPi;
   }
 
   /* Devuelve el cocinero del Pincho */
@@ -125,7 +125,7 @@ class Pincho {
   }
 
   /* Pone el ParticipanteEmail del Pincho */
-  public function SetNumVotePi($numvotePi) {
+  public function setNumVotePi($numvotePi) {
     $this->numvotePi = $numvotePi;
   }
   /* Devuelve el ultimo codigo de voto asignado a un Pincho */
@@ -134,7 +134,7 @@ class Pincho {
   }
 
   /* Pone el ultimo codigo de voto asignado a un Pincho */
-  public function SetParticipanteEmail($ParticipanteEmail) {
+  public function setParticipanteEmail($ParticipanteEmail) {
     $this->ParticipanteEmail = $ParticipanteEmail;
   }
 
@@ -161,12 +161,12 @@ class Pincho {
     $stmt->execute(array($this->idPi,
                          $this->nombrePi,
                          $this->precioPi,
-                         $this->descripcionPi,
+                         $this->ingredientesPi,
                          $this->cocineroPi,
                          $this->numVotosPi,
                          $this->fotoPi,
                          $this->estadoPi,
-                         $this->lastvotePi,
+                         $this->numvotePi,
                          $this->ParticipanteEmail));
   }
 
@@ -182,14 +182,60 @@ class Pincho {
     }
   }
 
-  public function generateIdVote($idPi){
+  /* Hace el la comprobacion de los datos introducidos por el usuario*/
+  public function checkInfoNull(){
+    /*private $db;
+    private $idPi;/* El id del Pincho */
+    private $nombrePi;/* La nombre del Pincho */
+    private $precioPi;/* El precio del Pincho */
+    private $ingredientesPi;/* La ingredientes del Pincho */
+    private $cocineroPi;/* El cocinero del Pincho */
+    private $numVotosPi;/* El numero de votos del Pincho */
+    private $fotoPi;/* La foto del Pincho */
+    private $estadoPi;/* El estado del Pincho */
+    private $numvotePi;/* Es el numero de votos creados para un Pincho*/
+    private $ParticipanteEmail;*/
+
+    $errors = array();
+    if (strlen($this->nombrePi) < 5) {
+      $errors["nombrePi"] = "El nombre debe contener al menos 5 caracteres de longitud";
+    }
+    if (strlen($this->precioPi) < 1) {
+      $errors["precioPi"] = "El precio no puede ser nulo";
+    }
+    if (strlen($this->ingredientesPi) < 5) {
+      $errors["ingredientesPi"] = "la ingredientes debe contener al menos 5 caracteres de longitud";
+    }
+    if (strlen($this->cocineroPi) < 5) {
+      $errors["cocineroPi"] = "El nombre debe contener al menos 5 caracteres de longitud";
+    }
+    if (strlen($this->fotoPi) < 5) {
+      $errors["fotoPi"] = "La contraseña debe contener al menos 5 caracteres de longitud";
+    }
+  }
+
+
+
+  public function generateIdPi(){
     $db = PDOConnection::getInstance();
-    $stmt = $db->prepare("SELECT numvotePi FROM pincho where idPi =?");
+    $stmt = $db->prepare("SELECT count(idPi) FROM pincho");
+    $stmt->execute(array($this->idPi));
+    $numpinchos = 1;
+
+    if ($stmt->fetchColumn() > 0){
+      $numpinchos = $stmt+1;
+    }
+    $this->idPi = $numpichos;
+  }
+
+  public function generateIdVote(){
+    $db = PDOConnection::getInstance();
+    $stmt = $db->prepare("SELECT count(numvotePi) FROM pincho where idPi =?");
     $stmt->execute(array($this->idPi));
     $numvoto=1;//es el numero de votos que se han generado para un pincho
 
     if ($stmt->fetchColumn() > 0){
-      $numvoto = $this->numvotePi;
+      $numvoto = $stmt+1;
     }
     $this->numvotePi = $this->idPi.$numvoto;
   }

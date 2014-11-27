@@ -13,12 +13,25 @@ class PinchoController extends DBController {
 		parent::__construct();
 
 		$this->pincho = new User();
-		$this->codvoto = new Voto();
+		$this->codvoto = new CodVoto();
 		//$this->view->setLayout("welcome");
 	}
 
+	$numpinchos =
+
 	function altaPincho(){
-		generateIdVote($idPi);
+		generateIdVote($this->pincho->getIdPi());
+
+		$this->pincho->setIdPi('');
+		$this->pincho->setNombrePi();
+		$this->pincho->setPrecioPi();
+		$this->pincho->setDescripcionPi();
+		$this->pincho->setCocineroPi();
+		$this->pincho->setNumVotosPi();
+		$this->pincho->setFotoPi();
+		$this->pincho->setEstadoPi();
+		$this->pincho->setNumvotePi();
+		$this->pincho->setParticipanteEmail();
 
 	}
 	function bajaPincho(){
