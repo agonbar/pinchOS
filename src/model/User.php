@@ -199,4 +199,13 @@ class User {
   }
 }
 
+
+	public function updateEstado($currentuserEmail){
+	
+		$db = PDOConnection::getInstance();
+		$stmt = $db->prepare("UPDATE usuario set estadoU='0' where emailU=?");
+		$stmt->execute(array($currentuserEmail));  
+		
+	}
+
 }

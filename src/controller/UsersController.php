@@ -92,7 +92,6 @@ class UsersController extends DBController {
 
     $currentuser = $_SESSION["currentuser"];
 
-
     if($currentuser->getTipoU() == 'J'){
       $this->view->redirect("popular", "votar");
     }

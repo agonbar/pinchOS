@@ -90,15 +90,40 @@ class PopularController extends DBController {
   
   
   public function desactivarCuenta() {
+	
+	$currentuser = $_SESSION["currentuser"];
+		
+		if (isset($_GET["id"])){
+			$friendEmail=$_GET["id"];
+			
+			$friendship = $this->friendDAO->findPeticion($currentuser, $friendEmail);
+			
+			if ($friendship == NULL) {
+			  throw new Exception("no hay ninguna relacion entre esos usuarios: ");
+			}
+			
+			// find the Post object in the database
+			$this->friendDAO->updateIsFriend($friendship);
+			//redirige al metodo solicitudes del controlador friends
+			$this->view->redirect("friends", "solicitudes");
+			 
+		}
+		//cambia el titulo de la pagina por ---login---
+		$this->view->setVariable("title", "---- solicitudes----");
+		
+		// render the view (/view/users/login.php)
+		$this->view->render("friends", "solicitudes"); 
+	
   
   
   }
+  
   public function verPerfil(){//esto luego se borra y se pone en users para que dependiendo del ususrio salga una pagina.
-		$this->view->render("vistas", "consultaJPopu");
+	$this->view->render("vistas", "consultaJPopu");
   }
 
   public function verModificacion(){//esto luego se borra y se pone en users para que dependiendo del ususrio salga una pagina.
-		$this->view->render("vistas", "modificacionJPopu");
+	$this->view->render("vistas", "modificacionJPopu");
   }
 
 }
