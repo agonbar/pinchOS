@@ -9,6 +9,10 @@ $view->setVariable("title", "Login");
 $errors = $view->getVariable("errors");
 $currentuser = $view->getVariable("currentusername");
 
+
+//Para que muestre debug
+ini_set('display_errors', 'On');
+error_reporting(E_ALL);
 ?>
 <body>
 	<div class="wrapper">
