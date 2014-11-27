@@ -105,6 +105,23 @@ class Voto {
       return true;
     }else return false;
   }
+  
+  
+  public function isCorrectCode(){
+  
+	$db = PDOConnection::getInstance();
+    $stmt = $db->prepare("SELECT pinchoId FROM codVoto where idCV=?");
+    $stmt->execute(array($this->codigoPinchoV));
+	$codigo=$stmt->fetch(PDO::FETCH_ASSOC);
+	
+    if (sizeof($codigo)==0) {
+        return false;
+    }else {
+		$this->pinchoIdPi = $codigo["pinchoId"];
+		return true;
+	}
+	
+  }
 
 
 }
