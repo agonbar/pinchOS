@@ -1,6 +1,8 @@
 -- -----------------------------------------------------
 -- Schema mydb
 -- -----------------------------------------------------
+DROP DATABASE IF EXISTS `pinchos`;
+
 CREATE DATABASE `pinchos` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
 
 -- creacion de usuario (dandole todos los privilegios)
@@ -97,6 +99,20 @@ CREATE TABLE IF NOT EXISTS `pincho` (
   )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 
+
+  -- -----------------------------------------------------
+  -- Table `codVoto`
+  -- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS `codVoto` (
+  `idCV` VARCHAR(45) NOT NULL,
+  `pinchoId` INT NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`idCV`, `pinchoId`),
+  FOREIGN KEY (`pinchoId`) REFERENCES `pincho`(`idPi`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+
+
 -- -----------------------------------------------------
 -- Table `voto`
 -- -----------------------------------------------------
@@ -112,17 +128,6 @@ CREATE TABLE IF NOT EXISTS `voto` (
   FOREIGN KEY (`usuarioEmailU`) REFERENCES `usuario` (`emailU`),
   FOREIGN KEY (`pinchoIdPi`) REFERENCES `pincho` (`idPi`)
   )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
-  -- -----------------------------------------------------
-  -- Table `codVoto`
-  -- -----------------------------------------------------
-
-CREATE TABLE IF NOT EXISTS `codVoto` (
-  `idCV` VARCHAR(45) NOT NULL,
-  `nombrepincho` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`idCV`, `nombrePi`),
-  FOREIGN KEY (`nombrepincho`) REFERENCES `pincho`(`nombrePi`)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 
  -- -----------------------------------------------------
@@ -156,6 +161,14 @@ INSERT INTO `pincho` (`idPi`, `nombrePi`, `precioPi`, `descripcionPi`,`cocineroP
 ('3', 'bacon', '3', 'buenisimo','carmen','2','aqui va la foto','5','marta@gmail.com'),
 ('4', 'mortadela', '2', 'malisimo','roberto','0','aqui va la foto','1','pablo@gmail.com');
 
+INSERT INTO `codVoto` (`idCV`, `pinchoId`) VALUES
+('11', '1'),
+('21', '2'),
+('22','2'),
+('23', '2'),
+('31','3'),
+('32', '3');
+
 INSERT INTO `voto` (`usuarioEmailU`, `pinchoIdPi`, `codigopinchoV`, `valoracionV`) VALUES
 ('adri@gmail.com', '1', '11', '5'),
 ('mel@gmail.com', '2', '21', '3'),
@@ -163,3 +176,5 @@ INSERT INTO `voto` (`usuarioEmailU`, `pinchoIdPi`, `codigopinchoV`, `valoracionV
 ('adri@gmail.com', '2', '23', '9'),
 ('ruben@gmail.com', '3', '31','8'),
 ('mel@gmail.com', '3', '32', '3');
+
+

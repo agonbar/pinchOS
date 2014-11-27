@@ -71,6 +71,40 @@ class Voto {
   public function setValoracionV($valoracionV) {
     $this->valoracionV = $valoracionV;
   }
+  
+  
+  public function checkIsValidForVoto(){
+	
+	$errors = array();
+	
+    if ($this->valoracionV ==  'N') {
+      $errors["valoracionV"] = "Se debe seleccionar una valoracion";
+    }
+    
+    if (sizeof($errors)>0){
+      throw new ValidationException($errors, "La votacion no es válida");
+    }
+	
+  }
+  
+  
+  public function save() {
+    $db = PDOConnection::getInstance();
+    $stmt = $db->prepare("INSERT INTO voto values (?,?,?,?)");
+    $stmt->execute(array($this->usuarioEmailU, $this->pinchoIdPi, $this->codigoPinchoV, $this->valoracionV));
+  }
+  
+  
+  public function votoExist(){
+  
+	$db = PDOConnection::getInstance();
+    $stmt = $db->prepare("SELECT count(*) FROM voto where codigoPinchoV=?");
+    $stmt->execute(array($this->codigoPinchoV));
+
+    if ($stmt->fetchColumn() > 0) {
+      return true;
+    }else return false;
+  }
 
 
 }

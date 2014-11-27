@@ -14,7 +14,7 @@ class ProfesionalController extends DBController {
     //$this->view->setLayout("welcome");
   }
 
-
+/*
   public function generarContrasena(){
 
     $caracteres='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -30,7 +30,7 @@ class ProfesionalController extends DBController {
     $this->view->redirect("profesional", "registrarProfesional");
 
 
-  }
+  }*/
 
   public function registrarProfesional() {
 
