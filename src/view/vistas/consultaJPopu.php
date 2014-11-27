@@ -61,7 +61,7 @@ $currentuser = $view->getVariable("currentusername");
 				</div>
 			</div>
 			<a href="index.php?controller=popular&action=desactivarCuenta"><button type="button" class="btn btn-primary col-md-offset-4" >Eliminar cuenta</button></a>
-			<button type="button" class="btn btn-primary " >Modificar mi perfil</button>
+			<a href="index.php?controller=users&action=seleccionarModificacion"><button type="button" class="btn btn-primary " >Modificar mi perfil</button></a>
 		</div>
 	</div>
 </div>

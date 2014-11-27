@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <?php
 include(__DIR__."/../layouts/inicio.php");
+require_once(__DIR__."/../../core/ViewManager.php");
+$view = ViewManager::getInstance();
+$view->setVariable("title", "Login");
+$errors = $view->getVariable("errors");
+$currentuser = $view->getVariable("currentusername");
 ?>
 <!--AQUI EMPIEZA LA VENTANA MODAL DE AÑADIR ALBUM -->
 <div class="margensup" >
@@ -14,11 +19,11 @@ include(__DIR__."/../layouts/inicio.php");
 					<form class="form-horizontal separarformulario" role="form">
 						<div class="form-group alineado ">
 							<label class="control-label">Nombre: </label>
-							<label class=" control-label">Marta Pérez Pérez</label>
+							<label class=" control-label"><?=$currentuser->getNombreU()?></label>
 						</div>
 						<div class="form-group alineado ">
 							<label class="control-label">Email: </label>
-							<label class=" control-label">marta@gmail.com</label>
+							<label class=" control-label"><?=$currentuser->getEmailU()?></label>
 						</div>
 
 					</form>
@@ -56,7 +61,7 @@ include(__DIR__."/../layouts/inicio.php");
 				</div>
 			</div>
 			<a href="index.php?controller=profesional&action=desactivarCuenta"><button type="button" class="btn btn-primary col-md-offset-4" >Eliminar cuenta</button></a>
-			<button type="button" class="btn btn-primary " >Modificar mi perfil</button>
+			<a href="index.php?controller=users&action=seleccionarModificacion"><button type="button" class="btn btn-primary " >Modificar mi perfil</button></a>
 		</div>
 	</div>
 </div>

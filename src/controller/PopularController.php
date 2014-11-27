@@ -150,7 +150,6 @@ class PopularController extends DBController {
 
     $this->view->render("vistas", "modificacionJPopu");
 	
-	;
   }
   
 }

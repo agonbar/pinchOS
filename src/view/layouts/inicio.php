@@ -112,7 +112,7 @@ error_reporting(E_ALL);
 									<ul class="dropdown-menu">
 										<li><a href="index.php?controller=users&action=seleccionarPerfil">Mi perfil</a></li>
 										<li><a href="index.php?controller=users&action=seleccionarModificacion">Modificar mi perfil</a></li>
-										<li><a href="">Salir</a></li>
+										<li><a href="index.php?controller=users&action=logout">Salir</a></li>
 									</ul>
 								</li>
 							</ul>

@@ -38,7 +38,7 @@ $currentuser = $view->getVariable("currentusername");
 							</div>
 						</div>
 						 <input type="submit" class="btn btn-primary col-md-offset-5" value="Guardar modificación">
-						<button type="button" class="btn btn-primary " >Cancelar</button>
+						<a href="index.php?controller=users&action=seleccionarPerfil"><button type="button" class="btn btn-primary " >Cancelar</button></a>
 					</form>
 				</div>
 			</div>

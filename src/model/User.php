@@ -223,10 +223,12 @@ class User {
       $user_db["estadoU"],
       $user_db["nombreU"],
       $user_db["concursoId"]
-    );
+      );
+    }
   }
-}
 
+  
+  
 
 	public function updateEstado($currentuserEmail){
 	

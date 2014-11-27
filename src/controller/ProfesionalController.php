@@ -102,6 +102,38 @@ class ProfesionalController extends DBController {
   }
   
    public function verModificacion(){//esto luego se borra y se pone en users para que dependiendo del ususrio salga una pagina.
-		$this->view->render("vistas", "modificacionJProf");
+  
+	$currentuser = $_SESSION["currentuser"];
+	$usuario= new User();
+
+    if (isset($_POST["nombreU"])){
+
+        $usuario->setContrasenaU($_POST["contrasenaU"]);
+        $usuario->setNombreU($_POST["nombreU"]);
+
+        try{
+
+          $usuario->checkIsValidForModificacionJPopu($_POST["contrasenaU2"]);
+		  
+          // guarda el objeto User en la base de datos
+          $usuario->update($currentuser->getEmailU());
+		  
+		  $_SESSION["currentuser"] = $this->user->ver_datos($currentuser->getEmailU());
+
+          $this->view->redirect("profesional", "verPerfil");
+
+        }catch(ValidationException $ex) {
+          $errors = $ex->getErrors();
+          $this->view->setVariable("errors", $errors);
+        }
+    }
+
+    $usuario = $this->user->ver_datos($currentuser->getEmailU());
+
+    // put the Post object to the view
+    $this->view->setVariable("user", $usuario);
+
+    $this->view->render("vistas", "modificacionJProf");
+	
   }
 }

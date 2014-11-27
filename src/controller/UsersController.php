@@ -148,5 +148,13 @@ class UsersController extends DBController {
 		}
 	  }
 
+	//Cierra la secion y devuelve a login
+	
+	public function logout() {
+    session_destroy();
+
+    $this->view->redirect("users", "login");
+   
+  }
 
 }
