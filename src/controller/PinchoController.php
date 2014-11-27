@@ -6,7 +6,19 @@ require_once(__DIR__."/../controller/DBController.php");
 
 class PinchoController extends DBController {
 
+	private $pincho;
+	private $codvoto;
+
+	public function __construct() {
+		parent::__construct();
+
+		$this->pincho = new User();
+		$this->codvoto = new Voto();
+		//$this->view->setLayout("welcome");
+	}
+
 	function altaPincho(){
+		generateIdVote($idPi);
 
 	}
 	function bajaPincho(){
