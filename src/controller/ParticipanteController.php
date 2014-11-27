@@ -40,4 +40,8 @@ class ParticipanteController extends DBController {
   public function modificar(){
     $this->view->render("vistas", "modificacionPart");
   }
+  
+   public function verPerfil(){//esto luego se borra y se pone en users para que dependiendo del ususrio salga una pagina.
+		$this->view->render("vistas", "consultaPart");
+  }
 }

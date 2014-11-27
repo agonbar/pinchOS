@@ -103,6 +103,25 @@ class UsersController extends DBController {
       throw new Exception("Solo puede votar el jurado");
     }
   }
+  
+  
+  public function seleccionarPerfil() {
+
+    $currentuser = $_SESSION["currentuser"];
+
+    if($currentuser->getTipoU() == 'J'){
+      $this->view->redirect("popular", "verPerfil");
+    }
+    if($currentuser->getTipoU() == 'S'){
+      $this->view->redirect("profesional", "verPerfil");
+    }
+	if($currentuser->getTipoU() == 'P'){
+      $this->view->redirect("participante", "verPerfil");
+    }
+    if(($currentuser->getTipoU() != 'S') and ($currentuser->getTipoU() != 'J') and (($currentuser->getTipoU() == 'P'))){
+      throw new Exception("No se puede ver el perfil");
+    }
+  }
 
 
 

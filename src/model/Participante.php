@@ -15,10 +15,10 @@ class Participante {
 
     $participantes=array();
     foreach ($users_db as $participante) {
-      array_push($participantes, new User($emailU["email"], $contrasenaU["constrasena"], $tipoU["tipo"], $estadoU["estado"], $nombreU=["nombre"], $concursoId=["concurso"]);
+      array_push($participantes, new User($emailU["email"], $contrasenaU["constrasena"], $tipoU["tipo"], $estadoU["estado"], $nombreU=["nombre"], $concursoId=["concurso"]));
     }
     
     return $participantes;
     }
   }
-}
+

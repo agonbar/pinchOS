@@ -110,8 +110,8 @@ error_reporting(E_ALL);
 								<li class="dropdown">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-cog"></i></a>
 									<ul class="dropdown-menu">
-										<li><a href="">Mi perfil</a></li>
-										<li><a href="">Modificar mi perfil</a></li>
+										<li><a href="index.php?controller=users&action=seleccionarPerfil">Mi perfil</a></li>
+										<li><a href="index.php?controller=users&action=seleccionarModificacion">Modificar mi perfil</a></li>
 										<li><a href="">Salir</a></li>
 									</ul>
 								</li>
