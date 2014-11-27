@@ -42,12 +42,12 @@ $errors = $view->getVariable("errors");
 								<?= isset($errors["premioC"])?$errors["premioC"]:"" ?><br>
 							</div>
 						</div>
-						<!--<div class="form-group separarformulario">
+						<div class="form-group separarformulario">
 						<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Patrocinador</label>
 						<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
 						<input type="text" class="form-control" placeholder="Introduce un Patrocinador..." name="patrocinadorC">
 					</div>
-				</div>-->
+				</div>
 				<div class="form-group separarformulario">
 					<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Bases</label>
 					<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
