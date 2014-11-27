@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `pincho` (
   `fotoPi` VARCHAR(45) NOT NULL,
   `estadoPi` TINYINT(1) NOT NULL comment '1=activo, 0=incativo',
   `participanteEmail` VARCHAR(45) NOT NULL,
-  `lastvotePi` VARCHAR(45) NOT NULL,
+  `numvotePi` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idPi`),
   FOREIGN KEY (`participanteEmail`) REFERENCES `participante` (`usuarioEmail`)
   )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -121,10 +121,10 @@ CREATE TABLE IF NOT EXISTS `codVoto` (
 CREATE TABLE IF NOT EXISTS `voto` (
   `usuarioEmailU` VARCHAR(45) NOT NULL,
   `pinchoIdPi` INT NOT NULL,
-  `codigopinchoV` VARCHAR(45) NOT NULL,
+  `codigoPinchoV` VARCHAR(45) NOT NULL,
   `valoracionV` INT NOT NULL,
-  PRIMARY KEY (`usuarioEmailU`, `pinchoIdPi`, `codigopinchoV`),
-  FOREIGN KEY (`codigopinchoV`) REFERENCES `codVoto` (`idCV`),
+  PRIMARY KEY (`usuarioEmailU`, `pinchoIdPi`, `codigoPinchoV`),
+  FOREIGN KEY (`codigoPinchoV`) REFERENCES `codVoto` (`idCV`),
   FOREIGN KEY (`usuarioEmailU`) REFERENCES `usuario` (`emailU`),
   FOREIGN KEY (`pinchoIdPi`) REFERENCES `pincho` (`idPi`)
   )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -135,8 +135,8 @@ CREATE TABLE IF NOT EXISTS `voto` (
 -- -----------------------------------------------------
 
 
-INSERT INTO `concurso` (`idC`,`nombreC`, `basesC`, `ciudadC`, `fechaC`, `premioC`) VALUES
-('1','concurso Ourense', 'estas son las bases del concurso', 'Ourense', '23/10/2015', '2000');
+INSERT INTO `concurso` (`idC`,`nombreC`, `basesC`, `ciudadC`, `fechaC`, `premioC`, `patrocinadorC`) VALUES
+('1','concurso Ourense', 'estas son las bases del concurso', 'Ourense', '23/10/2015', '2000', 'sensei sonsoi SA');
 
 INSERT INTO `usuario` (`emailU`, `contrasenaU`, `tipoU`, `estadoU`,`nombreU`,`concursoId`) VALUES
 ('jeni@gmail.com', 'jeni', 'A', '1','jeni vazquez rey','1'),
@@ -155,11 +155,11 @@ INSERT INTO `participante` (`direccionP`, `telefonoP`, `nombreLocalP`, `horarioP
 ('Madrid', '655555555', 'Flamingo', 'De 9:00 a 23:00','aqui va la pag web','aqui va la foto','marta@gmail.com'),
 ('Carballino', '633333333', 'Enxogo', 'De 9:00 a 23:00','aqui va la pag web','aqui va la foto','pablo@gmail.com');
 
-INSERT INTO `pincho` (`idPi`, `nombrePi`, `precioPi`, `descripcionPi`,`cocineroPi`,`numvotosPi`,`fotoPi`,`estadoPi`,`participanteEmail`) VALUES
-('1', 'jamon', '1', 'bueno','juan','1','aqui va la foto','1','julian@gmail.com'),
-('2', 'queso', '2', 'malo', 'pepe','3','aqui va la foto','1','hector@gmail.com'),
-('3', 'bacon', '3', 'buenisimo','carmen','2','aqui va la foto','5','marta@gmail.com'),
-('4', 'mortadela', '2', 'malisimo','roberto','0','aqui va la foto','1','pablo@gmail.com');
+INSERT INTO `pincho` (`idPi`, `nombrePi`, `precioPi`, `descripcionPi`,`cocineroPi`,`numvotosPi`,`fotoPi`,`estadoPi`,`participanteEmail`, `numvotePi`) VALUES
+('1', 'jamon', '1', 'bueno','juan','1','aqui va la foto','1','julian@gmail.com', '3'),
+('2', 'queso', '2', 'malo', 'pepe','3','aqui va la foto','1','hector@gmail.com', '4'),
+('3', 'bacon', '3', 'buenisimo','carmen','2','aqui va la foto','5','marta@gmail.com', '4'),
+('4', 'mortadela', '2', 'malisimo','roberto','0','aqui va la foto','1','pablo@gmail.com', '0');
 
 INSERT INTO `codVoto` (`idCV`, `pinchoId`) VALUES
 ('11', '1'),
@@ -176,5 +176,3 @@ INSERT INTO `voto` (`usuarioEmailU`, `pinchoIdPi`, `codigopinchoV`, `valoracionV
 ('adri@gmail.com', '2', '23', '9'),
 ('ruben@gmail.com', '3', '31','8'),
 ('mel@gmail.com', '3', '32', '3');
-
-
