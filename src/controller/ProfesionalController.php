@@ -80,6 +80,23 @@ class ProfesionalController extends DBController {
     $this->view->render("vistas", "votarJProf");
   }
   
+  
+  public function desactivarCuenta() {
+	
+	$currentuser = $_SESSION["currentuser"];
+	
+	//<script>alert('Esta seguro de borrar el usuario?'); </script>;
+	//<script>window.location.replace('index.php');</script>;
+		
+	$this->user->updateEstado($currentuser->getEmailU());
+		
+	$this->view->redirect("users", "login");
+	
+	// render the view (/view/users/login.php)
+	$this->view->render("vistas", "consultaJprof"); 
+}
+	
+  
   public function verPerfil(){//esto luego se borra y se pone en users para que dependiendo del ususrio salga una pagina.
 		$this->view->render("vistas", "consultaJProf");
   }

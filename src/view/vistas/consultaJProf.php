@@ -55,7 +55,7 @@ include(__DIR__."/../layouts/inicio.php");
 					</table>
 				</div>
 			</div>
-			<button type="button" class="btn btn-primary col-md-offset-4" >Eliminar cuenta</button>
+			<a href="index.php?controller=profesional&action=desactivarCuenta"><button type="button" class="btn btn-primary col-md-offset-4" >Eliminar cuenta</button></a>
 			<button type="button" class="btn btn-primary " >Modificar mi perfil</button>
 		</div>
 	</div>
