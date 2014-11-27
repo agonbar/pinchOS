@@ -132,7 +132,7 @@ class Concurso {
     $stmt->execute(array($this->idC, $this->nombreC, $this->basesC, $this->ciudadC, $this->fechaC, $this->premioC));
   }
 
-  /* Guarda el Concurso en la base de datos */
+  /* Actualiza el Concurso en la base de datos */
 
   public function update() {
     $db = PDOConnection::getInstance();

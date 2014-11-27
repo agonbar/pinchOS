@@ -112,8 +112,8 @@ class User {
     if ($this->tipoU == 'N') {
       $errors["tipoU"] = "No has escogido el tipo de usuario";
     }
-    if (strlen($this->nombreU) < 5) {
-      $errors["nombreU"] = "El nombre debe contener al menos 5 caracteres de longitud";
+    if (strlen($this->nombreU) < 3) {
+      $errors["nombreU"] = "El nombre debe contener al menos 3 caracteres de longitud";
     }
     if (strlen($this->contrasenaU) < 5) {
       $errors["contrasenaU"] = "La contraseña debe contener al menos 5 caracteres de longitud";
@@ -127,6 +127,25 @@ class User {
     }
 
   }
+  
+  public function checkIsValidForRegister2($contrasenaU2) {
+
+    $errors = array();
+    if (strlen($this->emailU) < 5) {
+      $errors["emailU"] = "El email debe contener al menos 5 caracteres de longitud";
+    }
+    if (strlen($this->nombreU) < 3) {
+      $errors["nombreU"] = "El nombre debe contener al menos 3 caracteres de longitud";
+    }
+	if ($this->contrasenaU != $contrasenaU2) {
+      $errors["contrasenaU2"] = "Las contraseñas no coinciden";
+    }
+    if (sizeof($errors)>0){
+      throw new ValidationException($errors, "El usuario no es válido");
+    }
+
+  }
+  
 
   public function checkIsValidForRegisterProf(){
     $errors = array();
@@ -151,6 +170,15 @@ class User {
     $stmt = $db->prepare("INSERT INTO usuario values (?,?,?,?,?,?)");
     $stmt->execute(array($this->emailU, $this->contrasenaU, $this->tipoU, $this->estadoU, $this->nombreU, $this->concursoId));
   }
+  
+  /* Actualiza el User en la base de datos */
+
+  public function update() {
+    $db = PDOConnection::getInstance();
+    $stmt = $db->prepare("UPDATE usuario SET emailU=?, contrasenaU=?, tipoU=?, estadoU=?, nombreU=?, concursoId=?");
+    $stmt->execute(array($this->emailU, $this->contrasenaU, $this->tipoU, $this->estadoU, $this->nombreU, $this->concursoId));
+  }
+  
 
   /* Comprueba si el email xa existe en la base de datos */
 

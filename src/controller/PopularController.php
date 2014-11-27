@@ -43,7 +43,6 @@ class PopularController extends DBController {
 	  $votoPincho3->setValoracionV($_POST["puntuacionP3"]);
 	
 	  if(!$votoPincho1->isCorrectCode()){
-	  
 		 $errors["codigoP1"] = "El código introducido no pertenece a ningun pincho";
 	  }
 	  if(!$votoPincho2->isCorrectCode()){
@@ -102,16 +101,64 @@ class PopularController extends DBController {
 	
 	// render the view (/view/users/login.php)
 	$this->view->render("vistas", "consultaJpopu"); 
-	}
-	
-	
- 
-  public function verPerfil(){//esto luego se borra y se pone en users para que dependiendo del ususrio salga una pagina
-	$this->view->render("vistas", "consultaJPopu");
+  
+ }
+  
+  public function verPerfil(){//esto luego se borra y se pone en users para que dependiendo del ususrio salga una pagina.
+
+    $this->view->render("vistas", "consultaJPopu");
+
   }
+  
+  
+  public function listarPremiados(){
+    $this->view->render("vistas", "listarPrem");
+  }
+	
 
   public function verModificacion(){//esto luego se borra y se pone en users para que dependiendo del ususrio salga una pagina.
-	$this->view->render("vistas", "modificacionJPopu");
-  }
+	$currentuser = $_SESSION["currentuser"];
+	
+	$usuario= new User();
 
+    if (isset($_POST["nombreU"])){
+
+        $usuario->setEmailU($_POST["emailU"]);
+        $usuario->setContrasenaU($_POST["contrasenaU"]);
+        $usuario->setTipoU('J');
+        $usuario->setEstadoU('1');
+        $usuario->setNombreU($_POST["nombreU"]);
+        $usuario->setConcursoId('1');
+
+        try{
+
+          $usuario->checkIsValidForRegister2($_POST["contrasenaU2"]);
+
+          // guarda el objeto User en la base de datos
+          $usuario->update();
+
+          //$this->view->setFlash("Usuario ".$usuario->getNombreU()." corrrectamente añadido");
+
+          // cabecera("Location: index.php?controller=users&action=login")
+
+          $this->view->redirect("popular", "verPerfil");
+
+
+        }catch(ValidationException $ex) {
+
+          $errors = $ex->getErrors();
+          $this->view->setVariable("errors", $errors);
+        }
+    }
+
+    $usuario = $this->user->ver_datos($currentuser->getEmailU());
+
+    // put the Post object to the view
+    $this->view->setVariable("user", $usuario);
+
+    $this->view->render("vistas", "modificacionJPopu");
+	
+	;
+  }
+  
 }
