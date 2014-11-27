@@ -13,18 +13,17 @@ $participantes = $view->getVariable("participantes");
         <h2 class="alineado">Listado de Participante</h2>
       </div>
       <ul class= "list-inline ">
-        <?php //bucle que lista los participantes seleccionados
-        $i=0;
-        while ($participantes as $participante){?>
+        <?php
+        while ($participantes as $participante){ ?>
           <li>
-            <a href="index.php?controller=participante&action=consultar&id=<?=$participante->getEmail()?>">
+            <a href="index.php?controller=participante&action=consultar"?> <!--&id=<?=$participante->getEmail()?>"> -->
               <img src="./resources/img/participante.jpg" alt="./resources/img/participante.jpg" class="img-thumbnail" height="200" width="200">
               <div class="caption">
-                <h4><? $participante->getEmail() ?>-</h4>
+                <h4><!--<? $participante->getEmail() ?> -->-</h4>
               </a>
             </div>
           </li>
-          <?php $i++;}?><!-- fin while-->
+          <? } ?><!-- fin while-->
         </ul>
       </div>
     </div>
