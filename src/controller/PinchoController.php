@@ -1,6 +1,6 @@
 <?php
-require_once(__DIR__."/../core/ViewManager.php");
 require_once(__DIR__."/../model/User.php");
+require_once(__DIR__."/../core/ViewManager.php");
 require_once(__DIR__."/../controller/DBController.php");
 
 
