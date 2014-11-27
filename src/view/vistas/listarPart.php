@@ -3,6 +3,7 @@
 include(__DIR__."/../layouts/inicio.php");
 require_once(__DIR__."/../../core/ViewManager.php");
 $view = ViewManager::getInstance();
+$participantes = $view->getVariable("participantes");
 ?>
 <!--AQUI EMPIEZA LA VENTANA MODAL DE AÑADIR ALBUM -->
 <div class="margensup" >
@@ -14,12 +15,12 @@ $view = ViewManager::getInstance();
       <ul class= "list-inline ">
         <?php //bucle que lista los participantes seleccionados
         $i=0;
-        while ($i <= 12){?>
+        while ($participantes as $participante){?>
           <li>
-            <a href="index.php?controller=participante&action=consultar">
+            <a href="index.php?controller=participante&action=consultar&id=<?=$participante->getEmail()?>">
               <img src="./resources/img/participante.jpg" alt="./resources/img/participante.jpg" class="img-thumbnail" height="200" width="200">
               <div class="caption">
-                <h4>-Nombre del participante <?php echo $i;?>-</h4>
+                <h4><? $participante->getEmail() ?>-</h4>
               </a>
             </div>
           </li>
