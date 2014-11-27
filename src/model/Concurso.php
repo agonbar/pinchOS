@@ -4,7 +4,7 @@ require_once(__DIR__."/../core/ValidationException.php");
 
 class Concurso {
 
-  private $db;
+  //private $db;
 
   /* El id del Concurso */
 
@@ -31,7 +31,7 @@ class Concurso {
   private $premioC;
 
   public function __construct($idC=NULL, $nombreC=NULL, $basesC=NULL, $ciudadC=NULL, $fechaC=NULL, $premioC=NULL) {
-    $this->db = PDOConnection::getInstance();
+
     $this->idC = $idC;
     $this->nombreC = $nombreC;
     $this->basesC = $basesC;
@@ -127,19 +127,22 @@ class Concurso {
   /* Guarda el Concurso en la base de datos */
 
   public function save() {
-    $stmt = $this->db->prepare("INSERT INTO concurso values (?,?,?,?,?,?)");
+    $db = PDOConnection::getInstance();
+    $stmt = $db->prepare("INSERT INTO concurso values (?,?,?,?,?,?)");
     $stmt->execute(array($this->idC, $this->nombreC, $this->basesC, $this->ciudadC, $this->fechaC, $this->premioC));
   }
 
   /* Guarda el Concurso en la base de datos */
 
   public function update() {
-    $stmt = $this->db->prepare("UPDATE concurso SET idC=?, nombreC=?, basesC=?, ciudadC=?, fechaC=?, premioC=?");
+    $db = PDOConnection::getInstance();
+    $stmt = $db->prepare("UPDATE concurso SET idC=?, nombreC=?, basesC=?, ciudadC=?, fechaC=?, premioC=?");
     $stmt->execute(array($this->idC, $this->nombreC, $this->basesC, $this->ciudadC, $this->fechaC, $this->premioC));
   }
 
   public function existConcurso(){
-    $stmt = $this->db->prepare("SELECT count(idC) FROM concurso");
+    $db = PDOConnection::getInstance();
+    $stmt = $db->prepare("SELECT count(idC) FROM concurso");
     $stmt->execute();
 
     if ($stmt->fetchColumn() > 0) {
@@ -160,7 +163,8 @@ class Concurso {
 }
 */
 public function ver_datos() {
-  $stmt = $this->db->prepare("SELECT * FROM concurso");
+  $db = PDOConnection::getInstance();
+  $stmt = $db->prepare("SELECT * FROM concurso");
   $stmt->execute();
   $concursos_db=$stmt->fetch(PDO::FETCH_ASSOC);
 

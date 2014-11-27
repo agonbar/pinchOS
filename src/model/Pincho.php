@@ -164,15 +164,16 @@ class Pincho {
   /* Guarda el Pincho en la base de datos */
 
   public function save() {
-    $stmt = $this->db->prepare("INSERT INTO pincho values (?,?,?,?,?,?,?,?,?)");
+    $db = PDOConnection::getInstance();
+    $stmt = $db->prepare("INSERT INTO pincho values (?,?,?,?,?,?,?,?,?)");
     $stmt->execute(array($this->idPi, $this->nombrePi, $this->precioPi, $this->descripcionPi, $this->cocineroPi, $this->numVotosPi, $this->fotoPi, $this->estadoPi, $this->ParticipanteEmail));
   }
 
   /* Comprueba si el id xa existe en la base de datos */
 
   public function idExists() {
-
-    $stmt = $this->db->prepare("SELECT count(idPi) FROM pincho where idPi=?");
+    $db = PDOConnection::getInstance();
+    $stmt = $db->prepare("SELECT count(idPi) FROM pincho where idPi=?");
     $stmt->execute(array($this->idPi));
 
     if ($stmt->fetchColumn() > 0) {
