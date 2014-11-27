@@ -13,11 +13,22 @@ GRANT ALL PRIVILEGES ON `pinchos`.* TO 'pinchos'@'localhost' WITH GRANT OPTION;
 USE `pinchos`;
 
 -- -----------------------------------------------------
--- Table `concurso`
+-- All DROPs
 -- -----------------------------------------------------
 
 DROP TABLE IF EXISTS `concurso` ;
--- creacion de tabla USER
+DROP TABLE IF EXISTS `usuario` ;
+DROP TABLE IF EXISTS `participante` ;
+DROP TABLE IF EXISTS `pincho` ;
+DROP TABLE IF EXISTS `voto` ;
+DROP TABLE IF EXISTS `codVoto` ;
+
+
+-- -----------------------------------------------------
+-- Table `concurso`
+-- -----------------------------------------------------
+
+
 CREATE TABLE IF NOT EXISTS `concurso` (
   `idC` INT NOT NULL AUTO_INCREMENT,
   `nombreC` VARCHAR(45) NOT NULL,
@@ -25,6 +36,7 @@ CREATE TABLE IF NOT EXISTS `concurso` (
   `ciudadC` VARCHAR(45) NOT NULL,
   `fechaC` VARCHAR(45) NOT NULL,
   `premioC` INT NOT NULL,
+  `patrocinadorC` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idC`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -32,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `concurso` (
 -- -----------------------------------------------------
 -- Table `usuario`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `usuario` ;
+
 
 CREATE TABLE IF NOT EXISTS `usuario` (
   `emailU` VARCHAR(45) NOT NULL,
@@ -49,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 -- -----------------------------------------------------
 -- Table `participante`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `participante` ;
+
 
 CREATE TABLE IF NOT EXISTS `participante` (
   `direccionP` VARCHAR(45) NOT NULL,
@@ -67,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `participante` (
 -- -----------------------------------------------------
 -- Table `pincho`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `pincho` ;
+
 
 CREATE TABLE IF NOT EXISTS `pincho` (
   `idPi` INT NOT NULL AUTO_INCREMENT,
@@ -87,23 +99,35 @@ CREATE TABLE IF NOT EXISTS `pincho` (
 -- -----------------------------------------------------
 -- Table `voto`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `voto` ;
+
 
 CREATE TABLE IF NOT EXISTS `voto` (
   `usuarioEmailU` VARCHAR(45) NOT NULL,
   `pinchoIdPi` INT NOT NULL,
   `codigopinchoV` VARCHAR(45) NOT NULL,
   `valoracionV` INT NOT NULL,
-  PRIMARY KEY (`usuarioEmailU`, `pinchoIdPi`, CodigopinchoV),
+  PRIMARY KEY (`usuarioEmailU`, `pinchoIdPi`, `codigopinchoV`),
+  FOREIGN KEY (`codigopinchoV`) REFERENCES `codVoto` (`idCV`),
   FOREIGN KEY (`usuarioEmailU`) REFERENCES `usuario` (`emailU`),
   FOREIGN KEY (`pinchoIdPi`) REFERENCES `pincho` (`idPi`)
   )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+  -- -----------------------------------------------------
+  -- Table `codVoto`
+  -- -----------------------------------------------------
 
-  
+CREATE TABLE IF NOT EXISTS `codVoto` (
+  `idCV` VARCHAR(45) NOT NULL,
+  `nombrepincho` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idCV`, `nombrePi`),
+  FOREIGN KEY (`nombrepincho`) REFERENCES `pincho`(`nombrePi`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+
  -- -----------------------------------------------------
 -- Datos de prueba
 -- -----------------------------------------------------
+
 
 INSERT INTO `concurso` (`idC`,`nombreC`, `basesC`, `ciudadC`, `fechaC`, `premioC`) VALUES
 ('1','concurso Ourense', 'estas son las bases del concurso', 'Ourense', '23/10/2015', '2000');
@@ -138,7 +162,3 @@ INSERT INTO `voto` (`usuarioEmailU`, `pinchoIdPi`, `codigopinchoV`, `valoracionV
 ('adri@gmail.com', '2', '23', '9'),
 ('ruben@gmail.com', '3', '31','8'),
 ('mel@gmail.com', '3', '32', '3');
-
-
- 
-
