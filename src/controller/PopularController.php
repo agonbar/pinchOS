@@ -97,5 +97,8 @@ class PopularController extends DBController {
 		$this->view->render("vistas", "consultaJPopu");
   }
 
+  public function verModificacion(){//esto luego se borra y se pone en users para que dependiendo del ususrio salga una pagina.
+		$this->view->render("vistas", "modificacionJPopu");
+  }
 
 }

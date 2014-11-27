@@ -83,4 +83,8 @@ class ProfesionalController extends DBController {
   public function verPerfil(){//esto luego se borra y se pone en users para que dependiendo del ususrio salga una pagina.
 		$this->view->render("vistas", "consultaJProf");
   }
+  
+   public function verModificacion(){//esto luego se borra y se pone en users para que dependiendo del ususrio salga una pagina.
+		$this->view->render("vistas", "modificacionJProf");
+  }
 }

@@ -117,13 +117,37 @@ class UsersController extends DBController {
     }
 	if($currentuser->getTipoU() == 'P'){
       $this->view->redirect("participante", "verPerfil");
-    }
+    }/*
+	if($currentuser->getTipoU() == 'A'){
+	  $this->view->redirect("administrador", "verPerfil");
+	}*/
     if(($currentuser->getTipoU() != 'S') and ($currentuser->getTipoU() != 'J') and (($currentuser->getTipoU() == 'P'))){
       throw new Exception("No se puede ver el perfil");
     }
   }
+  
+  
 
+	public function seleccionarModificacion() {
 
+		$currentuser = $_SESSION["currentuser"];
+
+		if($currentuser->getTipoU() == 'J'){
+		  $this->view->redirect("popular", "verModificacion");
+		}
+		if($currentuser->getTipoU() == 'S'){
+		  $this->view->redirect("profesional", "verModificacion");
+		}
+		if($currentuser->getTipoU() == 'P'){
+		  $this->view->redirect("participante", "verModificacion");
+		}/*
+		if($currentuser->getTipoU() == 'A'){
+		  $this->view->redirect("administrador", "verModificacion");
+		}*/
+		if(($currentuser->getTipoU() != 'S') and ($currentuser->getTipoU() != 'J') and (($currentuser->getTipoU() == 'P'))){
+		  throw new Exception("No se puede ver el perfil");
+		}
+	  }
 
 
 }
