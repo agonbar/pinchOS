@@ -105,6 +105,24 @@ class PopularController extends DBController {
  }
   
   public function verPerfil(){//esto luego se borra y se pone en users para que dependiendo del ususrio salga una pagina.
+  
+	$currentuser = $_SESSION["currentuser"];
+	
+	// find the Post object in the database
+	$votos = $this->voto->getDatosVotos($currentuser->getEmailU());
+	
+	if ($votos == NULL) {
+	  throw new Exception("Este usuario no tiene votos");
+	}
+	
+	$this->view->setVariable("votos", $votos);
+	
+	$nombrePincho = array();
+	foreach ($votos as $voto) {
+		$nombrePincho_valor = $this->voto->getNombrePincho($voto);
+		$nombrePincho[$voto->getCodigoPinchoV()] = $nombrePincho_valor;
+	}
+	$this->view->setVariable("nombrePincho", $nombrePincho);
 
     $this->view->render("vistas", "consultaJPopu");
 

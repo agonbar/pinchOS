@@ -1,5 +1,6 @@
 <?php
 require_once(__DIR__."/../model/User.php");
+require_once(__DIR__."/../model/Pincho.php");
 require_once(__DIR__."/../core/PDOConnection.php");
 require_once(__DIR__."/../core/ValidationException.php");
 
@@ -124,23 +125,35 @@ class Voto {
 	
   }
   
-  public function ver_datosVotos($emailU) {
+  public function getDatosVotos($currentuserEmail) {
+  
     $db = PDOConnection::getInstance();
-    $stmt = $db->prepare("SELECT p.nombreLocalP,v.* FROM participante p,voto v WHERE v.usuarioEmailU like ? ");
-    $stmt->execute(array($emailU));
-    $user_db=$stmt->fetch(PDO::FETCH_ASSOC);
-
-    if(sizeof($user_db)==0){
-      return null;
-
-    }else{
-      return new Datos(
-      $user_db["usuarioEmailU"],
-      $user_db["pinchoIdPi"],
-      $user_db["valoracionV"]
-      //$user_db["nombreLocalP"],
-      );
-    }
+    $stmt = $db->prepare("SELECT * FROM voto WHERE usuarioEmailU=? ");
+    $stmt->execute(array($currentuserEmail));
+    $voto_db=$stmt->fetchAll(PDO::FETCH_ASSOC);
+	
+	$votos=array();
+	
+	foreach ($voto_db as $voto) {
+		array_push($votos, new Voto($voto["usuarioEmailU"], $voto["pinchoIdPi"], $voto["codigoPinchoV"], $voto["valoracionV"]));
+    }   
+    return $votos;
+	
+  }
+  
+  public function getNombrePincho($voto){
+  
+	$db = PDOConnection::getInstance();
+    $stmt = $db->prepare("SELECT pincho.nombrePi FROM voto,pincho WHERE voto.pinchoIdPi=pincho.idPi and voto.codigoPinchoV=?");
+    $stmt->execute(array($voto->getCodigoPinchoV()));
+    $nombre_db=$stmt->fetchAll(PDO::FETCH_ASSOC);
+	
+	$nombres=array();
+	
+	foreach ($nombre_db as $nombre) {
+		array_push($nombres, new Pincho(null, $nombre["nombrePi"]));
+    }   
+    return $nombres;
   }
   
   

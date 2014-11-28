@@ -4,7 +4,6 @@ require_once(__DIR__."/../core/ValidationException.php");
 
 class Pincho {
 
-  private $db;
   private $idPi;/* El id del Pincho */
   private $nombrePi;/* La nombre del Pincho */
   private $precioPi;/* El precio del Pincho */
