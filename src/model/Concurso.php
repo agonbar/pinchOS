@@ -29,8 +29,12 @@ class Concurso {
   /* El premio del Concurso */
 
   private $premioC;
+  
+  /* El premio del Concurso */
 
-  public function __construct($idC=NULL, $nombreC=NULL, $basesC=NULL, $ciudadC=NULL, $fechaC=NULL, $premioC=NULL) {
+  private $patrocinadorC;
+
+  public function __construct($idC=NULL, $nombreC=NULL, $basesC=NULL, $ciudadC=NULL, $fechaC=NULL, $premioC=NULL, $patrocinadorC=NULL) {
 
     $this->idC = $idC;
     $this->nombreC = $nombreC;
@@ -38,6 +42,7 @@ class Concurso {
     $this->ciudadC = $ciudadC;
     $this->fechaC = $fechaC;
     $this->premioC = $premioC;
+	$this->patrocinadorC = $patrocinadorC;
   }
 
 
@@ -100,11 +105,20 @@ class Concurso {
   public function setPremioC($premioC) {
     $this->premioC = $premioC;
   }
+  
+  /* Devuelve el premio del Concurso */
+  public function getPatrocinadorC() {
+    return $this->patrocinadorC;
+  }
+
+  /* Pone el premio del Concurso */
+  public function setPatrocinadorC($patrocinadorC) {
+    $this->patrocinadorC = $patrocinadorC;
+  }
 
   /* Comprueba si el Concurso es válido para registrarse en la base de datos */
 
   public function checkIsValidForRegister() {
-
     $errors = array();
     if (strlen($this->nombreC) < 4) {
       $errors["nombreC"] = "El nombre debe contener al menos 4 caracteres de longitud";
@@ -112,8 +126,14 @@ class Concurso {
     if (strlen($this->ciudadC) < 2) {
       $errors["ciudadC"] = "La ciudad debe contener al menos 2 caracteres de longitud";
     }
+	if ($this->fechaC< date("Y-m-d")) {
+      $errors["fechaC"] = "La fecha debe ser posterior al dia de hoy";
+    }
     if (strlen($this->basesC) < 10) {
       $errors["basesC"] = "Las bases no son correctas";
+    }
+	if (strlen($this->patrocinadorC) < 3) {
+      $errors["patrocinadorC"] = "El patrocinador debe contener al menos 3 caracteres de longitud";
     }
     if (strlen($this->premioC) < 2) {
       $errors["premioC"] = "El valor del premio no es correcto";
@@ -136,8 +156,8 @@ class Concurso {
 
   public function update() {
     $db = PDOConnection::getInstance();
-    $stmt = $db->prepare("UPDATE concurso SET idC=?, nombreC=?, basesC=?, ciudadC=?, fechaC=?, premioC=?");
-    $stmt->execute(array($this->idC, $this->nombreC, $this->basesC, $this->ciudadC, $this->fechaC, $this->premioC));
+    $stmt = $db->prepare("UPDATE concurso SET idC=?, nombreC=?, basesC=?, ciudadC=?, fechaC=?, premioC=?, patrocinadorC=?");
+    $stmt->execute(array($this->idC, $this->nombreC, $this->basesC, $this->ciudadC, $this->fechaC, $this->premioC, $this->patrocinadorC));
   }
 
   public function existConcurso(){
@@ -177,7 +197,8 @@ public function ver_datos() {
     $concursos_db["basesC"],
     $concursos_db["ciudadC"],
     $concursos_db["fechaC"],
-    $concursos_db["premioC"]
+    $concursos_db["premioC"],
+	$concursos_db["patrocinadorC"]
   );
 }
 }

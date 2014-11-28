@@ -56,8 +56,9 @@ class ConcursoController extends DBController {
         $concu->setNombreC($_POST["nombreC"]);
         $concu->setBasesC($_POST["basesC"]);
         $concu->setCiudadC($_POST["ciudadC"]);
-        $concu->setFechaC('12-12-2014');
+        $concu->setFechaC($_POST["fechaC"]);
         $concu->setPremioC($_POST["premioC"]);
+		$concu->setPatrocinadorC($_POST["patrocinadorC"]);
 
         try{
 
@@ -112,8 +113,9 @@ class ConcursoController extends DBController {
         $concu->setNombreC($_POST["nombreC"]);
         $concu->setBasesC($_POST["basesC"]);
         $concu->setCiudadC($_POST["ciudadC"]);
-        $concu->setFechaC('12-12-2014');
+        $concu->setFechaC($_POST["fechaC"]);
         $concu->setPremioC($_POST["premioC"]);
+		$concu->setPatrocinadorC($_POST["patrocinadorC"]);
 
         try{
 

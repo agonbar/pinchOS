@@ -23,13 +23,20 @@ class UsersController extends DBController {
       if ($this->user->isValidUser($_POST["email"], $_POST["password"])) {
 
         $user_db=$this->user->ver_datos($_POST["email"]);
-
-        $_SESSION["currentuser"]=$user_db;
-        //print_r($_SESSION["currentuser"]); die();
-        
-        // envia al usuario a una area restringida (su zona de usuario)
-        $this->view->redirect("concurso", "consultarConcurso");  //falta poner bien
-
+		
+		if (!$user_db->getEstadoU() == '0') {
+            
+			$_SESSION["currentuser"]=$user_db;
+			//print_r($_SESSION["currentuser"]); die();
+			
+			// envia al usuario a una area restringida (su zona de usuario)
+			$this->view->redirect("concurso", "consultarConcurso");  
+			
+		}else{
+			$errors = array();
+			$errors["email"] = "Este usuario esta inactivo ";
+			$this->view->setVariable("errors", $errors);
+		}
       }else{
         $errors = array();
         $errors["email"] = "El email no se encuentra registrado";

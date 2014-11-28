@@ -1,6 +1,5 @@
 <?php
 require_once(__DIR__."/../model/User.php");
-require_once(__DIR__."/../model/Pincho.php");
 require_once(__DIR__."/../core/PDOConnection.php");
 require_once(__DIR__."/../core/ValidationException.php");
 
@@ -124,7 +123,7 @@ class Voto {
 	}
 	
   }
-  
+  /*
   public function getDatosVotos($currentuserEmail) {
   
     $db = PDOConnection::getInstance();
@@ -139,9 +138,9 @@ class Voto {
     }   
     return $votos;
 	
-  }
+  }*/
   
-  public function getNombrePincho($voto){
+  /*public function getNombrePincho($voto){
   
 	$db = PDOConnection::getInstance();
     $stmt = $db->prepare("SELECT pincho.nombrePi FROM voto,pincho WHERE voto.pinchoIdPi=pincho.idPi and voto.codigoPinchoV=?");
@@ -154,7 +153,7 @@ class Voto {
 		array_push($nombres, new Pincho(null, $nombre["nombrePi"]));
     }   
     return $nombres;
-  }
+  }*/
   
   
   

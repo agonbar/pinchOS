@@ -32,7 +32,8 @@ $errors = $view->getVariable("errors");
 						<div class="form-group separarformulario">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Fecha</label>
 							<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-								<input class="form-control" type="date">
+								<input class="form-control" type="date" name="fechaC">
+								<?= isset($errors["fechaC"])?$errors["fechaC"]:"" ?><br>
 							</div>
 						</div>
 						<div class="form-group separarformulario">
@@ -43,11 +44,12 @@ $errors = $view->getVariable("errors");
 							</div>
 						</div>
 						<div class="form-group separarformulario">
-						<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Patrocinador</label>
-						<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-						<input type="text" class="form-control" placeholder="Introduce un Patrocinador..." name="patrocinadorC">
-					</div>
-				</div>
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Patrocinador</label>
+							<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+								<input type="text" class="form-control" placeholder="Introduce un Patrocinador..." name="patrocinadorC">
+								<?= isset($errors["patrocinadorC"])?$errors["patrocinadorC"]:"" ?><br>
+							</div>
+						</div>
 				<div class="form-group separarformulario">
 					<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Bases</label>
 					<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
