@@ -83,10 +83,6 @@ class ConcursoController extends DBController {
 	/*Devuelve los datos del concurso para mostrarlos en la vista*/
     $concu = $this->concurso->ver_datos();
 
-    if ($concu == NULL) {
-      throw new Exception("No existe ningun concurso para mostrar");
-    }
-
     /* Guarda el valor de la variable $concu en la variable concu accesible
 	desde la vista*/
     $this->view->setVariable("concu", $concu);

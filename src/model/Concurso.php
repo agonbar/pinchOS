@@ -148,8 +148,8 @@ class Concurso {
 
   public function save() {
     $db = PDOConnection::getInstance();
-    $stmt = $db->prepare("INSERT INTO concurso values (?,?,?,?,?,?)");
-    $stmt->execute(array($this->idC, $this->nombreC, $this->basesC, $this->ciudadC, $this->fechaC, $this->premioC));
+    $stmt = $db->prepare("INSERT INTO concurso values (?,?,?,?,?,?,?)");
+    $stmt->execute(array($this->idC, $this->nombreC, $this->basesC, $this->ciudadC, $this->fechaC, $this->premioC, $this->patrocinadorC));
   }
 
   /* Actualiza el Concurso en la base de datos */

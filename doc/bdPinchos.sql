@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `tipoU` VARCHAR(1) NOT NULL comment 'J=Jurado popular, S=Jurado profesional, A=admiistador, P=participante',
   `estadoU` TINYINT(1) NOT NULL comment '1=activo, 0=incativo',
   `nombreU` VARCHAR(45) NOT NULL,
-  `concursoId` INT NOT NULL,
+  `concursoId` INT,
   PRIMARY KEY (`emailU`),
   FOREIGN KEY (`concursoId`) REFERENCES `concurso` (`idC`)
   )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
