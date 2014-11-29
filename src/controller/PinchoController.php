@@ -34,11 +34,8 @@ class PinchoController extends DBController {
 		$this->pincho->setPrecioPi($_POST["codigoP1"]);
 		$this->pincho->setDescripcionPi($_POST["codigoP1"]);
 		$this->pincho->setCocineroPi($_POST["codigoP1"]);
-		$this->pincho->setNumVotosPi();
 		$this->pincho->setFotoPi($fotoPi,$fotoPiTemp,$fotoPiSize);
-		$this->pincho->setEstadoPi();
-		$this->pincho->setNumvotePi();
-		$this->pincho->setParticipanteEmail();
+		$this->pincho->setParticipanteEmail($currentuser->getEmailU());
 
 	}
 	function bajaPincho(){
