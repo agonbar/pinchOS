@@ -81,10 +81,9 @@ class UsersController extends DBController {
           // guarda el objeto  en la base de datos
           $usuario->save();
 
-          //$this->view->setFlash("Usuario ".$usuario->getNombreU()." corrrectamente añadido");
-
-         //Redirige al método login del UsersController.php
-          $this->view->redirect("users", "login");
+		  //mensaje de confirmación y redirige al método login del UsersController.php
+		  echo "<script> alert('Usuario creado correctamente'); </script>";
+		  echo "<script>window.location.replace('index.php?controller=users&action=login');</script>";
 		  
 		 /*Si el correo ya existe muestra un mensaje de error*/ 
         } else {

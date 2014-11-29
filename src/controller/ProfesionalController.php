@@ -59,11 +59,10 @@ class ProfesionalController extends DBController {
 
           // guarda el objeto  en la base de datos
           $profesional->save();
-
-          //$this->view->setFlash("Usuario ".$usuario->getNombreU()." corrrectamente a�adido");
-
-		  //Redirige al método consultarConcurso del ConcursoController.php
-          $this->view->redirect("concurso", "consultarConcurso");
+		  
+		  //mensaje de confirmación y redirige al metodo consultarConcurso del controlador ConcursoCotroller
+		  echo "<script> alert('Usuario creado correctamente'); </script>";
+		  echo "<script>window.location.replace('index.php?controller=concurso&action=consultarConcurso');</script>";
 		  
 		 //si el correo existe muestra un mensaje de error
         } else {
@@ -92,15 +91,13 @@ class ProfesionalController extends DBController {
   
 	/*Recoge el usuario actual*/
 	$currentuser = $_SESSION["currentuser"];
-	
-	//<script>alert('Esta seguro de borrar el usuario?'); </script>;
-	//<script>window.location.replace('index.php');</script>;
 		
 	/*Actualiza el estado del usuario a inactivo=0 */
 	$this->user->updateEstado($currentuser->getEmailU());
 	
-	//Redirige al método login del UsersController.php
-	$this->view->redirect("users", "login");
+	//mensaje de confirmación y redirige al método login del UsersController.php
+	echo "<script> alert('Cuenta eliminada correctamente'); </script>";
+	echo "<script>window.location.replace('index.php?controller=users&action=login');</script>";
 	
 	// renderiza la vista (/view/vistas/consultaJprof.php)
 	$this->view->render("vistas", "consultaJprof"); 
@@ -133,9 +130,10 @@ class ProfesionalController extends DBController {
 		  
 		   //Actualiza la sesión con los datos modificados
 		  $_SESSION["currentuser"] = $this->user->ver_datos($currentuser->getEmailU());
-
-		  //Redirige al método verPerfil del ProfesionalController.php
-          $this->view->redirect("profesional", "verPerfil");
+		  
+		  //mensaje de confirmación y redirige al método verPerfil del ProfesionalController.php
+		  echo "<script> alert('Usuario modificado correctamente'); </script>";
+		  echo "<script>window.location.replace('index.php?controller=profesional&action=verPerfil');</script>";
 
         }catch(ValidationException $ex) {
           $errors = $ex->getErrors();

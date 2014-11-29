@@ -25,6 +25,8 @@ class PopularController extends DBController {
   public function votar() {
  
 	$currentuser = $_SESSION["currentuser"];
+	
+	$errors = array();
 
     $votoPincho1= new Voto();
 	$votoPincho2= new Voto();
@@ -84,17 +86,19 @@ class PopularController extends DBController {
 			  $votoPincho2->save();
 			  $votoPincho3->save();
 			  
-			  //Redirige al método verPerfil del PopularController.php
-			  $this->view->redirect("popular", "verPerfil");
-		  }
+			  //mensaje de confirmación y redirige al metodo verPerfil del controlador popularCotroller
+			  echo "<script> alert('Voto registrado correctamente'); </script>";
+			  echo "<script>window.location.replace('index.php?controller=popular&action=verPerfil');</script>";
+			  
+		  }else{ $this->view->setVariable("errors", $errors);}
 		  
 		  /*Si ya existe en la base de datos muestra un mensaje de error*/
 		  
 		} else {
-		  $errors = array();
 		  if($votoPincho1->votoExist())$errors["codigoP1"] = "Este código no es válido";
 		  if($votoPincho2->votoExist())$errors["codigoP2"] = "Este código no es válido";
 		  if($votoPincho3->votoExist())$errors["codigoP3"] = "Este código no es válido";
+		  $this->view->setVariable("errors", $errors);
 		}
 		
 	  }catch(ValidationException $ex) {
@@ -102,7 +106,6 @@ class PopularController extends DBController {
 	  }
   
     }
-	$this->view->setVariable("errors", $errors);
 	
 	/*Permite visualizar: view/vistas/votarJPopu.php */
     $this->view->render("vistas", "votarJPopu");
@@ -115,14 +118,12 @@ class PopularController extends DBController {
 	/*Recoge el usuario actual*/
 	$currentuser = $_SESSION["currentuser"];
 	
-	//<script>alert('Esta seguro de borrar el usuario?'); </script>;
-	//<script>window.location.replace('index.php');</script>;
-	
 	/*Actualiza el estado del usuario a inactivo=0 */
 	$this->user->updateEstado($currentuser->getEmailU());
 		
-	//Redirige al método login del UsersController.php
-	$this->view->redirect("users", "login");
+	//mensaje de confirmación y redirige al método login del UsersController.php
+	echo "<script> alert('Cuenta eliminada correctamente'); </script>";
+	echo "<script>window.location.replace('index.php?controller=users&action=login');</script>";
 	
 	// renderiza la vista (/view/vistas/consultaJpopu.php)
 	$this->view->render("vistas", "consultaJpopu"); 
@@ -175,9 +176,10 @@ class PopularController extends DBController {
 		  
 		  //Actualiza la sesión con los datos modificados
 		  $_SESSION["currentuser"] = $this->user->ver_datos($currentuser->getEmailU());
-
-		  //Redirige al método verPerfil del PopularController.php
-          $this->view->redirect("popular", "verPerfil");
+		  
+		  //mensaje de confirmación y redirige al método verPerfil del PopularController.php
+		  echo "<script> alert('Datos de usuario modificados correctamente'); </script>";
+		  echo "<script>window.location.replace('index.php?controller=popular&action=verPerfil');</script>";
 
         }catch(ValidationException $ex) {
           $errors = $ex->getErrors();

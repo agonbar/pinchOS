@@ -72,12 +72,10 @@ class ConcursoController extends DBController {
 
           // Actualiza los datos del concurso
           $concu->update();
-
-          //$this->view->setFlash("Usuario ".$usuario->getNombreU()." corrrectamente añadido");
-
-		  //Redirige al método consultarConcurso del ConcursoController.php
-          $this->view->redirect("concurso", "consultarConcurso");
-
+		  
+		  //mensaje de confirmación y redirige al metodo consultarConcurso del controlador ConcursoCotroller
+		  echo "<script> alert('Modificación realizada correctamente'); </script>";
+		  echo "<script>window.location.replace('index.php?controller=concurso&action=consultarConcurso');</script>";
 
         }catch(ValidationException $ex) {
 
@@ -134,11 +132,9 @@ class ConcursoController extends DBController {
           // guarda el objeto en la base de datos
           $concu->save();
 
-          //$this->view->setFlash("Usuario ".$usuario->getNombreU()." corrrectamente añadido");
-
-			//Redirige al método consultarConcurso del ConcursoController.php
-          $this->view->redirect("concurso", "consultarConcurso");
-
+		  //mensaje de confirmación y redirige al metodo consultarConcurso del controlador ConcursoCotroller
+		  echo "<script> alert('Concurso registrado correctamente'); </script>";
+		  echo "<script>window.location.replace('index.php?controller=concurso&action=consultarConcurso');</script>";
 
         }catch(ValidationException $ex) {
 
