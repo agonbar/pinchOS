@@ -6,17 +6,22 @@ require_once(__DIR__."/../core/ViewManager.php");
 
 class PopularController extends DBController {
 
+  /*Variable que representa el objeto User*/
   private $user;
+  /*Variable que representa el objeto Voto*/
   private $voto;
 
+  /*Constructor*/
   public function __construct() {
     parent::__construct();
 
+	//Inicializa las variables
     $this->user = new User();
     $this->voto = new Voto();
-    //$this->view->setLayout("welcome");
   }
-
+  
+  
+  /*Este metodo permite la votacion del jurado popular*/
   public function votar() {
  
 	$currentuser = $_SESSION["currentuser"];
@@ -29,7 +34,9 @@ class PopularController extends DBController {
 	
 
     if (isset($_POST["codigoP1"])){
-	
+		
+	  /*Guarda los datos introducidos en el formulario en el objeto, más el 
+	  email del usuario actual que es el que realiza la votacion*/
 	  $votoPincho1->setUsuarioEmailU($currentuser->getEmailU());
 	  $votoPincho1->setCodigoPinchoV($_POST["codigoP1"]);
 	  $votoPincho1->setValoracionV($_POST["puntuacionP1"]);
@@ -42,6 +49,7 @@ class PopularController extends DBController {
 	  $votoPincho3->setCodigoPinchoV($_POST["codigoP3"]);
 	  $votoPincho3->setValoracionV($_POST["puntuacionP3"]);
 	
+	  /*Comprueba si los codigos introducidos son correctos y los introduce en el objeto*/
 	  if(!$votoPincho1->isCorrectCode()){
 		 $errors["codigoP1"] = "El código introducido no pertenece a ningun pincho";
 	  }
@@ -53,21 +61,24 @@ class PopularController extends DBController {
 	  }
 	   
       try{
-
+		
+		/*Comprueba si los datos introducidos son correctos*/
         $votoPincho1->checkIsValidForVoto();//mira que puntuacion no sea null
-		$votoPincho2->checkIsValidForVoto();
-		$votoPincho3->checkIsValidForVoto();
+		$votoPincho2->checkIsValidForVoto();//mira que puntuacion no sea null
+		$votoPincho3->checkIsValidForVoto();//mira que puntuacion no sea null
 
-        // comprueba si el correo ya existe en la base de datos
+        // comprueba si el código del pincho introducido ya forma parte de un voto anterior
         if ((!$votoPincho1->votoExist()) and (!$votoPincho2->votoExist()) and (!$votoPincho2->votoExist())){
 		
+		  /*Si no es asi, guarda las votaciones en la base de datos*/
           $votoPincho1->save();
 		  $votoPincho2->save();
 		  $votoPincho3->save();
 		  
-		  echo
+		  //Redirige al método verPerfil del PopularController.php
           $this->view->redirect("popular", "verPerfil");
 		  
+		  /*Si ya existe en la base de datos muestra un mensaje de error*/
         } else {
           $errors = array();
           if($votoPincho1->votoExist())$errors["codigoP1"] = "Este código no es válido";
@@ -83,28 +94,32 @@ class PopularController extends DBController {
         $this->view->setVariable("errors", $errors);
       }
     }
-
+	/*Permite visualizar: view/vistas/votarJPopu.php */
     $this->view->render("vistas", "votarJPopu");
   }
   
-  
+  /*Este metodo permite desactivar la cuenta del usuario*/
   public function desactivarCuenta() {
-	
+  
+	/*Recoge el usuario actual*/
 	$currentuser = $_SESSION["currentuser"];
 	
 	//<script>alert('Esta seguro de borrar el usuario?'); </script>;
 	//<script>window.location.replace('index.php');</script>;
-		
+	
+	/*Actualiza el estado del usuario a inactivo=0 */
 	$this->user->updateEstado($currentuser->getEmailU());
 		
+	//Redirige al método login del UsersController.php
 	$this->view->redirect("users", "login");
 	
-	// render the view (/view/users/login.php)
+	// renderiza la vista (/view/vistas/consultaJpopu.php)
 	$this->view->render("vistas", "consultaJpopu"); 
   
  }
   
-  public function verPerfil(){//esto luego se borra y se pone en users para que dependiendo del ususrio salga una pagina.
+  /*Este metodo permite ver los datos del usuario actual, ademas de ver sus votos*/
+  public function verPerfil(){
   /*
 	$currentuser = $_SESSION["currentuser"];
 	
@@ -128,31 +143,29 @@ class PopularController extends DBController {
 
   }
   
-  
-  public function listarPremiados(){
-    $this->view->render("vistas", "listarPrem");
-  }
-	
-
-  public function verModificacion(){//esto luego se borra y se pone en users para que dependiendo del ususrio salga una pagina.
+  /*Este metodo permite modificar los datos del usuario*/
+  public function verModificacion(){
   
 	$currentuser = $_SESSION["currentuser"];
 	$usuario= new User();
 
     if (isset($_POST["nombreU"])){
 
+		/*Guarda en el objeto los datos introducidos*/
         $usuario->setContrasenaU($_POST["contrasenaU"]);
         $usuario->setNombreU($_POST["nombreU"]);
 
         try{
-
+		  /*Comprueba que los datos introducidos son validos*/
           $usuario->checkIsValidForModificacionJPopu($_POST["contrasenaU2"]);
 		  
-          // guarda el objeto User en la base de datos
+          // gActualiza los datos en la base de datos
           $usuario->update($currentuser->getEmailU());
 		  
+		  //Actualiza la sesión con los datos modificados
 		  $_SESSION["currentuser"] = $this->user->ver_datos($currentuser->getEmailU());
 
+		  //Redirige al método verPerfil del PopularController.php
           $this->view->redirect("popular", "verPerfil");
 
         }catch(ValidationException $ex) {
@@ -160,14 +173,23 @@ class PopularController extends DBController {
           $this->view->setVariable("errors", $errors);
         }
     }
-
+	
+	/*Recupera los datos del usuario*/
     $usuario = $this->user->ver_datos($currentuser->getEmailU());
 
-    // put the Post object to the view
+    /* Guarda el valor de la variable $usuario en la variable user accesible
+	desde la vista*/
     $this->view->setVariable("user", $usuario);
 
+	/*Permite visualizar: view/vistas/modificacionJPopu.php */
     $this->view->render("vistas", "modificacionJPopu");
 	
+  }
+  
+  
+   
+  public function listarPremiados(){
+    $this->view->render("vistas", "listarPrem");
   }
   
 }
