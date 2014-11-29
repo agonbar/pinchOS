@@ -13,6 +13,10 @@ class ConcursoController extends DBController {
   public function __construct() {
     parent::__construct();
 	
+	if(!$_SESSION["currentuser"]){
+		  echo "<script>window.location.replace('index.php?controller=users&action=login');</script>";
+	}
+	
 	//Inicializa la variable concurso
     $this->concurso = new Concurso();
   }
@@ -55,7 +59,14 @@ class ConcursoController extends DBController {
       }else{
         $concu->setIdC('1');
         $concu->setNombreC($_POST["nombreC"]);
-        $concu->setBasesC($_POST["basesC"]);
+		
+		$ruta="../resources/archivo/bases/";//ruta carpeta donde queremos copiar las imagenes
+		$basesCTemp=$_FILES['basesC']['tmp_name'];//guarda el directorio temporal en el que se sube la imagen
+		$basesC=$ruta.$_FILES['basesC']['name'];//indica el directorio donde se guardaran las imagenes
+		$basesCSize = $_FILES['basesC']['error'];//nos da el tamaño de la imagen
+		move_uploaded_file($basesCTemp, $basesC);
+		
+		$concu->setBasesC($basesC,$basesCTemp,$basesCSize);
         $concu->setCiudadC($_POST["ciudadC"]);
         $concu->setFechaC($_POST["fechaC"]);
         $concu->setPremioC($_POST["premioC"]);
@@ -111,8 +122,6 @@ class ConcursoController extends DBController {
         $concu->setIdC('1');
         $concu->setNombreC($_POST["nombreC"]);
 		
-		//move_uploaded_file($_FILES['basesC']['tmp_name'],'imagenes/upload/'.$FILES['basesC']['name']);
-		//chmod('imagenes/upload/'.$FILES['basesC']['name'],0644);
 		
         $concu->setBasesC($_POST["basesC"]);
         $concu->setCiudadC($_POST["ciudadC"]);

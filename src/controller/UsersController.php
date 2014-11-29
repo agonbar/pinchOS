@@ -106,7 +106,10 @@ class UsersController extends DBController {
 
   /*Este metodo selecciona una vista según el tipo de usuario que es */
   public function seleccionarVotacion() {
-
+  
+	if(!$_SESSION["currentuser"]){
+		  echo "<script>window.location.replace('index.php?controller=users&action=login');</script>";
+	}
 	/*Datos del usuario actual*/
     $currentuser = $_SESSION["currentuser"];
 
@@ -125,6 +128,10 @@ class UsersController extends DBController {
   /*Este metodo selecciona una vista según el tipo de usuario que es */
   public function seleccionarPerfil() {
 
+	if(!$_SESSION["currentuser"]){
+		  echo "<script>window.location.replace('index.php?controller=users&action=login');</script>";
+	}
+	
     /*Datos del usuario actual*/
     $currentuser = $_SESSION["currentuser"];
 
@@ -146,6 +153,10 @@ class UsersController extends DBController {
   
     /*Este metodo selecciona una vista según el tipo de usuario que es */
 	public function seleccionarModificacion() {
+	
+		if(!$_SESSION["currentuser"]){
+		  echo "<script>window.location.replace('index.php?controller=users&action=login');</script>";
+		}
 
 		/*Datos del usuario actual*/
 		$currentuser = $_SESSION["currentuser"];
@@ -168,6 +179,9 @@ class UsersController extends DBController {
 
 	//Este metodo cierra la sesion y devuelve a login
 	public function logout() {
+	if(!$_SESSION["currentuser"]){
+		  echo "<script>window.location.replace('index.php?controller=users&action=login');</script>";
+	}
     session_destroy();
     $this->view->redirect("users", "login");
   }

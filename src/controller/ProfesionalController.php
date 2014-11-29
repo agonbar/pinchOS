@@ -11,6 +11,10 @@ class ProfesionalController extends DBController {
   /*Constructor*/
   public function __construct() {
     parent::__construct();
+	
+	if(!$_SESSION["currentuser"]){
+		  echo "<script>window.location.replace('index.php?controller=users&action=login');</script>";
+	}
 
 	//Inicializa la variable
     $this->user = new User();
