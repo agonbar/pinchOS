@@ -123,6 +123,21 @@ class Voto {
 	}
 	
   }
+  
+  
+  public function isPinchoEquals($votoPincho){
+  
+	if($this->getPinchoIdPi()==$votoPincho->getPinchoIdPi()){
+		return true;
+	}else{
+		return false;
+	}
+	
+  }
+  
+  
+  
+  
   /*
   public function getDatosVotos($currentuserEmail) {
   

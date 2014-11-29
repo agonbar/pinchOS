@@ -30,9 +30,6 @@ class PopularController extends DBController {
 	$votoPincho2= new Voto();
 	$votoPincho3= new Voto();
 	
-	//aki tenemos que sacar el pincho al que pertenece el voto introducido. Si no pertenece a ningun pincho, da error y ya no hace lo siguiente (devuelve un error)
-	
-
     if (isset($_POST["codigoP1"])){
 		
 	  /*Guarda los datos introducidos en el formulario en el objeto, más el 
@@ -59,44 +56,58 @@ class PopularController extends DBController {
 	  if(!$votoPincho3->isCorrectCode()){
 		 $errors["codigoP3"] = "El código introducido no pertenece a ningun pincho";
 	  }
-	   
-      try{
-		
+	  
+	  /*Comprueba si los codigos introducidos corresponden a pinchos diferentes*/
+	  if($votoPincho1->isPinchoEquals($votoPincho2)){
+		 $errors["codigoP2"] = "Los codigos 1 y 2 no pueden ser sobre el mismo pincho";
+	  }
+	  if($votoPincho2->isPinchoEquals($votoPincho3)){
+		 $errors["codigoP3"] = "Los codigos 3 y 2 no pueden ser sobre el mismo pincho";
+	  }
+	  if($votoPincho3->isPinchoEquals($votoPincho1)){
+		 $errors["codigoP3"] = "Los codigos 1 y 3 no pueden ser sobre el mismo pincho";
+	  }
+	  
+	  try{
 		/*Comprueba si los datos introducidos son correctos*/
-        $votoPincho1->checkIsValidForVoto();//mira que puntuacion no sea null
+		$votoPincho1->checkIsValidForVoto();//mira que puntuacion no sea null
 		$votoPincho2->checkIsValidForVoto();//mira que puntuacion no sea null
 		$votoPincho3->checkIsValidForVoto();//mira que puntuacion no sea null
 
-        // comprueba si el código del pincho introducido ya forma parte de un voto anterior
-        if ((!$votoPincho1->votoExist()) and (!$votoPincho2->votoExist()) and (!$votoPincho2->votoExist())){
+		// comprueba si el código del pincho introducido ya forma parte de un voto anterior
+		if ((!$votoPincho1->votoExist()) and (!$votoPincho2->votoExist()) and (!$votoPincho2->votoExist())){
 		
-		  /*Si no es asi, guarda las votaciones en la base de datos*/
-          $votoPincho1->save();
-		  $votoPincho2->save();
-		  $votoPincho3->save();
-		  
-		  //Redirige al método verPerfil del PopularController.php
-          $this->view->redirect("popular", "verPerfil");
+		  //continua solo si no se ha producido ningun error
+		  if (!sizeof($errors)>0){
+			  /*Si no es asi, guarda las votaciones en la base de datos*/
+			  $votoPincho1->save();
+			  $votoPincho2->save();
+			  $votoPincho3->save();
+			  
+			  //Redirige al método verPerfil del PopularController.php
+			  $this->view->redirect("popular", "verPerfil");
+		  }
 		  
 		  /*Si ya existe en la base de datos muestra un mensaje de error*/
-        } else {
-          $errors = array();
-          if($votoPincho1->votoExist())$errors["codigoP1"] = "Este código no es válido";
+		  
+		} else {
+		  $errors = array();
+		  if($votoPincho1->votoExist())$errors["codigoP1"] = "Este código no es válido";
 		  if($votoPincho2->votoExist())$errors["codigoP2"] = "Este código no es válido";
 		  if($votoPincho3->votoExist())$errors["codigoP3"] = "Este código no es válido";
-		  
-          $this->view->setVariable("errors", $errors);
-        }
+		}
 		
-      }catch(ValidationException $ex) {
-
-        $errors = $ex->getErrors();
-        $this->view->setVariable("errors", $errors);
-      }
+	  }catch(ValidationException $ex) {
+		$errors = $ex->getErrors();
+	  }
+  
     }
+	$this->view->setVariable("errors", $errors);
+	
 	/*Permite visualizar: view/vistas/votarJPopu.php */
     $this->view->render("vistas", "votarJPopu");
   }
+  
   
   /*Este metodo permite desactivar la cuenta del usuario*/
   public function desactivarCuenta() {
