@@ -110,6 +110,10 @@ class ConcursoController extends DBController {
       }else{
         $concu->setIdC('1');
         $concu->setNombreC($_POST["nombreC"]);
+		
+		//move_uploaded_file($_FILES['basesC']['tmp_name'],'imagenes/upload/'.$FILES['basesC']['name']);
+		//chmod('imagenes/upload/'.$FILES['basesC']['name'],0644);
+		
         $concu->setBasesC($_POST["basesC"]);
         $concu->setCiudadC($_POST["ciudadC"]);
         $concu->setFechaC($_POST["fechaC"]);
