@@ -17,6 +17,8 @@ class Concurso {
   /* Las bases del Concurso */
 
   private $basesC;
+  private $basesCTemp;
+  private $basesCSize;
 
   /* La ciudad del Concurso */
 
@@ -70,11 +72,13 @@ class Concurso {
   public function getBasesC() {
     return $this->basesC;
   }
-
-  /* Pone las bases del Concurso */
-  public function setBasesC($basesC) {
+  
+  public function setbasesC($basesC,$basesCTemp,$basesCSize) {
     $this->basesC = $basesC;
+    $this->basesCTemp = $basesCTemp;
+    $this->basesCSize = $basesCSize;
   }
+
 
   /* Devuelve la ciudad del Concurso */
   public function getCiudadC() {
@@ -128,9 +132,6 @@ class Concurso {
     }
 	if ($this->fechaC< date("Y-m-d")) {
       $errors["fechaC"] = "La fecha debe ser posterior al dia de hoy";
-    }
-    if (strlen($this->basesC) < 10) {
-      $errors["basesC"] = "Las bases no son correctas";
     }
 	if (strlen($this->patrocinadorC) < 3) {
       $errors["patrocinadorC"] = "El patrocinador debe contener al menos 3 caracteres de longitud";
