@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 include(__DIR__."/../layouts/inicio.php");
 ?>

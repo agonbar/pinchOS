@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html lang="es">
 <?php
 include(__DIR__."/../layouts/cabecera.php");
 require_once(__DIR__."/../../core/ViewManager.php");
