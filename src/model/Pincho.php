@@ -76,12 +76,12 @@ class Pincho {
   }
 
   /* Devuelve la ingredientes del Pincho */
-  public function getingredientesPi() {
+  public function getIngredientesPi() {
     return $this->ingredientesPi;
   }
 
   /* Pone la ingredientes del Pincho */
-  public function setingredientesPi($ingredientesPi) {
+  public function setIngredientesPi($ingredientesPi) {
     $this->ingredientesPi = $ingredientesPi;
   }
 
@@ -161,25 +161,7 @@ class Pincho {
 
   }
 
-  /* Guarda el Pincho en la base de datos */
-
-  public function save() {
-    $db = PDOConnection::getInstance();
-    $stmt = $db->prepare("INSERT INTO pincho values (?,?,?,?,?,?,?,?,?)");
-    $stmt->execute(array($this->idPi,
-                         $this->nombrePi,
-                         $this->precioPi,
-                         $this->ingredientesPi,
-                         $this->cocineroPi,
-                         $this->numVotosPi,
-                         $this->fotoPi,
-                         $this->estadoPi,
-                         $this->numvotePi,
-                         $this->ParticipanteEmail));
-  }
-
-  /* Comprueba si el id xa existe en la base de datos */
-
+  /* Comprueba si el id ya existe en la base de datos */
   public function idExists() {
     $db = PDOConnection::getInstance();
     $stmt = $db->prepare("SELECT count(idPi) FROM pincho where idPi=?");
@@ -200,24 +182,28 @@ class Pincho {
     if (strlen($this->ingredientesPi) < 10) {
       $errors["ingredientesPi"] = "Los ingredientes debe contener al menos 10 caracteres de longitud";
     }
+    if (strlen($this->precioPi) < 1) {
+      $errors["cocineroPi"] = "El precio NO puede ser NULO";
+    }
     if (strlen($this->cocineroPi) < 5) {
-      $errors["cocineroPi"] = "El nombre de cocinero/a debe contener al menos 5 caracteres de longitud";
+      $errors["cocineroPi"] = "El nombre del cocinero/a debe contener al menos 5 caracteres de longitud";
     }
   }
 
-//
+  //Revisa la informacion introducida por el participante
   public function checkInfo(){
 
     $errors = array();
 
-    if(){
-
+    if($fotoPiSize>(2048*1024)){//el archivo no puede ser mayor de 2MB
+      $errors["fotoPi"] = "El tamaño de la imagen debe ser INFERIOR a 2MB";
     }
-
-    move_uploaded_file($fotoPiTemp,$fotoPi);
+    if($fotoPiSize>1){//el archivo no puede ser mayor de 2MB
+      $errors["fotoPi"] = "El precio del pincho debe ser al menos de 1€";
+    }
   }
 
-
+  //Crea el codigo de un pincho
   public function generateIdPi(){
     $db = PDOConnection::getInstance();
     $stmt = $db->prepare("SELECT count(idPi) FROM pincho");
@@ -230,15 +216,33 @@ class Pincho {
     $this->idPi = $numpichos;
   }
 
-  public function generateIdVote(){
+  //Cuenta el numero de codigo de voto asociados a un Pincho
+  public function countvotePi(){
     $db = PDOConnection::getInstance();
-    $stmt = $db->prepare("SELECT count(numvotePi) FROM pincho where idPi =?");
+    $stmt = $db->prepare("SELECT count(idCV) FROM codVoto");
     $stmt->execute(array($this->idPi));
-    $numvoto=1;//es el numero de votos que se han generado para un pincho
+    return $stmt;
+  }
 
-    if ($stmt->fetchColumn() > 0){
-      $numvoto = $stmt+1;
-    }
-    $this->numvotePi = $this->idPi.$numvoto;
+  /* Guarda el Pincho en la base de datos */
+  public function save() {
+    $db = PDOConnection::getInstance();
+    move_uploaded_file($fotoPiTemp,$fotoPi);
+    $this->generarteIdPi();
+    $this->numVotosPi = 0;
+    $this->estadoPi = "1";
+    $this->numvotePi = $this->countvotePi();
+
+    $stmt = $db->prepare("INSERT INTO pincho values (?,?,?,?,?,?,?,?,?)");
+    $stmt->execute(array($this->idPi,
+    $this->nombrePi,
+    $this->precioPi,
+    $this->ingredientesPi,
+    $this->cocineroPi,
+    $this->numVotosPi,
+    $this->fotoPi,
+    $this->estadoPi,
+    $this->numvotePi,
+    $this->ParticipanteEmail));
   }
 }
