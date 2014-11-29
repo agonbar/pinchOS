@@ -12,7 +12,7 @@ include(__DIR__."/../layouts/inicio.php");
 				<div class="column col-lg-10 col-md-10 col-sm-12 col-xs-12 ">
 					<form class="form-horizontal" role="form" method="POST" action="index.php?controller=pincho&action=modificacionPincho">
 						<div class="form-group separarformulario">
-							<center><img src="./resources/img/pincho.jpg" alt="Imagen del pincho" class="img-thumbnail" width= "20%" heigth= "20%">
+							<center><img src="./resources/img/pinchos/pincho.jpg" alt="Imagen del pincho" class="img-thumbnail" width= "20%" heigth= "20%">
 								<input type="file" id="ejemplo_archivo_1" name="fotoPi">
 								<p class="help-block">El tamano maximo permitido es de 3Mb</p></center>
 							</div>

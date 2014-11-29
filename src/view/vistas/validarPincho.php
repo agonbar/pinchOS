@@ -13,7 +13,7 @@ include(__DIR__."/../layouts/inicio.php");
 				<div class="column col-lg-10 col-md-10 col-sm-12 col-xs-12 col-md-offset-1">
 					<form class="form-horizontal separarformulario" role="form">
 						<div class="form-group alineado ">
-							<center><img src="../../resources/img/pincho.jpg" alt="Imagen del pincho" class="img-thumbnail" width= "20%" heigth= "0%"></center>
+							<center><img src="../../resources/img/pinchos/pincho.jpg" alt="Imagen del pincho" class="img-thumbnail" width= "20%" heigth= "0%"></center>
 						</div>
 						<div class="form-group alineado ">
 							<label class="control-label">Nombre: </label>

@@ -4,13 +4,16 @@ require_once(__DIR__."/../core/ValidationException.php");
 
 class Pincho {
 
+  private $db;
   private $idPi;/* El id del Pincho */
   private $nombrePi;/* La nombre del Pincho */
   private $precioPi;/* El precio del Pincho */
   private $ingredientesPi;/* La ingredientes del Pincho */
   private $cocineroPi;/* El cocinero del Pincho */
-  private $numVotosPi;/* El numero de votos del Pincho */
-  private $fotoPi;/* La foto del Pincho */
+  private $numVotosPi;/* El numero de veces que un picho ha sido votado */
+  private $fotoPi;//guarda el directorio donde se almacenará la imagen
+  private $fotoPiTemp;//guarda el directorio temporal donde esta la imagen
+  private $fotoPiSize;//guarda el tamaño del la imagen
   private $estadoPi;/* El estado del Pincho */
   private $numvotePi;/* Es el numero de votos creados para un Pincho*/
   private $ParticipanteEmail;/* El ParticipanteEmail del Pincho */
@@ -22,6 +25,8 @@ class Pincho {
                               $cocineroPi=NULL,
                               $numVotosPi=NULL,
                               $fotoPi=NULL,
+                              $fotoPiTemp=NULL,
+                              $fotoPiSize=NULL,
                               $estadoPi=NULL,
                               $numvotePi=NULL,
                               $ParticipanteEmail=NULL) {
@@ -32,6 +37,8 @@ class Pincho {
     $this->cocineroPi = $cocineroPi;
     $this->numVotosPi = $numVotosPi;
     $this->fotoPi = $fotoPi;
+    $this->fotoPiTemp = $fotoPiTemp;
+    $this->fotoPiSize = $fotoPiSize;
     $this->estadoPi = $estadoPi;
     $this->numvotePi = $lastvotePi;
     $this->ParticipanteEmail = $ParticipanteEmail;
@@ -104,8 +111,10 @@ class Pincho {
   }
 
   /* Pone la foto del Pincho */
-  public function setFotoPi($fotoPi) {
+  public function setFotoPi($fotoPi,$fotoPiTemp,$fotoPiSize) {
     $this->fotoPi = $fotoPi;
+    $this->fotoPiTemp = $fotoPiTemp;
+    $this->fotoPiSize = $fotoPiSize;
   }
 
   /* Devuelve el estado del Pincho */
@@ -181,38 +190,32 @@ class Pincho {
     }
   }
 
-  /* Hace el la comprobacion de los datos introducidos por el usuario*/
-  public function checkInfoNull(){
-    /*private $db;
-    private $idPi;/* El id del Pincho */
-    private $nombrePi;/* La nombre del Pincho */
-    private $precioPi;/* El precio del Pincho */
-    private $ingredientesPi;/* La ingredientes del Pincho */
-    private $cocineroPi;/* El cocinero del Pincho */
-    private $numVotosPi;/* El numero de votos del Pincho */
-    private $fotoPi;/* La foto del Pincho */
-    private $estadoPi;/* El estado del Pincho */
-    private $numvotePi;/* Es el numero de votos creados para un Pincho*/
-    private $ParticipanteEmail;*/
+  /* Comprueba si alguno de los parametros es nulo o menor del tamaño esperado*/
+  public function checkInfoIfNull(){
 
     $errors = array();
     if (strlen($this->nombrePi) < 5) {
       $errors["nombrePi"] = "El nombre debe contener al menos 5 caracteres de longitud";
     }
-    if (strlen($this->precioPi) < 1) {
-      $errors["precioPi"] = "El precio no puede ser nulo";
-    }
-    if (strlen($this->ingredientesPi) < 5) {
-      $errors["ingredientesPi"] = "la ingredientes debe contener al menos 5 caracteres de longitud";
+    if (strlen($this->ingredientesPi) < 10) {
+      $errors["ingredientesPi"] = "Los ingredientes debe contener al menos 10 caracteres de longitud";
     }
     if (strlen($this->cocineroPi) < 5) {
-      $errors["cocineroPi"] = "El nombre debe contener al menos 5 caracteres de longitud";
-    }
-    if (strlen($this->fotoPi) < 5) {
-      $errors["fotoPi"] = "La contraseña debe contener al menos 5 caracteres de longitud";
+      $errors["cocineroPi"] = "El nombre de cocinero/a debe contener al menos 5 caracteres de longitud";
     }
   }
 
+//
+  public function checkInfo(){
+
+    $errors = array();
+
+    if(){
+
+    }
+
+    move_uploaded_file($fotoPiTemp,$fotoPi);
+  }
 
 
   public function generateIdPi(){

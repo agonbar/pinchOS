@@ -17,18 +17,25 @@ class PinchoController extends DBController {
 		//$this->view->setLayout("welcome");
 	}
 
-	$numpinchos =
+	$currentuser = $_SESSION["currentuser"];
 
 	function altaPincho(){
-		generateIdVote($this->pincho->getIdPi());
 
-		$this->pincho->setIdPi('');
-		$this->pincho->setNombrePi();
-		$this->pincho->setPrecioPi();
-		$this->pincho->setDescripcionPi();
-		$this->pincho->setCocineroPi();
+		$ruta="../resources/img/pinchos/";//ruta carpeta donde queremos copiar las imagenes
+		$fotoPiTemp=$_FILES['fotoPi']['tmp_name'];//guarda el directorio temporal en el que se sube la imagen
+		$fotoPi=$ruta.$_FILES['fotoPi']['name'];//indica el directorio donde se guardaran las imagenes
+		$fotoPiSize = $_FILES['fotoPi']['error'];//nos da el tamaño de la imagen
+
+		$numvote =generateIdVote();//devuelve el id del voto ligado a un pincho
+		$numpincho = generateIdPi();//devuelve el id del pinchos
+
+		$this->pincho->setIdPi($numpincho);
+		$this->pincho->setNombrePi($_POST["codigoP1"]);
+		$this->pincho->setPrecioPi($_POST["codigoP1"]);
+		$this->pincho->setDescripcionPi($_POST["codigoP1"]);
+		$this->pincho->setCocineroPi($_POST["codigoP1"]);
 		$this->pincho->setNumVotosPi();
-		$this->pincho->setFotoPi();
+		$this->pincho->setFotoPi($fotoPi,$fotoPiTemp,$fotoPiSize);
 		$this->pincho->setEstadoPi();
 		$this->pincho->setNumvotePi();
 		$this->pincho->setParticipanteEmail();
