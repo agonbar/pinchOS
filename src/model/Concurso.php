@@ -187,7 +187,7 @@ public function ver_datos() {
   $stmt = $db->prepare("SELECT * FROM concurso");
   $stmt->execute();
   $concursos_db=$stmt->fetch(PDO::FETCH_ASSOC);
-
+  
   if(sizeof($concursos_db)==0){
     return null;
   }else{

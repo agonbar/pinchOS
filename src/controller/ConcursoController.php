@@ -24,11 +24,6 @@ class ConcursoController extends DBController {
 	
 	/*Metodo de la clase Concurso que devuelve los datos del concurso*/
     $concu = $this->concurso->ver_datos();
-	
-	/*Si no existe ningun concurso se produce una excepcion*/
-    if ($concu == NULL) {
-      throw new Exception("No existe ningun concurso para mostrar");
-    }
 
     /* Guarda el valor de la variable $concu en la variable concu accesible
 	desde la vista*/

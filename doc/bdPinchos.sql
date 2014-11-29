@@ -155,7 +155,7 @@ INSERT INTO `participante` (`direccionP`, `telefonoP`, `nombreLocalP`, `horarioP
 ('Madrid', '655555555', 'Flamingo', 'De 9:00 a 23:00','aqui va la pag web','aqui va la foto','marta@gmail.com'),
 ('Carballino', '633333333', 'Enxogo', 'De 9:00 a 23:00','aqui va la pag web','aqui va la foto','pablo@gmail.com');
 
-INSERT INTO `pincho` (`idPi`, `nombrePi`, `precioPi`, `descripcionPi`,`cocineroPi`,`numvotosPi`,`fotoPi`,`estadoPi`,`participanteEmail`, `numvotePi`) VALUES
+INSERT INTO `pincho` (`idPi`, `nombrePi`, `precioPi`, `ingredientesPi`,`cocineroPi`,`numvotosPi`,`fotoPi`,`estadoPi`,`participanteEmail`, `numvotePi`) VALUES
 ('1', 'jamon', '1', 'bueno','juan','1','aqui va la foto','1','julian@gmail.com', '3'),
 ('2', 'queso', '2', 'malo', 'pepe','3','aqui va la foto','1','hector@gmail.com', '4'),
 ('3', 'bacon', '3', 'buenisimo','carmen','2','aqui va la foto','5','marta@gmail.com', '4'),

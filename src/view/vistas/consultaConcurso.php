@@ -42,7 +42,7 @@ $concurso = $view->getVariable("concu");
           <form class="form-horizontal separarformulario" role="form">
             <div class="form-group alineado ">
               <label class="control-label">Patrocinador: </label>
-              <label class=" control-label">patrocinador</label>
+              <label class=" control-label"><?=$concurso->getPatrocinadorC()?></label>
             </div>
           </form>
           <form class="form-horizontal separarformulario" role="form">
