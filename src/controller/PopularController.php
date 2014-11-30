@@ -42,15 +42,15 @@ class PopularController extends DBController {
 	  email del usuario actual que es el que realiza la votacion*/
 	  $votoPincho1->setUsuarioEmailU($currentuser->getEmailU());
 	  $votoPincho1->setCodigoPinchoV($_POST["codigoP1"]);
-	  $votoPincho1->setValoracionV($_POST["puntuacionP1"]);
+	  $votoPincho1->setValoracionV('1');
 	  
       $votoPincho2->setUsuarioEmailU($currentuser->getEmailU());
 	  $votoPincho2->setCodigoPinchoV($_POST["codigoP2"]);
-	  $votoPincho2->setValoracionV($_POST["puntuacionP2"]);
+	  $votoPincho2->setValoracionV('0');
 	  
 	  $votoPincho3->setUsuarioEmailU($currentuser->getEmailU());
 	  $votoPincho3->setCodigoPinchoV($_POST["codigoP3"]);
-	  $votoPincho3->setValoracionV($_POST["puntuacionP3"]);
+	  $votoPincho3->setValoracionV('0');
 	
 	  /*Comprueba si los codigos introducidos son correctos y los introduce en el objeto*/
 	  if(!$votoPincho1->isCorrectCode()){
@@ -75,10 +75,6 @@ class PopularController extends DBController {
 	  }
 	  
 	  try{
-		/*Comprueba si los datos introducidos son correctos*/
-		$votoPincho1->checkIsValidForVoto();//mira que puntuacion no sea null
-		$votoPincho2->checkIsValidForVoto();//mira que puntuacion no sea null
-		$votoPincho3->checkIsValidForVoto();//mira que puntuacion no sea null
 
 		// comprueba si el código del pincho introducido ya forma parte de un voto anterior
 		if ((!$votoPincho1->votoExist()) and (!$votoPincho2->votoExist()) and (!$votoPincho2->votoExist())){

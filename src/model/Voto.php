@@ -73,7 +73,7 @@ class Voto {
     $this->valoracionV = $valoracionV;
   }
   
-  
+  /*
   public function checkIsValidForVoto(){
 	
 	$errors = array();
@@ -86,7 +86,7 @@ class Voto {
       throw new ValidationException($errors, "La votacion no es válida");
     }
 	
-  }
+  }*/
   
   
   public function save() {

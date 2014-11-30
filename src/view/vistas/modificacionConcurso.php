@@ -18,35 +18,40 @@ $concurso = $view->getVariable("concu");
             <div class="form-group separarformulario">
               <label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Nombre</label>
               <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-                <input class="form-control" placeholder="<?=$concurso->getNombreC()?>" name="nombreC">
+                <input class="form-control" placeholder="<?=$concurso->getNombreC()?>" 
+					value="<?= isset($_POST["nombreC"])?$_POST["nombreC"]:$concurso->getNombreC() ?>" name="nombreC">
 				<?= isset($errors["nombreC"])?$errors["nombreC"]:"" ?><br>
               </div>
             </div>
             <div class="form-group separarformulario">
               <label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Ciudad</label>
               <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-                <input class="form-control" placeholder="<?=$concurso->getCiudadC()?>" name="ciudadC">
+                <input class="form-control" placeholder="<?=$concurso->getCiudadC()?>" 
+					value="<?= isset($_POST["ciudadC"])?$_POST["ciudadC"]:$concurso->getCiudadC() ?>" name="ciudadC">
 				<?= isset($errors["ciudadC"])?$errors["ciudadC"]:"" ?><br>
               </div>
             </div>
             <div class="form-group separarformulario">
               <label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Fecha</label>
               <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-                <input class="form-control" type="date" placeholder="<?=$concurso->getFechaC()?>" name="fechaC">
+                <input class="form-control" type="date" placeholder="<?=$concurso->getFechaC()?>" 
+					value="<?= isset($_POST["fechaC"])?$_POST["fechaC"]:$concurso->getFechaC() ?>" name="fechaC">
 				<?= isset($errors["fechaC"])?$errors["fechaC"]:"" ?><br>
               </div>
             </div>
             <div class="form-group separarformulario">
               <label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Premio</label>
               <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-                <input class="form-control" placeholder="<?=$concurso->getPremioC()?>" name="premioC">
+                <input class="form-control" placeholder="<?=$concurso->getPremioC()?>" 
+					value="<?= isset($_POST["premioC"])?$_POST["premioC"]:$concurso->getPremioC() ?>" name="premioC">
 				<?= isset($errors["premioC"])?$errors["premioC"]:"" ?><br>
               </div>
             </div>
             <div class="form-group separarformulario">
 			  <label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Patrocinador</label>
 			  <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-				<input class="form-control" placeholder="<?=$concurso->getPatrocinadorC()?>" name="patrocinadorC">
+				<input class="form-control" placeholder="<?=$concurso->getPatrocinadorC()?>" 
+					value="<?= isset($_POST["patrocinadorC"])?$_POST["patrocinadorC"]:$concurso->getPatrocinadorC() ?>" name="patrocinadorC">
 				<?= isset($errors["patrocinadorC"])?$errors["patrocinadorC"]:"" ?><br>
 			  </div>
 			</div>
@@ -54,7 +59,7 @@ $concurso = $view->getVariable("concu");
           <label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Bases</label>
           <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
             <textarea class="form-control" rows="6" placeholder="<?=$concurso->getBasesC()?>" name="basesC"></textarea>
-            <input type="file" id="archivo_1" name="basesC">
+            <input type="file" id="archivo_1" value="<?= isset($_POST["basesC"])?$_POST["basesC"]:$concurso->getBasesC() ?>" name="basesC">
 			<?= isset($errors["basesC"])?$errors["basesC"]:"" ?><br>
           </div>
         </div>
