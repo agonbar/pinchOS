@@ -40,7 +40,7 @@ class Pincho {
     $this->fotoPiTemp = $fotoPiTemp;
     $this->fotoPiSize = $fotoPiSize;
     $this->estadoPi = $estadoPi;
-    $this->numvotePi = $lastvotePi;
+    $this->numvotePi = $numvotePi;
     $this->ParticipanteEmail = $ParticipanteEmail;
   }
 
@@ -213,7 +213,7 @@ class Pincho {
     if ($stmt->fetchColumn() > 0){
       $numpinchos = $stmt+1;
     }
-    $this->idPi = $numpichos;
+    return $numpinchos;
   }
 
   //Cuenta el numero de codigo de voto asociados a un Pincho

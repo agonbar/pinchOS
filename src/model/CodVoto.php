@@ -1,4 +1,5 @@
 <?php
+require_once(__DIR__."/../model/Pincho.php");
 require_once(__DIR__."/../core/PDOConnection.php");
 require_once(__DIR__."/../core/ValidationException.php");
 
@@ -8,12 +9,16 @@ class CodVoto {
   private $idCV;/* El id del Pincho */
   private $pinchoId;/* La nombre del Pincho */
   private $pincho;
-  $this->pincho = new Pincho();
 
-  public function __construct($idCV=NULL,$nombrePi=NULL) {
+  public function __construct($idCV=NULL,$pinchoId=NULL) {
+
     $this->idCV = $idCV;
     $this->pinchoId = $pinchoId;
+
+    $this->pincho = new Pincho();
   }
+
+
 
   /* Devuelve el id del Codigo del Voto */
   public function getIdCV() {

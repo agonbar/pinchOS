@@ -1,6 +1,7 @@
 <?php
 require_once(__DIR__."/../core/ViewManager.php");
 require_once(__DIR__."/../model/User.php");
+require_once(__DIR__."/../model/CodVoto.php");
 require_once(__DIR__."/../model/Pincho.php");
 require_once(__DIR__."/../controller/DBController.php");
 
@@ -16,72 +17,75 @@ class PinchoController extends DBController {
 			echo "<script>window.location.replace('index.php?controller=users&action=login');</script>";
 		}
 
-		$this->pincho = new Pincho();
-		$this->codvoto = new CodVoto();
+		$pincho = new Pincho();
+		$codvoto = new CodVoto();
 
 	}
 
-	$currentuser = $_SESSION["currentuser"];
-
-	function altaPincho(){
+	public function altaPincho(){
+		$currentuser = $_SESSION["currentuser"];
 
 		$ruta="../resources/img/pinchos/";//ruta carpeta donde queremos copiar las imagenes
-		$fotoPiTemp=$_FILES['fotoPi']['tmp_name'];//guarda el directorio temporal en el que se sube la imagen
-		$fotoPi=$ruta.$_FILES['fotoPi']['name'];//indica el directorio donde se guardaran las imagenes
-		$fotoPiSize = $_FILES['fotoPi']['error'];//nos da el tamaño de la imagen
+		//$fotoPiTemp= ;//guarda el directorio temporal en el que se sube la imagen
+		//$fotoPi=;//indica el directorio donde se guardaran las imagenes
+		//$fotoPiSize =;//nos da el tamaño de la imagen
 
-		$numpincho = generateIdPi();//devuelve el id del pinchos
+		$pinchotemp = new Pincho();
 
-		$this->pincho->setIdPi($numpincho);
-		$this->pincho->setNombrePi($_POST["nombrePi"]);
-		$this->pincho->setPrecioPi($_POST["precioPi"]);
-		$this->pincho->setIngredientesPi($_POST["ingredientesPi"]);
-		$this->pincho->setCocineroPi($_POST["cocineroPi"]);
-		$this->pincho->setFotoPi($fotoPi,$fotoPiTemp,$fotoPiSize);
-		$this->pincho->setParticipanteEmail($currentuser->getEmailU());
+		if (isset($_POST["nombrePi"])){
 
-		//Hace todas las coprobaciones a la informacion introducida por el usuario
-		$pincho->checkInfoIfNull();
-		$pincho->checkInfo();
-		$pincho->idExists();
+			$numpincho = $pinchotemp->generateIdPi();//devuelve el id del pinchos
 
-		if ( ( !$pincho->votoExist() ) ){
-			//comprueba si no se haya producido ningun error
-			if (!sizeof($errors)>0){
-				/*Si no es asi, guarda las votaciones en la base de datos*/
-				$codvoto->save4();//los codigos de votos de un pincho deben crearse ANTES que el pincho
-				$pincho->save();
+			$pinchotemp->setIdPi($numpincho);
+			$pinchotemp->setNombrePi($_POST["nombrePi"]);
+			$pinchotemp->setPrecioPi($_POST["precioPi"]);
+			$pinchotemp->setIngredientesPi($_POST["ingredientesPi"]);
+			$pinchotemp->setCocineroPi($_POST["cocineroPi"]);
+			$pinchotemp->setFotoPi($ruta.$_FILES['fotoPi']['name'],$_FILES['fotoPi']['tmp_name'], $_FILES['fotoPi']['error']);
+			$pinchotemp->setParticipanteEmail($currentuser->getEmailU());
 
-				//mensaje de confirmación y redirige al metodo consultarPincho del controlador PinchoController
-				echo "<script> alert('Pincho registrado correctamente'); </script>";
-				echo "<script>window.location.replace('index.php?controller=pincho&action=consultaPincho');</script>";
+			//Hace todas las coprobaciones a la informacion introducida por el usuario
+			$pincho->checkInfoIfNull();
+			$pincho->checkInfo();
+			$pincho->idExists();
 
-			}else{ $this->view->setVariable("errors", $errors);}
+			if ( ( !$pincho->votoExist() ) ){
+				//comprueba si no se haya producido ningun error
+				if (!sizeof($errors)>0){
+					/*Si no es asi, guarda las votaciones en la base de datos*/
+					$codvoto->save4();//los codigos de votos de un pincho deben crearse ANTES que el pincho
+					$pincho->save();
+
+					//mensaje de confirmación y redirige al metodo consultarPincho del controlador PinchoController
+					echo "<script> alert('Pincho registrado correctamente'); </script>";
+					echo "<script>window.location.replace('index.php?controller=pincho&action=consultaPincho');</script>";
+
+				}else{ $this->view->setVariable("errors", $errors);}
+			}
 		}
-
 		//te redirige para consultar el pincho
 		$this->view->render("vistas", "consultaPincho");
 	}
-	function bajaPincho(){
+	public function bajaPincho(){
 
 	}
-	function validacionInfo(){
+	public function validacionInfo(){
 
 	}
-	function modificacionPincho(){
+	public function modificacionPincho(){
 
 		$this->view->render("vistas", "modificacionPincho");
 	}
-	function busquedaPincho(){
+	public function busquedaPincho(){
 
 	}
-	function consultaPincho(){
+	public function consultaPincho(){
 		$this->view->render("vistas", "consulta_bajaPincho");
 	}
-	function listadoPincho(){
+	public function listadoPincho(){
 		$this->view->render("vistas", "listaPinchos");
 	}
-	function validarPincho(){
+	public function validarPincho(){
 		$this->view->render("vistas", "validarPincho");
 	}
 }
