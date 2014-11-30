@@ -26,13 +26,10 @@ class PinchoController extends DBController {
 		$currentuser = $_SESSION["currentuser"];
 
 		$ruta="../resources/img/pinchos/";//ruta carpeta donde queremos copiar las imagenes
-		//$fotoPiTemp= ;//guarda el directorio temporal en el que se sube la imagen
-		//$fotoPi=;//indica el directorio donde se guardaran las imagenes
-		//$fotoPiSize =;//nos da el tamaño de la imagen
 
 		$pinchotemp = new Pincho();
 
-		if (isset($_POST["nombrePi"])){
+		if (!isset($_POST["nombrePi"])){
 
 			$numpincho = $pinchotemp->generateIdPi();//devuelve el id del pinchos
 
@@ -68,6 +65,10 @@ class PinchoController extends DBController {
 
 				}else{ $this->view->setVariable("errors", $errors);}
 			}
+		}
+		else{
+			$error = array();
+			$errors["nombrePi"] = "El nombre del pincho ya existe en la base de datos";
 		}
 
 		$pinchotemp = $this->pincho->showDates();

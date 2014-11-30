@@ -142,21 +142,6 @@ class Pincho {
     $this->ParticipanteEmail = $ParticipanteEmail;
   }
 
-  /* Comprueba si el Pincho es valido para registrarse en la base de datos */
-
-  public function checkIsValidForRegister($idPi) {
-
-    $errors = array();
-    if (strlen($this->nombrePi) < 5) {
-      $errors["nombrePi"] = "El nombre del pincho debe contener al menos 5 caracteres de longitud";
-    }
-
-    if (sizeof($errors)>0){
-      throw new ValidationException($errors, "El pincho no es válido");
-    }
-
-  }
-
   /* Comprueba si el id ya existe en la base de datos */
   public function pinchoExists() {
     $db = PDOConnection::getInstance();
@@ -179,7 +164,7 @@ class Pincho {
       $errors["ingredientesPi"] = "Los ingredientes debe contener al menos 10 caracteres de longitud";
     }
     if (strlen($this->precioPi) < 1) {
-      $errors["cocineroPi"] = "El precio NO puede ser NULO";
+      $errors["precioPi"] = "El precio NO puede ser NULO";
     }
     if (strlen($this->cocineroPi) < 5) {
       $errors["cocineroPi"] = "El nombre del cocinero/a debe contener al menos 5 caracteres de longitud";
@@ -191,11 +176,11 @@ class Pincho {
 
     $errors = array();
 
-    if($fotoPiSize>(2048*1024)){//el archivo no puede ser mayor de 2MB
+    if($this->fotoPiSize>(2048*1024)){//el archivo no puede ser mayor de 2MB
       $errors["fotoPi"] = "El tamaño de la imagen debe ser INFERIOR a 2MB";
     }
-    if($fotoPiSize>1){//el archivo no puede ser mayor de 2MB
-      $errors["fotoPi"] = "El precio del pincho debe ser al menos de 1€";
+    if($this->precioPi>1){//el archivo no puede ser mayor de 2MB
+      $errors["precioPi"] = "El precio del pincho debe ser al menos de 1€";
     }
   }
 

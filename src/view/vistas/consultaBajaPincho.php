@@ -18,31 +18,31 @@ $pincho = $view->getVariable("pincho");
 				<div class="column col-lg-10 col-md-10 col-sm-12 col-xs-12 col-md-offset-1">
 					<form class="form-horizontal separarformulario" role="form">
 						<div class="form-group alineado ">
-							<center><img src="./resources/img/pinchos/pincho.jpg" alt="Imagen del pincho" class="img-thumbnail" width= "20%" heigth= "20%"></center>
+							<center><img src= <?=$pincho->getFotoPi()?> alt="Imagen del pincho" class="img-thumbnail" width= "20%" heigth= "20%"></center>
 						</div>
 						<div class="form-group alineado ">
 							<label class="control-label">Nombre: </label>
-							<label class=" control-label">Explosion de sabor</label>
+							<label class=" control-label"><?=$pincho->getNombrePi()?></label>
 						</div>
 						<div class="form-group alineado ">
 							<label class="control-label">Precio: </label>
-							<label class=" control-label">2€</label>
+							<label class=" control-label"><?=$pincho->getPrecioPi()?></label>
 						</div>
 						<div class="form-group alineado ">
 							<label class="control-label">Cocinero: </label>
-							<label class=" control-label">Jorge Hernandez</label>
+							<label class=" control-label"><?=$pincho->getCocineroPi()?></label>
 						</div>
 						<div class="form-group alineado ">
 							<label class="control-label">Ingredientes: </label>
-							<label class=" control-label">pan, pimientos, quedo parmellano</label>
+							<label class=" control-label"><?=$pincho->getIngredientesPi()?></label>
 						</div>
 						<div class="form-group alineado ">
 							<label class="control-label">Numero de votos: </label>
-							<label class=" control-label">4</label>
+							<label class=" control-label"><?=$pincho->getVotosPi()?></label>
 						</div>
 						<div class="form-group alineado ">
 							<label class="control-label">Estado: </label>
-							<label class=" control-label">activo</label>
+							<label class=" control-label"><?=$pincho->getEstadoPi()?></label>
 						</div>
 					</form>
 				</div>

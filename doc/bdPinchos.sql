@@ -156,10 +156,10 @@ INSERT INTO `participante` (`direccionP`, `telefonoP`, `nombreLocalP`, `horarioP
 ('Carballino', '633333333', 'Enxogo', 'De 9:00 a 23:00','aqui va la pag web','aqui va la foto','pablo@gmail.com');
 
 INSERT INTO `pincho` (`idPi`, `nombrePi`, `precioPi`, `ingredientesPi`,`cocineroPi`,`numvotosPi`,`fotoPi`,`estadoPi`,`participanteEmail`, `numvotePi`) VALUES
-('1', 'jamon', '1', 'bueno','juan','1','aqui va la foto','1','julian@gmail.com', '3'),
-('2', 'queso', '2', 'malo', 'pepe','3','aqui va la foto','1','hector@gmail.com', '4'),
-('3', 'bacon', '3', 'buenisimo','carmen','2','aqui va la foto','5','marta@gmail.com', '4'),
-('4', 'mortadela', '2', 'malisimo','roberto','0','aqui va la foto','1','pablo@gmail.com', '0');
+('1', 'jamon', '1', 'bueno','juan','1','./resources/img/pinchos/pincho.jpg','1','julian@gmail.com', '3'),
+('2', 'queso', '2', 'malo', 'pepe','3','./resources/img/pinchos/pincho.jpg','1','hector@gmail.com', '4'),
+('3', 'bacon', '3', 'buenisimo','carmen','2','./resources/img/pinchos/pincho.jpg','5','marta@gmail.com', '4'),
+('4', 'mortadela', '2', 'malisimo','roberto','0','./resources/img/pinchos/pincho.jpg','1','pablo@gmail.com', '0');
 
 INSERT INTO `codVoto` (`idCV`, `pinchoId`) VALUES
 ('11', '1'),
