@@ -45,7 +45,7 @@ class PinchoController extends DBController {
 			$pinchotemp->checkInfoIfNull();
 			$pinchotemp->checkInfo();
 
-			if ( ( !$pinchotemp->pinchoExist() ) ){
+			if ( ( !$pinchotemp->pinchoExists() ) ){
 				//comprueba que no se haya producido ningun error
 				if (!sizeof($errors)>0){
 					/*Si no es asi, guarda las votaciones en la base de datos*/
