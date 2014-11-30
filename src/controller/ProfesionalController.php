@@ -21,22 +21,21 @@ class ProfesionalController extends DBController {
     $this->user = new User();
   }
 
-/*
+  /*Metodo que genera la contraseña para e jurado profesional*/
   public function generarContrasena(){
-
+	
+	//Calcula la contraseña
     $caracteres='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     $longpalabra=8;
     for($pass='', $n=strlen($caracteres)-1; strlen($pass) < $longpalabra ; ) {
       $x = rand(0,$n);
       $pass.= $caracteres[$x];
     }
-    echo 'Nuestra contrase�a obtenida es: ' . $pass;
-
+	//permite que la contraseña creada se pueda utilizar en la vista
     $this->view->setVariable("contrasenaGenerada", $pass);
-
-    $this->view->redirect("profesional", "registrarProfesional");
-
-  }*/
+	//renderiza la vista view/vistas/altaJProf.
+	$this->view->render("vistas", "altaJProf");
+  }
 
   
   /*Metodo que permite el registro del jurado profesional*/
@@ -87,7 +86,9 @@ class ProfesionalController extends DBController {
 
   }
   
-
+  /*Este método hace la primera parte de la votación del jurado profesional, 
+  en la que cada uno puede votar un pincho con una puntuacion de 0 a 5
+  y con estas votaciones se obtendrán los finalistas.*/
   public function votar() {
   
   $currentuser = $_SESSION["currentuser"];
@@ -98,6 +99,7 @@ class ProfesionalController extends DBController {
 	
     if (isset($_POST["codigoP"])){
 	
+	  //Comprueba que la valoración introducida es correcta
 	  $votoPincho->checkIsValidForVoto();
 		
 	  /*Guarda los datos introducidos en el formulario en el objeto, más el 
@@ -106,7 +108,7 @@ class ProfesionalController extends DBController {
 	  $votoPincho->setCodigoPinchoV($_POST["codigoP"]);
 	  $votoPincho->setValoracionV($_POST["valoracionP"]);
 	
-	  /*Comprueba si los codigos introducidos son correctos y los introduce en el objeto*/
+	  /*Comprueba si el codigo introducido es correcto y lo introduce en el objeto*/
 	  if(!$votoPincho->isCorrectCode()){
 		 $errors["codigoP"] = "El código introducido no pertenece a ningun pincho";
 	  }
@@ -121,14 +123,13 @@ class ProfesionalController extends DBController {
 			  /*Si no es asi, guarda las votaciones en la base de datos*/
 			  $votoPincho->save();
 			  
-			  //mensaje de confirmación y redirige al metodo verPerfil del controlador popularCotroller
+			  //mensaje de confirmación y redirige al metodo verPerfil del controlador profesionalCotroller
 			  echo "<script> alert('Voto registrado correctamente'); </script>";
 			  echo "<script>window.location.replace('index.php?controller=profesional&action=verPerfil');</script>";
 			  
 		  }else{ $this->view->setVariable("errors", $errors);}
 		  
 		  /*Si ya existe en la base de datos muestra un mensaje de error*/
-		  
 		} else {
 		  $errors["codigoP"] = "Este código ya esta registrado";
 		  $this->view->setVariable("errors", $errors);

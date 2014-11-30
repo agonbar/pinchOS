@@ -33,7 +33,8 @@ $contrasenaGenerada = $view->getVariable("contrasenaGenerada");
               <label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Contraseña</label>
               <a href="index.php?controller=profesional&action=generarContrasena"><button type="button" class="btn btn-primary" >Generar contraseña</button></a>
               <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-                <input class="form-control" placeholder="Generar contraseña..." name="contrasenaU">
+                <input class="form-control" placeholder="Generar contraseña..." name="contrasenaU"
+					value="<?= isset($contrasenaGenerada)?$contrasenaGenerada:""?>">
                 <?= isset($errors["contrasenaU"])?$errors["contrasenaU"]:"" ?><br>
               </div>
             </div>
