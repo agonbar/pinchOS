@@ -163,16 +163,27 @@ INSERT INTO `pincho` (`idPi`, `nombrePi`, `precioPi`, `ingredientesPi`,`cocinero
 
 INSERT INTO `codVoto` (`idCV`, `pinchoId`) VALUES
 ('11', '1'),
+('12', '1'),
+('13','1'),
+('14', '1'),
+('15','1'),
 ('21', '2'),
-('22','2'),
-('23', '2'),
-('31','3'),
-('32', '3');
+('22', '2'),
+('23','2'),
+('24', '2'),
+('25','2'),
+('31', '3'),
+('32','3'),
+('33', '3'),
+('34','3'),
+('35', '3');
 
 INSERT INTO `voto` (`usuarioEmailU`, `pinchoIdPi`, `codigopinchoV`, `valoracionV`) VALUES
-('adri@gmail.com', '1', '11', '5'),
+('adri@gmail.com', '1', '11', '1'),
+('adri@gmail.com', '2', '21', '0'),
+('adri@gmail.com', '3', '31', '0'),
+('ruben@gmail.com', '1', '12','0'),
+('ruben@gmail.com', '2', '22','1'),
+('ruben@gmail.com', '3', '32','0'),
 ('mel@gmail.com', '2', '21', '3'),
-('ruben@gmail.com', '2', '22','8'),
-('adri@gmail.com', '2', '23', '9'),
-('ruben@gmail.com', '3', '31','8'),
-('mel@gmail.com', '3', '32', '3');
+('mel@gmail.com', '3', '32', '4');
