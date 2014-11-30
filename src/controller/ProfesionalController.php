@@ -1,5 +1,6 @@
 <?php
 require_once(__DIR__."/../model/User.php");
+require_once(__DIR__."/../model/Voto.php");
 require_once(__DIR__."/../controller/DBController.php");
 require_once(__DIR__."/../core/ViewManager.php");
 
@@ -85,10 +86,65 @@ class ProfesionalController extends DBController {
     $this->view->render("vistas", "altaJProf");
 
   }
+  
 
   public function votar() {
+  
+  $currentuser = $_SESSION["currentuser"];
+	
+	$errors = array();
+
+    $votoPincho= new Voto();
+	
+    if (isset($_POST["codigoP"])){
+	
+	  $votoPincho->checkIsValidForVoto();
+		
+	  /*Guarda los datos introducidos en el formulario en el objeto, más el 
+	  email del usuario actual que es el que realiza la votacion*/
+	  $votoPincho->setUsuarioEmailU($currentuser->getEmailU());
+	  $votoPincho->setCodigoPinchoV($_POST["codigoP"]);
+	  $votoPincho->setValoracionV($_POST["valoracionP"]);
+	
+	  /*Comprueba si los codigos introducidos son correctos y los introduce en el objeto*/
+	  if(!$votoPincho->isCorrectCode()){
+		 $errors["codigoP"] = "El código introducido no pertenece a ningun pincho";
+	  }
+	  
+	  try{
+
+		// comprueba si el código del pincho introducido ya forma parte de un voto anterior
+		if ((!$votoPincho->votoExist())){
+		
+		  //continua solo si no se ha producido ningun error
+		  if (!sizeof($errors)>0){
+			  /*Si no es asi, guarda las votaciones en la base de datos*/
+			  $votoPincho->save();
+			  
+			  //mensaje de confirmación y redirige al metodo verPerfil del controlador popularCotroller
+			  echo "<script> alert('Voto registrado correctamente'); </script>";
+			  echo "<script>window.location.replace('index.php?controller=profesional&action=verPerfil');</script>";
+			  
+		  }else{ $this->view->setVariable("errors", $errors);}
+		  
+		  /*Si ya existe en la base de datos muestra un mensaje de error*/
+		  
+		} else {
+		  $errors["codigoP"] = "Este código ya esta registrado";
+		  $this->view->setVariable("errors", $errors);
+		}
+		
+	  }catch(ValidationException $ex) {
+		$errors = $ex->getErrors();
+	  }
+  
+    }
+	
+	/*Permite visualizar: view/vistas/votarJPopu.php */
     $this->view->render("vistas", "votarJProf");
   }
+  
+  
   
   /*Este metodo permite desactivar la cuenta del usuario*/
   public function desactivarCuenta() {

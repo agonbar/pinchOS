@@ -17,6 +17,7 @@ $errors = $view->getVariable("errors");
 							<label class="col-lg-3 col-md-3 col-sm-3 col-xs-12 control-label">Código del pincho</label>
 							<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
 								<input class="form-control" placeholder="Introduce un código..." name="codigoP">
+								<?= isset($errors["codigoP"])?$errors["codigoP"]:"" ?><br>
 							</div>
 						</div>
 						<div class="form-group separarformulario">
@@ -31,6 +32,7 @@ $errors = $view->getVariable("errors");
 									<option value="4">4</option>
 									<option value="5">5</option>
 								</select>
+								<?= isset($errors["valoracionV"])?$errors["valoracionV"]:"" ?><br>
 							</div>
 						</div>
 

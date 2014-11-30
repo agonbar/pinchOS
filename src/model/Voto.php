@@ -73,7 +73,7 @@ class Voto {
     $this->valoracionV = $valoracionV;
   }
   
-  /*
+ 
   public function checkIsValidForVoto(){
 	
 	$errors = array();
@@ -86,7 +86,7 @@ class Voto {
       throw new ValidationException($errors, "La votacion no es válida");
     }
 	
-  }*/
+  }
   
   
   public function save() {
@@ -102,6 +102,7 @@ class Voto {
     $stmt = $db->prepare("SELECT count(*) FROM voto where codigoPinchoV=?");
     $stmt->execute(array($this->codigoPinchoV));
 
+	
     if ($stmt->fetchColumn() > 0) {
       return true;
     }else return false;
@@ -111,13 +112,15 @@ class Voto {
   public function isCorrectCode(){
   
 	$db = PDOConnection::getInstance();
-    $stmt = $db->prepare("SELECT pinchoId FROM codVoto where idCV=?");
+    $stmt = $db->prepare("SELECT count(*) FROM codVoto where idCV=?");
     $stmt->execute(array($this->codigoPinchoV));
-	$codigo=$stmt->fetch(PDO::FETCH_ASSOC);
 	
-    if (sizeof($codigo)==0) {
+    if ($stmt->fetchColumn()==0) {
         return false;
     }else {
+		$stmt = $db->prepare("SELECT pinchoId FROM codVoto where idCV=?");
+		$stmt->execute(array($this->codigoPinchoV));
+		$codigo=$stmt->fetch(PDO::FETCH_ASSOC);
 		$this->pinchoIdPi = $codigo["pinchoId"];
 		return true;
 	}
