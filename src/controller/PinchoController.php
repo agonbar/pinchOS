@@ -1,8 +1,8 @@
 <?php
-require_once(__DIR__."/../core/ViewManager.php");
 require_once(__DIR__."/../model/User.php");
 require_once(__DIR__."/../model/CodVoto.php");
 require_once(__DIR__."/../model/Pincho.php");
+require_once(__DIR__."/../core/ViewManager.php");
 require_once(__DIR__."/../controller/DBController.php");
 
 class PinchoController extends DBController {
@@ -75,7 +75,7 @@ class PinchoController extends DBController {
 		// Guarda el valor de la variable $pincho en la variable pincho accesible desde la vista
 		$this->view->setVariable("pincho", $pinchotemp);
 
-		$this->view->render("vistas", "consultaPincho");//te redirige para consultar el pincho
+		$this->view->render("vistas", "consultaBajaPincho");//te redirige para consultar el pincho
 	}
 	public function bajaPincho(){
 
@@ -88,12 +88,12 @@ class PinchoController extends DBController {
 		$this->view->render("vistas", "modificacionPincho");
 	}
 	public function busquedaPincho(){
-		$this->view->render("vistas", "pruebabuscarPincho");
+		$this->view->render("vistas", "buscarPinchos");
 	}
 	public function consultaPincho(){
 		$pinchotemp = $this->pincho->showDates();
-		$this->view->setVariable("pincho", $pincho);
-		$this->view->render("vistas", "consulta_bajaPincho");
+		$this->view->setVariable("pincho", $pinchotemp);
+		$this->view->render("vistas", "consultaBajaPincho");
 	}
 	public function listadoPincho(){
 		$this->view->render("vistas", "listaPinchos");

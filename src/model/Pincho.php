@@ -4,7 +4,6 @@ require_once(__DIR__."/../core/ValidationException.php");
 
 class Pincho {
 
-  private $db;
   private $idPi;/* El id del Pincho */
   private $nombrePi;/* La nombre del Pincho */
   private $precioPi;/* El precio del Pincho */
@@ -252,12 +251,11 @@ class Pincho {
                         $pincho_db["precioPi"],
                         $pincho_db["ingredientesPi"],
                         $pincho_db["cocineroPi"],
-                        $pincho_db["numVotosPi"],
+                        $pincho_db["numvotosPi"],
                         $pincho_db["fotoPi"],
-                        $pincho_db["fotoSizePi"],
                         $pincho_db["estadoPi"],
                         $pincho_db["numvotePi"],
-                        $pincho_db["ParticipanteEmail"]);
+                        $pincho_db["participanteEmail"]);
     }
   }
 
