@@ -29,18 +29,18 @@ class PinchoController extends DBController {
 
 		$pinchotemp = new Pincho();
 
-		if (!isset($_POST["nombrePi"])){
+		$numpincho = $pinchotemp->generateIdPi();//devuelve el id del pinchos
+		$nombrePi = $_POST["nombrePi"];
 
-			$numpincho = $pinchotemp->generateIdPi();//devuelve el id del pinchos
+		$pinchotemp->setIdPi($numpincho);
+		$pinchotemp->setNombrePi($_POST["nombrePi"]);
+		$pinchotemp->setPrecioPi($_POST["precioPi"]);
+		$pinchotemp->setIngredientesPi($_POST["ingredientesPi"]);
+		$pinchotemp->setCocineroPi($_POST["cocineroPi"]);
+		$pinchotemp->setFotoPi($ruta.$_FILES['fotoPi']['name'], $_FILES['fotoPi']['error']);
+		$pinchotemp->setParticipanteEmail($currentuser->getEmailU());
 
-			$pinchotemp->setIdPi($numpincho);
-			$pinchotemp->setNombrePi($_POST["nombrePi"]);
-			$pinchotemp->setPrecioPi($_POST["precioPi"]);
-			$pinchotemp->setIngredientesPi($_POST["ingredientesPi"]);
-			$pinchotemp->setCocineroPi($_POST["cocineroPi"]);
-			$pinchotemp->setFotoPi($ruta.$_FILES['fotoPi']['name'], $_FILES['fotoPi']['error']);
-			$pinchotemp->setParticipanteEmail($currentuser->getEmailU());
-
+		try{
 			//Hace todas las coprobaciones a la informacion introducida por el usuario
 			$pinchotemp->checkInfoIfNull();
 			$pinchotemp->checkInfo();
@@ -66,9 +66,9 @@ class PinchoController extends DBController {
 				}else{ $this->view->setVariable("errors", $errors);}
 			}
 		}
-		else{
-			$error = array();
-			$errors["nombrePi"] = "El nombre del pincho ya existe en la base de datos";
+		catch(ValidationException $ex){
+			$errors = $ex->getErrors();
+			$this->view->setVariable("errors", $errors);
 		}
 
 		$pinchotemp = $this->pincho->showDates();

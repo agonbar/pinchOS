@@ -5,7 +5,6 @@ require_once(__DIR__."/../core/ValidationException.php");
 
 class CodVoto {
 
-  private $db;
   private $idCV;/* El id del Pincho */
   private $pinchoId;/* La nombre del Pincho */
   private $pincho;
