@@ -41,7 +41,7 @@ class PinchoController extends DBController {
 			$pinchotemp->setPrecioPi($_POST["precioPi"]);
 			$pinchotemp->setIngredientesPi($_POST["ingredientesPi"]);
 			$pinchotemp->setCocineroPi($_POST["cocineroPi"]);
-			$pinchotemp->setFotoPi($ruta.$_FILES['fotoPi']['name'],$_FILES['fotoPi']['tmp_name'], $_FILES['fotoPi']['error']);
+			$pinchotemp->setFotoPi($ruta.$_FILES['fotoPi']['name'], $_FILES['fotoPi']['error']);
 			$pinchotemp->setParticipanteEmail($currentuser->getEmailU());
 
 			//Hace todas las coprobaciones a la informacion introducida por el usuario
@@ -50,9 +50,16 @@ class PinchoController extends DBController {
 			$pincho->idExists();
 
 			if ( ( !$pincho->votoExist() ) ){
-				//comprueba si no se haya producido ningun error
+				//comprueba que no se haya producido ningun error
 				if (!sizeof($errors)>0){
 					/*Si no es asi, guarda las votaciones en la base de datos*/
+
+					$fotoPiTemp = $_FILES['fotoPi']['tmp_name'];
+					$fotoPi = $ruta.$_FILES['fotoPi']['name'];
+					move_uploaded_file($fotoPiTemp,$fotoPi);//pasa
+					$pincho->numVotosPi = 0;//inicializa a 0 el numero de votos que se le dio a este pincho
+					$pincho->estadoPi = "1";
+					$pincho->numvotePi = $pincho->countvotePi();
 					$codvoto->save4();//los codigos de votos de un pincho deben crearse ANTES que el pincho
 					$pincho->save();
 
@@ -63,8 +70,13 @@ class PinchoController extends DBController {
 				}else{ $this->view->setVariable("errors", $errors);}
 			}
 		}
-		//te redirige para consultar el pincho
-		$this->view->render("vistas", "consultaPincho");
+
+		$pincho = $this->pincho->showDates();
+
+		// Guarda el valor de la variable $pincho en la variable pincho accesible desde la vista
+		$this->view->setVariable("pincho", $pincho);
+
+		$this->view->render("vistas", "consultaPincho");//te redirige para consultar el pincho
 	}
 	public function bajaPincho(){
 
@@ -77,7 +89,7 @@ class PinchoController extends DBController {
 		$this->view->render("vistas", "modificacionPincho");
 	}
 	public function busquedaPincho(){
-
+		$this->view->render("vistas", "pruebabuscarPincho");
 	}
 	public function consultaPincho(){
 		$this->view->render("vistas", "consulta_bajaPincho");

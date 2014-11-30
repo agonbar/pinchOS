@@ -4,7 +4,9 @@ include(__DIR__."/../layouts/inicio.php");
 include(__DIR__."/../layouts/cabecera.php");
 require_once(__DIR__."/../../core/ViewManager.php");
 $view = ViewManager::getInstance();
+$view->setVariable("title", "Login");
 $errors = $view->getVariable("errors");
+$concurso = $view->getVariable("concu");
 ?>
 <div class="margensup" >
 	<div class="column col-lg-9 col-md-9 col-sm-12 col-xs-12 col-md-offset-2" >

@@ -25,7 +25,6 @@ class Pincho {
                               $cocineroPi=NULL,
                               $numVotosPi=NULL,
                               $fotoPi=NULL,
-                              $fotoPiTemp=NULL,
                               $fotoPiSize=NULL,
                               $estadoPi=NULL,
                               $numvotePi=NULL,
@@ -37,7 +36,6 @@ class Pincho {
     $this->cocineroPi = $cocineroPi;
     $this->numVotosPi = $numVotosPi;
     $this->fotoPi = $fotoPi;
-    $this->fotoPiTemp = $fotoPiTemp;
     $this->fotoPiSize = $fotoPiSize;
     $this->estadoPi = $estadoPi;
     $this->numvotePi = $numvotePi;
@@ -111,9 +109,8 @@ class Pincho {
   }
 
   /* Pone la foto del Pincho */
-  public function setFotoPi($fotoPi,$fotoPiTemp,$fotoPiSize) {
+  public function setFotoPi($fotoPi,$fotoPiSize) {
     $this->fotoPi = $fotoPi;
-    $this->fotoPiTemp = $fotoPiTemp;
     $this->fotoPiSize = $fotoPiSize;
   }
 
@@ -227,22 +224,57 @@ class Pincho {
   /* Guarda el Pincho en la base de datos */
   public function save() {
     $db = PDOConnection::getInstance();
-    move_uploaded_file($fotoPiTemp,$fotoPi);
-    $this->generarteIdPi();
-    $this->numVotosPi = 0;
-    $this->estadoPi = "1";
-    $this->numvotePi = $this->countvotePi();
 
     $stmt = $db->prepare("INSERT INTO pincho values (?,?,?,?,?,?,?,?,?)");
     $stmt->execute(array($this->idPi,
-    $this->nombrePi,
-    $this->precioPi,
-    $this->ingredientesPi,
-    $this->cocineroPi,
-    $this->numVotosPi,
-    $this->fotoPi,
-    $this->estadoPi,
-    $this->numvotePi,
-    $this->ParticipanteEmail));
+                         $this->nombrePi,
+                         $this->precioPi,
+                         $this->ingredientesPi,
+                         $this->cocineroPi,
+                         $this->numVotosPi,
+                         $this->fotoPi,
+                         $this->estadoPi,
+                         $this->numvotePi,
+                         $this->ParticipanteEmail));
   }
+
+  public function showDates(){
+    $db = PDOConnection::getInstance();
+    $stmt = $db->prepare("SELECT * FROM pincho");
+    $stmt->execute();
+    $pincho_db=$stmt->fetch(PDO::FETCH_ASSOC);
+
+    if(sizeof($pincho_db)==0){
+      return null;
+    }else{
+      return new Pincho($pincho_db["idPi"],
+                          $pincho_db["nombrePi"],
+                          $pincho_db["precioPi"],
+                          $pincho_db["ingredientesPi"],
+                          $pincho_db["cocineroPi"],
+                          $pincho_db["numVotosPi"],
+                          $pincho_db["fotoPi"],
+                          $pincho_db["fotoSizePi"],
+                          $pincho_db["estadoPi"],
+                          $pincho_db["numvotePi"],
+                          $pincho_db["ParticipanteEmail"]);
+    }
+  }
+
+  public function update() {
+    $db = PDOConnection::getInstance();
+
+    $stmt = $db->prepare("INSERT INTO pincho values (?,?,?,?,?,?,?,?,?)");
+    $stmt->execute(array($this->idPi,
+                         $this->nombrePi,
+                         $this->precioPi,
+                         $this->ingredientesPi,
+                         $this->cocineroPi,
+                         $this->numVotosPi,
+                         $this->fotoPi,
+                         $this->estadoPi,
+                         $this->numvotePi,
+                         $this->ParticipanteEmail));
+  }
+
 }

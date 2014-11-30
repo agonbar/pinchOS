@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
 include(__DIR__."/../layouts/inicio.php");
+include(__DIR__."/../layouts/cabecera.php");
 require_once(__DIR__."/../../core/ViewManager.php");
 $view = ViewManager::getInstance();
 $view->setVariable("title", "Login");
