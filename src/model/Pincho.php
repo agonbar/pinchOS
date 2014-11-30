@@ -159,7 +159,7 @@ class Pincho {
   }
 
   /* Comprueba si el id ya existe en la base de datos */
-  public function idExists() {
+  public function pinchoExists() {
     $db = PDOConnection::getInstance();
     $stmt = $db->prepare("SELECT count(idPi) FROM pincho where idPi=?");
     $stmt->execute(array($this->idPi));
@@ -248,16 +248,16 @@ class Pincho {
       return null;
     }else{
       return new Pincho($pincho_db["idPi"],
-                          $pincho_db["nombrePi"],
-                          $pincho_db["precioPi"],
-                          $pincho_db["ingredientesPi"],
-                          $pincho_db["cocineroPi"],
-                          $pincho_db["numVotosPi"],
-                          $pincho_db["fotoPi"],
-                          $pincho_db["fotoSizePi"],
-                          $pincho_db["estadoPi"],
-                          $pincho_db["numvotePi"],
-                          $pincho_db["ParticipanteEmail"]);
+                        $pincho_db["nombrePi"],
+                        $pincho_db["precioPi"],
+                        $pincho_db["ingredientesPi"],
+                        $pincho_db["cocineroPi"],
+                        $pincho_db["numVotosPi"],
+                        $pincho_db["fotoPi"],
+                        $pincho_db["fotoSizePi"],
+                        $pincho_db["estadoPi"],
+                        $pincho_db["numvotePi"],
+                        $pincho_db["ParticipanteEmail"]);
     }
   }
 
