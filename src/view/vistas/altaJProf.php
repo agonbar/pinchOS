@@ -25,7 +25,7 @@ $contrasenaGenerada = $view->getVariable("contrasenaGenerada");
             <div class="form-group separarformulario">
               <label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Nombre</label>
               <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-                <input class="form-control" placeholder="Introduce un Nombre..." name="nombreU">
+                <input class="form-control" placeholder="Introduce Nombre y Apellidos..." name="nombreU">
                 <?= isset($errors["nombreU"])?$errors["nombreU"]:"" ?><br>
               </div>
             </div>

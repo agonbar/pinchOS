@@ -18,7 +18,6 @@ class Concurso {
 
   private $basesC;
   private $basesCTemp;
-  private $basesCSize;
 
   /* La ciudad del Concurso */
 
@@ -73,10 +72,9 @@ class Concurso {
     return $this->basesC;
   }
   
-  public function setbasesC($basesC,$basesCTemp,$basesCSize) {
+  public function setbasesC($basesC,$basesCTemp) {
     $this->basesC = $basesC;
     $this->basesCTemp = $basesCTemp;
-    $this->basesCSize = $basesCSize;
   }
 
 
