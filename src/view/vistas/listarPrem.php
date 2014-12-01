@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <?php
 include(__DIR__."/../layouts/inicio.php");
+require_once(__DIR__."/../../core/ViewManager.php");
+$view = ViewManager::getInstance();
+$errors = $view->getVariable("errors");
+$premiados = $view->getVariable("premiados");
 ?>
 <!--AQUI EMPIEZA LA VENTANA MODAL DE AÑADIR ALBUM -->
 <div class="margensup" >
@@ -10,16 +14,16 @@ include(__DIR__."/../layouts/inicio.php");
         <h2 class="alineado">Listado de Premiados</h2>
       </div>
       <ul class= "list-inline ">
-        <?php //bucle que lista los participantes seleccionados
+        <?php //bucle que lista los pinchos seleccionados
         $i=0;
-        while ($i <= 2){?>
-          <li>
-            <img src="./resources/img/pincho.jpg" alt="./resources/img/pincho.jpg" class="img-thumbnail" height="200" width="200">
+        while ($i <= 12){?>
+          <li class= "column col-lg-2 col-md-2 col-sm-4 col-xs-4 col-md-offset-1">
+
+            <a href="index.php?controller=pincho&action=consultaPremiados">
+              <img src= "<?=$pincho->getFotoPi()?>" alt="Imagen del Pincho" class="img-thumbnail img-responsive">
+            </a>
             <div class="caption">
-              <h4>-Nombre del participante <?php echo $i;?>-</h4>
-              <p>
-                <a href="index.php?controller=pincho&action=consultaPincho" class="btn btn-primary col-md-offset-4" role="button">Consultar</a>
-              </p>
+              <h4>-Nombre del pincho -</h4>
             </div>
           </li>
           <?php $i++;}?><!-- fin while-->
