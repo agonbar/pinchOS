@@ -132,25 +132,23 @@ class PopularController extends DBController {
   
   /*Este metodo permite ver los datos del usuario actual, ademas de ver sus votos*/
   public function verPerfil(){
-  /*
+  
 	$currentuser = $_SESSION["currentuser"];
 	
 	// find the Post object in the database
 	$votos = $this->voto->getDatosVotos($currentuser->getEmailU());
 	
-	if ($votos == NULL) {
-	  throw new Exception("Este usuario no tiene votos");
-	}
-	
 	$this->view->setVariable("votos", $votos);
 	
 	$nombrePincho = array();
 	foreach ($votos as $voto) {
-		$nombrePincho_valor = $this->voto->getNombrePincho($voto);
+		$nombrePincho_valor = $voto->getNombrePincho();
 		$nombrePincho[$voto->getCodigoPinchoV()] = $nombrePincho_valor;
+		
 	}
-	$this->view->setVariable("nombrePincho", $nombrePincho);
-*/
+	
+	$this->view->setVariable("nombrePincho", $nombrePincho); 
+
     $this->view->render("vistas", "consultaJPopu");
 
   }

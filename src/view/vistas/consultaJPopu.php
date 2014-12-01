@@ -5,8 +5,8 @@ $view = ViewManager::getInstance();
 $view->setVariable("title", "Login");
 $errors = $view->getVariable("errors");
 $currentuser = $view->getVariable("currentusername");
-//$votos = $view->getVariable("votos");
-//$nombrePincho = $view->getVariable("nombrePincho");
+$votos = $view->getVariable("votos");
+$nombrePincho = $view->getVariable("nombrePincho");
 ?>
 <!--AQUI EMPIEZA LA VENTANA MODAL DE AÑADIR ALBUM -->
 <div class="margensup" >
@@ -40,14 +40,14 @@ $currentuser = $view->getVariable("currentusername");
 							<td>Código</td>
 							<td>Puntuación</td>
 						</tr>
-						<!--<?php //foreach ($votos as $voto): ?>
+						<?php foreach ($votos as $voto): ?>
 							<tr class="tablehover">
-								<td><?//=$voto->getPinchoIdPi()?></td>
-								<td><?//=$voto->getCodigoPinchoV()?></td>
-								<td><?//=$voto->getValoracionV()?></td>
-								<td><?//=$nombrePincho[$voto->getCodigoPinchoV()] ?></td>
+								<td><?=$nombrePincho[$voto->getCodigoPinchoV()]->getNombrePi() ?></td>
+								<td><?=$voto->getPinchoIdPi()?></td>
+								<td><?=$voto->getCodigoPinchoV()?></td>
+								<td><?=$voto->getValoracionV()?></td>
 							</tr>
-						<?php //endforeach; ?>-->
+						<?php endforeach; ?>
 					</table>
 				</div>
 			</div>

@@ -185,5 +185,5 @@ INSERT INTO `voto` (`usuarioEmailU`, `pinchoIdPi`, `codigopinchoV`, `valoracionV
 ('ruben@gmail.com', '1', '12','0'),
 ('ruben@gmail.com', '2', '22','1'),
 ('ruben@gmail.com', '3', '32','0'),
-('mel@gmail.com', '2', '21', '3'),
-('mel@gmail.com', '3', '32', '4');
+('mel@gmail.com', '2', '23', '3'),
+('mel@gmail.com', '3', '33', '4');

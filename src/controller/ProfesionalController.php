@@ -1,6 +1,7 @@
 <?php
 require_once(__DIR__."/../model/User.php");
 require_once(__DIR__."/../model/Voto.php");
+require_once(__DIR__."/../model/Pincho.php");
 require_once(__DIR__."/../controller/DBController.php");
 require_once(__DIR__."/../core/ViewManager.php");
 
@@ -8,6 +9,7 @@ class ProfesionalController extends DBController {
 
   /*Variable que representa el objeto User*/
   private $user;
+  private $voto;
 
   /*Constructor*/
   public function __construct() {
@@ -19,6 +21,7 @@ class ProfesionalController extends DBController {
 
 	//Inicializa la variable
     $this->user = new User();
+	$this->voto = new Voto();
   }
 
   /*Metodo que genera la contraseña para e jurado profesional*/
@@ -166,7 +169,24 @@ class ProfesionalController extends DBController {
 	
   /*Este metodo permite ver los datos del usuario actual, ademas de ver sus votos*/
   public function verPerfil(){
-		$this->view->render("vistas", "consultaJProf");
+  
+	$currentuser = $_SESSION["currentuser"];
+	
+	// find the Post object in the database
+	$votos = $this->voto->getDatosVotos($currentuser->getEmailU());
+	
+	$this->view->setVariable("votos", $votos);
+	
+	$nombrePincho = array();
+	foreach ($votos as $voto) {
+		$nombrePincho_valor = $voto->getNombrePincho();
+		$nombrePincho[$voto->getCodigoPinchoV()] = $nombrePincho_valor;
+		
+	}
+	
+	$this->view->setVariable("nombrePincho", $nombrePincho);
+  
+	$this->view->render("vistas", "consultaJProf");
   }
   
   /*Este metodo permite modificar los datos del usuario*/
