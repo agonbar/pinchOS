@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <?php
 include(__DIR__."/../layouts/inicio.php");
+require_once(__DIR__."/../../core/ViewManager.php");
+$view = ViewManager::getInstance();
+$participante = $view->getVariable("participante");
+$errors = $view->getVariable("errors");
 ?>
 <div class="margensup" >
   <div class="column col-lg-10 col-md-10 col-sm-12 col-xs-12 col-md-offset-1" >
@@ -20,9 +24,8 @@ include(__DIR__."/../layouts/inicio.php");
             </div>
             <div class="form-group alineado ">
               <label class="control-label">Email: </label>
-              <label class=" control-label">somosunbarguay@gmail.com</label>
+              <label class=" control-label"> <?php echo $participante[0]["emailU"]; ?> </label>
             </div>
-
           </form>
         </div>
       </div>

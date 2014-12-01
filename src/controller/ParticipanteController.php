@@ -28,7 +28,7 @@ class ParticipanteController extends DBController {
   public function buscar(){
     $participantes_array = array();
     $participantes_array = $this->participante->listar();
-        if ($participantes_array == NULL) {
+    if ($participantes_array == NULL) {
       throw new Exception("No hay participantes");
     }
     $this->view->setVariable("participantes", $participantes_array);
@@ -39,6 +39,13 @@ class ParticipanteController extends DBController {
     if (isset($_GET["id"])){
       $userEmail = $_GET["id"];
     }
+    $participanteData = array();
+    $participanteData = $this->participante->consultar($userEmail);
+    if ($participanteData == NULL) {
+      throw new Exception("No existe participante");
+    }
+    print_r($participanteData);
+    $this->view->setVariable("participante", $participanteData);
     $this->view->render("vistas", "consultaPart");
   }
 

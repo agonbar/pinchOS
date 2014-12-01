@@ -20,7 +20,7 @@ $premiados = $view->getVariable("premiados");
           <li class= "column col-lg-2 col-md-2 col-sm-4 col-xs-4 col-md-offset-1">
 
             <a href="index.php?controller=pincho&action=consultaPremiados">
-              <img src= "<?=$pincho->getFotoPi()?>" alt="Imagen del Pincho" class="img-thumbnail img-responsive">
+              <!-- <img src= "<?=$pincho->getFotoPi()?>" alt="Imagen del Pincho" class="img-thumbnail img-responsive"> -->
             </a>
             <div class="caption">
               <h4>-Nombre del pincho -</h4>

@@ -11,14 +11,8 @@ class Participante {
   private $nombreU;
   private $concursoId;
 
-  public function __construct($emailU=NULL, $contrasenaU=NULL, $tipoU=NULL, $estadoU=NULL, $nombreU=NULL, $concursoId=NULL) {
+  public function __construct($emailU=NULL) {
 
-    $this->emailU = $emailU;
-    $this->contrasenaU = $contrasenaU;
-    $this->tipoU = $tipoU;
-    $this->estadoU = $estadoU;
-    $this->nombreU = $nombreU;
-    $this->concursoId = $concursoId;
   }
 
   public function listar(){
@@ -28,5 +22,13 @@ class Participante {
     $users_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     return $users_db;
-    }
   }
+  public function consultar($emailU){
+    $emailU = "hector@gmail.com";
+    $db = PDOConnection::getInstance();
+    $stmt = $db->prepare("SELECT * FROM usuario where emailU=?");
+    $stmt->execute(array($emailU));
+    $user_data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $user_data;
+  }
+}
