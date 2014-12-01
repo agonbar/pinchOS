@@ -34,9 +34,11 @@ error_reporting(E_ALL);
 								<h5>Concurso <i class="glyphicon glyphicon-plus"></i></h5>
 							</a>
 							<ul class="list-unstyled collapse" id="menu1">
+								<?php if ($currentuser->getTipoU() == 'A') { ?>
 								<li class="desplegable "><a href="index.php?controller=concurso&action=registro">Crear concurso</a></li>
-								<li class="desplegable "><a href="index.php?controller=concurso&action=consultarConcurso">Consultar concurso</a></li>
 								<li class="desplegable"><a href="index.php?controller=concurso&action=modificarConcurso">Modificar concurso</a></li>
+								<?php } ?>
+								<li class="desplegable "><a href="index.php?controller=concurso&action=consultarConcurso">Consultar concurso</a></li>
 							</ul>
 						</li>
 
@@ -57,10 +59,11 @@ error_reporting(E_ALL);
 							<ul class="list-unstyled collapse" id="menu3">
 								<li class="desplegable"><a href="index.php?controller=pincho&action=listadoPincho">Listado pincho</a></li>
 								<li class="desplegable"><a href="index.php?controller=pincho&action=altaPincho">Alta pincho</a></li>
-								<li class="desplegable"><a href="index.php?controller=pincho&action=busquedaPincho">Búsquda pincho</a></li>
+								<li class="desplegable"><a href="index.php?controller=pincho&action=busquedaPincho">Búsqueda pincho</a></li>
 							</ul>
 						</li>
-
+						
+						<?php if ($currentuser->getTipoU() == 'A') { ?>
 						<li class="nav-header">
 							<a href="#" data-toggle="collapse" data-target="#menu5">
 								<h5>Jurado Profesional <i class="glyphicon glyphicon-plus"></i></h5>
@@ -69,7 +72,7 @@ error_reporting(E_ALL);
 								<li class="desplegable "><a href="index.php?controller=profesional&action=registrarProfesional">Crear J.Profesional</a></li>
 							</ul>
 						</li>
-
+						<?php } ?>
 					</ul>
 
 				</div>
@@ -103,15 +106,19 @@ error_reporting(E_ALL);
 									<a href="index.php?controller=concurso&action=listarPremiados"><i class="glyphicon glyphicon-plus"></i> Premiados</a>
 								</li>
 								<li>
+									<?php if (($currentuser->getTipoU() == 'J') or ($currentuser->getTipoU() == 'S')) { ?>
 									<a href="index.php?controller=users&action=seleccionarVotacion"><i class="glyphicon glyphicon-plus"></i> Votar</a>
+									<?php } ?>
 								</li>
 							</ul>
 							<ul class="nav navbar-nav navbar-right">
 								<li class="dropdown">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-cog"></i></a>
 									<ul class="dropdown-menu">
+										<?php if ($currentuser->getTipoU() != 'A') { ?>
 										<li><a href="index.php?controller=users&action=seleccionarPerfil">Mi perfil</a></li>
 										<li><a href="index.php?controller=users&action=seleccionarModificacion">Modificar mi perfil</a></li>
+										<?php } ?>
 										<li><a href="index.php?controller=users&action=logout">Salir</a></li>
 									</ul>
 								</li>

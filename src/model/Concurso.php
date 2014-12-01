@@ -1,7 +1,10 @@
 <?php
+/* Hacemos los requires de las clases que necesitamos para que el código que contienen sea heredadod en esta clase */
 require_once(__DIR__."/../core/PDOConnection.php");
 require_once(__DIR__."/../core/ValidationException.php");
 
+
+/* Creamos la clase Concurso que contiene toda la información relevenate acerca del mismo */
 class Concurso {
 
   //private $db;
@@ -17,6 +20,7 @@ class Concurso {
   /* Las bases del Concurso */
 
   private $basesC;
+  
   private $basesCTemp;
 
   /* La ciudad del Concurso */
@@ -35,6 +39,7 @@ class Concurso {
 
   private $patrocinadorC;
 
+  /* Creamos el constructor de la clase Concurso al que se le pasan los distintos parametros en relacion a la base de datos */
   public function __construct($idC=NULL, $nombreC=NULL, $basesC=NULL, $ciudadC=NULL, $fechaC=NULL, $premioC=NULL, $patrocinadorC=NULL) {
 
     $this->idC = $idC;
@@ -118,50 +123,55 @@ class Concurso {
     $this->patrocinadorC = $patrocinadorC;
   }
 
-  /* Comprueba si el Concurso es válido para registrarse en la base de datos */
-
+  /* Comprueba si el Concurso es válido para registrarse en la base de datos,si no lo es devuelve un mensaje por cada tipo de error encontrado */
   public function checkIsValidForRegister() {
-    $errors = array();
+  
+    $errors = array();//Se inializa un array errors con los distintos errores que posteriormente serán mostrados si estos se producen
+	/*Error de longitud en el nombre*/
     if (strlen($this->nombreC) < 4) {
       $errors["nombreC"] = "El nombre debe contener al menos 4 caracteres de longitud";
     }
+	/*Error de longitud en la ciudad*/
     if (strlen($this->ciudadC) < 2) {
       $errors["ciudadC"] = "La ciudad debe contener al menos 2 caracteres de longitud";
     }
+	/*Error de fecha del concurso inferior a la actual*/
 	if ($this->fechaC< date("Y-m-d")) {
       $errors["fechaC"] = "La fecha debe ser posterior al dia de hoy";
     }
+	/*Error de longitud en el patrocinador*/
 	if (strlen($this->patrocinadorC) < 3) {
       $errors["patrocinadorC"] = "El patrocinador debe contener al menos 3 caracteres de longitud";
     }
+	/*Error de longitud en el premio*/
     if (strlen($this->premioC) < 2) {
       $errors["premioC"] = "El valor del premio no es correcto";
     }
+	/*Si hay algún error en las anteriores comprobaciones muestra un mensaje*/
     if (sizeof($errors)>0){
       throw new ValidationException($errors, "El concurso no es válido");
     }
 
   }
 
-  /* Guarda el Concurso en la base de datos */
-
+  /* Guarda en la tabla Concurso los distintos valores que contendrá el propio concurso*/
   public function save() {
     $db = PDOConnection::getInstance();
     $stmt = $db->prepare("INSERT INTO concurso values (?,?,?,?,?,?,?)");
     $stmt->execute(array($this->idC, $this->nombreC, $this->basesC, $this->ciudadC, $this->fechaC, $this->premioC, $this->patrocinadorC));
   }
 
-  /* Actualiza el Concurso en la base de datos */
-
+  /* Actualiza el Concurso en la base de datos,para ello se hace un update de los distintos campos que contiene la tabla concurso*/
   public function update() {
     $db = PDOConnection::getInstance();
     $stmt = $db->prepare("UPDATE concurso SET idC=?, nombreC=?, basesC=?, ciudadC=?, fechaC=?, premioC=?, patrocinadorC=?");
     $stmt->execute(array($this->idC, $this->nombreC, $this->basesC, $this->ciudadC, $this->fechaC, $this->premioC, $this->patrocinadorC));
   }
-
+  /* Compruebas si existe el concurso en la base de datos */
   public function existConcurso(){
     $db = PDOConnection::getInstance();
-    $stmt = $db->prepare("SELECT count(idC) FROM concurso");
+    $stmt = $db->prepare("SELECT count(idC) FROM concurso");  /*Se cuenta el numero de idC de la tabla concurso y si este es mayor a 0
+															   indica que ya hay un concurso registrado*/
     $stmt->execute();
 
     if ($stmt->fetchColumn() > 0) {
@@ -181,25 +191,27 @@ class Concurso {
 }
 }
 */
-public function ver_datos() {
-  $db = PDOConnection::getInstance();
-  $stmt = $db->prepare("SELECT * FROM concurso");
-  $stmt->execute();
-  $concursos_db=$stmt->fetch(PDO::FETCH_ASSOC);
+  /* Muestra todos los datos del Concurso,para ello se seleccionan todos los datos de la tabla concurso para posteriormente rellenar un objeto
+  de tipo Concurso que contendrá toda la  informacion de los distintos campos encontrados en la base de datos */
+  public function ver_datos() {
+    $db = PDOConnection::getInstance();
+    $stmt = $db->prepare("SELECT * FROM concurso");
+    $stmt->execute();
+    $concursos_db=$stmt->fetch(PDO::FETCH_ASSOC);
   
-  if(sizeof($concursos_db)==0){
-    return null;
-  }else{
-    return new Concurso(
-    $concursos_db["idC"],
-    $concursos_db["nombreC"],
-    $concursos_db["basesC"],
-    $concursos_db["ciudadC"],
-    $concursos_db["fechaC"],
-    $concursos_db["premioC"],
-	$concursos_db["patrocinadorC"]
-  );
-}
-}
+    if(sizeof($concursos_db)==0){
+      return null;
+    }else{
+      return new Concurso(
+      $concursos_db["idC"],
+      $concursos_db["nombreC"],
+      $concursos_db["basesC"],
+      $concursos_db["ciudadC"],
+      $concursos_db["fechaC"],
+      $concursos_db["premioC"],
+	  $concursos_db["patrocinadorC"]
+       );
+    }
+  }
 
 }
