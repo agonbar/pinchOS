@@ -27,6 +27,13 @@ class ParticipanteController extends DBController {
   }
 
   public function buscar(){
+    $participantes_array = array();
+    $participantes_array = $this->participante->listar();
+    print_r($participantes_array);
+    if ($participantes_array == NULL) {
+      throw new Exception("No hay participantes");
+    }
+    $this->view->setVariable("participantes", $participantes_array);
     $this->view->render("vistas", "buscarPart");
   }
 
@@ -40,11 +47,11 @@ class ParticipanteController extends DBController {
   public function modificar(){
     $this->view->render("vistas", "modificacionPart");
   }
-  
+
    public function verPerfil(){//esto luego se borra y se pone en users para que dependiendo del ususrio salga una pagina.
 		$this->view->render("vistas", "consultaPart");
   }
-  
+
    public function verModificacion(){//esto luego se borra y se pone en users para que dependiendo del ususrio salga una pagina.
 		$this->view->render("vistas", "modificacionPart");
   }
