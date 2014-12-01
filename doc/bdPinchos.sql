@@ -91,7 +91,8 @@ CREATE TABLE IF NOT EXISTS `pincho` (
   `precioPi` INT NOT NULL,
   `ingredientesPi` VARCHAR(255) NOT NULL,
   `cocineroPi` VARCHAR(45) NOT NULL,
-  `numvotosPi` INT NOT NULL,
+  `numvotosPopPi` INT NOT NULL,
+  `numvotosProfPi` INT NOT NULL,
   `fotoPi` VARCHAR(45) NOT NULL,
   `estadoPi` TINYINT(1) NOT NULL comment '1=activo, 0=inactivo',
   `participanteEmail` VARCHAR(45) NOT NULL,
@@ -157,11 +158,11 @@ INSERT INTO `participante` (`direccionP`, `telefonoP`, `nombreLocalP`, `horarioP
 ('Madrid', '655555555', 'Flamingo', 'De 9:00 a 23:00','aqui va la pag web','aqui va la foto','marta@gmail.com'),
 ('Carballino', '633333333', 'Enxogo', 'De 9:00 a 23:00','aqui va la pag web','aqui va la foto','pablo@gmail.com');
 
-INSERT INTO `pincho` (`idPi`, `nombrePi`, `precioPi`, `ingredientesPi`,`cocineroPi`,`numvotosPi`,`fotoPi`,`estadoPi`,`participanteEmail`, `numvotePi`) VALUES
-('1', 'jamon', '1', 'bueno','juan','2','./resources/img/pinchos/pincho.jpg','1','julian@gmail.com', '3'),
-('2', 'queso', '2', 'malo', 'pepe','3','./resources/img/pinchos/pincho.jpg','1','hector@gmail.com', '4'),
-('3', 'bacon', '3', 'buenisimo','carmen','3','./resources/img/pinchos/pincho.jpg','1','marta@gmail.com', '4'),
-('4', 'mortadela', '2', 'malisimo','roberto','0','./resources/img/pinchos/pincho.jpg','1','pablo@gmail.com', '0');
+INSERT INTO `pincho` (`idPi`, `nombrePi`, `precioPi`, `ingredientesPi`,`cocineroPi`,`numvotosPopPi`,`numvotosPropPi`, `fotoPi`,`estadoPi`,`participanteEmail`, `numvotePi`) VALUES
+('1', 'jamon', '1', 'bueno','juan','2','0','./resources/img/pinchos/pincho.jpg','1','julian@gmail.com', '3'),
+('2', 'queso', '2', 'malo', 'pepe','2','1','./resources/img/pinchos/pincho.jpg','1','hector@gmail.com', '4'),
+('3', 'bacon', '3', 'buenisimo','carmen','2','1','./resources/img/pinchos/pincho.jpg','1','marta@gmail.com', '4'),
+('4', 'mortadela', '2', 'malisimo','roberto','0','0','./resources/img/pinchos/pincho.jpg','1','pablo@gmail.com', '0');
 
 INSERT INTO `codVoto` (`idCV`, `pinchoId`) VALUES
 ('11', '1'),
