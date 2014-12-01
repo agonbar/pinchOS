@@ -23,21 +23,23 @@ class PinchoController extends DBController {
 	}
 
 	public function altaPincho(){
-		$currentuser = $_SESSION["currentuser"];
-
-		$ruta="../resources/img/pinchos/";//ruta carpeta donde queremos copiar las imagenes
 
 		$pinchotemp = new Pincho();
+		$currentuser = $_SESSION["currentuser"];
 
+		if($currentuser){//commprueba que el usuario esta logeado
+		$ruta="../resources/img/pinchos/";//ruta carpeta donde queremos copiar las imagenes
 		$numpincho = $pinchotemp->generateIdPi();//devuelve el id del pinchos
 		$nombrePi = $_POST["nombrePi"];
+		$fotoPiTemp = $_FILES['fotoPi']['tmp_name'];
+		$fotoPi = $ruta.$_FILES['fotoPi']['name'];
 
 		$pinchotemp->setIdPi($numpincho);
-		$pinchotemp->setNombrePi($_POST["nombrePi"]);
+		$pinchotemp->setNombrePi($nombrePi);
 		$pinchotemp->setPrecioPi($_POST["precioPi"]);
 		$pinchotemp->setIngredientesPi($_POST["ingredientesPi"]);
 		$pinchotemp->setCocineroPi($_POST["cocineroPi"]);
-		$pinchotemp->setFotoPi($ruta.$_FILES['fotoPi']['name'], $_FILES['fotoPi']['error']);
+		$pinchotemp->setFotoPi($fotoPi, $fotoPiTemp);
 		$pinchotemp->setParticipanteEmail($currentuser->getEmailU());
 
 		try{
@@ -50,8 +52,6 @@ class PinchoController extends DBController {
 				if (!sizeof($errors)>0){
 					/*Si no es asi, guarda las votaciones en la base de datos*/
 
-					$fotoPiTemp = $_FILES['fotoPi']['tmp_name'];
-					$fotoPi = $ruta.$_FILES['fotoPi']['name'];
 					move_uploaded_file($fotoPiTemp,$fotoPi);//pasa
 					$pinchotemp->numVotosPi = 0;//inicializa a 0 el numero de votos que se le dio a este pincho
 					$pinchotemp->estadoPi = "1";//inicializa a true el estado del pincho
@@ -77,6 +77,7 @@ class PinchoController extends DBController {
 		$this->view->setVariable("pincho", $pinchotemp);
 
 		$this->view->render("vistas", "consultaBajaPincho");//te redirige para consultar el pincho
+	}
 	}
 	public function bajaPincho(){
 
