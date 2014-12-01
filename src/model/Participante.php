@@ -27,11 +27,6 @@ class Participante {
     $stmt->execute();
     $users_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    $participantes=array();
-    foreach ($users_db as $participante) {
-      array_push($participantes, new User($this->emailU, $this->contrasenaU, $this->tipoU, $this->nombreU, $this->concursoId));
-    }
-
-    return $participantes;
+    return $users_db;
     }
   }

@@ -29,8 +29,7 @@ class ParticipanteController extends DBController {
   public function buscar(){
     $participantes_array = array();
     $participantes_array = $this->participante->listar();
-    print_r($participantes_array);
-    if ($participantes_array == NULL) {
+        if ($participantes_array == NULL) {
       throw new Exception("No hay participantes");
     }
     $this->view->setVariable("participantes", $participantes_array);
