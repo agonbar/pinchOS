@@ -22,20 +22,20 @@ class Pincho {
                               $precioPi=NULL,
                               $ingredientesPi=NULL,
                               $cocineroPi=NULL,
-                              $numcotosPopPi=NULL,
-                              $numcotosProPi=NULL,
+                              $numvotosPopPi=NULL,
+                              $numvotosProfPi=NULL,
                               $fotoPi=NULL,
                               $fotoPiSize=NULL,
                               $estadoPi=NULL,
-                              $numvotePi=NULL,
-                              $ParticipanteEmail=NULL) {
+                              $ParticipanteEmail=NULL,
+                              $numvotePi=NULL) {
     $this->idPi = $idPi;
     $this->nombrePi = $nombrePi;
     $this->precioPi = $precioPi;
     $this->ingredientesPi = $ingredientesPi;
     $this->cocineroPi = $cocineroPi;
-    $this->numvotosPopPi = $numVotosPi;
-    $this->numvotosProfPi = $numVotosPi;
+    $this->numvotosPopPi = $numvotosPopPi;
+    $this->numvotosProfPi = $numvotosProfPi;
     $this->fotoPi = $fotoPi;
     $this->fotoPiSize = $fotoPiSize;
     $this->estadoPi = $estadoPi;
@@ -100,7 +100,7 @@ class Pincho {
   }
 
   /* Pone el numero de votos del Pincho */
-  public function setNumVotosPopPi($numVotosPi) {
+  public function setNumVotosPopPi($numvotosPopPi) {
     $this->numvotosPopPi = $numvotosPopPi;
   }
 
@@ -110,7 +110,7 @@ class Pincho {
   }
 
   /* Pone el numero de votos del Pincho */
-  public function setNumVotosProfPi($numVotosPi) {
+  public function setNumVotosProfPi($numvotosProfPi) {
     $this->numvotosProfPi = $numvotosProfPi;
   }
 
@@ -231,8 +231,8 @@ class Pincho {
                          $this->numvotosProfPi,
                          $this->fotoPi,
                          $this->estadoPi,
-                         $this->numvotePi,
-                         $this->ParticipanteEmail));
+                         $this->ParticipanteEmail,
+                         $this->numvotePi));
   }
 
   public function showDates(){
@@ -252,9 +252,11 @@ class Pincho {
                         $pincho_db["numvotosPopPi"],
                         $pincho_db["numvotosProfPi"],
                         $pincho_db["fotoPi"],
+                        0,//indica si tiene errores la foto
                         $pincho_db["estadoPi"],
-                        $pincho_db["numvotePi"],
-                        $pincho_db["participanteEmail"]);
+                        $pincho_db["participanteEmail"],
+                        $pincho_db["numvotePi"]);
+
     }
   }
 
@@ -271,8 +273,8 @@ class Pincho {
                          $this->numvotosProfPi,
                          $this->fotoPi,
                          $this->estadoPi,
-                         $this->numvotePi,
-                         $this->ParticipanteEmail));
+                         $this->ParticipanteEmail,
+                         $this->numvotePi));
   }
 
 }

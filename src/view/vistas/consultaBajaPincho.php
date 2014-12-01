@@ -50,7 +50,7 @@ $pincho = $view->getVariable("pincho");
 						</div>
 						<div class="form-group alineado ">
 							<label class="control-label">Numero de codigos de voto: </label>
-							<label class=" control-label"><?=$pincho->getVotePi()?></label>
+							<label class=" control-label"><?=$pincho->getNumVotePi()?></label>
 						</div>
 						<div class="form-group alineado ">
 							<label class="control-label">Estado: </label>
