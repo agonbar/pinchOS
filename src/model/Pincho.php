@@ -288,7 +288,7 @@ class Pincho {
     $db = PDOConnection::getInstance();
     $stmt = $db->prepare("SELECT * FROM premiados");
     $stmt->execute();
-    $users_db = $stmt->fetch_all(PDO::FETCH_ASSOC);
+    $users_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     $premiados=array();
     foreach ($users_db as $premiado) {
@@ -297,7 +297,4 @@ class Pincho {
 
     return $premiados;
   }
-}
->>>>>>> fc80d26226273f7a2949e94d56cc0863c1332ff1
-
 }
