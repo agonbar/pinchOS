@@ -277,4 +277,11 @@ class Pincho {
                          $this->numvotePi));
   }
 
+  public function list(){
+    $db = PDOConnection::getInstance();
+    $stmt = $db->prepare("SELECT * FROM pincho");
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_BOTH);
+  }
+
 }

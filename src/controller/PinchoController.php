@@ -54,7 +54,7 @@ class PinchoController extends DBController {
 
 					move_uploaded_file($fotoPiTemp,$fotoPi);//pasa
 					$pinchotemp->numvotosPopPi = 0;//inicializa a 0 el numero de votos dados por el JPopular
-					$pinchotemp->numvotosProfPi = 0;//inicializa a 0 el numero de votos dados por el JProfesional 
+					$pinchotemp->numvotosProfPi = 0;//inicializa a 0 el numero de votos dados por el JProfesional
 					$pinchotemp->estadoPi = "1";//inicializa a true el estado del pincho
 					$pinchotemp->numvotePi = $pinchotemp->countvotePi();//indica el numero de codigos de votos
 					$codvoto->save4();//los codigos de votos de un pincho deben crearse ANTES que el pincho
@@ -102,6 +102,11 @@ class PinchoController extends DBController {
 		$this->view->render("vistas", "consultaBajaPincho");
 	}
 	public function listadoPincho(){
+		$arrayPinchos = $this->pincho->list();
+		while ($i <= 12){
+			
+			$i++;
+		}
 		$pinchotemp = $this->pincho->showDates();
 		$this->view->setVariable("pincho", $pinchotemp);
 		$this->view->render("vistas", "listaPinchos");
