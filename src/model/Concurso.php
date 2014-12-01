@@ -29,7 +29,15 @@ class Concurso {
 
   /* La fecha del Concurso */
 
-  private $fechaC;
+  private $fechaInicioC;
+  
+   /* La fecha del Concurso */
+
+  private $fechaFinalC;
+  
+   /* La fecha del Concurso */
+
+  private $fechaFinalistasC;
 
   /* El premio del Concurso */
 
@@ -40,13 +48,15 @@ class Concurso {
   private $patrocinadorC;
 
   /* Creamos el constructor de la clase Concurso al que se le pasan los distintos parametros en relacion a la base de datos */
-  public function __construct($idC=NULL, $nombreC=NULL, $basesC=NULL, $ciudadC=NULL, $fechaC=NULL, $premioC=NULL, $patrocinadorC=NULL) {
+  public function __construct($idC=NULL, $nombreC=NULL, $basesC=NULL, $ciudadC=NULL, $fechaInicioC=NULL, $fechaFinalC=NULL, $fechaFinalistasC=NULL, $premioC=NULL, $patrocinadorC=NULL) {
 
     $this->idC = $idC;
     $this->nombreC = $nombreC;
     $this->basesC = $basesC;
     $this->ciudadC = $ciudadC;
-    $this->fechaC = $fechaC;
+    $this->fechaInicioC = $fechaInicioC;
+	$this->fechaFinalC = $fechaFinalC;
+	$this->fechaFinalistasC = $fechaFinalistasC;
     $this->premioC = $premioC;
 	$this->patrocinadorC = $patrocinadorC;
   }
@@ -94,13 +104,33 @@ class Concurso {
   }
 
   /* Devuelve la fecha del Concurso */
-  public function getFechaC() {
-    return $this->fechaC;
+  public function getFechaInicioC() {
+    return $this->fechaInicioC;
   }
 
   /* Pone la fecha del Concurso */
-  public function setFechaC($fechaC) {
-    $this->fechaC = $fechaC;
+  public function setFechaInicioC($fechaInicioC) {
+    $this->fechaInicioC = $fechaInicioC;
+  }
+  
+  /* Devuelve la fecha del Concurso */
+  public function getFechaFinalC() {
+    return $this->fechaFinalC;
+  }
+
+  /* Pone la fecha del Concurso */
+  public function setFechaFinalC($fechaFinalC) {
+    $this->fechaFinalC = $fechaFinalC;
+  }
+  
+  /* Devuelve la fecha del Concurso */
+  public function getFechaFinalistasC() {
+    return $this->fechaFinalistasC;
+  }
+
+  /* Pone la fecha del Concurso */
+  public function setFechaFinalistasC($fechaFinalistasC) {
+    $this->fechaFinalistasC = $fechaFinalistasC;
   }
 
   /* Devuelve el premio del Concurso */
@@ -136,8 +166,16 @@ class Concurso {
       $errors["ciudadC"] = "La ciudad debe contener al menos 2 caracteres de longitud";
     }
 	/*Error de fecha del concurso inferior a la actual*/
-	if ($this->fechaC< date("Y-m-d")) {
-      $errors["fechaC"] = "La fecha debe ser posterior al dia de hoy";
+	if ($this->fechaInicioC < date("Y-m-d")) {
+      $errors["fechaInicioC"] = "La fecha debe ser posterior al dia de hoy";
+    }
+	/*Error de fecha del concurso inferior a la actual*/
+	if ($this->fechaFinalC < $this->fechaFinalistasC) {
+      $errors["fechaFinalC"] = "La fecha debe ser posterior a la de finalistas";
+    }
+	/*Error de fecha del concurso inferior a la actual*/
+	if ($this->fechaFinalistasC < $this->fechaInicioC) {
+      $errors["fechaFinalistasC"] = "La fecha debe ser posterior a la de inicio";
     }
 	/*Error de longitud en el patrocinador*/
 	if (strlen($this->patrocinadorC) < 3) {
@@ -157,15 +195,15 @@ class Concurso {
   /* Guarda en la tabla Concurso los distintos valores que contendrá el propio concurso*/
   public function save() {
     $db = PDOConnection::getInstance();
-    $stmt = $db->prepare("INSERT INTO concurso values (?,?,?,?,?,?,?)");
-    $stmt->execute(array($this->idC, $this->nombreC, $this->basesC, $this->ciudadC, $this->fechaC, $this->premioC, $this->patrocinadorC));
+    $stmt = $db->prepare("INSERT INTO concurso values (?,?,?,?,?,?,?,?,?)");
+    $stmt->execute(array($this->idC, $this->nombreC, $this->basesC, $this->ciudadC, $this->fechaInicioC, $this->fechaFinalC, $this->fechaFinalistasC, $this->premioC, $this->patrocinadorC));
   }
 
   /* Actualiza el Concurso en la base de datos,para ello se hace un update de los distintos campos que contiene la tabla concurso*/
   public function update() {
     $db = PDOConnection::getInstance();
-    $stmt = $db->prepare("UPDATE concurso SET idC=?, nombreC=?, basesC=?, ciudadC=?, fechaC=?, premioC=?, patrocinadorC=?");
-    $stmt->execute(array($this->idC, $this->nombreC, $this->basesC, $this->ciudadC, $this->fechaC, $this->premioC, $this->patrocinadorC));
+    $stmt = $db->prepare("UPDATE concurso SET idC=?, nombreC=?, basesC=?, ciudadC=?, fechaInicioC=?, fechaFinalC=?, fechaFinalistasC=?, premioC=?, patrocinadorC=?");
+    $stmt->execute(array($this->idC, $this->nombreC, $this->basesC, $this->ciudadC, $this->fechaInicioC, $this->fechaFinalC, $this->fechaFinalistasC, $this->premioC, $this->patrocinadorC));
   }
   /* Compruebas si existe el concurso en la base de datos */
   public function existConcurso(){
@@ -207,7 +245,9 @@ class Concurso {
       $concursos_db["nombreC"],
       $concursos_db["basesC"],
       $concursos_db["ciudadC"],
-      $concursos_db["fechaC"],
+      $concursos_db["fechaInicioC"],
+	  $concursos_db["fechaFinalC"],
+	  $concursos_db["fechaFinalistasC"],
       $concursos_db["premioC"],
 	  $concursos_db["patrocinadorC"]
        );

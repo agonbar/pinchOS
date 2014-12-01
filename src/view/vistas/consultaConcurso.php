@@ -29,8 +29,20 @@ $concurso = $view->getVariable("concu");
           </form>
           <form class="form-horizontal separarformulario" role="form">
             <div class="form-group alineado ">
-              <label class="control-label">Fecha: </label>
-              <label class=" control-label"><?=$concurso->getFechaC()?></label>
+              <label class="control-label">Fecha de Inicio: </label>
+              <label class=" control-label"><?=$concurso->getFechaInicioC()?></label>
+            </div>
+          </form>
+		  <form class="form-horizontal separarformulario" role="form">
+            <div class="form-group alineado ">
+              <label class="control-label">Fecha de Finalización: </label>
+              <label class=" control-label"><?=$concurso->getFechaFinalC()?></label>
+            </div>
+          </form>
+		  <form class="form-horizontal separarformulario" role="form">
+            <div class="form-group alineado ">
+              <label class="control-label">Fecha de finalistas: </label>
+              <label class=" control-label"><?=$concurso->getFechaFinalistasC()?></label>
             </div>
           </form>
           <form class="form-horizontal separarformulario" role="form">

@@ -32,11 +32,27 @@ $concurso = $view->getVariable("concu");
               </div>
             </div>
             <div class="form-group separarformulario">
-              <label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Fecha</label>
+              <label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Fecha de Inicio</label>
               <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-                <input class="form-control" type="date" placeholder="<?=$concurso->getFechaC()?>" 
-					value="<?= isset($_POST["fechaC"])?$_POST["fechaC"]:$concurso->getFechaC() ?>" name="fechaC">
-				<?= isset($errors["fechaC"])?$errors["fechaC"]:"" ?><br>
+                <input class="form-control" type="date" placeholder="<?=$concurso->getFechaInicioC()?>" 
+					value="<?= isset($_POST["fechaInicioC"])?$_POST["fechaInicioC"]:$concurso->getFechaInicioC() ?>" name="fechaInicioC">
+				<?= isset($errors["fechaInicioC"])?$errors["fechaInicioC"]:"" ?><br>
+              </div>
+            </div>
+			<div class="form-group separarformulario">
+              <label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Fecha de Finalización</label>
+              <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                <input class="form-control" type="date" placeholder="<?=$concurso->getFechaFinalC()?>" 
+					value="<?= isset($_POST["fechaFinalC"])?$_POST["fechaFinalC"]:$concurso->getFechaFinalC() ?>" name="fechaFinalC">
+				<?= isset($errors["fechaFinalC"])?$errors["fechaFinalC"]:"" ?><br>
+              </div>
+            </div>
+			<div class="form-group separarformulario">
+              <label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Fecha de Finalistas</label>
+              <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                <input class="form-control" type="date" placeholder="<?=$concurso->getFechaFinalistasC()?>" 
+					value="<?= isset($_POST["fechaFinalistasC"])?$_POST["fechaFinalistasC"]:$concurso->getFechaFinalistasC() ?>" name="fechaFinalistasC">
+				<?= isset($errors["fechaFinalistasC"])?$errors["fechaFinalistasC"]:"" ?><br>
               </div>
             </div>
             <div class="form-group separarformulario">

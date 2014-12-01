@@ -74,17 +74,31 @@ class PopularController extends DBController {
 		 $errors["codigoP3"] = "Los codigos 1 y 3 no pueden ser sobre el mismo pincho";
 	  }
 	  
+	  /*Comprueba si los codigos introducidos corresponden a pinchos diferentes*/
+	  if($votoPincho1->isPinchoVotado($currentuser->getEmailU())){
+		 $errors["codigoP1"] = "Este codigo pertenece a un pincho que ya has votado";
+	  }
+	  if($votoPincho2->isPinchoVotado($currentuser->getEmailU())){
+		 $errors["codigoP2"] = "Este codigo pertenece a un pincho que ya has votado";
+	  }
+	  if($votoPincho3->isPinchoVotado($currentuser->getEmailU())){
+		 $errors["codigoP3"] = "Este codigo pertenece a un pincho que ya has votado";
+	  }
+	  
 	  try{
 
 		// comprueba si el código del pincho introducido ya forma parte de un voto anterior
-		if ((!$votoPincho1->votoExist()) and (!$votoPincho2->votoExist()) and (!$votoPincho2->votoExist())){
+		if ((!$votoPincho1->votoExist()) and (!$votoPincho2->votoExist()) and (!$votoPincho3->votoExist())){
 		
 		  //continua solo si no se ha producido ningun error
 		  if (!sizeof($errors)>0){
+		  
 			  /*Si no es asi, guarda las votaciones en la base de datos*/
 			  $votoPincho1->save();
 			  $votoPincho2->save();
 			  $votoPincho3->save();
+			  
+			  $votoPincho1->updateNumVotos();
 			  
 			  //mensaje de confirmación y redirige al metodo verPerfil del controlador popularCotroller
 			  echo "<script> alert('Voto registrado correctamente'); </script>";

@@ -140,9 +140,6 @@ class Voto {
   }
   
   
-  
-  
-  
   public function getDatosVotos($currentuserEmail) {
   
     $db = PDOConnection::getInstance();
@@ -173,6 +170,32 @@ class Voto {
     }else{
       return new Pincho(null,$nombre_db["nombrePi"]);
     }
+  }
+  
+  public function updateNumVotos(){
+	
+	$db = PDOConnection::getInstance();
+	$stmt = $db->prepare("SELECT numvotosPi FROM pincho where idPi=?");
+    $stmt->execute(array($this->pinchoIdPi));
+	$numVotos=$stmt->fetch(PDO::FETCH_ASSOC);
+	
+	$numVotos["numvotosPi"]++;
+	
+    $stmt = $db->prepare("UPDATE pincho SET numvotosPi=? WHERE IdPi=?");
+    $stmt->execute(array($numVotos["numvotosPi"], $this->pinchoIdPi));
+  }
+  
+  public function isPinchoVotado($currentuserEmail){
+	
+	$db = PDOConnection::getInstance();
+    $stmt = $db->prepare("SELECT count(*) FROM voto where usuarioEmailU=? and pinchoIdPi=?");
+    $stmt->execute(array($currentuserEmail,$this->pinchoIdPi));
+	
+    if ($stmt->fetchColumn() > 0) {
+      return true;
+    }else return false;
+  
+  
   }
   
   

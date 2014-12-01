@@ -116,6 +116,10 @@ class ProfesionalController extends DBController {
 		 $errors["codigoP"] = "El código introducido no pertenece a ningun pincho";
 	  }
 	  
+	  if($votoPincho->isPinchoVotado($currentuser->getEmailU())){
+		 $errors["codigoP"] = "Este codigo pertenece a un pincho que ya has votado";
+	  }
+	  
 	  try{
 
 		// comprueba si el código del pincho introducido ya forma parte de un voto anterior
