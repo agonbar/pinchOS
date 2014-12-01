@@ -115,6 +115,17 @@ CREATE TABLE IF NOT EXISTS `codVoto` (
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 
+-- -----------------------------------------------------
+-- Table `premiados`
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS `premiados` (
+  `idPrem` VARCHAR(45) NOT NULL,
+  `pos` INT NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY ('idPrem'),
+  FOREIGN KEY (`idPrem`) REFERENCES `pincho`(`idPi`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
 
 -- -----------------------------------------------------
 -- Table `voto`
