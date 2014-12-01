@@ -54,7 +54,7 @@ class PinchoController extends DBController {
 
 					move_uploaded_file($fotoPiTemp,$fotoPi);//pasa
 					$pinchotemp->numvotosPopPi = 0;//inicializa a 0 el numero de votos dados por el JPopular
-					$pinchotemp->numvotosProfPi = 0;//inicializa a 0 el numero de votos dados por el JProfesional 
+					$pinchotemp->numvotosProfPi = 0;//inicializa a 0 el numero de votos dados por el JProfesional
 					$pinchotemp->estadoPi = "1";//inicializa a true el estado del pincho
 					$pinchotemp->numvotePi = $pinchotemp->countvotePi();//indica el numero de codigos de votos
 					$codvoto->save4();//los codigos de votos de un pincho deben crearse ANTES que el pincho
@@ -105,6 +105,11 @@ class PinchoController extends DBController {
 		$pinchotemp = $this->pincho->showDates();
 		$this->view->setVariable("pincho", $pinchotemp);
 		$this->view->render("vistas", "listaPinchos");
+	}
+	public function consultaPremiados(){
+		$pinchotemp = $this->pincho->showDates();
+		$this->view->setVariable("premiados", $pinchotemp);
+		$this->view->render("vistas", "listarPrem");
 	}
 	public function validarPincho(){
 		$pinchotemp = $this->pincho->showDates();
