@@ -105,6 +105,8 @@ class PinchoController extends DBController {
 		$this->view->render("vistas", "listaPinchos");
 	}
 	public function validarPincho(){
+		$pinchotemp = $this->pincho->showDates();
+		$this->view->setVariable("pincho", $pinchotemp);
 		$this->view->render("vistas", "validarPincho");
 	}
 }
