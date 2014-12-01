@@ -85,10 +85,13 @@ class PinchoController extends DBController {
 
 	}
 	public function modificacionPincho(){
-
+		$pinchotemp = $this->pincho->showDates();
+		$this->view->setVariable("pincho", $pinchotemp);
 		$this->view->render("vistas", "modificacionPincho");
 	}
 	public function busquedaPincho(){
+		$pinchotemp = $this->pincho->showDates();
+		$this->view->setVariable("pincho", $pinchotemp);
 		$this->view->render("vistas", "buscarPinchos");
 	}
 	public function consultaPincho(){
@@ -97,6 +100,8 @@ class PinchoController extends DBController {
 		$this->view->render("vistas", "consultaBajaPincho");
 	}
 	public function listadoPincho(){
+		$pinchotemp = $this->pincho->showDates();
+		$this->view->setVariable("pincho", $pinchotemp);
 		$this->view->render("vistas", "listaPinchos");
 	}
 	public function validarPincho(){
