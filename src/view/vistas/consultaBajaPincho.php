@@ -21,6 +21,10 @@ $pincho = $view->getVariable("pincho");
 							<center><img src= "<?=$pincho->getFotoPi()?>" alt="Imagen del pincho" class="img-thumbnail" width= "20%" heigth= "20%"></center>
 						</div>
 						<div class="form-group alineado ">
+							<label class="control-label">Identificador del pincho: </label>
+							<label class=" control-label"><?=$pincho->getIdPi()?></label>
+						</div>
+						<div class="form-group alineado ">
 							<label class="control-label">Nombre: </label>
 							<label class=" control-label"><?=$pincho->getNombrePi()?></label>
 						</div>
@@ -37,8 +41,16 @@ $pincho = $view->getVariable("pincho");
 							<label class=" control-label"><?=$pincho->getIngredientesPi()?></label>
 						</div>
 						<div class="form-group alineado ">
-							<label class="control-label">Numero de votos: </label>
-							<label class=" control-label"><?=$pincho->getNumVotosPi()?></label>
+							<label class="control-label">Numero de votos dado por J.Popular: </label>
+							<label class=" control-label"><?=$pincho->getNumVotosPopPi()?></label>
+						</div>
+						<div class="form-group alineado ">
+							<label class="control-label">Numero de votos dado por J.Profesional: </label>
+							<label class=" control-label"><?=$pincho->getNumVotosProfPi()?></label>
+						</div>
+						<div class="form-group alineado ">
+							<label class="control-label">Numero de codigos de voto: </label>
+							<label class=" control-label"><?=$pincho->getVotePi()?></label>
 						</div>
 						<div class="form-group alineado ">
 							<label class="control-label">Estado: </label>

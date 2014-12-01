@@ -22,7 +22,8 @@ class Pincho {
                               $precioPi=NULL,
                               $ingredientesPi=NULL,
                               $cocineroPi=NULL,
-                              $numVotosPi=NULL,
+                              $numcotosPopPi=NULL,
+                              $numcotosProPi=NULL,
                               $fotoPi=NULL,
                               $fotoPiSize=NULL,
                               $estadoPi=NULL,
@@ -33,7 +34,8 @@ class Pincho {
     $this->precioPi = $precioPi;
     $this->ingredientesPi = $ingredientesPi;
     $this->cocineroPi = $cocineroPi;
-    $this->numVotosPi = $numVotosPi;
+    $this->numvotosPopPi = $numVotosPi;
+    $this->numvotosProfPi = $numVotosPi;
     $this->fotoPi = $fotoPi;
     $this->fotoPiSize = $fotoPiSize;
     $this->estadoPi = $estadoPi;
@@ -93,13 +95,23 @@ class Pincho {
   }
 
   /* Devuelve el numero de votos del Pincho */
-  public function getNumVotosPi() {
-    return $this->numVotosPi;
+  public function getNumVotosPopPi() {
+    return $this->numvotosPopPi;
   }
 
   /* Pone el numero de votos del Pincho */
-  public function setNumVotosPi($numVotosPi) {
-    $this->numVotosPi = $numVotosPi;
+  public function setNumVotosPopPi($numVotosPi) {
+    $this->numvotosPopPi = $numvotosPopPi;
+  }
+
+  /* Devuelve el numero de votos del Pincho */
+  public function getNumVotosProfPi() {
+    return $this->numvotosProfPi;
+  }
+
+  /* Pone el numero de votos del Pincho */
+  public function setNumVotosProfPi($numVotosPi) {
+    $this->numvotosProfPi = $numvotosProfPi;
   }
 
   /* Devuelve la foto del Pincho */
@@ -209,13 +221,14 @@ class Pincho {
   public function save() {
     $db = PDOConnection::getInstance();
 
-    $stmt = $db->prepare("INSERT INTO pincho values (?,?,?,?,?,?,?,?,?)");
+    $stmt = $db->prepare("INSERT INTO pincho values (?,?,?,?,?,?,?,?,?,?)");
     $stmt->execute(array($this->idPi,
                          $this->nombrePi,
                          $this->precioPi,
                          $this->ingredientesPi,
                          $this->cocineroPi,
-                         $this->numVotosPi,
+                         $this->numvotosPopPi,
+                         $this->numvotosProfPi,
                          $this->fotoPi,
                          $this->estadoPi,
                          $this->numvotePi,
@@ -236,7 +249,8 @@ class Pincho {
                         $pincho_db["precioPi"],
                         $pincho_db["ingredientesPi"],
                         $pincho_db["cocineroPi"],
-                        $pincho_db["numvotosPi"],
+                        $pincho_db["numvotosPopPi"],
+                        $pincho_db["numvotosProfPi"],
                         $pincho_db["fotoPi"],
                         $pincho_db["estadoPi"],
                         $pincho_db["numvotePi"],
@@ -247,13 +261,14 @@ class Pincho {
   public function update() {
     $db = PDOConnection::getInstance();
 
-    $stmt = $db->prepare("INSERT INTO pincho values (?,?,?,?,?,?,?,?,?)");
+    $stmt = $db->prepare("INSERT INTO pincho values (?,?,?,?,?,?,?,?,?,?)");
     $stmt->execute(array($this->idPi,
                          $this->nombrePi,
                          $this->precioPi,
                          $this->ingredientesPi,
                          $this->cocineroPi,
-                         $this->numVotosPi,
+                         $this->numvotosPopPi,
+                         $this->numvotosProfPi,
                          $this->fotoPi,
                          $this->estadoPi,
                          $this->numvotePi,
