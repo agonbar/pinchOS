@@ -111,6 +111,11 @@ class PinchoController extends DBController {
 		$this->view->setVariable("pincho", $pinchotemp);
 		$this->view->render("vistas", "listaPinchos");
 	}
+	public function consultaPremiados(){
+		$pinchotemp = $this->pincho->listarPrem();
+		$this->view->setVariable("premiados", $pinchotemp);
+		$this->view->render("vistas", "listarPrem");
+	}
 	public function validarPincho(){
 		$pinchotemp = $this->pincho->showDates();
 		$this->view->setVariable("pincho", $pinchotemp);
