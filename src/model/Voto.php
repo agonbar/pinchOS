@@ -175,14 +175,14 @@ class Voto {
   public function updateNumVotos(){
 	
 	$db = PDOConnection::getInstance();
-	$stmt = $db->prepare("SELECT numvotosPi FROM pincho where idPi=?");
+	$stmt = $db->prepare("SELECT numvotosPopPi FROM pincho where idPi=?");
     $stmt->execute(array($this->pinchoIdPi));
 	$numVotos=$stmt->fetch(PDO::FETCH_ASSOC);
 	
 	$numVotos["numvotosPi"]++;
 	
-    $stmt = $db->prepare("UPDATE pincho SET numvotosPi=? WHERE IdPi=?");
-    $stmt->execute(array($numVotos["numvotosPi"], $this->pinchoIdPi));
+    $stmt = $db->prepare("UPDATE pincho SET numvotosPopPi=? WHERE IdPi=?");
+    $stmt->execute(array($numVotos["numvotosPopPi"], $this->pinchoIdPi));
   }
   
   public function isPinchoVotado($currentuserEmail){
@@ -195,10 +195,24 @@ class Voto {
       return true;
     }else return false;
   
-  
   }
   
-  
+   public function updateNumVotosProf(){
+	
+	$db = PDOConnection::getInstance();
+	$stmt = $db->prepare("SELECT numvotosProfPi FROM pincho where idPi=?");
+    $stmt->execute(array($this->pinchoIdPi));
+	$numVotos=$stmt->fetch(PDO::FETCH_ASSOC);
+	
+	$db = PDOConnection::getInstance();
+	$stmt1 = $db->prepare("SELECT count(*) FROM voto,usuario where voto.pinchoIdPi=? and usuario.emailU=voto.usuarioEmailU and usuario.tipoU='S'");
+    $stmt1->execute(array($this->pinchoIdPi));
+
+	$numVotosTotal=($numVotos["numvotosProfPi"]+$this->valoracionV)/$stmt1->fetchColumn();
+	
+    $stmt = $db->prepare("UPDATE pincho SET numvotosProfPi=? WHERE IdPi=?");
+    $stmt->execute(array($numVotosTotal, $this->pinchoIdPi));
+  }
   
 
 
