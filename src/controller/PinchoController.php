@@ -104,7 +104,7 @@ class PinchoController extends DBController {
 	public function listadoPincho(){
 		$arrayPinchos = $this->pincho->list();
 		while ($i <= 12){
-			
+
 			$i++;
 		}
 		$pinchotemp = $this->pincho->showDates();
@@ -112,8 +112,13 @@ class PinchoController extends DBController {
 		$this->view->render("vistas", "listaPinchos");
 	}
 	public function consultaPremiados(){
-		$pinchotemp = $this->pincho->listarPrem();
-		$this->view->setVariable("premiados", $pinchotemp);
+		$premiados = array();
+		if ($premiados == NULL) {
+			throw new Exception("No hay premiados");
+		}
+		$premiados = $this->pincho->listarPrem();
+		$this->view->setVariable("premiados", $premiados);
+		print_r($premiados);
 		$this->view->render("vistas", "listarPrem");
 	}
 	public function validarPincho(){

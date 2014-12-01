@@ -277,24 +277,18 @@ class Pincho {
                          $this->numvotePi));
   }
 
-  public function listar(){
+  /*public function list(){
     $db = PDOConnection::getInstance();
     $stmt = $db->prepare("SELECT * FROM pincho");
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_BOTH);
-  }
+  }*/
 
   public function listarPrem(){
     $db = PDOConnection::getInstance();
     $stmt = $db->prepare("SELECT * FROM premiados");
     $stmt->execute();
-    $users_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    $premiados=array();
-    foreach ($users_db as $premiado) {
-      array_push($premiados, new Pincho($idPi["idPi"], $pos["pos"]));
-    }
-
+    $premiados = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $premiados;
   }
 }
