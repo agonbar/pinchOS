@@ -203,6 +203,6 @@ INSERT INTO `voto` (`usuarioEmailU`, `pinchoIdPi`, `codigopinchoV`, `valoracionV
 ('mel@gmail.com', '3', '33', '4');
 
 INSERT INTO `premiados` (`idPrem`, `pos`) VALUES
-('1','1'),
 ('2','2'),
+('1','1'),
 ('3','3');

@@ -113,10 +113,10 @@ class PinchoController extends DBController {
 	}
 	public function consultaPremiados(){
 		$premiados = array();
+		$premiados = $this->pincho->listarPrem();
 		if ($premiados == NULL) {
 			throw new Exception("No hay premiados");
 		}
-		$premiados = $this->pincho->listarPrem();
 		$this->view->setVariable("premiados", $premiados);
 		print_r($premiados);
 		$this->view->render("vistas", "listarPrem");

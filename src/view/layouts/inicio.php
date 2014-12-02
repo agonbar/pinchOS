@@ -62,7 +62,7 @@ error_reporting(E_ALL);
 								<li class="desplegable"><a href="index.php?controller=pincho&action=busquedaPincho">Búsqueda pincho</a></li>
 							</ul>
 						</li>
-						
+
 						<?php if ($currentuser->getTipoU() == 'A') { ?>
 						<li class="nav-header">
 							<a href="#" data-toggle="collapse" data-target="#menu5">
@@ -103,7 +103,7 @@ error_reporting(E_ALL);
 							</form>
 							<ul class="nav navbar-nav">
 								<li>
-									<a href="index.php?controller=concurso&action=listarPremiados"><i class="glyphicon glyphicon-plus"></i> Premiados</a>
+									<a href="index.php?controller=pincho&action=consultaPremiados"><i class="glyphicon glyphicon-plus"></i> Premiados</a>
 								</li>
 								<li>
 									<?php if (($currentuser->getTipoU() == 'J') or ($currentuser->getTipoU() == 'S')) { ?>

@@ -288,7 +288,7 @@ class Pincho {
     $db = PDOConnection::getInstance();
     $stmt = $db->prepare("SELECT * FROM premiados");
     $stmt->execute();
-    $premiados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $premiados = $stmt->fetchAll(PDO::FETCH_BOTH);
     return $premiados;
   }
 }

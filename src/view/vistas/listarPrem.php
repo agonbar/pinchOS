@@ -12,26 +12,25 @@ $premiados = $view->getVariable("premiados");
     <div class="modalbox movedown">
       <div class="row">
         <h2 class="alineado">Listado de Premiados</h2>
-      </div>
-      <ul class= "list-inline ">
-        <?php //bucle que lista los pinchos seleccionados
-        $i=0;
-        while ($i <= 12){?>
-          <li class= "column col-lg-2 col-md-2 col-sm-4 col-xs-4 col-md-offset-1">
-
-            <a href="index.php?controller=pincho&action=consultaPremiados">
-              <!-- <img src= "<?=$pincho->getFotoPi()?>" alt="Imagen del Pincho" class="img-thumbnail img-responsive"> -->
-            </a>
-            <div class="caption">
-              <h4>-Nombre del pincho -</h4>
+        <ul class= "list-inline ">
+          <?php
+          foreach ($premiados as $premiado){
+            echo '<li class= "column col-lg-2 col-md-2 col-sm-4 col-xs-4 col-md-offset-1">';
+              echo '<a href="index.php?controller=pincho&action=consultaPincho">';
+                echo $premiado["idPrem"];
+                echo $premiado["pos"];
+                echo '</a>';
+                echo '<div class="caption">';
+                  echo '<h4>-Nombre del pincho -</h4>';
+                  echo '</div>';
+                  echo '</li>';
+                }?><!-- fin while-->
+              </ul>
             </div>
-          </li>
-          <?php $i++;}?><!-- fin while-->
-        </ul>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  <!--AQUI TERMINA LA VENTANA MODAL DE AÑADIR ALBUM -->
-  <?php
-  include(__DIR__."../../layouts/pie.php");
-  ?>
+      <!--AQUI TERMINA LA VENTANA MODAL DE AÑADIR ALBUM -->
+      <?php
+      include(__DIR__."../../layouts/pie.php");
+      ?>
