@@ -4,12 +4,13 @@ require_once(__DIR__."/../core/ValidationException.php");
 
 class Participante {
 
-  private $emailU;
-  private $contrasenaU;
-  private $tipoU;
-  private $estadoU;
-  private $nombreU;
-  private $concursoId;
+  private $direccionP;
+  private $telefonoP;
+  private $nombreLocalP;
+  private $horarioP;
+  private $paginaWebP;
+  private $fotoP;
+  private $usuarioEmail;
 
   public function __construct($emailU=NULL) {
 
@@ -23,12 +24,12 @@ class Participante {
 
     return $users_db;
   }
-  public function consultar($emailU){
-    $emailU = "hector@gmail.com";
+  public function consultar($email){
     $db = PDOConnection::getInstance();
-    $stmt = $db->prepare("SELECT * FROM usuario where emailU=?");
-    $stmt->execute(array($emailU));
+    $stmt = $db->prepare("SELECT * FROM participante where usuarioEmail=?");
+    $stmt->execute(array($email));
     $user_data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    print_r($user_data);
     return $user_data;
   }
 }

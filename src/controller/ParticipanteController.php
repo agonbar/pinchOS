@@ -44,12 +44,20 @@ class ParticipanteController extends DBController {
     if ($participanteData == NULL) {
       throw new Exception("No existe participante");
     }
-    print_r($participanteData);
     $this->view->setVariable("participante", $participanteData);
     $this->view->render("vistas", "consultaPart");
   }
 
   public function modificar(){
+    if (isset($_GET["id"])){
+      $userEmail = $_GET["id"];
+    }
+    $participanteData = array();
+    $participanteData = $this->participante->consultar($userEmail);
+    if ($participanteData == NULL) {
+      throw new Exception("No existe participante");
+    }
+    $this->view->setVariable("participante", $participanteData);
     $this->view->render("vistas", "modificacionPart");
   }
 

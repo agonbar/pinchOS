@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <?php
 include(__DIR__."/../layouts/inicio.php");
+require_once(__DIR__."/../../core/ViewManager.php");
+$view = ViewManager::getInstance();
+$participante = $view->getVariable("participante");
+$errors = $view->getVariable("errors");
 ?>
 <div class="margensup" >
   <div class="column col-lg-9 col-md-9 col-sm-12 col-xs-12 col-md-offset-2" >
     <div class="modalbox movedown">
-      <div class="row " >
+      <div class="separa" >
         <h2 class="alineado">Modificar Participante</h2>
       </div>
-      <div class="row separacion">
+      <div class="separacion">
         <div class="column col-lg-10 col-md-10 col-sm-12 col-xs-12 ">
           <form class="form-horizontal" role="form">
             <div class="form-group separarformulario">
@@ -36,7 +40,7 @@ include(__DIR__."/../layouts/inicio.php");
               </div>
             </div>
             <button type="button" class="btn btn-primary col-md-offset-5" >Guardar modificación</button>
-            <a href="index.php?controller=participante&action=consultar" type="button" class="btn btn-primary " >Cancelar</a>
+            <a href="index.php?controller=participante&action=consultar&id=<?=$participante[0]["usuarioEmail"];?>" type="button" class="btn btn-primary " >Cancelar</a>
           </form>
         </div>
       </div>
