@@ -327,7 +327,7 @@ class Pincho {
 
     public function crearPrem(){
       $db = PDOConnection::getInstance();
-      $stmt = $db->prepare("SELECT pinchoId, COUNT(pinchoId) as votos FROM codVoto GROUP BY pinchoId ORDER BY COUNT(pinchoId) DESC");
+      $stmt = $db->prepare("SELECT `pincho`.`idPi` FROM pincho ORDER BY `pincho`.`numvotosPopPi` DESC");
       $stmt->execute();
       $premiados = $stmt->fetchAll(PDO::FETCH_BOTH);
       $stmt2 = $db->prepare("INSERT INTO `codVoto` (`idCV`, `pinchoId`) VALUES (?,1), (?,2), (?,3);");

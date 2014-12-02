@@ -122,7 +122,7 @@ CREATE TABLE IF NOT EXISTS `codVoto` (
 
 CREATE TABLE IF NOT EXISTS `premiados` (
   `idPrem` INT NOT NULL,
-  `pos` INT NOT NULL,
+  `ronda` INT NOT NULL comment '0= ronda popular, 1=ronda profesional, 2=ronda premiados',
   PRIMARY KEY (`idPrem`),
   FOREIGN KEY (`idPrem`) REFERENCES `pincho`(`idPi`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
