@@ -6,6 +6,7 @@ $view = ViewManager::getInstance();
 $view->setVariable("title", "Login");
 $errors = $view->getVariable("errors");
 $pincho = $view->getVariable("pincho");
+$currentuser = $view->getVariable("currentusername");
 ?>
 <!--AQUI EMPIEZA LA VENTANA MODAL DE AÑADIR ALBUM -->
 <div class="margensup" >
@@ -60,7 +61,10 @@ $pincho = $view->getVariable("pincho");
 				</div>
 			</div>
 
-			<button type="button" class="btn btn-primary col-md-offset-4" >Eliminar pincho</button>
+			<?php if ($currentuser->getTipoU() == 'A') { ?>
+				<a href="index.php?controller=pincho&action=validarPincho" ><button type="button" class="btn btn-primary " >Validar pincho</button></a>
+			<?php } ?>
+			<a href="index.php?controller=pincho&action=bajaPincho" ><button type="button" class="btn btn-primary col-md-offset-2" >Eliminar pincho</button></a>
 			<a href="index.php?controller=pincho&action=modificacionPincho" type="button" class="btn btn-primary " >Modificar pincho</a>
 		</div>
 	</div>

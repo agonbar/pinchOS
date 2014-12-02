@@ -227,7 +227,7 @@ class Pincho {
   public function save() {
     $db = PDOConnection::getInstance();
 
-    $stmt = $db->prepare("INSERT INTO pincho values (?,?,?,?,?,?,?,?,?,?)");
+    $stmt = $db->prepare("INSERT INTO pincho values (?,?,?,?,?,?,?,?,?,?,?)");
     $stmt->execute(array($this->idPi,
                          $this->nombrePi,
                          $this->precioPi,
@@ -268,8 +268,17 @@ class Pincho {
 
   public function update() {
     $db = PDOConnection::getInstance();
-
-    $stmt = $db->prepare("INSERT INTO pincho values (?,?,?,?,?,?,?,?,?,?)");
+    //print_r($this->estadoPi);die();
+    $stmt = $db->prepare("UPDATE pincho SET idPi=?,
+                                            nombrePi=?,
+                                            precioPi=?,
+                                            ingredientesPi=?,
+                                            cocineroPi=?,
+                                            numvotosPopPi=?,
+                                            numvotosProfPi=?,
+                                            fotoPi=?,
+                                            estadoPi=?,
+                                            numvotePi=?");
     $stmt->execute(array($this->idPi,
                          $this->nombrePi,
                          $this->precioPi,
@@ -279,8 +288,8 @@ class Pincho {
                          $this->numvotosProfPi,
                          $this->fotoPi,
                          $this->estadoPi,
-                         $this->ParticipanteEmail,
                          $this->numvotePi));
+  //print_r($this->estadoPi);die();
   }
 
   public function listar(){
@@ -314,4 +323,5 @@ class Pincho {
     $premiados = $stmt->fetchAll(PDO::FETCH_BOTH);
     return $premiados;
   }
+
 }

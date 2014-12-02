@@ -86,10 +86,17 @@ class PinchoController extends DBController {
 	}
 	}
 	public function bajaPincho(){
+		$pinchotemp = $this->pincho->showDates();
+		$this->view->setVariable("pincho", $pinchotemp);
 
-	}
-	public function validacionInfo(){
+		$currentuser = $_SESSION["currentuser"];
 
+		if($currentuser){//commprueba que el usuario esta logeado
+			$pinchotemp->setEstadoPi('0');
+			$pinchotemp->update();
+		}
+		echo "<script> alert('El pincho se ha dado de BAJA correctamente'); </script>";
+		echo "<script>window.location.replace('index.php?controller=pincho&action=consultaPincho');</script>";
 	}
 	public function modificacionPincho(){
 
@@ -120,13 +127,21 @@ class PinchoController extends DBController {
 			throw new Exception("No hay premiados");
 		}
 		$this->view->setVariable("premiados", $premiados);
-		print_r($premiados);
+		//print_r($premiados);
 		$this->view->render("vistas", "listarPrem");
 	}
 	public function validarPincho(){
 		$pinchotemp = $this->pincho->showDates();
 		$this->view->setVariable("pincho", $pinchotemp);
-		$this->view->render("vistas", "validarPincho");
+
+		$currentuser = $_SESSION["currentuser"];
+
+		if($currentuser){//commprueba que el usuario esta logeado
+			$pinchotemp->setEstadoPi('0');
+			$pinchotemp->update();
+		}
+		echo "<script> alert('El pincho se ha VALIDADO correctamente correctamente'); </script>";
+		echo "<script>window.location.replace('index.php?controller=pincho&action=consultaPincho');</script>";
 	}
 }
 ?>
