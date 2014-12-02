@@ -18,7 +18,7 @@ class Participante {
 
   public function listar(){
     $db = PDOConnection::getInstance();
-    $stmt = $db->prepare("SELECT * FROM usuario where tipoU='P'");
+    $stmt = $db->prepare("SELECT * FROM participante");
     $stmt->execute();
     $users_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

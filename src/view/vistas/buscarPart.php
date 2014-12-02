@@ -32,21 +32,23 @@ $errors = $view->getVariable("errors");
         </div>
       </ul>
       <ul class= "list-inline ">
-        <?php
-        foreach ($participantes as $participante){
-          echo '<li>';
-            echo'<a href="index.php?controller=participante&action=consultar&id=$participante["emailU"]">';
-              echo '<img src="./resources/img/participante.jpg" alt="./resources/img/participante.jpg" class="img-thumbnail" height="200" width="200">';
-              echo'<div class="caption">';
-                echo '<h4>'; echo $participante["emailU"];
-                  echo '</h4></a></div></li>';
-                } ?><!-- fin while-->
-              </ul>
+        <?php foreach ($participantes as $participante): ?>
+          <li>
+            <a href="index.php?controller=participante&action=consultar&id=<?=$participante["usuarioEmail"];?>">
+              <div><img src="./resources/img/<?php echo $participante["fotoP"]; ?>.jpg" alt="./resources/img/<?php echo $participante["fotoP"]; ?>.jpg" class="img-thumbnail img-responsive" height="200" width="200"></div>
+              <div class="caption">
+                <h4> <?php echo $participante["nombreLocalP"]; ?>
+                </h4>
+              </a>
             </div>
-          </div>
-        </div>
-      </div>
-      <!--AQUI TERMINA LA VENTANA MODAL DE AÑADIR ALBUM -->
-      <?php
-      include(__DIR__."../../layouts/pie.php");
-      ?>
+          </li>
+        <?php endforeach; ?><!-- fin while-->
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+<!--AQUI TERMINA LA VENTANA MODAL DE AÑADIR ALBUM -->
+<?php
+include(__DIR__."../../layouts/pie.php");
+?>
