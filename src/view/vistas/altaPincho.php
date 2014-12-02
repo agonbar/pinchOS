@@ -50,7 +50,7 @@ $pincho = $view->getVariable("pincho");
 							<?= isset($errors["fotoPi"])?$errors["fotoPi"]:"" ?><br>
 							<p class="help-block">El tamano maximo permitido es de 2Mb</p>
 						</div>
-						<button type="button" class="btn btn-primary col-md-offset-6" >Confirmar Alta</button>
+						<input type="submit" class="btn btn-primary col-md-offset-6" value = "Confirmar Alta">
 					</form>
 				</div>
 			</div>
