@@ -60,7 +60,7 @@ $concurso = $view->getVariable("concu");
           <form class="form-horizontal separarformulario" role="form">
             <div class="form-group alineado ">
               <label class="control-label">Bases: </label>
-              <label class=" control-label"><?=$concurso->getBasesC()?></label>
+			  <center><img src= "<?=$concurso->getBasesC()?>" alt="Imagen de las bases" class="img-thumbnail" width= "50%" heigth= "50%"></center>
             </div>
           </form>
         </div>
