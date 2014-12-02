@@ -44,6 +44,12 @@ class ParticipanteController extends DBController {
     if ($participanteData == NULL) {
       throw new Exception("No existe participante");
     }
+    $participanteDataPinchos = array();
+    $participanteDataPinchos = $this->participante->pinchosAsoc($userEmail);
+    if ($participanteDataPinchos == NULL) {
+      throw new Exception("No tienes pinchos aún");
+    }
+    $this->view->setVariable("participantePinchos", $participanteDataPinchos);
     $this->view->setVariable("participante", $participanteData);
     $this->view->render("vistas", "consultaPart");
   }

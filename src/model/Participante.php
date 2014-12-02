@@ -21,13 +21,18 @@ class Participante {
     $stmt = $db->prepare("SELECT * FROM participante");
     $stmt->execute();
     $users_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    PRINT_R($user_data);
-
     return $users_db;
   }
   public function consultar($email){
     $db = PDOConnection::getInstance();
     $stmt = $db->prepare("SELECT * FROM participante where usuarioEmail=?");
+    $stmt->execute(array($email));
+    $user_data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $user_data;
+  }
+  public function pinchosAsoc($email){
+    $db = PDOConnection::getInstance();
+    $stmt = $db->prepare("SELECT * FROM pincho where participanteEmail=?");
     $stmt->execute(array($email));
     $user_data = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $user_data;

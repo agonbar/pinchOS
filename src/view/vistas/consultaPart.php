@@ -1,9 +1,9 @@
-<!DOCTYPE html>
 <?php
 include(__DIR__."/../layouts/inicio.php");
 require_once(__DIR__."/../../core/ViewManager.php");
 $view = ViewManager::getInstance();
 $participante = $view->getVariable("participante");
+$pinchos = $view->getVariable("participantePinchos");
 $errors = $view->getVariable("errors");
 ?>
 <div class="margensup" >
@@ -32,26 +32,34 @@ $errors = $view->getVariable("errors");
             <label class=" control-label"><?php echo $participante[0]["telefonoP"]; ?></label>
           </div>
         </form>
-          <table class="table alineado ">
-            <!-- Aplicadas en las filas -->
-            <tr class="activa">
-              <td>Pincho</td>
-              <td>Ingredientes</td>
-              <td>Chef</td>
-            </tr>
+        <table class="table alineado ">
+          <!-- Aplicadas en las filas -->
+          <tr class="activa">
+            <td></td>
+            <td>Pincho</td>
+            <td>Precio</td>
+            <td>Ingredientes</td>
+            <td>Chef</td>
+          </tr>
+          <?php foreach ($pinchos as $pincho): ?>
+          <a href="pincho.php">
             <tr class="tablehover">
-              <td>Bocadito de cielo</td>
-              <td>Jamon</td>
-              <td>Otilio Manuel</td>
+              <td><img src="./resources/img/<?php echo $pincho["fotoPi"]; ?>.jpg" alt="./resources/img/<?php echo $pincho["fotoPi"]; ?>.jpg" class="img-thumbnail" height="50" width="50"></td>
+              <td><?php echo $pincho["nombrePi"]; ?></td>
+              <td><?php echo $pincho["precioPi"]; ?>€</td>
+              <td><?php echo $pincho["ingredientesPi"]; ?></td>
+              <td><?php echo $pincho["cocineroPi"]; ?></td>
             </tr>
-          </table>
-          <div class="modalbox movedown">
-            <button type="button" class="btn btn-primary col-md-offset-4" >Eliminar</button>
-            <a href="index.php?controller=participante&action=modificar&id=<?=$participante[0]["usuarioEmail"]?>" class="btn btn-primary" role="button">Editar</a>
-          </div>
+          </a>
+        </table>
+      <?php endforeach; ?>
+      <div class="modalbox movedown">
+        <button type="button" class="btn btn-primary col-md-offset-4" >Eliminar</button>
+        <a href="index.php?controller=participante&action=modificar&id=<?=$participante[0]["usuarioEmail"]?>" class="btn btn-primary" role="button">Editar</a>
       </div>
     </div>
   </div>
+</div>
 </div>
 <?php
 include(__DIR__."../../layouts/pie.php");
