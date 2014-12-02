@@ -35,7 +35,7 @@ $errors = $view->getVariable("errors");
         <?php foreach ($participantes as $participante): ?>
           <li>
             <a href="index.php?controller=participante&action=consultar&id=<?=$participante["usuarioEmail"];?>">
-              <div><img src="./resources/img/<?php echo $participante["fotoP"]; ?>.jpg" alt="./resources/img/<?php echo $participante["fotoP"]; ?>.jpg" class="img-thumbnail img-responsive" height="200" width="200"></div>
+              <div><img src="./resources/img/<?php echo $participante["fotoP"]; ?>.jpg" alt="./resources/img/<?php echo $participante["fotoP"]; ?>.jpg" class="img-thumbnail" height="200" width="200"></div>
               <div class="caption">
                 <h4> <?php echo $participante["nombreLocalP"]; ?>
                 </h4>
@@ -43,12 +43,12 @@ $errors = $view->getVariable("errors");
             </div>
           </li>
         <?php endforeach; ?><!-- fin while-->
-      </ul>
-    </div>
-  </div>
-</div>
-</div>
-<!--AQUI TERMINA LA VENTANA MODAL DE AÑADIR ALBUM -->
-<?php
-include(__DIR__."../../layouts/pie.php");
-?>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--AQUI TERMINA LA VENTANA MODAL DE AÑADIR ALBUM -->
+      <?php
+      include(__DIR__."../../layouts/pie.php");
+      ?>

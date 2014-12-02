@@ -21,6 +21,7 @@ class Participante {
     $stmt = $db->prepare("SELECT * FROM participante");
     $stmt->execute();
     $users_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    PRINT_R($user_data);
 
     return $users_db;
   }
@@ -29,7 +30,6 @@ class Participante {
     $stmt = $db->prepare("SELECT * FROM participante where usuarioEmail=?");
     $stmt->execute(array($email));
     $user_data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    print_r($user_data);
     return $user_data;
   }
 }

@@ -23,6 +23,7 @@ DROP TABLE IF EXISTS `usuario` ;
 DROP TABLE IF EXISTS `participante` ;
 DROP TABLE IF EXISTS `pincho` ;
 DROP TABLE IF EXISTS `voto` ;
+DROP TABLE IF EXISTS `premiados` ;
 DROP TABLE IF EXISTS `codVoto` ;
 
 
