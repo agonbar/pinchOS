@@ -4,7 +4,7 @@ require_once(__DIR__."/../../core/ViewManager.php");
 $view = ViewManager::getInstance();
 $view->setVariable("title", "Login");
 $errors = $view->getVariable("errors");
-$pincho = $view->getVariable("pincho");
+$pinchos = $view->getVariable("pinchos");
 ?>
 <!--AQUI EMPIEZA LA VENTANA MODAL DE AÑADIR ALBUM -->
 <div class="margensup" >
@@ -32,15 +32,18 @@ $pincho = $view->getVariable("pincho");
 			</div>
 		</ul>
 		<ul class= "list-inline ">
-			<?php for ($i = 1; $i <= 10; $i++)://bucle que lista los pinchos seleccionados?>
-				<li class= "column col-lg-2 col-md-2 col-sm-4 col-xs-4 col-md-offset-1">
-					<a href="index.php?controller=pincho&action=validarPincho">
-						<img src= "<?=$pincho->getFotoPi()?>" alt="Imagen del pincho" class="img-thumbnail img-responsive"></a>
-					<div class="caption">
-						<h4>-Nombre del pincho-</h4>
-					</div>
-				</li>
-			<?php endfor;?><!-- fin while-->
+			<?php //bucle que lista los pinchos seleccionados
+			foreach ($pinchos as $pincho):?>
+			<li class= "column col-lg-2 col-md-2 col-sm-4 col-xs-4 col-md-offset-1">
+
+				<a href="index.php?controller=pincho&action=consultaPincho">
+					<img src= "<?=$pincho->getFotoPi()?>" alt="Imagen del Pincho" class="img-thumbnail img-responsive">
+				</a>
+				<div class="caption">
+					<h4>- <?=$pincho->getNombrePi()?> -</h4>
+				</div>
+			</li>
+		<?php endforeach;?><!-- fin foreach-->
 		</ul>
 	</div>
 </div>

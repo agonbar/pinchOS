@@ -169,17 +169,20 @@ class Pincho {
   public function checkInfoIfNull(){
 
     $errors = array();
-    if (strlen($this->nombrePi) < 5) {
-      $errors["nombrePi"] = "El nombre debe contener al menos 5 caracteres de longitud";
+    if (strlen($this->nombrePi) < 1) {
+      $errors["nombrePi"] = "El nombre debe contener al menos 1 caracteres de longitud";
     }
-    if (strlen($this->ingredientesPi) < 10) {
-      $errors["ingredientesPi"] = "Los ingredientes debe contener al menos 10 caracteres de longitud";
+    if (strlen($this->ingredientesPi) < 5) {
+      $errors["ingredientesPi"] = "Los ingredientes debe contener al menos 5 caracteres de longitud";
     }
     if (strlen($this->precioPi) < 1) {
       $errors["precioPi"] = "El precio NO puede ser NULO";
     }
-    if (strlen($this->cocineroPi) < 5) {
-      $errors["cocineroPi"] = "El nombre del cocinero/a debe contener al menos 5 caracteres de longitud";
+    if (strlen($this->cocineroPi) < 1) {
+      $errors["cocineroPi"] = "El nombre del cocinero/a debe contener al menos 1 caracteres de longitud";
+    }
+    if (sizeof($errors)>0){
+      throw new ValidationException($errors, "El pincho no es válido");
     }
   }
 
@@ -191,8 +194,11 @@ class Pincho {
     if($this->fotoPiSize>(2048*1024)){//el archivo no puede ser mayor de 2MB
       $errors["fotoPi"] = "El tamaño de la imagen debe ser INFERIOR a 2MB";
     }
-    if($this->precioPi>1){//el archivo no puede ser mayor de 2MB
+    if($this->precioPi < 1){//el archivo no puede ser mayor de 2MB
       $errors["precioPi"] = "El precio del pincho debe ser al menos de 1€";
+    }
+    if (sizeof($errors)>0){
+      throw new ValidationException($errors, "El pincho no es válido");
     }
   }
 
@@ -281,7 +287,24 @@ class Pincho {
     $db = PDOConnection::getInstance();
     $stmt = $db->prepare("SELECT * FROM pincho");
     $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_BOTH);
+    $pinchos_db=$stmt->fetchAll(PDO::FETCH_ASSOC);
+    $pinchos=array();
+
+    foreach ($pinchos_db as $pincho) {
+      array_push($pinchos, new Pincho($pincho["idPi"],
+                                      $pincho["nombrePi"],
+                                      $pincho["precioPi"],
+                                      $pincho["ingredientesPi"],
+                                      $pincho["cocineroPi"],
+                                      $pincho["numvotosPopPi"],
+                                      $pincho["numvotosProfPi"],
+                                      $pincho["fotoPi"],
+                                      0,//indica si tiene errores la foto
+                                      $pincho["estadoPi"],
+                                      $pincho["participanteEmail"],
+                                      $pincho["numvotePi"]));
+    }
+    return $pinchos;
   }
 
   public function listarPrem(){
