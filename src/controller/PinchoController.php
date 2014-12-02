@@ -137,7 +137,7 @@ class PinchoController extends DBController {
 		$currentuser = $_SESSION["currentuser"];
 
 		if($currentuser){//commprueba que el usuario esta logeado
-			$pinchotemp->setEstadoPi('0');
+			$pinchotemp->setEstadoPi('1');
 			$pinchotemp->update();
 		}
 		echo "<script> alert('El pincho se ha VALIDADO correctamente correctamente'); </script>";
