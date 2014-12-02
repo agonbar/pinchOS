@@ -18,7 +18,7 @@ class Participante {
 
   public function listar(){
     $db = PDOConnection::getInstance();
-    $stmt = $db->prepare("SELECT * FROM participante");
+    $stmt = $db->prepare("SELECT `participante`.`nombreLocalP`, `participante`.`fotoP`, `participante`.`usuarioEmail` FROM participante, usuario WHERE ((`participante`.`usuarioEmail` = `usuario`.`emailU`) AND (`usuario`.`estadoU` = 1))");
     $stmt->execute();
     $users_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $users_db;
@@ -36,5 +36,10 @@ class Participante {
     $stmt->execute(array($email));
     $user_data = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $user_data;
+  }
+  public function eliminar($email){
+    $db = PDOConnection::getInstance();
+    $stmt = $db->prepare("UPDATE usuario SET estadoU='0' WHERE emailU=?");
+    $stmt->execute(array($email));
   }
 }

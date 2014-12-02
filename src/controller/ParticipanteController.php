@@ -67,11 +67,12 @@ class ParticipanteController extends DBController {
     $this->view->render("vistas", "modificacionPart");
   }
 
-   public function verPerfil(){//esto luego se borra y se pone en users para que dependiendo del ususrio salga una pagina.
-		$this->view->render("vistas", "consultaPart");
+  public function eliminar(){
+    if (isset($_GET["id"])){
+      $userEmail = $_GET["id"];
+    }
+    $this->participante->eliminar($userEmail);
+    $this->listar();
   }
 
-   public function verModificacion(){//esto luego se borra y se pone en users para que dependiendo del ususrio salga una pagina.
-		$this->view->render("vistas", "modificacionPart");
-  }
 }
