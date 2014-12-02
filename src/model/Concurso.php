@@ -1,5 +1,5 @@
 <?php
-/* Hacemos los requires de las clases que necesitamos para que el código que contienen sea heredadod en esta clase */
+/* Hacemos los requires de las clases que necesitamos para que el código que contienen sea heredados en esta clase */
 require_once(__DIR__."/../core/PDOConnection.php");
 require_once(__DIR__."/../core/ValidationException.php");
 

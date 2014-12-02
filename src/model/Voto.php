@@ -1,9 +1,11 @@
 <?php
+/* Hacemos los requires de las clases que necesitamos para que el código que contienen sea heredados en esta clase */
 require_once(__DIR__."/../model/User.php");
 require_once(__DIR__."/../model/Pincho.php");
 require_once(__DIR__."/../core/PDOConnection.php");
 require_once(__DIR__."/../core/ValidationException.php");
 
+/* Creamos la clase Voto que contiene toda la información relevenate acerca del mismo */
 class Voto {
 
   //private $db;
@@ -25,7 +27,8 @@ class Voto {
   private $valoracionV;
 
 
-   public function __construct($usuarioEmailU=NULL, $pinchoIdPi=NULL, $codigoPinchoV=NULL, $valoracionV=NULL) {
+ /* Creamos el constructor de la clase Voto al que se le pasan los distintos parametros en relacion a la base de datos */
+ public function __construct($usuarioEmailU=NULL, $pinchoIdPi=NULL, $codigoPinchoV=NULL, $valoracionV=NULL) {
 
     $this->usuarioEmailU = $usuarioEmailU;
     $this->pinchoIdPi = $pinchoIdPi;
@@ -75,32 +78,35 @@ class Voto {
   }
   
  
+  /* Comprueba si la valoracion del Voto es válida para registrarse en la base de datos,si no lo es devuelve un mensaje de error */
   public function checkIsValidForVoto(){
 	
-	$errors = array();
-	
+	$errors = array();//Se inializa un array errors con los distintos errores que posteriormente serán mostrados si estos se producen
+	/*Error en la seleccion de la valoracion*/
     if ($this->valoracionV ==  'N') {
       $errors["valoracionV"] = "Se debe seleccionar una valoracion";
     }
-    
+    /*Si hay algún error en la anterior comprobacion muestra un mensaje*/
     if (sizeof($errors)>0){
       throw new ValidationException($errors, "La votacion no es válida");
     }
 	
   }
   
-  
+  /* Guarda en la tabla Voto los distintos valores que contendrá el propio voto*/
   public function save() {
     $db = PDOConnection::getInstance();
     $stmt = $db->prepare("INSERT INTO voto values (?,?,?,?)");
     $stmt->execute(array($this->usuarioEmailU, $this->pinchoIdPi, $this->codigoPinchoV, $this->valoracionV));
   }
   
-  
+  /* Comprueba si ya existe previamente el voto en la base de datos*/
   public function votoExist(){
   
 	$db = PDOConnection::getInstance();
-    $stmt = $db->prepare("SELECT count(*) FROM voto where codigoPinchoV=?");
+    $stmt = $db->prepare("SELECT count(*) FROM voto where codigoPinchoV=?");/*Se cuenta si el numero de codigoPinchoV que sean iguales al que estamos introduciendo de la tabla voto y si este es mayor a 0
+															                 indica que ya esta el voto registrado*/
+	
     $stmt->execute(array($this->codigoPinchoV));
 
 	
@@ -109,7 +115,7 @@ class Voto {
     }else return false;
   }
   
-  
+  /* Comprueba si el codigo del voto es correcto*/
   public function isCorrectCode(){
   
 	$db = PDOConnection::getInstance();
@@ -128,7 +134,7 @@ class Voto {
 	
   }
   
-  
+  /* Comprueba si el codigo del voto es igual al codigo del pincho*/
   public function isPinchoEquals($votoPincho){
   
 	if($this->getPinchoIdPi()==$votoPincho->getPinchoIdPi()){
@@ -139,7 +145,7 @@ class Voto {
 	
   }
   
-  
+  /* Devuelve todos los datos de los votos realizados que se encuentran en la base de datos asociados al usuario en uso*/
   public function getDatosVotos($currentuserEmail) {
   
     $db = PDOConnection::getInstance();
@@ -155,7 +161,7 @@ class Voto {
     return $votos;
 	
   }
-  
+  /* Devuelve el nombre del pincho de la base de datos*/
   public function getNombrePincho(){
   
 	$db = PDOConnection::getInstance();
@@ -163,7 +169,6 @@ class Voto {
     $stmt->execute(array($this->codigoPinchoV));
     $nombre_db=$stmt->fetch(PDO::FETCH_ASSOC);
 	
-	//print_r(sizeof($nombre_db));die();
 	if(sizeof($nombre_db)==0){
       return null;
 
@@ -171,7 +176,7 @@ class Voto {
       return new Pincho(null,$nombre_db["nombrePi"]);
     }
   }
-  
+  /* Actualiza el numero de votos(lo incrementa en 1) que tiene un pincho despues de realizarse un nuevo voto*/
   public function updateNumVotos(){
 	
 	$db = PDOConnection::getInstance();
@@ -184,7 +189,7 @@ class Voto {
     $stmt = $db->prepare("UPDATE pincho SET numvotosPopPi=? WHERE IdPi=?");
     $stmt->execute(array($numVotos["numvotosPopPi"], $this->pinchoIdPi));
   }
-  
+  /* Comprueba si el pincho ya ha sido votado por el usuario en uso*/
   public function isPinchoVotado($currentuserEmail){
 	
 	$db = PDOConnection::getInstance();
@@ -196,7 +201,7 @@ class Voto {
     }else return false;
   
   }
-  
+  /* Actualiza el numero de votos(hace la media) que tiene un pincho despues de realizar un nuevo voto el jurado profesional*/
    public function updateNumVotosProf(){
 	
 	$db = PDOConnection::getInstance();
