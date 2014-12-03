@@ -11,7 +11,6 @@ class Pincho {
   private $cocineroPi;/* El cocinero del Pincho */
   private $numVotosPi;/* El numero de veces que un picho ha sido votado */
   private $fotoPi;//guarda el directorio donde se almacenará la imagen
-  private $fotoPiTemp;//guarda el directorio temporal donde esta la imagen
   private $fotoPiSize;//guarda el tamaño del la imagen
   private $estadoPi;/* El estado del Pincho */
   private $numvotePi;/* Es el numero de votos creados para un Pincho*/
