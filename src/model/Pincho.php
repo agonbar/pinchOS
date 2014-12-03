@@ -166,7 +166,7 @@ class Pincho {
   }
 
   /* Comprueba si alguno de los parametros es nulo o menor del tamaño esperado*/
-  public function checkInfoIfNull(){
+  public function checkInfoIfNullPi(){
 
     $errors = array();
     if (strlen($this->nombrePi) < 1) {
@@ -187,7 +187,7 @@ class Pincho {
   }
 
   //Revisa la informacion introducida por el participante
-  public function checkInfo(){
+  public function checkInfoPi(){
 
     $errors = array();
 
@@ -225,7 +225,7 @@ class Pincho {
   }
 
   /* Guarda el Pincho en la base de datos */
-  public function save() {
+  public function savePi() {
     $db = PDOConnection::getInstance();
 
     $stmt = $db->prepare("INSERT INTO pincho values (?,?,?,?,?,?,?,?,?,?,?)");
@@ -242,7 +242,7 @@ class Pincho {
     $this->numvotePi));
   }
 
-  public function showDates(){
+  public function showDatesPi(){
     $db = PDOConnection::getInstance();
     $stmt = $db->prepare("SELECT * FROM pincho");
     $stmt->execute();
@@ -267,7 +267,7 @@ class Pincho {
     }
   }
 
-  public function update() {
+  public function updatePi() {
     $db = PDOConnection::getInstance();
     //print_r($this->estadoPi);die();
     $stmt = $db->prepare("UPDATE pincho SET idPi=?,
@@ -294,10 +294,11 @@ class Pincho {
     //print_r($this->estadoPi);die();
   }
 
-  public function listar(){
+  public function listarPi(){
+    $activo = "1";
     $db = PDOConnection::getInstance();
-    $stmt = $db->prepare("SELECT * FROM pincho");
-    $stmt->execute();
+    $stmt = $db->prepare("SELECT * FROM pincho where estadoPi=?");
+    $stmt->execute(array(($activo)));
     $pinchos_db=$stmt->fetchAll(PDO::FETCH_ASSOC);
     $pinchos=array();
 
@@ -318,7 +319,7 @@ class Pincho {
     return $pinchos;
   }
 
-  public function searchName($nPi){
+  public function searchNamePi($nPi){
     $db = PDOConnection::getInstance();
     $stmt = $db->prepare("SELECT * FROM pincho where nombrePi=?");
     $stmt->execute(array($nPi));

@@ -56,22 +56,22 @@ class CodVoto {
   }
 
   /* Guarda el Codigo del voto ligado a un Pincho en la base de datos */
-  public function save($idCVtemp) {
+  public function saveCV($idCVtemp) {
     $db = PDOConnection::getInstance();
     $stmt = $db->prepare("INSERT INTO codVoto values (?,?)");
     $stmt->execute(array($idCVtemp,$this->pinchoId));
   }
 
   //Genera y guarda los 4 primeros codigos de votos ligados a un pincho
-  public function save4($IdPi){
+  public function genSaveCV($IdPi){
     $idCV1 = $this->generateIdVote($IdPi);
     $idCV2 = $this->generateIdVote($IdPi);
     $idCV3 = $this->generateIdVote($IdPi);
     $idCV4 = $this->generateIdVote($IdPi);
     //die();
-    $this->save($idCV1);
-    $this->save($idCV2);
-    $this->save($idCV3);
-    $this->save($idCV4);
+    $this->saveCV($idCV1);
+    $this->saveCV($idCV2);
+    $this->saveCV($idCV3);
+    $this->saveCV($idCV4);
   }
 }

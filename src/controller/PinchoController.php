@@ -57,14 +57,14 @@ class PinchoController extends DBController {
 					$pinchotemp->setParticipanteEmail($currentuser->getEmailU());
 
 					//Hace todas las coprobaciones a la informacion introducida por el usuario
-					$pinchotemp->checkInfoIfNull();
-					$pinchotemp->checkInfo();
+					$pinchotemp->checkInfoIfNullPi();
+					$pinchotemp->checkInfoPi();
 
 					try{
 						//die();
-						$codvototemp->save4($numpincho);//los codigos de votos de un pincho deben crearse ANTES que el pincho
+						$codvototemp->genSaveCV($numpincho);//los codigos de votos de un pincho deben crearse ANTES que el pincho
 
-						$pinchotemp->save();
+						$pinchotemp->savePi();
 
 						//mensaje de confirmación y redirige al metodo consultarPincho del controlador PinchoController
 						echo "<script> alert('Pincho registrado correctamente'); </script>";
@@ -90,38 +90,48 @@ class PinchoController extends DBController {
 		}
 	}
 	public function bajaPincho(){
-		$pinchotemp = $this->pincho->showDates();
+		$pinchotemp = $this->pincho->showDatesPi();
 		$this->view->setVariable("pincho", $pinchotemp);
 
 		$currentuser = $_SESSION["currentuser"];
 
+		echo "<script> confirmar=confirm('¿Esta seguro de que desea dar de BAJA este pincho?');
+		if (confirmar)
+		alert('El pincho se ha dado de BAJA correctamente');// si pulsamos en aceptar</script>";
 		if($currentuser){//commprueba que el usuario esta logeado
-			$pinchotemp->setEstadoPi('0');
-			$pinchotemp->update();
+			$pinchotemp->setEstadoPi("0");
+			$pinchotemp->updatePi();
 		}
-		echo "<script> alert('El pincho se ha dado de BAJA correctamente'); </script>";
+		//echo "<script> alert('El pincho se ha dado de BAJA correctamente'); </script>";
+		echo "<script> else
+		alert('El pincho NO se ha dado de BAJA'); // si pulsamos en cancelar</script>";
+
 		echo "<script>window.location.replace('index.php?controller=pincho&action=consultaPincho');</script>";
 	}
 	public function modificacionPincho(){
 
-		$pinchotemp = $this->pincho->showDates();
+		$pinchotemp = $this->pincho->showDatesPi();
 		$this->view->setVariable("pincho", $pinchotemp);
 		$this->view->render("vistas", "modificacionPincho");
 	}
 	public function busquedaPincho(){
-			$arrayPinchos = $this->pincho->listar();
+
+			print_r($bnombrePi);die();
 			//$arrayPinchos = $this->pincho->searchPrize();
 			//$arrayPinchos = $this->pincho->searchName();
+
+		$arrayPinchos = $this->pincho->listarPi();
+
 		$this->view->setVariable("pinchos", $arrayPinchos);
 		$this->view->render("vistas", "buscarPinchos");
 	}
 	public function consultaPincho(){
-		$pinchotemp = $this->pincho->showDates();
+		$pinchotemp = $this->pincho->showDatesPi();
 		$this->view->setVariable("pincho", $pinchotemp);
 		$this->view->render("vistas", "consultaBajaPincho");
 	}
 	public function listadoPincho(){
-		$arrayPinchos = $this->pincho->listar();
+		$arrayPinchos = $this->pincho->listarPi();
 		$this->view->setVariable("pinchos", $arrayPinchos);
 
 		$this->view->render("vistas", "listaPinchos");
@@ -140,14 +150,14 @@ class PinchoController extends DBController {
 		$this-> consultaPremiados();
 	}
 	public function validarPincho(){
-		$pinchotemp = $this->pincho->showDates();
+		$pinchotemp = $this->pincho->showDatesPi();
 		$this->view->setVariable("pincho", $pinchotemp);
 
 		$currentuser = $_SESSION["currentuser"];
 
 		if($currentuser){//commprueba que el usuario esta logeado
-			$pinchotemp->setEstadoPi('1');
-			$pinchotemp->update();
+			$pinchotemp->setEstadoPi("1");
+			$pinchotemp->updatePi();
 		}
 		echo "<script> alert('El pincho se ha VALIDADO correctamente correctamente'); </script>";
 		echo "<script>window.location.replace('index.php?controller=pincho&action=consultaPincho');</script>";
