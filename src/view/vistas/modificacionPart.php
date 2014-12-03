@@ -13,7 +13,7 @@ $errors = $view->getVariable("errors");
       </div>
       <div class="separacion">
         <div class="column col-lg-10 col-md-10 col-sm-12 col-xs-12 ">
-          <form class="form-horizontal" method="POST" action="index.php?controller=participante&action=modificar">
+          <form class="form-horizontal" method="POST" action="index.php?controller=participante&action=modificarParticipante">
             <div class="form-group separarformulario">
               <label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Nombre</label>
               <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
@@ -88,7 +88,7 @@ $errors = $view->getVariable("errors");
               <p class="help-block">El tamano maximo permitido es de 2Mb</p>
             </div>
             <button type="submit" class="btn btn-primary col-md-offset-5" >Guardar modificación</button>
-            <a href="index.php?controller=participante&action=consultar&id=<?=$participante[0]["usuarioEmail"];?>" type="button" class="btn btn-primary " >Cancelar</a>
+            <a href="index.php?controller=participante&action=consultaParticipante&id=<?=$participante[0]["usuarioEmail"];?>" type="button" class="btn btn-primary " >Cancelar</a>
           </form>
         </div>
       </div>

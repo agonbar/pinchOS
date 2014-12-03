@@ -54,8 +54,8 @@ $errors = $view->getVariable("errors");
           </table>
         <?php endforeach; ?>
         <div class="modalbox movedown">
-          <a href="index.php?controller=participante&action=eliminar&id=<?=$participante[0]["usuarioEmail"]?>" class="btn btn-primary" role="button">Eliminar</a>
-          <a href="index.php?controller=participante&action=modificar&id=<?=$participante[0]["usuarioEmail"]?>" class="btn btn-primary" role="button">Editar</a>
+          <a href="index.php?controller=participante&action=bajaParticipante&id=<?=$participante[0]["usuarioEmail"]?>" class="btn btn-primary" role="button">Eliminar</a>
+          <a href="index.php?controller=participante&action=modificarParticipante&id=<?=$participante[0]["usuarioEmail"]?>" class="btn btn-primary" role="button">Editar</a>
         </div>
       </div>
     </div>

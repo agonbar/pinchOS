@@ -1,6 +1,6 @@
 <?php
 require_once(__DIR__."/../model/User.php");
-require_once(__DIR__."/../model/Participante.php");
+require_once(__DIR__."/../model/Participantes.php");
 require_once(__DIR__."/../core/ViewManager.php");
 require_once(__DIR__."/../controller/DBController.php");
 
@@ -10,12 +10,12 @@ class ParticipanteController extends DBController {
 
   public function __construct() {
     parent::__construct();
-    $this->participante = new Participante();
+    $this->participante = new Participantes();
   }
 
-  public function listar(){
+  public function listarParticipantes(){
     $participantes_array = array();
-    $participantes_array = $this->participante->listar();
+    $participantes_array = $this->participante->listarParticipantes();
     if ($participantes_array == NULL) {
       throw new Exception("No hay participantes");
     }
@@ -23,9 +23,9 @@ class ParticipanteController extends DBController {
     $this->view->render("vistas", "listarPart");
   }
 
-  public function buscar(){
+  public function busquedaParticipante(){
     $participantes_array = array();
-    $participantes_array = $this->participante->listar();
+    $participantes_array = $this->participante->busquedaParticipante();
     if ($participantes_array == NULL) {
       throw new Exception("No hay participantes");
     }
@@ -33,12 +33,12 @@ class ParticipanteController extends DBController {
     $this->view->render("vistas", "buscarPart");
   }
 
-  public function consultar(){
+  public function consultaParticipante(){
     if (isset($_GET["id"])){
       $userEmail = $_GET["id"];
     }
     $participanteData = array();
-    $participanteData = $this->participante->consultar($userEmail);
+    $participanteData = $this->participante->consultaParticipante($userEmail);
     if ($participanteData == NULL) {
       throw new Exception("No existe participante");
     }
@@ -52,11 +52,11 @@ class ParticipanteController extends DBController {
     $this->view->render("vistas", "consultaPart");
   }
 
-  public function modificar(){
+  public function modificarParticipante(){
     if (isset($_GET["id"])){
       $userEmail = $_GET["id"];
       $participanteData = array();
-      $participanteData = $this->participante->consultar($userEmail);
+      $participanteData = $this->participante->consultaParticipante($userEmail);
       if ($participanteData == NULL) {
         throw new Exception("No existe participante");
       }
@@ -66,13 +66,13 @@ class ParticipanteController extends DBController {
 
     if (isset($_POST["nombreU"])){
       $usuario= new User();
-      $participante = new Participante();
+      $participante = new Participantes();
       $usuario->setContrasenaU($_POST["contrasenaU"]);
       $usuario->setNombreU($_POST["nombreU"]);
       try{
         $usuario->checkIsValidForModificacionJPopu($_POST["contrasenaU2"]);
         $usuario->update($_POST["emailU"]);
-        $participante->actualizar($_POST["emailU"],$_POST["direccionP"],$_POST["telefonoP"],$_POST["nombreLocalP"],$_POST["horarioP"],$_POST["paginaWebP"]);
+        $participante->modificarParticipante($_POST["emailU"],$_POST["direccionP"],$_POST["telefonoP"],$_POST["nombreLocalP"],$_POST["horarioP"],$_POST["paginaWebP"]);
 
         $ruta="../src/resources/img/participantes/";//ruta carpeta donde queremos copiar las imagenes
         $fotoPSize = $_FILES['fotoP']['size'];
@@ -86,7 +86,7 @@ class ParticipanteController extends DBController {
         $this->view->setVariable("errors", $errors);
       }
 
-      $participanteData = $this->participante->consultar($_POST["emailU"]);
+      $participanteData = $this->participante->consultaParticipante($_POST["emailU"]);
       if ($participanteData == NULL) {
         throw new Exception("No existe participante");
       }
@@ -95,12 +95,12 @@ class ParticipanteController extends DBController {
     }
   }
 
-  public function eliminar(){
+  public function bajaParticipante(){
     if (isset($_GET["id"])){
       $userEmail = $_GET["id"];
     }
-    $this->participante->eliminar($userEmail);
-    $this->listar();
+    $this->participante->bajaParticipante($userEmail);
+    $this->listarParticipantes();
   }
 
 }

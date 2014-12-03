@@ -2,7 +2,7 @@
 require_once(__DIR__."/../core/PDOConnection.php");
 require_once(__DIR__."/../core/ValidationException.php");
 
-class Participante {
+class Participantes {
 
   private $direccionP;
   private $telefonoP;
@@ -16,14 +16,21 @@ class Participante {
 
   }
 
-  public function listar(){
+  public function listarParticipantes(){
     $db = PDOConnection::getInstance();
     $stmt = $db->prepare("SELECT `participante`.`nombreLocalP`, `participante`.`fotoP`, `participante`.`usuarioEmail` FROM participante, usuario WHERE ((`participante`.`usuarioEmail` = `usuario`.`emailU`) AND (`usuario`.`estadoU` = 1))");
     $stmt->execute();
     $users_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $users_db;
   }
-  public function consultar($email){
+  public function busquedaParticipante(){
+    $db = PDOConnection::getInstance();
+    $stmt = $db->prepare("SELECT `participante`.`nombreLocalP`, `participante`.`fotoP`, `participante`.`usuarioEmail` FROM participante, usuario WHERE ((`participante`.`usuarioEmail` = `usuario`.`emailU`) AND (`usuario`.`estadoU` = 1))");
+    $stmt->execute();
+    $users_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $users_db;
+  }
+  public function consultaParticipante($email){
     $db = PDOConnection::getInstance();
     $stmt = $db->prepare("SELECT `participante`.*, `usuario`.* FROM usuario, participante  WHERE ((`usuario`.`emailU` = `participante`.`usuarioEmail`) AND (`participante`.`usuarioEmail` = ?))");
     $stmt->execute(array($email));
@@ -37,12 +44,12 @@ class Participante {
     $user_data = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $user_data;
   }
-  public function eliminar($email){
+  public function bajaParticipante($email){
     $db = PDOConnection::getInstance();
     $stmt = $db->prepare("UPDATE usuario SET estadoU='0' WHERE emailU=?");
     $stmt->execute(array($email));
   }
-  public function actualizar($email,$direccion,$telefono,$nombreLocal,$horario,$paginaWeb){
+  public function modificarParticipante($email,$direccion,$telefono,$nombreLocal,$horario,$paginaWeb){
     $db = PDOConnection::getInstance();
     $stmt = $db->prepare("UPDATE participante SET direccionP=?, telefonoP=?, nombreLocalP=?, horarioP=?, paginaWebP=? WHERE usuarioEmail=?");
     $stmt->execute(array($direccion,$telefono,$nombreLocal,$horario,$paginaWeb,$email));

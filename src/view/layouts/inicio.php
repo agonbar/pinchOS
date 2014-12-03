@@ -47,8 +47,8 @@ error_reporting(E_ALL);
 								<h5>Participantes <i class="glyphicon glyphicon-plus"></i></h5>
 							</a>
 							<ul class="list-unstyled collapse" id="menu2">
-								<li class="desplegable"><a href="index.php?controller=participante&action=listar">Listado</a></li>
-								<li class="desplegable"><a href="index.php?controller=participante&action=buscar">Búsqueda</a></li>
+								<li class="desplegable"><a href="index.php?controller=participante&action=listarParticipantes">Listado</a></li>
+								<li class="desplegable"><a href="index.php?controller=participante&action=busquedaParticipante">Búsqueda</a></li>
 							</ul>
 						</li>
 
