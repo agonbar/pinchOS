@@ -15,16 +15,18 @@ $errors = $view->getVariable("errors");
         <ul>
           <div class="col-lg-12">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Introcuce filtro para la busqueda...">
-              <div class="input-group-btn">
-                <button type="button" class="btn btn-default dropdown-toggle"
-                data-toggle="dropdown">
-                Buscar <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu pull-right" role="menu">
-                <li><a href="#">Buscar por nombre</a></li>
-                <li><a href="#">Buscar por precio</a></li>
-                <li><a href="#">Buscar por ingredientes</a></li>
+              <form class="form" method="POST" action="index.php?controller=participante&action=buscarParticipante">
+                <input class="form-control" value="<?= isset($_POST["datosBusqueda"])?$_POST["datosBusqueda"]:"Selecciona una opción..." ?>" name="datosBusqueda">
+                <div class="input-group-btn">
+                  <button type="button" class="btn btn-default dropdown-toggle"
+                  data-toggle="dropdown">
+                  Buscar <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu pull-right" role="menu">
+                  <li><a href="index.php?controller=participante&action=busquedaParticipante">Buscar por nombre</a></li>
+                  <li><a href="index.php?controller=participante&action=busquedaParticipante">Buscar por precio</a></li>
+                  <li><a href="index.php?controller=participante&action=busquedaParticipante">Buscar por ingredientes</a></li>
+                </form>
               </ul>
             </div>
           </div>
@@ -42,12 +44,12 @@ $errors = $view->getVariable("errors");
             </div>
           </li>
         <?php endforeach; ?><!-- fin while-->
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--AQUI TERMINA LA VENTANA MODAL DE AÑADIR ALBUM -->
-      <?php
-      include(__DIR__."../../layouts/pie.php");
-      ?>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+<!--AQUI TERMINA LA VENTANA MODAL DE AÑADIR ALBUM -->
+<?php
+include(__DIR__."../../layouts/pie.php");
+?>

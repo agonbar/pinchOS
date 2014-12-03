@@ -24,6 +24,9 @@ class ParticipanteController extends DBController {
   }
 
   public function busquedaParticipante(){
+    if (isset($_POST["datosBusqueda"])){
+      print_r($_POST["datosBusqueda"]);
+    }
     $participantes_array = array();
     $participantes_array = $this->participante->busquedaParticipante();
     if ($participantes_array == NULL) {
