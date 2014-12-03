@@ -318,6 +318,30 @@ class Pincho {
     return $pinchos;
   }
 
+  public function searchName($nPi){
+    $db = PDOConnection::getInstance();
+    $stmt = $db->prepare("SELECT * FROM pincho where nombrePi=?");
+    $stmt->execute(array($nPi));
+    $pinchos_db=$stmt->fetchAll(PDO::FETCH_ASSOC);
+    $pinchos=array();
+
+    foreach ($pinchos_db as $pincho) {
+      array_push($pinchos, new Pincho($pincho["idPi"],
+      $pincho["nombrePi"],
+      $pincho["precioPi"],
+      $pincho["ingredientesPi"],
+      $pincho["cocineroPi"],
+      $pincho["numvotosPopPi"],
+      $pincho["numvotosProfPi"],
+      $pincho["fotoPi"],
+      0,//indica si tiene errores la foto
+      $pincho["estadoPi"],
+      $pincho["participanteEmail"],
+      $pincho["numvotePi"]));
+    }
+    return $pinchos;
+  }
+
   public function listarPrem(){
     $db = PDOConnection::getInstance();
     $stmt = $db->prepare("SELECT `pincho`.* FROM premiados, pincho WHERE (`premiados`.`idPrem` = `pincho`.`idPi`)");

@@ -16,17 +16,19 @@ $pinchos = $view->getVariable("pinchos");
 			<ul>
 				<div class="col-lg-12">
 					<div class="input-group">
-						<input type="text" class="form-control" placeholder="Introcuce filtro para la busqueda...">
-						<div class="input-group-btn">
-							<button type="button" class="btn btn-default dropdown-toggle"
-							data-toggle="dropdown">
-							Buscar <span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu pull-right" role="menu">
-							<li><a href="#">Buscar por nombre</a></li>
-							<li><a href="#">Buscar por precio</a></li>
-							<li><a href="#">Buscar por ingredientes</a></li>
-						</ul>
+						<form class="form-horizontal" role="form" method="POST" action="index.php?controller=pincho&action=busquedaPincho">
+							<input type="text" class="form-control" name= "bnombrePi" placeholder="Introcuce filtro para la busqueda...">
+							<div class="input-group-btn">
+								<button type="button" class="btn btn-default dropdown-toggle"
+								data-toggle="dropdown">
+								Buscar <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu pull-right" role="menu">
+								<li><a  href="#">Buscar por nombre</a></li>
+								<li><a  href="#">Buscar por precio</a></li>
+								<li><a  href="#">Buscar por ingredientes</a></li>
+							</ul>
+						</form>
 					</div>
 				</div>
 			</div>
