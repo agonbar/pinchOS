@@ -109,13 +109,9 @@ class PinchoController extends DBController {
 		$this->view->render("vistas", "modificacionPincho");
 	}
 	public function busquedaPincho(){
-		if(isset($_POST("bnombrePi"))){
-			$arrayPinchos = $this->pincho->searchName();
-		}else if(isset($_POST("bprecioPi"))){
+			$arrayPinchos = $this->pincho->listar();
 			//$arrayPinchos = $this->pincho->searchPrize();
-		}else if (isset($_POST("bingredientesPi"))){
 			//$arrayPinchos = $this->pincho->searchName();
-		}
 		$this->view->setVariable("pinchos", $arrayPinchos);
 		$this->view->render("vistas", "buscarPinchos");
 	}
@@ -130,7 +126,7 @@ class PinchoController extends DBController {
 
 		$this->view->render("vistas", "listaPinchos");
 	}
-	public function consultaPremiados(){
+	public function  listarPrem(){
 		$premiados = array();
 		$premiados = $this->pincho->listarPrem();
 		if ($premiados == NULL) {
