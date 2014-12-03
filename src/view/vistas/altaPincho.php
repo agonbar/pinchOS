@@ -19,7 +19,7 @@ $pincho = $view->getVariable("pincho");
 						<div class="form-group separarformulario">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Nombre</label>
 							<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-								<input class="form-control" placeholder="Introduce un nombre..." name="nombrePi">
+								<input class="form-control" placeholder="Introduce un nombre..." name="nombrePi" id="nombrePi">
 								<?= isset($errors["nombrePi"])?$errors["nombrePi"]:"" ?><br>
 							</div>
 						</div>
@@ -46,7 +46,7 @@ $pincho = $view->getVariable("pincho");
 						</div>
 						<div class="form-group separarformulario">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Fotografia</label>
-								<input type="file" id="ejemplo_archivo_1" name="fotoPi">
+								<input type="file" id="fotoPi" name="fotoPi">
 								<?= isset($errors["fotoPi"])?$errors["fotoPi"]:"" ?><br>
 							<p class="help-block">El tamano maximo permitido es de 2Mb</p>
 						</div>

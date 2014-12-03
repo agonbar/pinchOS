@@ -155,10 +155,10 @@ class Pincho {
   }
 
   /* Comprueba si el id ya existe en la base de datos */
-  public function pinchoExists() {
+  public function pinchoExists($Participante) {
     $db = PDOConnection::getInstance();
-    $stmt = $db->prepare("SELECT count(idPi) FROM pincho where idPi=?");
-    $stmt->execute(array($this->idPi));
+    $stmt = $db->prepare("SELECT * FROM pincho where ParticipanteEmail=?");
+    $stmt->execute(array($Participante));
 
     if ($stmt->fetchColumn() > 0) {
       return true;
@@ -205,13 +205,14 @@ class Pincho {
   //Crea el codigo de un pincho
   public function generateIdPi(){
     $db = PDOConnection::getInstance();
-    $stmt = $db->prepare("SELECT count(idPi) FROM pincho");
-    $stmt->execute(array($this->idPi));
+    $stmt = $db->prepare("SELECT * FROM pincho");
+    $pcount=$stmt->rowCount();
     $numpinchos = 1;
-
-    if ($stmt->fetchColumn() > 0){
+    //print_r($pcount);die();
+    if ($pcount > 0){
       $numpinchos = $stmt+1;
     }
+    //print_r($numpinchos);die();
     return $numpinchos;
   }
 
