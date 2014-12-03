@@ -215,14 +215,6 @@ class Pincho {
     return $numpinchos;
   }
 
-  //Cuenta el numero de codigo de voto asociados a un Pincho
-  public function countvotePi(){
-    $db = PDOConnection::getInstance();
-    $stmt = $db->prepare("SELECT count(idCV) FROM codVoto");
-    $stmt->execute(array($this->idPi));
-    return $stmt;
-  }
-
   /* Guarda el Pincho en la base de datos */
   public function savePi() {
     $db = PDOConnection::getInstance();
