@@ -6,13 +6,11 @@ require_once(__DIR__."/../controller/DBController.php");
 
 class ParticipanteController extends DBController {
 
-  private $user;
   private $participante;
 
   public function __construct() {
     parent::__construct();
     $this->participante = new Participante();
-    $this->user = new User();
   }
 
   public function listar(){
@@ -57,14 +55,44 @@ class ParticipanteController extends DBController {
   public function modificar(){
     if (isset($_GET["id"])){
       $userEmail = $_GET["id"];
+      $participanteData = array();
+      $participanteData = $this->participante->consultar($userEmail);
+      if ($participanteData == NULL) {
+        throw new Exception("No existe participante");
+      }
+      $this->view->setVariable("participante", $participanteData);
+      $this->view->render("vistas", "modificacionPart");
     }
-    $participanteData = array();
-    $participanteData = $this->participante->consultar($userEmail);
-    if ($participanteData == NULL) {
-      throw new Exception("No existe participante");
+
+    if (isset($_POST["nombreU"])){
+      $usuario= new User();
+      $participante = new Participante();
+      $usuario->setContrasenaU($_POST["contrasenaU"]);
+      $usuario->setNombreU($_POST["nombreU"]);
+      try{
+        $usuario->checkIsValidForModificacionJPopu($_POST["contrasenaU2"]);
+        $usuario->update($_POST["emailU"]);
+        $participante->actualizar($_POST["emailU"],$_POST["direccionP"],$_POST["telefonoP"],$_POST["nombreLocalP"],$_POST["horarioP"],$_POST["paginaWebP"]);
+
+        $ruta="../src/resources/img/participantes/";//ruta carpeta donde queremos copiar las imagenes
+        $fotoPSize = $_FILES['fotoP']['size'];
+        $fotoP = $ruta.$_FILES['fotoP']['name'];
+        $fotoPTemp = $_FILES['fotoP']['tmp_name'];
+        move_uploaded_file($fotoPTemp,$fotoP);//pasa la foto de la carpeta temporal a la del servidor web
+
+        echo "<script> alert('Usuario modificado correctamente'); </script>";
+      }catch(ValidationException $ex) {
+        $errors = $ex->getErrors();
+        $this->view->setVariable("errors", $errors);
+      }
+
+      $participanteData = $this->participante->consultar($_POST["emailU"]);
+      if ($participanteData == NULL) {
+        throw new Exception("No existe participante");
+      }
+      $this->view->setVariable("participante", $participanteData);
+      $this->view->render("vistas", "modificacionPart");
     }
-    $this->view->setVariable("participante", $participanteData);
-    $this->view->render("vistas", "modificacionPart");
   }
 
   public function eliminar(){

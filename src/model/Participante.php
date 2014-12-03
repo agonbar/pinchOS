@@ -25,7 +25,7 @@ class Participante {
   }
   public function consultar($email){
     $db = PDOConnection::getInstance();
-    $stmt = $db->prepare("SELECT * FROM participante where usuarioEmail=?");
+    $stmt = $db->prepare("SELECT `participante`.*, `usuario`.* FROM usuario, participante  WHERE ((`usuario`.`emailU` = `participante`.`usuarioEmail`) AND (`participante`.`usuarioEmail` = ?))");
     $stmt->execute(array($email));
     $user_data = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $user_data;
@@ -41,5 +41,10 @@ class Participante {
     $db = PDOConnection::getInstance();
     $stmt = $db->prepare("UPDATE usuario SET estadoU='0' WHERE emailU=?");
     $stmt->execute(array($email));
+  }
+  public function actualizar($email,$direccion,$telefono,$nombreLocal,$horario,$paginaWeb){
+    $db = PDOConnection::getInstance();
+    $stmt = $db->prepare("UPDATE participante SET direccionP=?, telefonoP=?, nombreLocalP=?, horarioP=?, paginaWebP=? WHERE usuarioEmail=?");
+    $stmt->execute(array($direccion,$telefono,$nombreLocal,$horario,$paginaWeb,$email));
   }
 }
