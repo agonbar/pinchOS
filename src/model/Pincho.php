@@ -270,69 +270,73 @@ class Pincho {
     $db = PDOConnection::getInstance();
     //print_r($this->estadoPi);die();
     $stmt = $db->prepare("UPDATE pincho SET idPi=?,
-                                            nombrePi=?,
-                                            precioPi=?,
-                                            ingredientesPi=?,
-                                            cocineroPi=?,
-                                            numvotosPopPi=?,
-                                            numvotosProfPi=?,
-                                            fotoPi=?,
-                                            estadoPi=?,
-                                            numvotePi=?");
-      $stmt->execute(array($this->idPi,
-                           $this->nombrePi,
-                           $this->precioPi,
-                           $this->ingredientesPi,
-                           $this->cocineroPi,
-                           $this->numvotosPopPi,
-                           $this->numvotosProfPi,
-                           $this->fotoPi,
-                           $this->estadoPi,
-                           $this->ParticipanteEmail,
-                           $this->numvotePi));
-      //print_r($this->estadoPi);die();
-    }
-
-    public function listar(){
-      $db = PDOConnection::getInstance();
-      $stmt = $db->prepare("SELECT * FROM pincho");
-      $stmt->execute();
-      $pinchos_db=$stmt->fetchAll(PDO::FETCH_ASSOC);
-      $pinchos=array();
-
-      foreach ($pinchos_db as $pincho) {
-        array_push($pinchos, new Pincho($pincho["idPi"],
-        $pincho["nombrePi"],
-        $pincho["precioPi"],
-        $pincho["ingredientesPi"],
-        $pincho["cocineroPi"],
-        $pincho["numvotosPopPi"],
-        $pincho["numvotosProfPi"],
-        $pincho["fotoPi"],
-        0,//indica si tiene errores la foto
-        $pincho["estadoPi"],
-        $pincho["participanteEmail"],
-        $pincho["numvotePi"]));
-      }
-      return $pinchos;
-    }
-
-    public function listarPrem(){
-      $db = PDOConnection::getInstance();
-      $stmt = $db->prepare("SELECT * FROM premiados");
-      $stmt->execute();
-      $premiados = $stmt->fetchAll(PDO::FETCH_BOTH);
-      return $premiados;
-    }
-
-    public function crearPrem(){
-      $db = PDOConnection::getInstance();
-      $stmt = $db->prepare("SELECT `pincho`.`idPi` FROM pincho ORDER BY `pincho`.`numvotosPopPi` DESC");
-      $stmt->execute();
-      $premiados = $stmt->fetchAll(PDO::FETCH_BOTH);
-      $stmt2 = $db->prepare("INSERT INTO `codVoto` (`idCV`, `pinchoId`) VALUES (?,1), (?,2), (?,3);");
-      $stmt2->execute(array($premiados[0][pinchoId], $premiados[1][pinchoId], $premiados[2][pinchoId]));
-      $stmt2 = $db->prepare("DROP TABLE IF EXISTS `codVoto` ;");
-      $stmt2->execute();
-    }
+    nombrePi=?,
+    precioPi=?,
+    ingredientesPi=?,
+    cocineroPi=?,
+    numvotosPopPi=?,
+    numvotosProfPi=?,
+    fotoPi=?,
+    estadoPi=?,
+    numvotePi=?");
+    $stmt->execute(array($this->idPi,
+    $this->nombrePi,
+    $this->precioPi,
+    $this->ingredientesPi,
+    $this->cocineroPi,
+    $this->numvotosPopPi,
+    $this->numvotosProfPi,
+    $this->fotoPi,
+    $this->estadoPi,
+    $this->ParticipanteEmail,
+    $this->numvotePi));
+    //print_r($this->estadoPi);die();
   }
+
+  public function listar(){
+    $db = PDOConnection::getInstance();
+    $stmt = $db->prepare("SELECT * FROM pincho");
+    $stmt->execute();
+    $pinchos_db=$stmt->fetchAll(PDO::FETCH_ASSOC);
+    $pinchos=array();
+
+    foreach ($pinchos_db as $pincho) {
+      array_push($pinchos, new Pincho($pincho["idPi"],
+      $pincho["nombrePi"],
+      $pincho["precioPi"],
+      $pincho["ingredientesPi"],
+      $pincho["cocineroPi"],
+      $pincho["numvotosPopPi"],
+      $pincho["numvotosProfPi"],
+      $pincho["fotoPi"],
+      0,//indica si tiene errores la foto
+      $pincho["estadoPi"],
+      $pincho["participanteEmail"],
+      $pincho["numvotePi"]));
+    }
+    return $pinchos;
+  }
+
+  public function listarPrem(){
+    $db = PDOConnection::getInstance();
+    $stmt = $db->prepare("SELECT `pincho`.* FROM premiados, pincho WHERE (`premiados`.`idPrem` = `pincho`.`idPi`)");
+    $stmt->execute();
+    $premiados = $stmt->fetchAll(PDO::FETCH_BOTH);
+    return $premiados;
+  }
+
+  public function crearFin(){
+    $db = PDOConnection::getInstance();
+    $stmt1 = $db->prepare("SELECT `pincho`.`idPi` FROM pincho ORDER BY `pincho`.`numvotosPopPi` DESC");
+    $stmt1->execute();
+    $premiados = $stmt1->fetchAll(PDO::FETCH_BOTH);
+    $stmt2 = $db->prepare("DELETE FROM `premiados`");
+    $stmt2->execute();
+    foreach($premiados as $premiado){
+      $stmt3 = $db->prepare("INSERT INTO `premiados`(`idPrem`, `ronda`) VALUES (?,'1')");
+      $stmt3->execute(array($premiado['idPi']));
+    }
+    $stmt4 = $db->prepare("UPDATE `pincho` SET `numvotosPopPi`=0");
+    $stmt4->execute();
+  }
+}
