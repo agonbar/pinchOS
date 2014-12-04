@@ -58,6 +58,7 @@ $currentuser = $view->getVariable("currentusername");
         <div class="modalbox movedown">
           <a href="index.php?controller=participante&action=bajaParticipante&id=<?=$participante[0]["usuarioEmail"]?>" class="btn btn-primary" role="button">Eliminar</a>
           <a href="index.php?controller=participante&action=modificarParticipante&id=<?=$participante[0]["usuarioEmail"]?>" class="btn btn-primary" role="button">Editar</a>
+          <a href="index.php?controller=pincho&action=altaPincho" class="btn btn-primary" role="button">Crear Pincho</a>
         </div>
         <?php } ?>
       </div>
