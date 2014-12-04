@@ -4,7 +4,7 @@ require_once(__DIR__."/../core/ValidationException.php");
 
 /**
  *
- * En esta clase se maneja todo lo relacionado con el participante
+ * En esta clase se maneja todo lo relacionado con el enlace participante
  *
  */
 class Participantes {
@@ -36,7 +36,8 @@ class Participantes {
   /**
   *
   * Devuelve un array con los datos necesarios al listar participantes
-  * @return users_db array conteniendo el nombre, la url de la foto y el email
+  * @return string[][] $users_db array por cada participante representados con
+  * arrays conteniendo el nombre, la url de la foto y el email
   * @access public
   *
   */
@@ -52,8 +53,8 @@ class Participantes {
   /**
   *
   * Devuelve un array con los datos necesarios al buscar participantes
-  * @param data  Nombre del local para buscar
-  * @return users_db array conteniendo el nombre, la url de la foto y el email
+  * @param string $data  Nombre del local para buscar
+  * @return string[][] $users_data  Array por cada participante representado con un array de todos sus datos
   * @access public
   *
   */
@@ -69,8 +70,8 @@ class Participantes {
   /**
   *
   * Devuelve un array con los datos de un participante en específico
-  * @param email Se buscará el usuario en la base de datos en base a su email
-  * @return users_data  Array con todos los datos de todos los participantes
+  * @param string $email Se buscará el usuario en la base de datos en base a su email
+  * @return string[] $users_data  Array con todos los datos del participante
   * @access public
   *
   */
@@ -86,8 +87,8 @@ class Participantes {
   /**
   *
   * Devuelve un array con los pinchos asociados a un participante
-  * @param email Se buscará el pincho con el email de su participante asociado
-  * @return pincho_data  Array conteniendo todos los datos del pincho
+  * @param string $email Se buscará el pincho con el email de su participante asociado
+  * @return string[] $pincho_data  Array conteniendo todos los datos del pincho
   * @access public
   *
   */
@@ -103,7 +104,7 @@ class Participantes {
   /**
   *
   * Modifica el estado de un participante a desactivado en base a su email
-  * @param email Se buscará el participante a eliminar con este email
+  * @param string $email Se buscará el participante a eliminar con este email
   * @access public
   *
   */
@@ -117,12 +118,12 @@ class Participantes {
   /**
   *
   * Modifica los datos de un participante en base a su email
-  * @param email Clave del usuario
-  * @param direccion Direccion del local
-  * @param telefono Numero del local
-  * @param nombreLocal Nombre que tiene el local
-  * @param horario Horario de apertura y cierre
-  * @param paginaWeb Url con la página
+  * @param string $email Clave del usuario
+  * @param string $direccion Direccion del local
+  * @param string $telefono Numero del local
+  * @param stirng $nombreLocal Nombre que tiene el local
+  * @param string $horario Horario de apertura y cierre
+  * @param string $paginaWeb Url con la página
   * @access public
   *
   */

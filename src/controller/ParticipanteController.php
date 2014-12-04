@@ -4,14 +4,42 @@ require_once(__DIR__."/../model/Participantes.php");
 require_once(__DIR__."/../core/ViewManager.php");
 require_once(__DIR__."/../controller/DBController.php");
 
+/**
+ *
+ * Clase a la que realizar llamadas desde frontend realizando el procesado
+ * necesario y conectado al modelo para obetener/insertar datos
+ *
+ */
+
 class ParticipanteController extends DBController {
 
+  /**
+  *
+  * Variable para el modelo (singleton)
+  *
+  */
+
   private $participante;
+
+  /**
+  *
+  * Constructor en el que se crea la instancia del participante (singleton)
+  *
+  */
 
   public function __construct() {
     parent::__construct();
     $this->participante = new Participantes();
   }
+
+  /**
+  *
+  * Funcion que obtiene el listado de participantes, en caso de no haber,
+  * lanza una excepcion y notifica del problema, en caso de haber devuelve
+  * el array con los datos necesarios a la vista.
+  * @access public
+  *
+  */
 
   public function listarParticipantes(){
     $participantes_array = array();
@@ -22,6 +50,14 @@ class ParticipanteController extends DBController {
     $this->view->setVariable("participantes", $participantes_array);
     $this->view->render("vistas", "listarPart");
   }
+
+  /**
+  *
+  * Funcion que obtiene el listado de participantes que cumplen un requisito,
+  * en caso de no haber, lanza una excepcion y notifica del problema,
+  * en caso de haber devuelve el array con los datos necesarios a la vista.
+  * @access public
+  */
 
   public function busquedaParticipante(){
     if (isset($_POST["datosBusqueda"])){
@@ -35,6 +71,13 @@ class ParticipanteController extends DBController {
     $this->view->setVariable("participantes", $participantes_array);
     $this->view->render("vistas", "buscarPart");
   }
+
+  /**
+  *
+  * Funcion que devuelve los datos de un participante definido por su email.
+  * @access public
+  *
+  */
 
   public function consultaParticipante(){
     if (isset($_GET["id"])){
@@ -54,6 +97,17 @@ class ParticipanteController extends DBController {
     $this->view->setVariable("participante", $participanteData);
     $this->view->render("vistas", "consultaPart");
   }
+
+  /**
+  *
+  * Funcion que modifca los datos de un participante en base a su email.
+  * Pimero parte comprueba que el usuario existe.
+  * Segundo actualiza los datos de su tabla usuario, con las funciones del modelo User.
+  * Finalmente modifica los datos de su tabla participante con el modelo Participantes
+  * y redirecciona con los nuevos datos
+  * @access public
+  *
+  */
 
   public function modificarParticipante(){
     if (isset($_GET["id"])){
@@ -98,6 +152,13 @@ class ParticipanteController extends DBController {
     }
   }
 
+  /**
+  *
+  * Da de baja un participante definido por su email.
+  * @access public
+  *
+  */
+
   public function bajaParticipante(){
     if (isset($_GET["id"])){
       $userEmail = $_GET["id"];
@@ -105,5 +166,4 @@ class ParticipanteController extends DBController {
     $this->participante->bajaParticipante($userEmail);
     $this->listarParticipantes();
   }
-
 }
