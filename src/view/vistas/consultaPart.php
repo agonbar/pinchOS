@@ -45,7 +45,7 @@ $currentuser = $view->getVariable("currentusername");
           <?php foreach ($pinchos as $pincho): ?>
             <a href="pincho.php">
               <tr class="tablehover">
-                <td><img src="./resources/img/<?php echo $pincho["fotoPi"]; ?>.jpg" alt="./resources/img/<?php echo $pincho["fotoPi"]; ?>.jpg" class="img-thumbnail" height="50" width="50"></td>
+                <td><img src="<?php echo $pincho["fotoPi"]; ?>" alt="./resources/img/<?php echo $pincho["fotoPi"]; ?>.jpg" class="img-thumbnail" height="50" width="50"></td>
                 <td><?php echo $pincho["nombrePi"]; ?></td>
                 <td><?php echo $pincho["precioPi"]; ?>€</td>
                 <td><?php echo $pincho["ingredientesPi"]; ?></td>
