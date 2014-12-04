@@ -107,7 +107,7 @@ error_reporting(E_ALL);
 								</li>
 								<li>
 									<?php if (($currentuser->getTipoU() == 'J') or ($currentuser->getTipoU() == 'S')) { ?>
-									<a href="index.php?controller=pincho&action=seleccionarVotacion"><i class="glyphicon glyphicon-plus"></i> Votar</a>
+									<a href="index.php?controller=users&action=seleccionarVotacion"><i class="glyphicon glyphicon-plus"></i> Votar</a>
 									<?php } ?>
 								</li>
 								<li>

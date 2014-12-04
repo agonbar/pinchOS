@@ -128,10 +128,10 @@ class ProfesionalController extends DBController {
 		  //continua solo si no se ha producido ningun error
 		  if (!sizeof($errors)>0){
 		  
+			  $votoPincho->updateNumVotosProf();
+		  
 			  /*Si no es asi, guarda las votaciones en la base de datos*/
 			  $votoPincho->save();
-			  
-			  $votoPincho->updateNumVotosProf();
 			  
 			  //mensaje de confirmación y redirige al metodo verPerfil del controlador profesionalCotroller
 			  echo "<script> alert('Voto registrado correctamente'); </script>";
