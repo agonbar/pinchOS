@@ -11,9 +11,23 @@ $premiadosPro = $view->getVariable("premiadosPro");
   <div class="column col-lg-10 col-md-10 col-sm-12 col-xs-12 col-md-offset-1" >
     <div class="modalbox movedown">
       <div class="row">
-        <h2 class="alineado">Listado de Premiados</h2>
+        <h2 class="alineado">Listado de Premiados Populares</h2>
         <ul class= "list-inline ">
           <?php foreach ($premiadosPop as $premiado): ?>
+            <li>
+              <a href="index.php?controller=pincho&action=consultaPincho&id=<?=$premiado["idPi"];?>">
+                <div><img src="<?php echo $premiado["fotoPi"]; ?>.jpg" alt="./resources/img/<?php echo $premiado["fotoPi"]; ?>.jpg" class="img-thumbnail" height="200" width="200"></div>
+                <div class="caption">
+                  <h4> <?php echo $premiado["nombrePi"]; ?>
+                  </h4>
+                </a>
+              </div>
+            </li>
+          <?php endforeach; ?><!-- fin while-->
+        </ul>
+        <h2 class="alineado">Listado de Premiados Profesionales</h2>
+        <ul class= "list-inline ">
+          <?php foreach ($premiadosPro as $premiado): ?>
             <li>
               <a href="index.php?controller=pincho&action=consultaPincho&id=<?=$premiado["idPi"];?>">
                 <div><img src="./resources/img/<?php echo $premiado["fotoPi"]; ?>.jpg" alt="./resources/img/<?php echo $premiado["fotoPi"]; ?>.jpg" class="img-thumbnail" height="200" width="200"></div>

@@ -169,7 +169,7 @@ class PinchoController extends DBController {
 	}
 	public function cerrarVotacion(){
 		$this->pincho->crearFin();
-		$this-> consultaPremiados();
+		$this-> listarPrem();
 	}
 	public function validarPincho(){
 		if(isset($_GET["idPi"])){

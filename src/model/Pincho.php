@@ -351,7 +351,7 @@ class Pincho {
 
   public function listarPremPop(){
     $db = PDOConnection::getInstance();
-    $stmt = $db->prepare("SELECT `pincho`.`idPi` FROM pincho ORDER BY `pincho`.`numvotosPopPi` DESC limit 10");
+    $stmt = $db->prepare("SELECT `pincho`.*FROM pincho ORDER BY `pincho`.`numvotosPopPi` DESC limit 10");
     $stmt->execute();
     $premiados = $stmt->fetchAll(PDO::FETCH_BOTH);
     return $premiados;
@@ -370,7 +370,8 @@ class Pincho {
     }
     $stmt4 = $db->prepare("UPDATE `pincho` SET `numvotosProfPi`=0");
     $stmt4->execute();
-    $stmt5 = $db->prepare("DELETE FROM `votos` WHERE `tipoU`=S");
-    $stmt5->execute();
+    $stmt5 = $db->prepare("UPDATE voto, usuario SET `valoracionV`=0 WHERE ((`voto`.`usuarioEmailU` = `usuario`.`emailU`) AND (`usuario`.`tipoU` = ?))");
+    $stmt5->execute(array("S"));
+    print_r("Hola testFinal");
   }
 }
