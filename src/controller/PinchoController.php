@@ -103,7 +103,7 @@ class PinchoController extends DBController {
 			$pinchotemp->updatePi();
 		}
 		echo "<script> alert('El pincho se ha dado de BAJA correctamente'); </script>";
-		echo "<script>window.location.replace('index.php?controller=pincho&action=consultaPincho');</script>";
+		echo "<script>window.location.replace('index.php?controller=pincho&action=listadoPincho');</script>";
 	}
 	public function modificacionPincho(){
 		if(isset($_GET["idPi"])){
@@ -140,9 +140,15 @@ class PinchoController extends DBController {
 		$this->view->render("vistas", "consultaBajaPincho");
 	}
 	public function listadoPincho(){
-		$arrayPinchos = $this->pincho->listarPi();
-		$this->view->setVariable("pinchos", $arrayPinchos);
-
+		$currentuser = $_SESSION["currentuser"];
+		//print_r($currentuser->getTipoU());die();
+		if($currentuser->getTipoU() == "A"){
+			$arrayPinchos = $this->pincho->listarPi();
+			$this->view->setVariable("pinchos", $arrayPinchos);
+		}else{
+			$arrayPinchos = $this->pincho->listarPiActivos();
+			$this->view->setVariable("pinchos", $arrayPinchos);
+		}
 		$this->view->render("vistas", "listaPinchos");
 	}
 	public function  listarPrem(){
@@ -175,7 +181,7 @@ class PinchoController extends DBController {
 			$pinchotemp->updatePi();
 		}
 		echo "<script> alert('El pincho se ha VALIDADO correctamente correctamente'); </script>";
-		echo "<script>window.location.replace('index.php?controller=pincho&action=consultaPincho');</script>";
+		echo "<script>window.location.replace('index.php?controller=pincho&action=listadoPincho');</script>";
 	}
 }
 ?>
