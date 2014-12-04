@@ -341,6 +341,15 @@ class Pincho {
     return $pinchos;
   }
 
+  /**
+  *
+  * Crea un listado con todos los premiados por el jurado profesional y sus datos
+  * @return string[][] $premiados Array compuesto por un arrays, cada uno con
+  * los datos de un premiado
+  * @access public
+  *
+  */
+
   public function listarPremPro(){
     $db = PDOConnection::getInstance();
     $stmt = $db->prepare("SELECT `pincho`.* FROM premiados, pincho WHERE (`premiados`.`idPrem` = `pincho`.`idPi`)");
@@ -349,6 +358,15 @@ class Pincho {
     return $premiados;
   }
 
+  /**
+  *
+  * Crea un listado con todos los premiados por el jurado popular y sus datos
+  * @return string[][] $premiados Array compuesto por un arrays, cada uno con
+  * los datos de un premiado
+  * @access public
+  *
+  */
+
   public function listarPremPop(){
     $db = PDOConnection::getInstance();
     $stmt = $db->prepare("SELECT `pincho`.*FROM pincho ORDER BY `pincho`.`numvotosPopPi` DESC limit 10");
@@ -356,6 +374,14 @@ class Pincho {
     $premiados = $stmt->fetchAll(PDO::FETCH_BOTH);
     return $premiados;
   }
+
+  /**
+  *
+  * En su ejecucion se cierra el concurso de modo que se crea el listado de participantes
+  * que han ganado por el jurado profesional y se reinician sus valorariones de la tabla
+  * @access public
+  *
+  */
 
   public function crearFin(){
     $db = PDOConnection::getInstance();
@@ -372,6 +398,5 @@ class Pincho {
     $stmt4->execute();
     $stmt5 = $db->prepare("UPDATE voto, usuario SET `valoracionV`=0 WHERE ((`voto`.`usuarioEmailU` = `usuario`.`emailU`) AND (`usuario`.`tipoU` = ?))");
     $stmt5->execute(array("S"));
-    print_r("Hola testFinal");
   }
 }

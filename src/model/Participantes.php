@@ -9,30 +9,6 @@ require_once(__DIR__."/../core/ValidationException.php");
  */
 class Participantes {
 
-/**
- *
- * Variables de un participante, por eliminar
- *
- */
-  private $direccionP;
-  private $telefonoP;
-  private $nombreLocalP;
-  private $horarioP;
-  private $paginaWebP;
-  private $fotoP;
-  private $usuarioEmail;
-
-
-  /**
-  *
-  * Por eliminar
-  *
-  */
-  public function __construct($emailU=NULL) {
-
-  }
-
-
   /**
   *
   * Devuelve un array con los datos necesarios al listar participantes

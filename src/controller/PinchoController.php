@@ -155,6 +155,15 @@ class PinchoController extends DBController {
 		}
 		$this->view->render("vistas", "listaPinchos");
 	}
+
+	/**
+	*
+	* Llama a listar los premiados del jurado profesional y a los del popular
+	* y los devuelve a la vista
+	* @access public
+	*
+	*/
+
 	public function  listarPrem(){
 		$premiadosPop = array();
 		$premiadosPro = array();

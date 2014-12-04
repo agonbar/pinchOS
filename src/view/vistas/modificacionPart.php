@@ -81,12 +81,6 @@ $errors = $view->getVariable("errors");
               </div>
             </div>
             <h2 class="alineado"><div><img src="./resources/img/<?php echo $participante[0]["fotoP"]; ?>.jpg" alt="./resources/img/<?php echo $participante[0]["fotoP"]; ?>.jpg" class="img-thumbnail" height="200" width="200"></div></h2>
-            <div class="form-group separarformulario">
-              <label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Fotografia</label>
-              <input type="file" id="ejemplo_archivo_1" name="fotoP">
-              <?= isset($errors["fotoP"])?$errors["fotoP"]:"" ?><br>
-              <p class="help-block">El tamano maximo permitido es de 2Mb</p>
-            </div>
             <button type="submit" class="btn btn-primary col-md-offset-5" >Guardar modificación</button>
             <a href="index.php?controller=participante&action=consultaParticipante&id=<?=$participante[0]["usuarioEmail"];?>" type="button" class="btn btn-primary " >Cancelar</a>
           </form>

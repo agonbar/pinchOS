@@ -5,11 +5,11 @@ require_once(__DIR__."/../core/ViewManager.php");
 require_once(__DIR__."/../controller/DBController.php");
 
 /**
- *
- * Clase a la que realizar llamadas desde frontend realizando el procesado
- * necesario y conectado al modelo para obetener/insertar datos
- *
- */
+*
+* Clase a la que realizar llamadas desde frontend realizando el procesado
+* necesario y conectado al modelo para obetener/insertar datos
+*
+*/
 
 class ParticipanteController extends DBController {
 
@@ -130,13 +130,22 @@ class ParticipanteController extends DBController {
         $usuario->checkIsValidForModificacionJPopu($_POST["contrasenaU2"]);
         $usuario->update($_POST["emailU"]);
         $participante->modificarParticipante($_POST["emailU"],$_POST["direccionP"],$_POST["telefonoP"],$_POST["nombreLocalP"],$_POST["horarioP"],$_POST["paginaWebP"]);
-
-        $ruta="../src/resources/img/participantes/";//ruta carpeta donde queremos copiar las imagenes
-        $fotoPSize = $_FILES['fotoP']['size'];
-        $fotoP = $ruta.$_FILES['fotoP']['name'];
-        $fotoPTemp = $_FILES['fotoP']['tmp_name'];
-        move_uploaded_file($fotoPTemp,$fotoP);//pasa la foto de la carpeta temporal a la del servidor web
-
+        /*
+        $ruta="../src/resources/img/participantes/";
+        $target_file  = $ruta . basename($_FILES["fileToUpload"]["name"]);
+        $uploadOk = 1;
+        $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+        // Check if image file is a actual image or fake image
+        if(isset($_POST["submit"])) {
+          $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+          if($check !== false) {
+            echo "File is an image - " . $check["mime"] . ".";
+            $uploadOk = 1;
+          } else {
+            echo "File is not an image.";
+            $uploadOk = 0;
+          }
+        }*/
         echo "<script> alert('Usuario modificado correctamente'); </script>";
       }catch(ValidationException $ex) {
         $errors = $ex->getErrors();
@@ -148,7 +157,7 @@ class ParticipanteController extends DBController {
         throw new Exception("No existe participante");
       }
       $this->view->setVariable("participante", $participanteData);
-      $this->view->render("vistas", "modificacionPart");
+      $this->listarParticipantes();
     }
   }
 
