@@ -146,12 +146,15 @@ class PinchoController extends DBController {
 		$this->view->render("vistas", "listaPinchos");
 	}
 	public function  listarPrem(){
-		$premiados = array();
-		$premiados = $this->pincho->listarPrem();
-		if ($premiados == NULL) {
-			throw new Exception("No hay premiados");
+		$premiadosPop = array();
+		$premiadosPro = array();
+		$premiadosPro = $this->pincho->listarPremPro();
+		$premiadosPop = $this->pincho->listarPremPop();
+		if ($premiadosPro == NULL) {
+			throw new Exception("El cocurso aún no ha finalizado");
 		}
-		$this->view->setVariable("premiados", $premiados);
+		$this->view->setVariable("premiadosPop", $premiadosPop);
+		$this->view->setVariable("premiadosPro", $premiadosPro);
 		$this->view->render("vistas", "listarPrem");
 	}
 	public function cerrarVotacion(){

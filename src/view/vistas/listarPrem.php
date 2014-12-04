@@ -3,7 +3,8 @@ include(__DIR__."/../layouts/inicio.php");
 require_once(__DIR__."/../../core/ViewManager.php");
 $view = ViewManager::getInstance();
 $errors = $view->getVariable("errors");
-$premiados = $view->getVariable("premiados");
+$premiadosPop = $view->getVariable("premiadosPop");
+$premiadosPro = $view->getVariable("premiadosPro");
 ?>
 <!--AQUI EMPIEZA LA VENTANA MODAL DE AÑADIR ALBUM -->
 <div class="margensup" >
@@ -12,7 +13,7 @@ $premiados = $view->getVariable("premiados");
       <div class="row">
         <h2 class="alineado">Listado de Premiados</h2>
         <ul class= "list-inline ">
-          <?php foreach ($premiados as $premiado): ?>
+          <?php foreach ($premiadosPop as $premiado): ?>
             <li>
               <a href="index.php?controller=pincho&action=consultaPincho&id=<?=$premiado["idPi"];?>">
                 <div><img src="./resources/img/<?php echo $premiado["fotoPi"]; ?>.jpg" alt="./resources/img/<?php echo $premiado["fotoPi"]; ?>.jpg" class="img-thumbnail" height="200" width="200"></div>

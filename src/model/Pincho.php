@@ -325,7 +325,7 @@ class Pincho {
 
   public function listarPremPop(){
     $db = PDOConnection::getInstance();
-    $stmt = $db->prepare("SELECT `pincho`.`idPi` FROM pincho ORDER BY `pincho`.`numvotosPopPi` DESC");
+    $stmt = $db->prepare("SELECT `pincho`.`idPi` FROM pincho ORDER BY `pincho`.`numvotosPopPi` DESC limit 10");
     $stmt->execute();
     $premiados = $stmt->fetchAll(PDO::FETCH_BOTH);
     return $premiados;
@@ -333,7 +333,7 @@ class Pincho {
 
   public function crearFin(){
     $db = PDOConnection::getInstance();
-    $stmt1 = $db->prepare("SELECT `pincho`.`idPi` FROM pincho ORDER BY `pincho`.`numvotosProfPi` DESC");
+    $stmt1 = $db->prepare("SELECT `pincho`.`idPi` FROM pincho ORDER BY `pincho`.`numvotosProfPi` DESC limit 10");
     $stmt1->execute();
     $premiados = $stmt1->fetchAll(PDO::FETCH_BOTH);
     $stmt2 = $db->prepare("DELETE FROM `premiados`");
