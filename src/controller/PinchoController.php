@@ -111,7 +111,6 @@ class PinchoController extends DBController {
 	public function modificacionPincho(){
 
 		$pinchotemp = $this->pincho->showDatesPi();
-		//$pinchotemp->update();
 		$this->view->setVariable("pincho", $pinchotemp);
 		$this->view->render("vistas", "modificacionPincho");
 	}
@@ -138,18 +137,23 @@ class PinchoController extends DBController {
 		$this->view->render("vistas", "listaPinchos");
 	}
 	public function  listarPrem(){
-		$premiados = array();
-		$premiados = $this->pincho->listarPrem();
-		if ($premiados == NULL) {
-			throw new Exception("No hay premiados");
+		$premiadosPro = array();
+		$premiadosPop = array();
+		$premiadosPro = $this->pincho->listarPremPro();
+		$premiadosPop = $this->pincho->listarPremPop();
+		if ($premiadosPro == NULL) {
+			if(true){
+				throw new Exception("No hay premiados");
+			} else {
+				$this->pincho->crearFin();
+				this->listarPrem();
+			}
 		}
-		$this->view->setVariable("premiados", $premiados);
+		$this->view->setVariable("premiadosPro", $premiadosPro);
+		$this->view->setVariable("premiadosPop", $premiadosPop);		
 		$this->view->render("vistas", "listarPrem");
 	}
-	public function cerrarVotacion(){
-		$this->pincho->crearFin();
-		$this-> consultaPremiados();
-	}
+
 	public function validarPincho(){
 		$pinchotemp = $this->pincho->showDatesPi();
 		$this->view->setVariable("pincho", $pinchotemp);

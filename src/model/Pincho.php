@@ -315,7 +315,7 @@ class Pincho {
     return $pinchos;
   }
 
-  public function listarPrem(){
+  public function listarPremPro(){
     $db = PDOConnection::getInstance();
     $stmt = $db->prepare("SELECT `pincho`.* FROM premiados, pincho WHERE (`premiados`.`idPrem` = `pincho`.`idPi`)");
     $stmt->execute();
@@ -323,9 +323,17 @@ class Pincho {
     return $premiados;
   }
 
+  public function listarPremPop(){
+    $db = PDOConnection::getInstance();
+    $stmt = $db->prepare("SELECT `pincho`.`idPi` FROM pincho ORDER BY `pincho`.`numvotosPopPi` DESC");
+    $stmt->execute();
+    $premiados = $stmt->fetchAll(PDO::FETCH_BOTH);
+    return $premiados;
+  }
+
   public function crearFin(){
     $db = PDOConnection::getInstance();
-    $stmt1 = $db->prepare("SELECT `pincho`.`idPi` FROM pincho ORDER BY `pincho`.`numvotosPopPi` DESC");
+    $stmt1 = $db->prepare("SELECT `pincho`.`idPi` FROM pincho ORDER BY `pincho`.`numvotosProfPi` DESC");
     $stmt1->execute();
     $premiados = $stmt1->fetchAll(PDO::FETCH_BOTH);
     $stmt2 = $db->prepare("DELETE FROM `premiados`");
@@ -334,7 +342,9 @@ class Pincho {
       $stmt3 = $db->prepare("INSERT INTO `premiados`(`idPrem`, `ronda`) VALUES (?,'1')");
       $stmt3->execute(array($premiado['idPi']));
     }
-    $stmt4 = $db->prepare("UPDATE `pincho` SET `numvotosPopPi`=0");
+    $stmt4 = $db->prepare("UPDATE `pincho` SET `numvotosProfPi`=0");
     $stmt4->execute();
+    $stmt5 = $db->prepare("DELETE FROM `votos` WHERE `tipoU`=S");
+    $stmt5->execute();
   }
 }
