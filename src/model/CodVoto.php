@@ -58,8 +58,8 @@ class CodVoto {
   /* Guarda el Codigo del voto ligado a un Pincho en la base de datos */
   public function saveCV($idCVtemp) {
     $db = PDOConnection::getInstance();
-    $stmt = $db->prepare("INSERT INTO codVoto values (?,?)");
-    $stmt->execute(array($idCVtemp,$this->pinchoId));
+    $stmt = $db->prepare("INSERT INTO codVoto values (?)");
+    $stmt->execute(array($idCVtemp));
   }
 
   //Genera y guarda los 4 primeros codigos de votos ligados a un pincho

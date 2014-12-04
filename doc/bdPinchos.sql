@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `participante` (
 
 
 CREATE TABLE IF NOT EXISTS `pincho` (
-  `idPi` INT NOT NULL AUTO_INCREMENT,
+  `idPi` INT NOT NULL,
   `nombrePi` VARCHAR(45) NOT NULL,
   `precioPi` INT NOT NULL,
   `ingredientesPi` VARCHAR(255) NOT NULL,
@@ -171,34 +171,34 @@ INSERT INTO `participante` (`direccionP`, `telefonoP`, `nombreLocalP`, `horarioP
 ('Carballino', '633333333', 'Enxogo', 'De 9:00 a 23:00','www.enxogo.es','69c20c15cbe777332028b93499f9d4ab','pablo@gmail.com');
 
 INSERT INTO `pincho` (`idPi`, `nombrePi`, `precioPi`, `ingredientesPi`,`cocineroPi`,`numvotosPopPi`,`numvotosProfPi`, `fotoPi`,`estadoPi`,`participanteEmail`, `numvotePi`) VALUES
-('1', 'jamon', '1', 'bueno','juan','2','0','./resources/img/pinchos/pincho.jpg','1','julian@gmail.com', '3'),
-('2', 'queso', '2', 'malo', 'pepe','2','3','./resources/img/pinchos/pincho.jpg','1','hector@gmail.com', '4'),
-('3', 'bacon', '3', 'buenisimo','carmen','2','4','./resources/img/pinchos/pincho.jpg','1','marta@gmail.com', '4'),
-('4', 'mortadela', '2', 'malisimo','roberto','0','0','./resources/img/pinchos/pincho.jpg','1','pablo@gmail.com', '0');
+('21', 'jamon', '1', 'bueno','juan','2','0','./resources/img/pinchos/pincho.jpg','1','julian@gmail.com', '3'),
+('22', 'queso', '2', 'malo', 'pepe','2','3','./resources/img/pinchos/pincho.jpg','1','hector@gmail.com', '4'),
+('23', 'bacon', '3', 'buenisimo','carmen','2','4','./resources/img/pinchos/pincho.jpg','1','marta@gmail.com', '4'),
+('24', 'mortadela', '2', 'malisimo','roberto','0','0','./resources/img/pinchos/pincho.jpg','1','pablo@gmail.com', '0');
 
 INSERT INTO `codVoto` (`idCV`, `pinchoId`) VALUES
-('11', '1'),
-('12', '1'),
-('13','1'),
-('14', '1'),
-('15','1'),
-('21', '2'),
-('22', '2'),
-('23','2'),
-('24', '2'),
-('25','2'),
-('31', '3'),
-('32','3'),
-('33', '3'),
-('34','3'),
-('35', '3');
+('11', '21'),
+('12', '21'),
+('13','21'),
+('14', '21'),
+('15','21'),
+('21', '22'),
+('22', '22'),
+('23','22'),
+('24', '22'),
+('25','22'),
+('31', '23'),
+('32','23'),
+('33', '23'),
+('34','23'),
+('35', '23');
 
 INSERT INTO `voto` (`usuarioEmailU`, `pinchoIdPi`, `codigopinchoV`, `valoracionV`) VALUES
-('adri@gmail.com', '1', '11', '1'),
-('adri@gmail.com', '2', '21', '0'),
-('adri@gmail.com', '3', '31', '0'),
-('ruben@gmail.com', '1', '12','0'),
-('ruben@gmail.com', '2', '22','1'),
-('ruben@gmail.com', '3', '32','0'),
-('mel@gmail.com', '2', '23', '3'),
-('mel@gmail.com', '3', '33', '4');
+('adri@gmail.com', '21', '11', '1'),
+('adri@gmail.com', '22', '21', '0'),
+('adri@gmail.com', '23', '31', '0'),
+('ruben@gmail.com', '21', '12','0'),
+('ruben@gmail.com', '22', '22','1'),
+('ruben@gmail.com', '23', '32','0'),
+('mel@gmail.com', '22', '23', '3'),
+('mel@gmail.com', '23', '33', '4');
