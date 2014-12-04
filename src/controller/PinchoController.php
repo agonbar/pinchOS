@@ -111,6 +111,7 @@ class PinchoController extends DBController {
 	public function modificacionPincho(){
 
 		$pinchotemp = $this->pincho->showDatesPi();
+		//$pinchotemp->update();
 		$this->view->setVariable("pincho", $pinchotemp);
 		$this->view->render("vistas", "modificacionPincho");
 	}
