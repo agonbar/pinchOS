@@ -143,6 +143,7 @@ class Pincho {
   public function setNumVotePi($numvotePi) {
     $this->numvotePi = $numvotePi;
   }
+
   /* Devuelve el ultimo codigo de voto asignado a un Pincho */
   public function getParticipanteEmail() {
     return $this->ParticipanteEmail;
@@ -153,7 +154,15 @@ class Pincho {
     $this->ParticipanteEmail = $ParticipanteEmail;
   }
 
-  /* Comprueba si el id ya existe en la base de datos */
+  /**
+  *
+  * Comprueba si el id ya existe en la base de datos
+  * @param string $Participante Clave del usuario
+  * @return boolean. Devuelve verdadero si encontre 1 o mas pinchos de un mismo participate con estado activo
+  * @access public
+  *
+  */
+
   public function pinchoExists($Participante) {
     $estadoPi="1";
     $db = PDOConnection::getInstance();
@@ -165,7 +174,14 @@ class Pincho {
     }
   }
 
-  /* Comprueba si alguno de los parametros es nulo o menor del tamaño esperado*/
+  /**
+  *
+  * Comprueba si alguno de los parametros que vienen de la vista es nulo o menor del tamaño esperado
+  * @return Lanza una excepcion
+  * @access public
+  *
+  */
+
   public function checkInfoIfNullPi(){
 
     $errors = array();
@@ -186,7 +202,14 @@ class Pincho {
     }
   }
 
-  //Revisa la informacion introducida por el participante
+  /**
+  *
+  * Controla que la foto tenga el tamaño adecuado y el precio el minimo establecido
+  * @return Lanza una excepcion
+  * @access public
+  *
+  */
+
   public function checkInfoPi(){
 
     $errors = array();
@@ -202,21 +225,13 @@ class Pincho {
     }
   }
 
-  //Crea el codigo de un pincho
-  public function generateIdPi(){
-    $db = PDOConnection::getInstance();
-    $stmt = $db->prepare("SELECT * FROM pincho");
-    $pcount=$stmt->rowCount();
-    $numpinchos = 1;
-    //print_r($pcount);die();
-    if ($pcount > 0){
-      $numpinchos = $stmt+1;
-    }
-    //print_r($numpinchos);die();
-    return $numpinchos;
-  }
+  /**
+  *
+  * Inserta un pincho en la base de datos
+  * @access public
+  *
+  */
 
-  /* Guarda el Pincho en la base de datos */
   public function savePi() {
     $db = PDOConnection::getInstance();
 
@@ -233,6 +248,15 @@ class Pincho {
     $this->ParticipanteEmail,
     $this->numvotePi));
   }
+
+  /**
+  *
+  * Selecciona la informacion referente a un pincho de la base de datos
+  * @param int $idPi Clave del pincho
+  * @return devuelve toda la informacion de un pincho
+  * @access public
+  *
+  */
 
   public function showDatesPi($idPi){
     $db = PDOConnection::getInstance();
@@ -259,6 +283,13 @@ class Pincho {
     }
   }
 
+  /**
+  *
+  * Actualiza la información de un pincho en la base de datos
+  * @access public
+  *
+  */
+
   public function updatePi() {
     $db = PDOConnection::getInstance();
     //print_r($this->estadoPi);die();
@@ -266,6 +297,14 @@ class Pincho {
     $stmt->execute(array($this->estadoPi, $this->idPi));
     //print_r($this->estadoPi);die();
   }
+
+  /**
+  *
+  * Recoge la infrmacion de todos los pinchos de la base de datos y los introduce en un array
+  * @return $pincho[] array.Devuelve un array con toda la iformacion de cada pincho de la base de datos
+  * @access public
+  *
+  */
 
   public function listarPi(){
     $db = PDOConnection::getInstance();
@@ -291,6 +330,15 @@ class Pincho {
     return $pinchos;
   }
 
+  /**
+  *
+  * Recoge la infrmacion de todos los pinchos con estado activo de
+  * la base de datos y los introduce en un array
+  * @return $pincho[] array. Devuelve un array con toda la iformacion de cada
+  * pincho de la base de datos con estado activo
+  * @access public
+  *
+  */
 
   public function listarPiActivos(){
     $activo = "1";
@@ -316,6 +364,18 @@ class Pincho {
     }
     return $pinchos;
   }
+
+  /**
+  *
+  * Busca en la base de datos los pinchos que cumplan las condiciones indicadas
+  * por el usuario
+  * @param string $tipob Tipo de parametro de busqueda. string $param.
+  * Parametro de busqueda introducido por el usuario
+  * @return $pinchos[][] array. Devuelve un array con los pinchos que
+  * cumplen las condiciones de busqueda
+  * @access public
+  *
+  */
 
   public function searchPi($tipob,$param){
     $db = PDOConnection::getInstance();

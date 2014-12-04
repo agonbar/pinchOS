@@ -22,6 +22,16 @@ class PinchoController extends DBController {
 
 	}
 
+	/**
+	*
+	* Funcion que da de alta un pincho solo si el usuario que realiza esta accion
+	* es un participante. Si el participante ya introdujo un pincho y está
+	* confirmado no permite el alta de otro. Además realiza las comprobaciones
+	* necesarias de los datos introducidos.
+	* @access public
+	*
+	*/
+
 	public function altaPincho(){
 
 		$pinchotemp = new Pincho();
@@ -93,6 +103,15 @@ class PinchoController extends DBController {
 
 		}
 	}
+
+	/**
+	*
+	* Funcion que da debaja un pincho. La baja es solo cambiar el estado del
+	* pincho de activo a inactivo.
+	* @access public
+	*
+	*/
+
 	public function bajaPincho(){
 		if(isset($_GET["idPi"])){
 			$idPi = $_GET["idPi"];
@@ -109,6 +128,17 @@ class PinchoController extends DBController {
 		echo "<script> alert('El pincho se ha dado de BAJA correctamente'); </script>";
 		echo "<script>window.location.replace('index.php?controller=pincho&action=listadoPincho');</script>";
 	}
+
+	/**
+	*
+	* Funcion que da modifica la informacion de un pincho solo si el usuario que
+	* realiza esta accion es un participante. Si el pincho no existe no permite
+	* la modificación. Además realiza las comprobaciones necesarias de los datos
+	* introducidos.
+	* @access public
+	*
+	*/
+
 	public function modificacionPincho(){
 		if(isset($_GET["idPi"])){
 			$idPi = $_GET["idPi"];
@@ -118,6 +148,14 @@ class PinchoController extends DBController {
 		$this->view->setVariable("pincho", $pinchotemp);
 		$this->view->render("vistas", "modificacionPincho");
 	}
+
+	/**
+	*
+	* Función que devuelve los pinchos buscado por el usuario
+	* @access public
+	*
+	*/
+
 	public function busquedaPincho(){
 
 		//print_r($bnombrePi);die();
@@ -134,6 +172,14 @@ class PinchoController extends DBController {
 		$this->view->setVariable("pinchos", $arrayPinchos);
 		$this->view->render("vistas", "buscarPinchos");
 	}
+
+	/**
+	*
+	* Funcion que devuelve la infromación referente a un picho consultado
+	* @access public
+	*
+	*/
+
 	public function consultaPincho(){
 		if(isset($_GET["idPi"])){
 			$idPi = $_GET["idPi"];
@@ -143,6 +189,16 @@ class PinchoController extends DBController {
 		$this->view->setVariable("pincho", $pinchotemp);
 		$this->view->render("vistas", "consultaBajaPincho");
 	}
+
+	/**
+	*
+	* Funcion que devuelve el listado de todos los pichos. Si el usuario es el
+	* administrador muestra todos los pinchos y si es cualquier otro usuario
+	* lista solo los que tenga el estado activo
+	* @access public
+	*
+	*/
+
 	public function listadoPincho(){
 		$currentuser = $_SESSION["currentuser"];
 		//print_r($currentuser->getTipoU());die();
@@ -176,10 +232,27 @@ class PinchoController extends DBController {
 		$this->view->setVariable("premiadosPro", $premiadosPro);
 		$this->view->render("vistas", "listarPrem");
 	}
+
+	/**
+	*
+	* Fucnión que cierra la votación
+	* @access public
+	*
+	*/
+
 	public function cerrarVotacion(){
 		$this->pincho->crearFin();
 		$this-> listarPrem();
 	}
+
+	/**
+	*
+	* Funcion que valida un pincho. Cambia el estado de inactivo a activo. Solo
+	* puede hacerlo el administrado
+	* @access public
+	*
+	*/
+
 	public function validarPincho(){
 		if(isset($_GET["idPi"])){
 			$idPi = $_GET["idPi"];
