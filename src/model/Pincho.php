@@ -155,9 +155,10 @@ class Pincho {
 
   /* Comprueba si el id ya existe en la base de datos */
   public function pinchoExists($Participante) {
+    $estadoPi="1";
     $db = PDOConnection::getInstance();
-    $stmt = $db->prepare("SELECT * FROM pincho where ParticipanteEmail=?");
-    $stmt->execute(array($Participante));
+    $stmt = $db->prepare("SELECT * FROM pincho where ParticipanteEmail=? AND estadoPi=?");
+    $stmt->execute(array($Participante,$estadoPi));
 
     if ($stmt->fetchColumn() > 0) {
       return true;

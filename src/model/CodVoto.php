@@ -43,32 +43,32 @@ class CodVoto {
   //Genera el un codigo de voto a partir del id de un pincho
   public function generateIdVote($IdPi){
     $db = PDOConnection::getInstance();
-    $stmt = $db->prepare("SELECT * FROM codVoto where pinchoId =?");//cuenta los codigos de voto de un pincho
+    $stmt = $db->prepare("SELECT idCV FROM codVoto where pinchoId=?");//cuenta los codigos de voto de un pincho
     $stmt->execute(array($IdPi));
-    $vcount=$stmt->rowCount();
-    $numvoto=1;//es el numero de votos que se han generado para un pincho
+    $CV=$stmt->fetch(PDO::FETCH_ASSOC);
     //print_r($vcount);die();
-    if ($vcount > 0){
-      $numvoto = $vcount+1;
-    }
-    $IdVoto = $this->pinchoId.$numvoto;
+    $retorno = sizeof($CV)+1;
+    $IdVoto = $IdPi.$retorno;
+    //print_r($IdPi);die();
+    $stmt2 = $db->prepare("UPDATE pincho SET numvotePi=? WHERE idPi=?");
+    $stmt2->execute(array($retorno,$IdPi));
     return $IdVoto;
   }
 
   /* Guarda el Codigo del voto ligado a un Pincho en la base de datos */
   public function saveCV($idCVtemp) {
     $db = PDOConnection::getInstance();
-    $stmt = $db->prepare("INSERT INTO codVoto values (?)");
-    $stmt->execute(array($idCVtemp));
+    $stmt = $db->prepare("INSERT INTO codVoto values (?,?)");
+    $stmt->execute(array($idCVtemp,$this->pinchoId));
   }
 
   //Genera y guarda los 4 primeros codigos de votos ligados a un pincho
   public function genSaveCV($IdPi){
-    $idCV1 = $this->generateIdVote($IdPi);
+    $idCV1 = $this->generateIdVote($IdPi);//die();
     $idCV2 = $this->generateIdVote($IdPi);
     $idCV3 = $this->generateIdVote($IdPi);
     $idCV4 = $this->generateIdVote($IdPi);
-    //die();
+    //print_r($idCV2);die();
     $this->saveCV($idCV1);
     $this->saveCV($idCV2);
     $this->saveCV($idCV3);

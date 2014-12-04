@@ -35,7 +35,7 @@ class PinchoController extends DBController {
 				if(!$pinchotemp->pinchoExists($currentuser->getEmailU())){//compueba si este participante ya metio algun pincho
 					//print_r($currentuser);die();
 					// $ruta="../src/resources/img/pinchos/";//ruta carpeta donde queremos copiar las imagenes
-					$numpincho = $pinchotemp->generateIdPi();//devuelve el id del pinchos
+					//$numpincho = $pinchotemp->generateIdPi();//devuelve el id del pinchos
 					// //print_r($numpincho);die();
 					// $fotoPiSize = $_FILES['fotoPi']['size'];
 					// print_r($fotoPiSize);die();
@@ -50,22 +50,22 @@ class PinchoController extends DBController {
 					$pinchotemp->setnumvotosProfPi("0");//inicializa a 0 el numero de votos dados por el JProfesional
 					$pinchotemp->setEstadoPi("0");//inicializa a true el estado del pincho
 					$pinchotemp->setNumVotePi("4");//indica el numero de codigos de votos
-					$pinchotemp->setIdPi($numpincho);
+					//$pinchotemp->setIdPi($numpincho);
 					$pinchotemp->setNombrePi($_POST["nombrePi"]);
 					$pinchotemp->setPrecioPi($_POST["precioPi"]);
 					$pinchotemp->setIngredientesPi($_POST["ingredientesPi"]);
 					$pinchotemp->setCocineroPi($_POST["cocineroPi"]);
 					$pinchotemp->setParticipanteEmail($currentuser->getEmailU());
-					print_r($currentuser->getEmailU());die();
-
-					//Hace todas las coprobaciones a la informacion introducida por el usuario
-					$pinchotemp->checkInfoIfNullPi();
-					$pinchotemp->checkInfoPi();
+					//print_r($currentuser->getEmailU());die();
 
 					try{
+						//Hace todas las coprobaciones a la informacion introducida por el usuario
+						$pinchotemp->checkInfoIfNullPi();
+						$pinchotemp->checkInfoPi();
+
 						//die();
 						$pinchotemp->savePi();//die();
-						$codvototemp->genSaveCV($numpincho);//los codigos de votos de un pincho deben crearse ANTES que el pincho
+						$codvototemp->genSaveCV($pinchotemp->getIdPi());//los codigos de votos de un pincho deben crearse DESPUES que el pincho
 
 						//mensaje de confirmación y redirige al metodo consultarPincho del controlador PinchoController
 						echo "<script> alert('Pincho registrado correctamente'); </script>";
@@ -75,7 +75,7 @@ class PinchoController extends DBController {
 						$errors = $ex->getErrors();
 						$this->view->setVariable("errors", $errors);
 					}
-
+					print_r("	llega hasta la redireccion");die();
 					$this->view->setVariable("pincho", $pinchotemp);
 					$this->view->render("vistas", "consultaBajaPincho");
 					// Guarda el valor de la variable $pincho en la variable pincho accesible desde la vista

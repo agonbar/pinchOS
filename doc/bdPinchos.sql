@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS `participante` (
 
 
 CREATE TABLE IF NOT EXISTS `pincho` (
-  `idPi` INT NOT NULL,
+  `idPi` INT NOT NULL AUTO_INCREMENT,
   `nombrePi` VARCHAR(45) NOT NULL,
   `precioPi` INT NOT NULL,
   `ingredientesPi` VARCHAR(255) NOT NULL,
