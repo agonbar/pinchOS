@@ -156,10 +156,10 @@ class User {
     }
 
   }
-  
+
    /* Comprueba si el Jurado Profesional es válido para registrarse en la base de datos,si no lo es devuelve un mensaje por cada tipo de error encontrado */
   public function checkIsValidForRegisterProf(){
-  
+
     $errors = array();//Se inializa un array errors con los distintos errores que posteriormente serán mostrados si estos se producen
 	/*Error de longitud en el email*/
     if (strlen($this->emailU) < 5) {
@@ -185,14 +185,14 @@ class User {
     $stmt = $db->prepare("INSERT INTO usuario values (?,?,?,?,?,?)");
     $stmt->execute(array($this->emailU, $this->contrasenaU, $this->tipoU, $this->estadoU, $this->nombreU, $this->concursoId));
   }
-  
+
   /* Actualiza el User en la base de datos,para ello se hace un update de los distintos campos que contiene la tabla usuario*/
   public function update($currentuserEmail) {
     $db = PDOConnection::getInstance();
     $stmt = $db->prepare("UPDATE usuario SET contrasenaU=?, nombreU=? where emailU=?");
     $stmt->execute(array($this->contrasenaU, $this->nombreU, $currentuserEmail));
   }
-  
+
 
   /* Comprueba si el email ya se encuentra en la base de datos,es decir, si ya hay algun usuario regitrado que utilice ese email*/
   public function usernameExists() {
@@ -245,7 +245,7 @@ class User {
    public function updateEstado($currentuserEmail){
 	  $db = PDOConnection::getInstance();
 	  $stmt = $db->prepare("UPDATE usuario set estadoU='0' where emailU=?");
-	  $stmt->execute(array($currentuserEmail));  	
+	  $stmt->execute(array($currentuserEmail));
 	}
-	
+
 }

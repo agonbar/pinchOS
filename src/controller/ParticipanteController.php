@@ -60,11 +60,13 @@ class ParticipanteController extends DBController {
   */
 
   public function busquedaParticipante(){
+    $participantes_array = array();
     if (isset($_POST["datosBusqueda"])){
       print_r($_POST["datosBusqueda"]);
+      $participantes_array = $this->participante->busquedaParticipante($_POST["datosBusqueda"]);
+    } else {
+      $participantes_array = $this->participante->listarParticipantes();
     }
-    $participantes_array = array();
-    $participantes_array = $this->participante->busquedaParticipante();
     if ($participantes_array == NULL) {
       throw new Exception("No hay participantes");
     }
@@ -83,6 +85,10 @@ class ParticipanteController extends DBController {
     if (isset($_GET["id"])){
       $userEmail = $_GET["id"];
     }
+    if (isset($_GET["di"])){
+      $userEmail = $_SESSION["currentuser"];
+      $userEmail = $userEmail->getEmail();
+    }
     $participanteData = array();
     $participanteData = $this->participante->consultaParticipante($userEmail);
     if ($participanteData == NULL) {
@@ -90,10 +96,9 @@ class ParticipanteController extends DBController {
     }
     $participanteDataPinchos = array();
     $participanteDataPinchos = $this->participante->pinchosAsoc($userEmail);
-    if ($participanteDataPinchos == NULL) {
-      throw new Exception("No tienes pinchos aún");
+    if ($participanteDataPinchos != NULL) {
+      $this->view->setVariable("participantePinchos", $participanteDataPinchos);
     }
-    $this->view->setVariable("participantePinchos", $participanteDataPinchos);
     $this->view->setVariable("participante", $participanteData);
     $this->view->render("vistas", "consultaPart");
   }
@@ -120,6 +125,17 @@ class ParticipanteController extends DBController {
       $this->view->setVariable("participante", $participanteData);
       $this->view->render("vistas", "modificacionPart");
     }
+    if (isset($_GET["di"])){
+      $userEmail = $_SESSION["currentuser"];
+      $userEmail = $userEmail->getEmail();
+      $participanteData = array();
+      $participanteData = $this->participante->consultaParticipante($userEmail);
+      if ($participanteData == NULL) {
+        throw new Exception("No existe participante");
+      }
+      $this->view->setVariable("participante", $participanteData);
+      $this->view->render("vistas", "modificacionPart");
+    }
 
     if (isset($_POST["nombreU"])){
       $usuario= new User();
@@ -137,42 +153,42 @@ class ParticipanteController extends DBController {
         $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
         // Check if image file is a actual image or fake image
         if(isset($_POST["submit"])) {
-          $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-          if($check !== false) {
-            echo "File is an image - " . $check["mime"] . ".";
-            $uploadOk = 1;
-          } else {
-            echo "File is not an image.";
-            $uploadOk = 0;
-          }
-        }*/
-        echo "<script> alert('Usuario modificado correctamente'); </script>";
-      }catch(ValidationException $ex) {
-        $errors = $ex->getErrors();
-        $this->view->setVariable("errors", $errors);
-      }
-
-      $participanteData = $this->participante->consultaParticipante($_POST["emailU"]);
-      if ($participanteData == NULL) {
-        throw new Exception("No existe participante");
-      }
-      $this->view->setVariable("participante", $participanteData);
-      $this->listarParticipantes();
+        $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+        if($check !== false) {
+        echo "File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;
+      } else {
+      echo "File is not an image.";
+      $uploadOk = 0;
     }
-  }
+  }*/
+  echo "<script> alert('Usuario modificado correctamente'); </script>";
+}catch(ValidationException $ex) {
+  $errors = $ex->getErrors();
+  $this->view->setVariable("errors", $errors);
+}
 
-  /**
-  *
-  * Da de baja un participante definido por su email.
-  * @access public
-  *
-  */
+$participanteData = $this->participante->consultaParticipante($_POST["emailU"]);
+if ($participanteData == NULL) {
+  throw new Exception("No existe participante");
+}
+$this->view->setVariable("participante", $participanteData);
+$this->listarParticipantes();
+}
+}
 
-  public function bajaParticipante(){
-    if (isset($_GET["id"])){
-      $userEmail = $_GET["id"];
-    }
-    $this->participante->bajaParticipante($userEmail);
-    $this->listarParticipantes();
+/**
+*
+* Da de baja un participante definido por su email.
+* @access public
+*
+*/
+
+public function bajaParticipante(){
+  if (isset($_GET["id"])){
+    $userEmail = $_GET["id"];
   }
+  $this->participante->bajaParticipante($userEmail);
+  $this->listarParticipantes();
+}
 }

@@ -35,10 +35,10 @@ class Participantes {
   *
   */
 
-  public function busquedaParticipante(){
+  public function busquedaParticipante($data){
     $db = PDOConnection::getInstance();
-    $stmt = $db->prepare("SELECT `participante`.`nombreLocalP`, `participante`.`fotoP`, `participante`.`usuarioEmail` FROM participante, usuario WHERE ((`participante`.`usuarioEmail` = `usuario`.`emailU`) AND (`usuario`.`estadoU` = 1))");
-    $stmt->execute();
+    $stmt = $db->prepare("SELECT `participante`.`nombreLocalP`, `participante`.`fotoP`, `participante`.`usuarioEmail` FROM participante, usuario WHERE ((`participante`.`usuarioEmail` = `usuario`.`emailU`) AND (`usuario`.`estadoU` = 1) AND (`participante`.`nombreLocalP` LIKE ?))");
+    $stmt->execute(array("%$data%"));
     $users_db = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $users_db;
   }

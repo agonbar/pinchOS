@@ -13,7 +13,7 @@ class UsersController extends DBController {
   public function __construct() {
     parent::__construct();
 
-	//Inicializa la variable
+    //Inicializa la variable
     $this->user = new User();
   }
 
@@ -22,29 +22,29 @@ class UsersController extends DBController {
 
     if (isset($_POST["email"])){
 
-	  /*Comprueba que los datos introducidos son validos*/
+      /*Comprueba que los datos introducidos son validos*/
       if ($this->user->isValidUser($_POST["email"], $_POST["password"])) {
 
-		/*Recupera los datos del usuario que se esta logueando*/
+        /*Recupera los datos del usuario que se esta logueando*/
         $user_db=$this->user->ver_datos($_POST["email"]);
-		
-		/*Si el estado de ese usuario no es inactivo continua*/
-		if (!$user_db->getEstadoU() == '0') {
-            
-			/*Guarda en sesion el objeto usuario*/
-			$_SESSION["currentuser"]=$user_db;
-			
-			//Redirige al método consultarConcurso del ConcursoController.php
-			$this->view->redirect("concurso", "consultarConcurso");  
-			
-		/*Si el estado de ese usuario es inactivo muestra un mensaje de error*/
-		}else{
-			$errors = array();
-			$errors["email"] = "Este usuario esta inactivo ";
-			$this->view->setVariable("errors", $errors);
-		}
-		
-	   /*Si los datos introducidos no son validos devuelve mesaje de error*/	
+
+        /*Si el estado de ese usuario no es inactivo continua*/
+        if (!$user_db->getEstadoU() == '0') {
+
+          /*Guarda en sesion el objeto usuario*/
+          $_SESSION["currentuser"]=$user_db;
+
+          //Redirige al método consultarConcurso del ConcursoController.php
+          $this->view->redirect("concurso", "consultarConcurso");
+
+          /*Si el estado de ese usuario es inactivo muestra un mensaje de error*/
+        }else{
+          $errors = array();
+          $errors["email"] = "Este usuario esta inactivo ";
+          $this->view->setVariable("errors", $errors);
+        }
+
+        /*Si los datos introducidos no son validos devuelve mesaje de error*/
       }else{
         $errors = array();
         $errors["email"] = "El email no se encuentra registrado";
@@ -62,8 +62,8 @@ class UsersController extends DBController {
     $usuario= new User();
 
     if (isset($_POST["emailU"])){
-		
-	  /*Guarda los datos en el objeto*/
+
+      /*Guarda los datos en el objeto*/
       $usuario->setEmailU($_POST["emailU"]);
       $usuario->setContrasenaU($_POST["contrasenaU"]);
       $usuario->setTipoU($_POST["tipoU"]);
@@ -72,7 +72,7 @@ class UsersController extends DBController {
       $usuario->setConcursoId('1');
 
       try{
-		/*Comprueba si los datos son validos para el registro*/
+        /*Comprueba si los datos son validos para el registro*/
         $usuario->checkIsValidForRegister($_POST["contrasenaU2"]);
 
         // comprueba si el correo ya existe en la base de datos
@@ -81,11 +81,11 @@ class UsersController extends DBController {
           // guarda el objeto  en la base de datos
           $usuario->save();
 
-		  //mensaje de confirmación y redirige al método login del UsersController.php
-		  echo "<script> alert('Usuario creado correctamente'); </script>";
-		  echo "<script>window.location.replace('index.php?controller=users&action=login');</script>";
-		  
-		 /*Si el correo ya existe muestra un mensaje de error*/ 
+          //mensaje de confirmación y redirige al método login del UsersController.php
+          echo "<script> alert('Usuario creado correctamente'); </script>";
+          echo "<script>window.location.replace('index.php?controller=users&action=login');</script>";
+
+          /*Si el correo ya existe muestra un mensaje de error*/
         } else {
           $errors = array();
           $errors["emailU"] = "El email ya se encuentra registrado";
@@ -106,11 +106,11 @@ class UsersController extends DBController {
 
   /*Este metodo selecciona una vista según el tipo de usuario que es */
   public function seleccionarVotacion() {
-  
-	if(!$_SESSION["currentuser"]){
-		  echo "<script>window.location.replace('index.php?controller=users&action=login');</script>";
-	}
-	/*Datos del usuario actual*/
+
+    if(!$_SESSION["currentuser"]){
+      echo "<script>window.location.replace('index.php?controller=users&action=login');</script>";
+    }
+    /*Datos del usuario actual*/
     $currentuser = $_SESSION["currentuser"];
 
     if($currentuser->getTipoU() == 'J'){
@@ -119,19 +119,19 @@ class UsersController extends DBController {
     if($currentuser->getTipoU() == 'S'){
       $this->view->redirect("profesional", "votar");
     }
-	/*Si no es ninguno de los jurados muestra una excepcion*/
+    /*Si no es ninguno de los jurados muestra una excepcion*/
     if(($currentuser->getTipoU() != 'S') and ($currentuser->getTipoU() != 'J')){
       throw new Exception("Solo puede votar el jurado");
     }
   }
-  
+
   /*Este metodo selecciona una vista según el tipo de usuario que es */
   public function seleccionarPerfil() {
 
-	if(!$_SESSION["currentuser"]){
-		  echo "<script>window.location.replace('index.php?controller=users&action=login');</script>";
-	}
-	
+    if(!$_SESSION["currentuser"]){
+      echo "<script>window.location.replace('index.php?controller=users&action=login');</script>";
+    }
+
     /*Datos del usuario actual*/
     $currentuser = $_SESSION["currentuser"];
 
@@ -141,47 +141,38 @@ class UsersController extends DBController {
     if($currentuser->getTipoU() == 'S'){
       $this->view->redirect("profesional", "verPerfil");
     }
-	if($currentuser->getTipoU() == 'P'){
-      $this->view->redirect("participante", "verPerfil");
-    }
-	/*Si no es ninguno de los anteriores muestra una excepcion*/
-    if(($currentuser->getTipoU() != 'S') and ($currentuser->getTipoU() != 'J') and (($currentuser->getTipoU() == 'P'))){
-      throw new Exception("No se puede ver el perfil");
+    if($currentuser->getTipoU() == 'P'){
+      echo "<script>window.location.replace('index.php?controller=participante&action=consultaParticipante&di=di');</script>";
     }
   }
-  
-  
-    /*Este metodo selecciona una vista según el tipo de usuario que es */
-	public function seleccionarModificacion() {
-	
-		if(!$_SESSION["currentuser"]){
-		  echo "<script>window.location.replace('index.php?controller=users&action=login');</script>";
-		}
 
-		/*Datos del usuario actual*/
-		$currentuser = $_SESSION["currentuser"];
+  /*Este metodo selecciona una vista según el tipo de usuario que es */
+  public function seleccionarModificacion() {
 
-		if($currentuser->getTipoU() == 'J'){
-		  $this->view->redirect("popular", "verModificacion");
-		}
-		if($currentuser->getTipoU() == 'S'){
-		  $this->view->redirect("profesional", "verModificacion");
-		}
-		if($currentuser->getTipoU() == 'P'){
-		  $this->view->redirect("participante", "verModificacion");
-		}
-		/*Si no es ninguno de los anteriores muestra una excepcion*/
-		if(($currentuser->getTipoU() != 'S') and ($currentuser->getTipoU() != 'J') and (($currentuser->getTipoU() == 'P'))){
-		  throw new Exception("No se puede ver el perfil");
-		}
-	  }
-	  
+    if(!$_SESSION["currentuser"]){
+      echo "<script>window.location.replace('index.php?controller=users&action=login');</script>";
+    }
 
-	//Este metodo cierra la sesion y devuelve a login
-	public function logout() {
-	if(!$_SESSION["currentuser"]){
-		  echo "<script>window.location.replace('index.php?controller=users&action=login');</script>";
-	}
+    /*Datos del usuario actual*/
+    $currentuser = $_SESSION["currentuser"];
+
+    if($currentuser->getTipoU() == 'J'){
+      $this->view->redirect("popular", "verModificacion");
+    }
+    if($currentuser->getTipoU() == 'S'){
+      $this->view->redirect("profesional", "verModificacion");
+    }
+    if($currentuser->getTipoU() == 'P'){
+      echo "<script>window.location.replace('index.php?controller=participante&action=consultaParticipante&di=di');</script>";
+    }
+  }
+
+
+  //Este metodo cierra la sesion y devuelve a login
+  public function logout() {
+    if(!$_SESSION["currentuser"]){
+      echo "<script>window.location.replace('index.php?controller=users&action=login');</script>";
+    }
     session_destroy();
     $this->view->redirect("users", "login");
   }
