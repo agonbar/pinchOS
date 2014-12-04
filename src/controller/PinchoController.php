@@ -90,44 +90,52 @@ class PinchoController extends DBController {
 		}
 	}
 	public function bajaPincho(){
-		$pinchotemp = $this->pincho->showDatesPi();
+		if(isset($_GET["idPi"])){
+			$idPi = $_GET["idPi"];
+		}
+		$pinchotemp = $this->pincho->showDatesPi($idPi);
 		$this->view->setVariable("pincho", $pinchotemp);
 
 		$currentuser = $_SESSION["currentuser"];
 
-		echo "<script> confirmar=confirm('¿Esta seguro de que desea dar de BAJA este pincho?');
-		if (confirmar)
-		alert('El pincho se ha dado de BAJA correctamente');// si pulsamos en aceptar</script>";
 		if($currentuser){//commprueba que el usuario esta logeado
 			$pinchotemp->setEstadoPi("0");
 			$pinchotemp->updatePi();
 		}
-		//echo "<script> alert('El pincho se ha dado de BAJA correctamente'); </script>";
-		echo "<script> else
-		alert('El pincho NO se ha dado de BAJA'); // si pulsamos en cancelar</script>";
-
+		echo "<script> alert('El pincho se ha dado de BAJA correctamente'); </script>";
 		echo "<script>window.location.replace('index.php?controller=pincho&action=consultaPincho');</script>";
 	}
 	public function modificacionPincho(){
-
-		$pinchotemp = $this->pincho->showDatesPi();
+		if(isset($_GET["idPi"])){
+			$idPi = $_GET["idPi"];
+		}
+		$pinchotemp = $this->pincho->showDatesPi($idPi);
 		//$pinchotemp->update();
 		$this->view->setVariable("pincho", $pinchotemp);
 		$this->view->render("vistas", "modificacionPincho");
 	}
 	public function busquedaPincho(){
 
-			print_r($bnombrePi);die();
+		//print_r($bnombrePi);die();
 			//$arrayPinchos = $this->pincho->searchPrize();
 			//$arrayPinchos = $this->pincho->searchName();
+		if(isset($_GET["bnombrePi"])){
+			$tipo = $_GET["bnombrePi"];
+			print_r($tipo);die();
+		}
+		//$param = ;
 
+		//$arrayPinchos = $this->pincho->searchPi($tipo,$param);
 		$arrayPinchos = $this->pincho->listarPi();
-
 		$this->view->setVariable("pinchos", $arrayPinchos);
 		$this->view->render("vistas", "buscarPinchos");
 	}
 	public function consultaPincho(){
-		$pinchotemp = $this->pincho->showDatesPi();
+		if(isset($_GET["idPi"])){
+			$idPi = $_GET["idPi"];
+			//print_r("que esta pasando");die();
+		}
+		$pinchotemp = $this->pincho->showDatesPi($idPi);
 		$this->view->setVariable("pincho", $pinchotemp);
 		$this->view->render("vistas", "consultaBajaPincho");
 	}
@@ -151,7 +159,10 @@ class PinchoController extends DBController {
 		$this-> consultaPremiados();
 	}
 	public function validarPincho(){
-		$pinchotemp = $this->pincho->showDatesPi();
+		if(isset($_GET["idPi"])){
+			$idPi = $_GET["idPi"];
+		}
+		$pinchotemp = $this->pincho->showDatesPi($idPi);
 		$this->view->setVariable("pincho", $pinchotemp);
 
 		$currentuser = $_SESSION["currentuser"];

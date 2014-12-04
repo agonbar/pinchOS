@@ -233,10 +233,10 @@ class Pincho {
     $this->numvotePi));
   }
 
-  public function showDatesPi(){
+  public function showDatesPi($idPi){
     $db = PDOConnection::getInstance();
-    $stmt = $db->prepare("SELECT * FROM pincho");
-    $stmt->execute();
+    $stmt = $db->prepare("SELECT * FROM pincho where idPi=?");
+    $stmt->execute(array($idPi));
     $pincho_db=$stmt->fetch(PDO::FETCH_ASSOC);
 
     if(sizeof($pincho_db)==0){
@@ -291,10 +291,10 @@ class Pincho {
     return $pinchos;
   }
 
-  public function searchNamePi($nPi){
+  public function searchPi($tipob,$param){
     $db = PDOConnection::getInstance();
-    $stmt = $db->prepare("SELECT * FROM pincho where nombrePi=?");
-    $stmt->execute(array($nPi));
+    $stmt = $db->prepare("SELECT * FROM pincho where ?=?");
+    $stmt->execute(array($tipob,$param));
     $pinchos_db=$stmt->fetchAll(PDO::FETCH_ASSOC);
     $pinchos=array();
 

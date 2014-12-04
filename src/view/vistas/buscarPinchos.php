@@ -20,10 +20,10 @@ $pinchos = $view->getVariable("pinchos");
 							<div class="form-group separarformulario">
 
 								<div class="input-group-btn">
-									<input type="text" class="form-control" name= "bnombrePi" placeholder="Introcuce filtro para la busqueda...">
+									<input type="text" class="form-control" name= "bnombrePi" value= placeholder="Introcuce filtro para la busqueda...">
 									<button type="button" class="btn btn-default dropdown-toggle"data-toggle="dropdown">Buscar <span class="caret"></span></button>
 								<ul class="dropdown-menu pull-right" role="menu">
-									<li><a href="index.php?controller=pincho&action=busquedaPincho&id=bnombrePi">Buscar por nombre</a></li>
+									<li><a name=bnombrePi href="index.php?controller=pincho&action=busquedaPincho&bnombrePi=bnombrePi">Buscar por nombre</a></li>
 									<li><a href="index.php?controller=pincho&action=busquedaPincho">Buscar por precio</a></li>
 									<li><a href="index.php?controller=pincho&action=busquedaPincho">Buscar por ingredientes</a></li>
 								</ul>
@@ -38,7 +38,7 @@ $pinchos = $view->getVariable("pinchos");
 			foreach ($pinchos as $pincho):?>
 			<li class= "column col-lg-2 col-md-2 col-sm-4 col-xs-4 col-md-offset-1">
 
-				<a href="index.php?controller=pincho&action=consultaPincho">
+				<a href="index.php?controller=pincho&action=consultaPincho&idPi= <?=$pincho->getIdPi();?>">
 					<img src= "<?=$pincho->getFotoPi()?>" alt="Imagen del Pincho" class="img-thumbnail img-responsive">
 				</a>
 				<div class="caption">

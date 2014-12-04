@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 include(__DIR__."/../layouts/inicio.php");
 require_once(__DIR__."/../../core/ViewManager.php");
@@ -62,10 +61,13 @@ $currentuser = $view->getVariable("currentusername");
 			</div>
 
 			<?php if ($currentuser->getTipoU() == 'A') { ?>
-				<a href="index.php?controller=pincho&action=validarPincho" ><button type="button" class="btn btn-primary " >Validar pincho</button></a>
-			<?php } ?>
-			<a href="index.php?controller=pincho&action=bajaPincho" ><button type="button" class="btn btn-primary col-md-offset-2" >Eliminar pincho</button></a>
-			<a href="index.php?controller=pincho&action=modificacionPincho" type="button" class="btn btn-primary " >Modificar pincho</a>
+				<a href="index.php?controller=pincho&action=validarPincho&idPi= <?=$pincho->getIdPi();?>" ><button type="button" class="btn btn-primary " >Validar pincho</button></a>
+
+			<?php }?>
+			<?php if ( ($currentuser->getTipoU() == 'A') || ($currentuser->getTipoU() == 'P')){ ?>
+				<a href="index.php?controller=pincho&action=bajaPincho&idPi= <?=$pincho->getIdPi();?>" ><button type="button" class="btn btn-primary col-md-offset-2" >Eliminar pincho</button></a>
+				<a href="index.php?controller=pincho&action=modificacionPincho&idPi= <?=$pincho->getIdPi();?>" type="button" class="btn btn-primary " >Modificar pincho</a>
+			<?php }?>
 		</div>
 	</div>
 </div>
