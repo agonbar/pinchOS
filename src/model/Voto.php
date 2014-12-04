@@ -212,8 +212,12 @@ class Voto {
 	$db = PDOConnection::getInstance();
 	$stmt1 = $db->prepare("SELECT count(*) FROM voto,usuario where voto.pinchoIdPi=? and usuario.emailU=voto.usuarioEmailU and usuario.tipoU='S'");
     $stmt1->execute(array($this->pinchoIdPi));
+	
+	if($stmt1->fetchColumn()==0){
+		$numVotosTotal=$this->valoracionV;
+	}else $numVotosTotal=($numVotos["numvotosProfPi"]+$this->valoracionV)/2;
 
-	$numVotosTotal=($numVotos["numvotosProfPi"]+$this->valoracionV)/$stmt1->fetchColumn();
+	
 	
     $stmt = $db->prepare("UPDATE pincho SET numvotosProfPi=? WHERE IdPi=?");
     $stmt->execute(array($numVotosTotal, $this->pinchoIdPi));
