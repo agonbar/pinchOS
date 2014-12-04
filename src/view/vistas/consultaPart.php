@@ -5,6 +5,7 @@ $view = ViewManager::getInstance();
 $participante = $view->getVariable("participante");
 $pinchos = $view->getVariable("participantePinchos");
 $errors = $view->getVariable("errors");
+$currentuser = $view->getVariable("currentusername");
 ?>
 <div class="margensup" >
   <div class="column col-lg-10 col-md-10 col-sm-12 col-xs-12 col-md-offset-1" >
@@ -53,10 +54,12 @@ $errors = $view->getVariable("errors");
             </a>
           </table>
         <?php endforeach; ?>
+        <?php if ($currentuser->getEmailU() == $participante[0]["usuarioEmail"]) { ?>
         <div class="modalbox movedown">
           <a href="index.php?controller=participante&action=bajaParticipante&id=<?=$participante[0]["usuarioEmail"]?>" class="btn btn-primary" role="button">Eliminar</a>
           <a href="index.php?controller=participante&action=modificarParticipante&id=<?=$participante[0]["usuarioEmail"]?>" class="btn btn-primary" role="button">Editar</a>
         </div>
+        <?php } ?>
       </div>
     </div>
   </div>
