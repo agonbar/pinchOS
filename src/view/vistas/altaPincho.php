@@ -14,7 +14,7 @@ $pincho = $view->getVariable("pincho");
 			</div>
 			<div class="row separacion">
 				<div class="column col-lg-10 col-md-10 col-sm-12 col-xs-12 ">
-					<form class="form-horizontal" role="form" method="POST" action="index.php?controller=pincho&action=altaPincho">
+					<form class="form-horizontal" role="form" method="POST" enctype="multipart/form-data" action="index.php?controller=pincho&action=altaPincho">
 						<div class="form-group separarformulario">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Nombre</label>
 							<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
@@ -43,12 +43,12 @@ $pincho = $view->getVariable("pincho");
 								<?= isset($errors["ingredientesPi"])?$errors["ingredientesPi"]:"" ?><br>
 							</div>
 						</div>
-						<!-- <div class="form-group separarformulario">
+						<div class="form-group separarformulario">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Fotografia</label>
 								<input type="file" id="fotoPi" name="fotoPi">
-								
-							<p class="help-block">El tamano maximo permitido es de 2Mb</p>
-						</div> -->
+								<?= isset($errors["ingredientesPi"])?$errors["ingredientesPi"]:"" ?>
+							<p class="help-block">El tamano maximo permitido es de 2Mb</p><br>
+						</div>
 						<input type="submit" class="btn btn-primary col-md-offset-6" value = "Confirmar Alta">
 					</form>
 				</div>

@@ -22,7 +22,7 @@ $pinchos = $view->getVariable("pinchos");
 							<img src= "<?=$pincho->getFotoPi()?>" alt="Imagen del Pincho" class="img-thumbnail img-responsive">
 						</a>
 						<div class="caption">
-							<h4>- <?=$pincho->getNombrePi()?> -</h4>
+							<h5>- <?=$pincho->getNombrePi()?> -</h5>
 						</div>
 					</li>
 				<?php endforeach;?><!-- fin foreach-->

@@ -151,7 +151,7 @@ CREATE TABLE IF NOT EXISTS `voto` (
 
 
 INSERT INTO `concurso` (`idC`,`nombreC`, `basesC`, `ciudadC`, `fechaInicioC`, `fechaFinalC`, `fechaFinalistasC`, `premioC`, `patrocinadorC`) VALUES
-('1','concurso Ourense', 'estas son las bases del concurso', 'Ourense', '01/02/2015', '01/04/2015', '01/03/2015', '2000', 'sensei sonsoi SA');
+('1','concurso Ourense', './resources/bases/bases.jpg', 'Ourense', '01/02/2015', '01/04/2015', '01/03/2015', '2000', 'sensei sonsoi SA');
 
 INSERT INTO `usuario` (`emailU`, `contrasenaU`, `tipoU`, `estadoU`,`nombreU`,`concursoId`) VALUES
 ('jeni@gmail.com', 'jeni', 'A', '1','jeni vazquez rey','1'),

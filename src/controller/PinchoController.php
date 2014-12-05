@@ -38,25 +38,23 @@ class PinchoController extends DBController {
 		$codvototemp = new CodVoto();
 		$currentuser = $_SESSION["currentuser"];
 
-		$this->view->render("vistas", "altaPincho");//te muestra el formulario la primera vez
-
 		if($currentuser->getTipoU()=="P"){//commprueba que el usuario esta logeado
 
 			if(isset($_POST["nombrePi"])) {
 
 				if(!$pinchotemp->pinchoExistsAct($currentuser->getEmailU())){//compueba si este participante ya metio algun pincho
 					//print_r($currentuser);die();
-					// $ruta="../src/resources/img/pinchos/";//ruta carpeta donde queremos copiar las imagenes
+					$ruta="../src/resources/img/pinchos/";//ruta carpeta donde queremos copiar las imagenes
 					$idpincho = $pinchotemp->generarIdPi($currentuser->getEmailU());//devuelve el id del pinchos
 					// //print_r($numpincho);die();
-					// $fotoPiSize = $_FILES['fotoPi']['size'];
-					// print_r($fotoPiSize);die();
-					// $fotoPi = $ruta.$_FILES['fotoPi']['name'];
-					// $fotoPiTemp = $_FILES['fotoPi']['tmp_name'];
-					// move_uploaded_file($fotoPiTemp,$fotoPi);//pasa la foto de la carpeta temporal a la del servidor web
+					$fotoPiSize = $_FILES['fotoPi']['size'];
+					 //print_r($fotoPiSize);die();
+					$fotoPi = $ruta.$_FILES['fotoPi']['name'];
+					 $fotoPiTemp = $_FILES['fotoPi']['tmp_name'];
+					move_uploaded_file($fotoPiTemp,$fotoPi);//pasa la foto de la carpeta temporal a la del servidor web
 
-					$fotoPi="./resources/img/pinchos/pincho.jpg";
-					$fotoPiSize="2";
+					$fotoPi="./resources/img/pinchos/".$_FILES['fotoPi']['name'];
+					//$fotoPiSize="2";
 					$pinchotemp->setFotoPi($fotoPi, $fotoPiSize);
 					$pinchotemp->setNumVotosPopPi("0");//inicializa a 0 el numero de votos dados por el JPopular
 					$pinchotemp->setnumvotosProfPi("0");//inicializa a 0 el numero de votos dados por el JProfesional
@@ -76,8 +74,8 @@ class PinchoController extends DBController {
 						$pinchotemp->checkInfoPi();
 
 						//die();
-						print_r($idpincho);die();
-						//$pinchotemp->savePi();//die();
+						//print_r($idpincho);die();
+						$pinchotemp->savePi();//die();
 
 						$codvototemp->generateCodVote($idpincho);//los codigos de votos de un pincho deben crearse DESPUES que el pincho
 
@@ -88,6 +86,7 @@ class PinchoController extends DBController {
 					catch(ValidationException $ex){
 						$errors = $ex->getErrors();
 						$this->view->setVariable("errors", $errors);
+						$this->view->render("vistas", "altaPincho");//te muestra el formulario la primera vez
 					}
 					// Guarda el valor de la variable $pincho en la variable pincho accesible desde la vista
 				}
@@ -95,6 +94,8 @@ class PinchoController extends DBController {
 					echo "<script> alert('Ya has creado un pincho'); </script>";
 					echo "<script>window.location.replace('index.php?controller=pincho&action=listadoPincho');</script>";
 				}
+			}else{
+				$this->view->render("vistas", "altaPincho");//te muestra el formulario la primera vez
 			}
 		}else{
 			echo "<script> alert('NO eres un Participante, NO puedes dar de alta un pincho'); </script>";
@@ -210,14 +211,11 @@ class PinchoController extends DBController {
 
 	public function busquedaPincho(){
 
-		//print_r($bnombrePi);die();
-			//$arrayPinchos = $this->pincho->searchPrize();
-			//$arrayPinchos = $this->pincho->searchName();
-		if(isset($_GET["bnombrePi"])){
-			$tipo = $_GET["bnombrePi"];
-			print_r($tipo);die();
-		}
-		//$param = ;
+	 	if(isset($_POST["parametro"])){
+		 	$parametro = $_POST["parametro"];
+		 	$tipo = = $_POST["tipo"];
+		 	print_r($tipo);die();
+	 	}
 
 		//$arrayPinchos = $this->pincho->searchPi($tipo,$param);
 		$arrayPinchos = $this->pincho->listarPi();

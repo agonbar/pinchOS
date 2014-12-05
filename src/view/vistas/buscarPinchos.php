@@ -19,21 +19,22 @@ $pincho = $view->getVariable("pincho");
 					<div class="input-group">
 						<form class="form-horizontal" role="form" method="POST" action="index.php?controller=pincho&action=busquedaPincho">
 								<div class="form-group separarformulario">
-									<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-										<input class="form-control" placeholder="Introduce los parametros de busqueda..." name="nombrePi">
-										<a href="index.php?controller=pincho&action=consultaPincho" type="button" class="btn btn-default ">
-											Buscar por nombre
-											<i class="glyphicon glyphicon-search"></i>
-										</a>
-										<a href="index.php?controller=pincho&action=consultaPincho" type="button" class="btn btn-default ">
-											Buscar por precio
-											<i class="glyphicon glyphicon-search"></i>
-										</a>
-										<a href="index.php?controller=pincho&action=consultaPincho" type="button" class="btn btn-default ">
-											Buscar por ingredientes
-											<i class="glyphicon glyphicon-search"></i>
-										</a>
+									<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+										<input class="form-control" placeholder="Busca..." name="parametro">
 									</div>
+									<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+									<select class="form-control" name="tipo">
+										<option value="N">Escoge parametros...</option>
+										<option value="0">Por nombre</option>
+										<option value="1">Por precio</option>
+										<option value="2">Por Ingredientes</option>
+									</select>
+									</div>
+									<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12">
+									<a href="index.php?controller=pincho&action=consultaPincho"
+									type="button" class="btn btn-primary col-md-offset-2">
+									<i class="glyphicon glyphicon-search"></i></a>
+								</div>
 								</div>
 						</form>
 				</div>
@@ -48,7 +49,7 @@ $pincho = $view->getVariable("pincho");
 					<img src= "<?=$pincho->getFotoPi()?>" alt="Imagen del Pincho" class="img-thumbnail img-responsive">
 				</a>
 				<div class="caption">
-					<h4>- <?=$pincho->getNombrePi()?> -</h4>
+					<h5>- <?=$pincho->getNombrePi()?> -</h5>
 				</div>
 			</li>
 		<?php endforeach;?><!-- fin foreach-->
