@@ -281,7 +281,7 @@ class PinchoController extends DBController {
 		$premiadosPro = $this->pincho->listarPremPro();
 		$premiadosPop = $this->pincho->listarPremPop();
 		if ($premiadosPro == NULL) {
-			throw new Exception("El cocurso aún no ha finalizado");
+			//throw new Exception("El cocurso aún no ha finalizado");
 		}
 		$this->view->setVariable("premiadosPop", $premiadosPop);
 		$this->view->setVariable("premiadosPro", $premiadosPro);
