@@ -13,35 +13,41 @@ $premiadosPro = $view->getVariable("premiadosPro");
       <div class="row">
         <h2 class="alineado">Listado de Premiados Populares</h2>
         <ul class= "list-inline ">
-          <?php foreach ($premiadosPop as $premiado): ?>
-            <li>
-              <a href="index.php?controller=pincho&action=consultaPincho&id=<?=$premiado["idPi"];?>">
-                <div><img src="<?php echo $premiado["fotoPi"]; ?>.jpg" alt="./resources/img/<?php echo $premiado["fotoPi"]; ?>.jpg" class="img-thumbnail" height="200" width="200"></div>
-                <div class="caption">
-                  <h4> <?php echo $premiado["nombrePi"]; ?>
-                  </h4>
-                </a>
-              </div>
-            </li>
-          <?php endforeach; ?><!-- fin while-->
-        </ul>
-        <h2 class="alineado">Listado de Finalistas/Premiados Profesionales</h2>
-        <ul class= "list-inline ">
-          <?php foreach ($premiadosPro as $premiado): ?>
-            <li>
-              <a href="index.php?controller=pincho&action=consultaPincho&id=<?=$premiado["idPi"];?>">
-                <div><img src="./resources/img/<?php echo $premiado["fotoPi"]; ?>.jpg" alt="./resources/img/<?php echo $premiado["fotoPi"]; ?>.jpg" class="img-thumbnail" height="200" width="200"></div>
-                <div class="caption">
-                  <h4> <?php echo $premiado["nombrePi"]; ?>
-                  </h4>
-                </a>
-              </div>
-            </li>
-          <?php endforeach; ?><!-- fin while-->
-        </ul>
-      </div>
-    </div>
+          <?php
+          if($premiadosPro == NULL) echo 'Aún no se ha terminado el concurso';
+          else {
+          foreach ($premiadosPop as $premiado): ?>
+          <li>
+            <a href="index.php?controller=pincho&action=consultaPincho&id=<?=$premiado["idPi"];?>">
+              <div><img src="<?php echo $premiado["fotoPi"]; ?>.jpg" alt="./resources/img/<?php echo $premiado["fotoPi"]; ?>.jpg" class="img-thumbnail" height="200" width="200"></div>
+              <div class="caption">
+                <h4> <?php echo $premiado["nombrePi"]; ?>
+                </h4>
+              </a>
+            </div>
+          </li>
+        <?php endforeach;} ?><!-- fin while-->
+      </ul>
+      <h2 class="alineado">Listado de Finalistas/Premiados Profesionales</h2>
+      <ul class= "list-inline ">
+        <?php
+        if($premiadosPro == NULL) echo 'Aún no se ha terminado el concurso';
+        else {
+        foreach ($premiadosPro as $premiado): ?>
+        <li>
+          <a href="index.php?controller=pincho&action=consultaPincho&id=<?=$premiado["idPi"];?>">
+            <div><img src="./resources/img/<?php echo $premiado["fotoPi"]; ?>.jpg" alt="./resources/img/<?php echo $premiado["fotoPi"]; ?>.jpg" class="img-thumbnail" height="200" width="200"></div>
+            <div class="caption">
+              <h4> <?php echo $premiado["nombrePi"]; ?>
+              </h4>
+            </a>
+          </div>
+        </li>
+      <?php endforeach;} ?><!-- fin while-->
+    </ul>
   </div>
+</div>
+</div>
 </div>
 <!--AQUI TERMINA LA VENTANA MODAL DE AÑADIR ALBUM -->
 <?php
