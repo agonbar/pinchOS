@@ -20,7 +20,7 @@ $pincho = $view->getVariable("pincho");
 						<form class="form-horizontal" role="form" method="POST" action="index.php?controller=pincho&action=busquedaPincho">
 								<div class="form-group separarformulario">
 									<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
-										<input class="form-control" placeholder="Busca..." name="parametro">
+										<input class="form-control" placeholder="Introduce..." name="parametro">
 									</div>
 									<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 									<select class="form-control" name="tipo">
@@ -31,7 +31,7 @@ $pincho = $view->getVariable("pincho");
 									</select>
 									</div>
 									<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12">
-										<input type="submit" class="btn btn-primary col-md-offset-2">
+										<input type="submit" class="btn btn-default active col-md-offset-2" value = "Buscar">
 								</div>
 								</div>
 						</form>
