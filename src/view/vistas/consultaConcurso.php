@@ -5,6 +5,7 @@ $view = ViewManager::getInstance();
 $view->setVariable("title", "Login");
 $errors = $view->getVariable("errors");
 $concurso = $view->getVariable("concu");
+$currentuser = $view->getVariable("currentusername");
 ?>
 <!--AQUI EMPIEZA LA VENTANA MODAL DE AÑADIR ALBUM -->
 <div class="margensup" >
@@ -65,7 +66,9 @@ $concurso = $view->getVariable("concu");
           </form>
         </div>
       </div>
+	  <?php if ($currentuser->getTipoU() == 'A') { ?>
       <a href="index.php?controller=concurso&action=modificarConcurso" type="button" class="btn btn-primary col-md-offset-5" >Modificar concurso</a>
+	  <?php } ?>
     </div>
   </div>
 </div>
