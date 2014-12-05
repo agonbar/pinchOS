@@ -58,7 +58,8 @@ class ProfesionalController extends DBController {
       $profesional->setEstadoU('1');
       $profesional->setNombreU($_POST["nombreU"]);
       $profesional->setConcursoId('1');
-
+	
+	  if($this->concurso->existConcurso()){
       try{
 
 	    /*Comprueba que los datos introducidos son validos*/
@@ -87,10 +88,17 @@ class ProfesionalController extends DBController {
         $this->view->setVariable("errors", $errors);
       }
     }
+	else{
+		$errors = array();
+        $errors["emailU"] = "No hay ningun concurso al que asociar este jurado";
+        $this->view->setVariable("errors", $errors);
+	}
+	}
 	/*Permite visualizar: view/vistas/altaJProf.php */
     $this->view->render("vistas", "altaJProf");
 
-  }
+  
+ }
   
   /*Este método hace la primera parte de la votación del jurado profesional, 
   en la que cada uno puede votar un pincho con una puntuacion de 0 a 5
