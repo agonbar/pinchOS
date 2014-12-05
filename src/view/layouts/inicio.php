@@ -111,7 +111,7 @@ error_reporting(E_ALL);
 									<?php } ?>
 								</li>
 								<li>
-									<?php if (($currentuser->getTipoU() == 'J') or ($currentuser->getTipoU() == 'S')) { ?>
+									<?php if ($currentuser->getTipoU() == 'A') { ?>
 										<a href="index.php?controller=pincho&action=cerrarVotacion"><i class="glyphicon glyphicon-plus"></i> Cerrar concurso</a>
 										<?php } ?>
 									</li>
