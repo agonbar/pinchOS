@@ -171,10 +171,10 @@ INSERT INTO `participante` (`direccionP`, `telefonoP`, `nombreLocalP`, `horarioP
 ('Carballino', '633333333', 'Enxogo', 'De 9:00 a 23:00','www.enxogo.es','69c20c15cbe777332028b93499f9d4ab','pablo@gmail.com');
 
 INSERT INTO `pincho` (`idPi`, `nombrePi`, `precioPi`, `ingredientesPi`,`cocineroPi`,`numvotosPopPi`,`numvotosProfPi`, `fotoPi`,`estadoPi`,`participanteEmail`, `numvotePi`) VALUES
-('21', 'jamon', '1', 'bueno','juan','2','0','./resources/img/pinchos/pincho.jpg','1','julian@gmail.com', '3'),
-('22', 'queso', '2', 'malo', 'pepe','2','3','./resources/img/pinchos/pincho.jpg','1','hector@gmail.com', '4'),
-('23', 'bacon', '3', 'buenisimo','carmen','2','4','./resources/img/pinchos/pincho.jpg','1','marta@gmail.com', '4'),
-('24', 'mortadela', '2', 'malisimo','roberto','0','0','./resources/img/pinchos/pincho.jpg','1','pablo@gmail.com', '0');
+('1', 'jamon', '1', 'bueno','juan','2','0','./resources/img/pinchos/pincho.jpg','1','julian@gmail.com', '3'),
+('2', 'queso', '2', 'malo', 'pepe','2','3','./resources/img/pinchos/pincho.jpg','1','hector@gmail.com', '4'),
+('3', 'bacon', '3', 'buenisimo','carmen','2','4','./resources/img/pinchos/pincho.jpg','1','marta@gmail.com', '4'),
+('4', 'mortadela', '2', 'malisimo','roberto','0','0','./resources/img/pinchos/pincho.jpg','1','pablo@gmail.com', '0');
 
 INSERT INTO `codVoto` (`idCV`, `pinchoId`) VALUES
 ('11', '1'),

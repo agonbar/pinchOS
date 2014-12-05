@@ -26,7 +26,7 @@ $pincho = $view->getVariable("pincho");
 									<select class="form-control" name="tipo">
 										<option value="N">Escoge parametros...</option>
 										<option value="nombrePi">Por nombre</option>
-										<option value="precioPi">Por precio</option>
+										<option value="precioPi">Por precio maximo</option>
 										<option value="ingredientesPi">Por Ingredientes</option>
 									</select>
 									</div>

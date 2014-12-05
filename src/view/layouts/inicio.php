@@ -57,7 +57,9 @@ error_reporting(E_ALL);
 									<h5>Pinchos <i class="glyphicon glyphicon-plus"></i></h5>
 								</a>
 								<ul class="list-unstyled collapse" id="menu3">
-									<li class="desplegable"><a href="index.php?controller=pincho&action=listadoPincho">Listado pincho</a></li>
+									<?php if (($currentuser->getTipoU() == 'A') || ($currentuser->getTipoU() == 'P')) { ?>
+										<li class="desplegable"><a href="index.php?controller=pincho&action=listadoPincho">Listado pincho</a></li>
+									<?php }?>
 									<li class="desplegable"><a href="index.php?controller=pincho&action=busquedaPincho">Búsqueda pincho</a></li>
 								</ul>
 							</li>
