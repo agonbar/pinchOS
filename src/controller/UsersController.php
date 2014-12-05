@@ -1,5 +1,5 @@
 <?php
-
+require_once(__DIR__."/../model/Concurso.php");
 require_once(__DIR__."/../model/User.php");
 require_once(__DIR__."/../core/ViewManager.php");
 require_once(__DIR__."/../controller/DBController.php");
@@ -8,6 +8,7 @@ class UsersController extends DBController {
 
   /*Variable que representa el objeto User*/
   private $user;
+  private $concurso;
 
   /*Constructor*/
   public function __construct() {
@@ -15,6 +16,8 @@ class UsersController extends DBController {
 
     //Inicializa la variable
     $this->user = new User();
+	//Inicializa la variable
+    $this->concurso = new Concurso();
   }
 
   /*Metodo que loguea al usuario*/
@@ -112,6 +115,18 @@ class UsersController extends DBController {
     }
     /*Datos del usuario actual*/
     $currentuser = $_SESSION["currentuser"];
+	
+	$concu = $this->concurso->ver_datos();
+	
+	//print_r($concu->getFechaInicioC());
+	//print_r(date("d-m-Y"));die();
+	
+	if($concu->getFechaInicioC() > date("d-m-Y")){
+		throw new Exception("La fecha de votaciones todavia no ha empezado ");
+	 }
+	 if($concu->getFechaFinalC() < date("d-m-Y")){
+		throw new Exception("La fecha de votaciones ya ha terminado ");
+	 }
 
     if($currentuser->getTipoU() == 'J'){
       $this->view->redirect("popular", "votar");

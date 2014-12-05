@@ -27,7 +27,7 @@ class PopularController extends DBController {
   
   /*Este metodo permite la votacion del jurado popular*/
   public function votar() {
- 
+  
 	$currentuser = $_SESSION["currentuser"];
 	
 	$errors = array();
