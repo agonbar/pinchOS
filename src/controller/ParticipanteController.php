@@ -144,12 +144,10 @@ class ParticipanteController extends DBController {
         $usuario->checkIsValidForModificacionJPopu($_POST["contrasenaU2"]);
         $usuario->update($_GET["did"]);
         $participante->modificarParticipante($_GET["did"],$_POST["direccionP"],$_POST["telefonoP"],$_POST["nombreLocalP"],$_POST["horarioP"],$_POST["paginaWebP"]);
-        $ruta="../src/resources/img/participantes/";//ruta carpeta donde queremos copiar las imagenes
+        $ruta="./resources/img/participantes/";//ruta carpeta donde queremos copiar las imagenes
         $fotoPi = $ruta.$_FILES['fotoPi']['name'];
         $fotoPiTemp = $_FILES['fotoPi']['tmp_name'];
         move_uploaded_file($fotoPiTemp,$fotoPi);//pasa la foto de la carpeta temporal a la del servidor web
-
-        $fotoPi="./resources/img/pinchos/".$_FILES['fotoPi']['name'];
 
         echo "<script> alert('Usuario modificado correctamente'); </script>";
       }catch(ValidationException $ex) {

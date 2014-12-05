@@ -82,7 +82,7 @@ $errors = $view->getVariable("errors");
             </div>
             </div>
             <h2 class="alineado"><div><img src="./resources/img/participantes/<?php echo $participante[0]["fotoP"]; ?>.jpg" alt="./resources/img/participantes/<?php echo $participante[0]["fotoP"]; ?>.jpg" class="img-thumbnail" height="200" width="200"></div></h2>
-            <button type="submit" class="btn btn-primary col-md-offset-5" >Guardar modificación</button>
+            <input type="submit" class="btn btn-primary col-md-offset-5" value="Guardar modificación">
             <a href="index.php?controller=participante&action=consultaParticipante&id=<?=$participante[0]["usuarioEmail"];?>" type="button" class="btn btn-primary " >Cancelar</a>
           </form>
         </div>
