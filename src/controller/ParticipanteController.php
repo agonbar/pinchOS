@@ -135,14 +135,16 @@ class ParticipanteController extends DBController {
     }
 
     if (isset($_POST["nombreU"])){
+      print_r($_POST);
+      print_r($_GET);
       $usuario= new User();
       $participante = new Participantes();
       $usuario->setContrasenaU($_POST["contrasenaU"]);
       $usuario->setNombreU($_POST["nombreU"]);
       try{
         $usuario->checkIsValidForModificacionJPopu($_POST["contrasenaU2"]);
-        $usuario->update($_POST["emailU"]);
-        $participante->modificarParticipante($_POST["emailU"],$_POST["direccionP"],$_POST["telefonoP"],$_POST["nombreLocalP"],$_POST["horarioP"],$_POST["paginaWebP"]);
+        $usuario->update($_GET["did"]);
+        $participante->modificarParticipante($_GET["did"],$_POST["direccionP"],$_POST["telefonoP"],$_POST["nombreLocalP"],$_POST["horarioP"],$_POST["paginaWebP"]);
         $ruta="../src/resources/img/pinchos/";//ruta carpeta donde queremos copiar las imagenes
         // //print_r($numpincho);die();
         $fotoPiSize = $_FILES['fotoPi']['size'];
@@ -157,11 +159,6 @@ class ParticipanteController extends DBController {
       }catch(ValidationException $ex) {
         $errors = $ex->getErrors();
         $this->view->setVariable("errors", $errors);
-      }
-
-      $participanteData = $this->participante->consultaParticipante($_POST["emailU"]);
-      if ($participanteData == NULL) {
-        throw new Exception("No existe participante");
       }
       $this->view->setVariable("participante", $participanteData);
       $this->listarParticipantes();
