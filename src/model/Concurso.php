@@ -161,6 +161,10 @@ class Concurso {
     if (strlen($this->nombreC) < 4) {
       $errors["nombreC"] = "El nombre debe contener al menos 4 caracteres de longitud";
     }
+	/*Error de longitud en las bases*/
+    if (strlen($this->basesC) < 24) {
+      $errors["basesC"] = "Las bases no son correctas";
+    }
 	/*Error de longitud en la ciudad*/
     if (strlen($this->ciudadC) < 2) {
       $errors["ciudadC"] = "La ciudad debe contener al menos 2 caracteres de longitud";
@@ -252,6 +256,6 @@ class Concurso {
 	  $concursos_db["patrocinadorC"]
        );
     }
-  }
+  } 
 
 }

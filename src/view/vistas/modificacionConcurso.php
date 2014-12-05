@@ -74,8 +74,8 @@ $concurso = $view->getVariable("concu");
         <div class="form-group separarformulario">
           <label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Bases</label>
           <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-            <textarea class="form-control" rows="6" placeholder="<?=$concurso->getBasesC()?>" name="basesC"></textarea>
-            <input type="file" id="archivo_1" value="<?= isset($_POST["basesC"])?$_POST["basesC"]:$concurso->getBasesC() ?>" name="basesC">
+            <input type="textarea" class="form-control" rows="6" placeholder="<?=$concurso->getBasesC()?>" name="basesC"></textarea>
+            <input type="file" id="archivo_1" name="basesC">
 			<?= isset($errors["basesC"])?$errors["basesC"]:"" ?><br>
           </div>
         </div>
