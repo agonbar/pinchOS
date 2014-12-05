@@ -452,9 +452,20 @@ class Pincho {
 
   public function searchPi($tipob,$param){
     $db = PDOConnection::getInstance();
-    $stmt = $db->prepare("SELECT * FROM pincho where ?=?");
-    $stmt->execute(array($tipob,$param));
+    if($tipob=='nombrePi'){
+      $stmt = $db->prepare("SELECT * FROM pincho where nombrePi=?");
+    }
+    if($tipob=='precioPi'){
+      $stmt = $db->prepare("SELECT * FROM pincho where precioPi<?");
+    }
+    if($tipob=='ingredientesPi'){
+      $param = '%'.$param.'%';
+      //print_r($param);die();
+      $stmt = $db->prepare("SELECT * FROM pincho where ingredientesPi LIKE ?");
+    }
+    $stmt->execute(array($param));
     $pinchos_db=$stmt->fetchAll(PDO::FETCH_ASSOC);
+    //print_r($pinchos_db);die();
     $pinchos=array();
 
     foreach ($pinchos_db as $pincho) {

@@ -212,13 +212,14 @@ class PinchoController extends DBController {
 	 	if(isset($_POST["parametro"])){
 		 	$parametro = $_POST["parametro"];
 		 	$tipo = $_POST["tipo"];
-		 	print_r($tipo);die();
-	 	}
-
-		//$arrayPinchos = $this->pincho->searchPi($tipo,$param);
-		$arrayPinchos = $this->pincho->listarPi();
-		$this->view->setVariable("pinchos", $arrayPinchos);
-		$this->view->render("vistas", "buscarPinchos");
+			$arrayPinchos = $this->pincho->searchPi($tipo,$parametro);
+			$this->view->setVariable("pinchos", $arrayPinchos);
+			$this->view->render("vistas", "buscarPinchos");
+	 	}else{
+			$arrayPinchos = $this->pincho->listarPi();
+			$this->view->setVariable("pinchos", $arrayPinchos);
+			$this->view->render("vistas", "buscarPinchos");
+		}
 	}
 
 	/**
