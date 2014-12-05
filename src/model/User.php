@@ -184,6 +184,8 @@ class User {
     $db = PDOConnection::getInstance();
     $stmt = $db->prepare("INSERT INTO usuario values (?,?,?,?,?,?)");
     $stmt->execute(array($this->emailU, $this->contrasenaU, $this->tipoU, $this->estadoU, $this->nombreU, $this->concursoId));
+    $stmt-> $db->prepare("INSERT INTO participante values usuarioEmail = ?");
+    $stmt->execute(array($this->emailU));
   }
 
   /* Actualiza el User en la base de datos,para ello se hace un update de los distintos campos que contiene la tabla usuario*/
