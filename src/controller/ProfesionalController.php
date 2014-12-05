@@ -128,11 +128,17 @@ class ProfesionalController extends DBController {
 		  //continua solo si no se ha producido ningun error
 		  if (!sizeof($errors)>0){
 		  
+			 /* if(comparacion de fecha){
+				  if(!$votoPincho->esPinchoFinalista()){
+					$errors["codigoP"] = "Este pincho no pertenece a la lista de finalistas";
+				  }
+			  }*/
+			
 			  $votoPincho->updateNumVotosProf();
 		  
 			  /*Si no es asi, guarda las votaciones en la base de datos*/
 			  $votoPincho->save();
-			  
+			
 			  //mensaje de confirmación y redirige al metodo verPerfil del controlador profesionalCotroller
 			  echo "<script> alert('Voto registrado correctamente'); </script>";
 			  echo "<script>window.location.replace('index.php?controller=profesional&action=verPerfil');</script>";

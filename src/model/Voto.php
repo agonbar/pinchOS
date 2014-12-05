@@ -209,7 +209,6 @@ class Voto {
     $stmt->execute(array($this->pinchoIdPi));
 	$numVotos=$stmt->fetch(PDO::FETCH_ASSOC);
 	
-	$db = PDOConnection::getInstance();
 	$stmt1 = $db->prepare("SELECT count(*) FROM voto,usuario where voto.pinchoIdPi=? and usuario.emailU=voto.usuarioEmailU and usuario.tipoU='S'");
     $stmt1->execute(array($this->pinchoIdPi));
 	
@@ -221,6 +220,20 @@ class Voto {
 	
     $stmt = $db->prepare("UPDATE pincho SET numvotosProfPi=? WHERE IdPi=?");
     $stmt->execute(array($numVotosTotal, $this->pinchoIdPi));
+  }
+  
+  /*Este metodo comprueba si el pincho al que se esta votando pertenece a la
+  lista de finalistas del jurado profesional.*/
+  public function esPinchoFinalista(){
+	$stmt = $db->prepare("SELECT * FROM premiados WHERE ronda='1' and idPrem=?");
+    $stmt->execute(array($this->pinchoIdPi));
+	
+	if($stmt->fetchColumn()==0){
+		return false;
+	}else{
+		return true;
+	}
+  
   }
   
 
