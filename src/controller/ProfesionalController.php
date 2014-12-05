@@ -2,6 +2,7 @@
 require_once(__DIR__."/../model/User.php");
 require_once(__DIR__."/../model/Voto.php");
 require_once(__DIR__."/../model/Pincho.php");
+require_once(__DIR__."/../model/Concurso.php");
 require_once(__DIR__."/../controller/DBController.php");
 require_once(__DIR__."/../core/ViewManager.php");
 
@@ -10,6 +11,7 @@ class ProfesionalController extends DBController {
   /*Variable que representa el objeto User*/
   private $user;
   private $voto;
+  private $concurso;
 
   /*Constructor*/
   public function __construct() {
@@ -22,6 +24,7 @@ class ProfesionalController extends DBController {
 	//Inicializa la variable
     $this->user = new User();
 	$this->voto = new Voto();
+	$this->concurso = new Concurso();
   }
 
   /*Metodo que genera la contraseña para e jurado profesional*/
@@ -126,14 +129,21 @@ class ProfesionalController extends DBController {
 		if ((!$votoPincho->votoExist())){
 		
 		  //continua solo si no se ha producido ningun error
+		  
+		 $concu = $this->concurso->ver_datos();
+		
+		 /*En el caso de que ya sea la fecha en la que ya se deben saber los finalistas, 
+		 apartir de ese momento el jurado profesional solamenre podra votar a los pinchos
+		 que sean finalistas (los que esten en la tabla premiados con el valor del
+		 atributo "ronda=1")*/
+		 if($concu->getFechaFinalistasC() <= date("Y-m-d")){
+			  if(!$votoPincho->esPinchoFinalista()){
+				$errors["codigoP"] = "Este pincho no pertenece a la lista de finalistas";
+			  }
+		  }
+		  
 		  if (!sizeof($errors)>0){
 		  
-			 /* if(comparacion de fecha){
-				  if(!$votoPincho->esPinchoFinalista()){
-					$errors["codigoP"] = "Este pincho no pertenece a la lista de finalistas";
-				  }
-			  }*/
-			
 			  $votoPincho->updateNumVotosProf();
 		  
 			  /*Si no es asi, guarda las votaciones en la base de datos*/

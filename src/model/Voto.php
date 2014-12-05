@@ -225,7 +225,8 @@ class Voto {
   /*Este metodo comprueba si el pincho al que se esta votando pertenece a la
   lista de finalistas del jurado profesional.*/
   public function esPinchoFinalista(){
-	$stmt = $db->prepare("SELECT * FROM premiados WHERE ronda='1' and idPrem=?");
+    $db = PDOConnection::getInstance();
+	$stmt = $db->prepare("SELECT count(*) FROM premiados WHERE ronda='1' and idPrem=?");
     $stmt->execute(array($this->pinchoIdPi));
 	
 	if($stmt->fetchColumn()==0){
