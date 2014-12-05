@@ -63,13 +63,9 @@ class ParticipanteController extends DBController {
   public function busquedaParticipante(){
     $participantes_array = array();
     if (isset($_POST["datosBusqueda"])){
-      print_r($_POST["datosBusqueda"]);
       $participantes_array = $this->participante->busquedaParticipante($_POST["datosBusqueda"]);
     } else {
       $participantes_array = $this->participante->listarParticipantes();
-    }
-    if ($participantes_array == NULL) {
-      throw new Exception("No hay participantes");
     }
     $this->view->setVariable("participantes", $participantes_array);
     $this->view->render("vistas", "buscarPart");
@@ -147,7 +143,7 @@ class ParticipanteController extends DBController {
         $usuario->checkIsValidForModificacionJPopu($_POST["contrasenaU2"]);
         $usuario->update($_POST["emailU"]);
         $participante->modificarParticipante($_POST["emailU"],$_POST["direccionP"],$_POST["telefonoP"],$_POST["nombreLocalP"],$_POST["horarioP"],$_POST["paginaWebP"]);
-        print_r($_FILES);
+        print_r($_POST['img-file']);
         $file = FileManager::getInstance()->get_file();
 
         if ($file) {
