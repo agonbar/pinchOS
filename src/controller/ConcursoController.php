@@ -60,7 +60,7 @@ class ConcursoController extends DBController {
 				$concu->setIdC('1');
 				$concu->setNombreC($_POST["nombreC"]);
 
-				$ruta="../src/resources/bases/";//ruta carpeta donde queremos copiar las imagenes
+				$ruta="./resources/bases/";//ruta carpeta donde queremos copiar las imagenes
 				$basesCTemp=$_FILES['basesC']['tmp_name'];//guarda el directorio temporal en el que se sube la imagen
 				$basesC=$ruta.$_FILES['basesC']['name'];//indica el directorio donde se guardaran las imagenes
 				move_uploaded_file($basesCTemp, $basesC);
@@ -123,7 +123,7 @@ class ConcursoController extends DBController {
 				$concu->setIdC('1');
 				$concu->setNombreC($_POST["nombreC"]);
 
-				$ruta="../src/resources/bases/";//ruta carpeta donde queremos copiar las imagenes
+				$ruta="./resources/bases/";//ruta carpeta donde queremos copiar las imagenes
 				$basesCTemp=$_FILES['basesC']['tmp_name'];//guarda el directorio temporal en el que se sube la imagen
 				$basesC=$ruta.$_FILES['basesC']['name'];//indica el directorio donde se guardaran las imagenes
 				move_uploaded_file($basesCTemp, $basesC);
