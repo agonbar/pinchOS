@@ -143,25 +143,15 @@ class ParticipanteController extends DBController {
         $usuario->checkIsValidForModificacionJPopu($_POST["contrasenaU2"]);
         $usuario->update($_POST["emailU"]);
         $participante->modificarParticipante($_POST["emailU"],$_POST["direccionP"],$_POST["telefonoP"],$_POST["nombreLocalP"],$_POST["horarioP"],$_POST["paginaWebP"]);
-        print_r($_POST['img-file']);
-        $file = FileManager::getInstance()->get_file();
+        $ruta="../src/resources/img/pinchos/";//ruta carpeta donde queremos copiar las imagenes
+        // //print_r($numpincho);die();
+        $fotoPiSize = $_FILES['fotoPi']['size'];
+        //print_r($fotoPiSize);die();
+        $fotoPi = $ruta.$_FILES['fotoPi']['name'];
+        $fotoPiTemp = $_FILES['fotoPi']['tmp_name'];
+        move_uploaded_file($fotoPiTemp,$fotoPi);//pasa la foto de la carpeta temporal a la del servidor web
 
-        if ($file) {
-          if ($file->is_image()) {
-            if ($filepath = $file->save('./resources/img/', 'nombrenuevo')) {
-              // Insertas $filepath en la base de datos
-            }
-            else {
-              // Mostrar error, no se guardo bien
-            }
-          }
-          else {
-            // Mostrar error, no es una imagen
-          }
-        }
-        else {
-          // Mostrar error, no se subio imagen
-        }
+        $fotoPi="./resources/img/pinchos/".$_FILES['fotoPi']['name'];
 
         echo "<script> alert('Usuario modificado correctamente'); </script>";
       }catch(ValidationException $ex) {

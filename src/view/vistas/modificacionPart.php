@@ -79,11 +79,13 @@ $errors = $view->getVariable("errors");
                 <input class="form-control" placeholder="<?=$participante[0]["paginaWebP"]?>"
                 value="<?= isset($_POST["paginaWebP"])?$_POST["paginaWebP"]:$participante[0]["paginaWebP"] ?>" name="paginaWebP">
               </div>
-          </div>
+            </div>
             <div class="form-group separarformulario">
-              <label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Imagen</label>
+              <label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Fotografia</label>
               <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-                  <input class="form-control" type="file" name="img-file" accept="image/*">
+                <input type="file" id="fotoPi" name="fotoPi">
+                <?= isset($errors["ingredientesPi"])?$errors["ingredientesPi"]:"" ?>
+                <p class="help-block">El tamano maximo permitido es de 2Mb</p><br>
               </div>
             </div>
             <h2 class="alineado"><div><img src="./resources/img/<?php echo $participante[0]["fotoP"]; ?>.jpg" alt="./resources/img/<?php echo $participante[0]["fotoP"]; ?>.jpg" class="img-thumbnail" height="200" width="200"></div></h2>
