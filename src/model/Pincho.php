@@ -331,7 +331,6 @@ class Pincho {
 
   public function updatePi($idPi) {
     $db = PDOConnection::getInstance();
-    print_r($this->nombrePi);die();
     $stmt = $db->prepare("UPDATE pincho SET estadoPi=?, nombrePi=?, precioPi=?, ingredientesPi=?, cocineroPi=?, fotoPi=? where idPi=?");
     $stmt->execute(array($this->estadoPi, $this->nombrePi, $this->precioPi, $this->ingredientesPi, $this->cocineroPi, $this->fotoPi, $idPi));
     //print_r($this->estadoPi);die();

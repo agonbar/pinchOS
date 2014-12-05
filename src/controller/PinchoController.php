@@ -76,8 +76,8 @@ class PinchoController extends DBController {
 						$pinchotemp->checkInfoPi();
 
 						//die();
-						//print_r($idpincho);die();
-						$pinchotemp->savePi();//die();
+						print_r($idpincho);die();
+						//$pinchotemp->savePi();//die();
 
 						$codvototemp->generateCodVote($idpincho);//los codigos de votos de un pincho deben crearse DESPUES que el pincho
 
@@ -147,14 +147,9 @@ class PinchoController extends DBController {
 			$idPi = $_GET["idPi"];
 		}
 
-		$pinchotemp = $this->pincho->showDatesPi($idPi);
-		$this->view->setVariable("pincho", $pinchotemp);
-		$this->view->render("vistas", "modificacionPincho");//te muestra el formulario la primera vez
-
 		if($currentuser->getTipoU()=="P"){//commprueba que el usuario esta logeado
 
 			if(isset($_POST["nombrePi"])){
-
 				if($pinchotemp->pinchoExists($currentuser->getEmailU())){//compueba si este participante ya metio algun pincho
 					//print_r($currentuser);die();
 					// $ruta="../src/resources/img/pinchos/";//ruta carpeta donde queremos copiar las imagenes
@@ -174,11 +169,12 @@ class PinchoController extends DBController {
 					$pinchotemp->setCocineroPi($_POST["cocineroPi"]);
 					//print_r($currentuser->getEmailU());die();
 
+
 					try{
 						//Hace todas las coprobaciones a la informacion introducida por el usuario
 						$pinchotemp->checkInfoPi();
-						print_r($pinchotemp->getIdPi());die();
-						$pinchotemp->updatePi($pinchotemp->getIdPi());//die();
+						//print_r($pinchotemp->getIdPi());die();
+						$pinchotemp->updatePi($idPi);//die();
 
 						//mensaje de confirmación y redirige al metodo consultarPincho del controlador PinchoController
 						echo "<script> alert('Pincho modificado correctamente'); </script>";
@@ -194,6 +190,10 @@ class PinchoController extends DBController {
 					echo "<script> alert('No has subido ningun pincho'); </script>";
 					echo "<script>window.location.replace('index.php?controller=pincho&action=listadoPincho');</script>";
 				}
+			}else{
+				$pinchotemp = $this->pincho->showDatesPi($idPi);
+				$this->view->setVariable("pincho", $pinchotemp);
+				$this->view->render("vistas", "modificacionPincho");//te muestra el formulario la primera vez
 			}
 		}else{
 			echo "<script> alert('NO eres un Participante, NO puedes dar de alta un pincho'); </script>";

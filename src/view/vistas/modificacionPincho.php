@@ -14,7 +14,7 @@ $pincho = $view->getVariable("pincho");
 			</div>
 			<div class="row separacion">
 				<div class="column col-lg-10 col-md-10 col-sm-12 col-xs-12 ">
-					<form class="form-horizontal" role="form" method="POST" action="index.php?controller=pincho&action=modificacionPincho">
+					<form class="form-horizontal" role="form" method="POST" action="index.php?controller=pincho&action=modificacionPincho&idPi= <?=$pincho->getIdPi();?>">
 						<div class="form-group separarformulario">
 							<center><img src= "<?=$pincho->getFotoPi()?>" alt="Imagen del pincho" class="img-thumbnail" width= "20%" heigth= "20%"></center>
 								<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Fotografia</label>
