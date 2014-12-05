@@ -32,6 +32,10 @@ $currentuser = $view->getVariable("currentusername");
             <label class="control-label">Telefono: </label>
             <label class=" control-label"><?php echo $participante[0]["telefonoP"]; ?></label>
           </div>
+          <div class="form-group alineado ">
+            <label class="control-label">Web: </label>
+            <label class=" control-label"><?php echo $participante[0]["paginaWebP"]; ?></label>
+          </div>
         </form>
         <table class="table alineado ">
           <!-- Aplicadas en las filas -->

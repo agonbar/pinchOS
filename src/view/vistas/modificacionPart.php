@@ -15,6 +15,12 @@ $errors = $view->getVariable("errors");
         <div class="column col-lg-10 col-md-10 col-sm-12 col-xs-12 ">
           <form class="form-horizontal" method="POST" action="index.php?controller=participante&action=modificarParticipante">
             <div class="form-group separarformulario">
+              <label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Email</label>
+              <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                <?php echo $participante[0]["emailU"]?>
+              </div>
+            </div>
+            <div class="form-group separarformulario">
               <label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Nombre</label>
               <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
                 <input class="form-control" placeholder="<?=$participante[0]["nombreU"]?>"
@@ -22,14 +28,7 @@ $errors = $view->getVariable("errors");
                 <?= isset($errors["nombreU"])?$errors["nombreU"]:"" ?><br>
               </div>
             </div>
-            <div class="form-group separarformulario">
-              <label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Email</label>
-              <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-                <input class="form-control" placeholder="<?=$participante[0]["emailU"]?>"
-                value="<?= isset($_POST["emailU"])?$_POST["emailU"]:$participante[0]["emailU"] ?>" name="emailU">
-              </div>
-            </div>
-            <div class="form-group separarformulario">
+                        <div class="form-group separarformulario">
               <label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Contraseña</label>
               <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
                 <input class="form-control" placeholder="<?=$participante[0]["contrasenaU"]?>"
