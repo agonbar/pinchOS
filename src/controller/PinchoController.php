@@ -46,12 +46,9 @@ class PinchoController extends DBController {
 			if(isset($_POST["nombrePi"])) {
 
 				if(!$pinchotemp->pinchoExistsAct($currentuser->getEmailU())){//compueba si este participante ya metio algun pincho
-					//print_r($currentuser);die();
 					$ruta="../src/resources/img/pinchos/";//ruta carpeta donde queremos copiar las imagenes
 					$idpincho = $pinchotemp->generarIdPi($currentuser->getEmailU());//devuelve el id del pinchos
-					// //print_r($numpincho);die();
 					$fotoPiSize = $_FILES['fotoPi']['size'];
-					 //print_r($fotoPiSize);die();
 					$fotoPi = $ruta.$_FILES['fotoPi']['name'];
 					 $fotoPiTemp = $_FILES['fotoPi']['tmp_name'];
 					move_uploaded_file($fotoPiTemp,$fotoPi);//pasa la foto de la carpeta temporal a la del servidor web
@@ -69,16 +66,13 @@ class PinchoController extends DBController {
 					$pinchotemp->setIngredientesPi($_POST["ingredientesPi"]);
 					$pinchotemp->setCocineroPi($_POST["cocineroPi"]);
 					$pinchotemp->setParticipanteEmail($currentuser->getEmailU());
-					//print_r($currentuser->getEmailU());die();
 
 					try{
 						//Hace todas las coprobaciones a la informacion introducida por el usuario
 						$pinchotemp->checkInfoIfNullPi();
 						$pinchotemp->checkInfoPi();
 
-						//die();
-						//print_r($idpincho);die();
-						$pinchotemp->savePi();//die();
+						$pinchotemp->savePi();
 
 						$codvototemp->generateCodVote($idpincho);//los codigos de votos de un pincho deben crearse DESPUES que el pincho
 
@@ -172,8 +166,7 @@ class PinchoController extends DBController {
 					try{
 						//Hace todas las coprobaciones a la informacion introducida por el usuario
 						$pinchotemp->checkInfoPi();
-						//print_r($pinchotemp->getIdPi());die();
-						$pinchotemp->updatePi($idPi);//die();
+						$pinchotemp->updatePi($idPi);
 
 						//mensaje de confirmación y redirige al metodo consultarPincho del controlador PinchoController
 						echo "<script> alert('Pincho modificado correctamente'); </script>";
@@ -235,7 +228,6 @@ class PinchoController extends DBController {
 	public function consultaPincho(){
 		if(isset($_GET["idPi"])){
 			$idPi = $_GET["idPi"];
-			//print_r("que esta pasando");die();
 		}
 		$pinchotemp = $this->pincho->showDatesPi($idPi);
 		$this->view->setVariable("pincho", $pinchotemp);
@@ -253,7 +245,6 @@ class PinchoController extends DBController {
 
 	public function listadoPincho(){
 		$currentuser = $_SESSION["currentuser"];
-		//print_r($currentuser->getTipoU());die();
 		if($currentuser->getTipoU() == "A"){
 			$arrayPinchos = $this->pincho->listarPi();
 			$this->view->setVariable("pinchos", $arrayPinchos);
@@ -298,9 +289,6 @@ class PinchoController extends DBController {
 	public function cerrarVotacion(){
 		$concu = $this->concurso->ver_datos();
 		if($concu->getFechaFinalC() != date("Y-m-d") || $concu->getFechaFinalistasC() != date("Y-m-d")){
-			print_r($concu->getFechaFinalC());
-			print_r($concu->getFechaFinalistasC());
-			print_r(date("d-m-Y"));
 			throw new Exception("No es fecha para cerrar el concurso");
 		}
 		$this->pincho->crearFin();
