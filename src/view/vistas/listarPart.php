@@ -15,7 +15,7 @@ $errors = $view->getVariable("errors");
           <?php foreach ($participantes as $participante): ?>
             <li>
               <a href="index.php?controller=participante&action=consultaParticipante&id=<?=$participante["usuarioEmail"];?>">
-                <div><img src="./resources/img/<?php echo $participante["fotoP"]; ?>.jpg" alt="./resources/img/<?php echo $participante["fotoP"]; ?>.jpg" class="img-thumbnail" height="200" width="200"></div>
+                <div><img src="./resources/img/participantes/<?php echo $participante["fotoP"]; ?>.jpg" alt="./resources/img/participantes/<?php echo $participante["fotoP"]; ?>.jpg" class="img-thumbnail" height="200" width="200"></div>
                 <div class="caption">
                   <h4> <?php echo $participante["nombreLocalP"]; ?>
                   </h4>

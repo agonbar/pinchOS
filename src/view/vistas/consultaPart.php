@@ -12,7 +12,7 @@ $currentuser = $view->getVariable("currentusername");
     <div class="modalbox movedown">
       <h2 class="alineado">
         <?php echo $participante[0]["nombreLocalP"]; ?>
-        <div><img src="./resources/img/<?php echo $participante[0]["fotoP"]; ?>.jpg" alt="./resources/img/<?php echo $participante[0]["fotoP"]; ?>.jpg" class="img-thumbnail" height="200" width="200"></div>
+        <div><img src="./resources/img/participantes/<?php echo $participante[0]["fotoP"]; ?>.jpg" alt="./resources/img/participantes/<?php echo $participante[0]["fotoP"]; ?>.jpg" class="img-thumbnail" height="200" width="200"></div>
       </h2>
       <div class="column col-lg-10 col-md-10 col-sm-12 col-xs-12 col-md-offset-1">
         <form class="form-horizontal separarformulario" role="form">
@@ -49,7 +49,7 @@ $currentuser = $view->getVariable("currentusername");
           <?php foreach ($pinchos as $pincho): ?>
             <a href="pincho.php">
               <tr class="tablehover">
-                <td><img src="<?php echo $pincho["fotoPi"]; ?>" alt="./resources/img/<?php echo $pincho["fotoPi"]; ?>.jpg" class="img-thumbnail" height="50" width="50"></td>
+                <td><img src="<?php echo $pincho["fotoPi"]; ?>" alt="./resources/img/participantes/<?php echo $pincho["fotoPi"]; ?>.jpg" class="img-thumbnail" height="50" width="50"></td>
                 <td><?php echo $pincho["nombrePi"]; ?></td>
                 <td><?php echo $pincho["precioPi"]; ?>€</td>
                 <td><?php echo $pincho["ingredientesPi"]; ?></td>
