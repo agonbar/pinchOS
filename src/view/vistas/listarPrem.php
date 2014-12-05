@@ -18,8 +18,8 @@ $premiadosPro = $view->getVariable("premiadosPro");
           else {
           foreach ($premiadosPop as $premiado): ?>
           <li>
-            <a href="index.php?controller=pincho&action=consultaPincho&id=<?=$premiado["idPi"];?>">
-              <div><img src="<?php echo $premiado["fotoPi"]; ?>.jpg" alt="./resources/img/<?php echo $premiado["fotoPi"]; ?>.jpg" class="img-thumbnail" height="200" width="200"></div>
+            <a href="index.php?controller=pincho&action=consultaPincho&idPi=<?=$premiado["idPi"];?>">
+              <div><img src="<?php echo $premiado["fotoPi"]; ?>" alt="./resources/img/<?php echo $premiado["fotoPi"]; ?>" class="img-thumbnail" height="200" width="200"></div>
               <div class="caption">
                 <h4> <?php echo $premiado["nombrePi"]; ?>
                 </h4>
@@ -36,7 +36,7 @@ $premiadosPro = $view->getVariable("premiadosPro");
         foreach ($premiadosPro as $premiado): ?>
         <li>
           <a href="index.php?controller=pincho&action=consultaPincho&id=<?=$premiado["idPi"];?>">
-            <div><img src="./resources/img/<?php echo $premiado["fotoPi"]; ?>.jpg" alt="./resources/img/<?php echo $premiado["fotoPi"]; ?>.jpg" class="img-thumbnail" height="200" width="200"></div>
+            <div><img src="<?php echo $premiado["fotoPi"]; ?>" alt="<?php echo $premiado["fotoPi"]; ?>" class="img-thumbnail" height="200" width="200"></div>
             <div class="caption">
               <h4> <?php echo $premiado["nombrePi"]; ?>
               </h4>
