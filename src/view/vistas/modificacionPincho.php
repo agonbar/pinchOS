@@ -50,8 +50,8 @@ $pincho = $view->getVariable("pincho");
 							<div class="form-group separarformulario">
 								<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Ingredientes</label>
 								<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-									<textarea class="form-control" placeholder="<?=$pincho->getIngredientesPi()?>"
-										value="<?= isset($_POST["ingredientesPi"])?$_POST["ingredientesPi"]:$pincho->getIngredientesPi() ?>" rows="3" name="ingredientesPi"></textarea>
+									<input class="form-control" placeholder="<?=$pincho->getIngredientesPi()?>"
+										value="<?= isset($_POST["ingredientesPi"])?$_POST["ingredientesPi"]:$pincho->getIngredientesPi() ?>" rows="3" name="ingredientesPi">
 									<?= isset($errors["ingredientesPi"])?$errors["ingredientesPi"]:"" ?><br>
 								</div>
 							</div>
