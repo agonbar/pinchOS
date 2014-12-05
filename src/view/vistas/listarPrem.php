@@ -25,7 +25,7 @@ $premiadosPro = $view->getVariable("premiadosPro");
             </li>
           <?php endforeach; ?><!-- fin while-->
         </ul>
-        <h2 class="alineado">Listado de Premiados Profesionales</h2>
+        <h2 class="alineado">Listado de Finalistas/Premiados Profesionales</h2>
         <ul class= "list-inline ">
           <?php foreach ($premiadosPro as $premiado): ?>
             <li>
