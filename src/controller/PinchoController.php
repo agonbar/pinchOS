@@ -2,6 +2,7 @@
 require_once(__DIR__."/../model/Pincho.php");
 require_once(__DIR__."/../model/User.php");
 require_once(__DIR__."/../model/CodVoto.php");
+require_once(__DIR__."/../model/Concurso.php");
 require_once(__DIR__."/../core/ViewManager.php");
 require_once(__DIR__."/../controller/DBController.php");
 
@@ -9,6 +10,7 @@ class PinchoController extends DBController {
 
 	private $pincho;
 	private $codvoto;
+	private $concurso;
 
 	public function __construct() {
 		parent::__construct();
@@ -19,6 +21,7 @@ class PinchoController extends DBController {
 
 		$this->pincho = new Pincho();
 		$this->codvoto = new CodVoto();
+		$this->concurso = new Concurso();
 
 	}
 
@@ -293,6 +296,13 @@ class PinchoController extends DBController {
 	*/
 
 	public function cerrarVotacion(){
+		$concu = $this->concurso->ver_datos();
+		if($concu->getFechaFinalC() != date("Y-m-d") || $concu->getFechaFinalistasC() != date("Y-m-d")){
+			print_r($concu->getFechaFinalC());
+			print_r($concu->getFechaFinalistasC());
+			print_r(date("d-m-Y"));
+			throw new Exception("No es fecha para cerrar el concurso");
+		}
 		$this->pincho->crearFin();
 		$this-> listarPrem();
 	}
