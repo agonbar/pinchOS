@@ -1,4 +1,5 @@
 <?php
+require_once(__DIR__."/../model/User.php");
 require_once(__DIR__."/../core/PDOConnection.php");
 require_once(__DIR__."/../core/ValidationException.php");
 
@@ -156,14 +157,51 @@ class Pincho {
 
   /**
   *
+  * Genera un identificador para un pincho
+  * @return int $idPincho. Devuelve el identificador de un pincho
+  * @access public
+  *
+  */
+
+  public function generarIdPi(){
+    $db = PDOConnection::getInstance();
+    $stmt = $db->prepare("SELECT idPi FROM pincho ");
+    $stmt->execute();
+    $idPincho = ($stmt->rowCount())+1;
+    return $idPincho;
+  }
+
+  /**
+  *
   * Comprueba si el id ya existe en la base de datos
   * @param string $Participante Clave del usuario
-  * @return boolean. Devuelve verdadero si encontre 1 o mas pinchos de un mismo participate con estado activo
+  * @return boolean. Devuelve verdadero si encuentra 1 o mas pinchos de un mismo
   * @access public
   *
   */
 
   public function pinchoExists($Participante) {
+    $estadoPi="1";
+    $db = PDOConnection::getInstance();
+    $stmt = $db->prepare("SELECT * FROM pincho where ParticipanteEmail=?");
+    $stmt->execute(array($Participante));
+
+    if ($stmt->fetchColumn() > 0) {
+      return true;
+    }
+  }
+
+  /**
+  *
+  * Comprueba si el id ya existe en la base de datos
+  * @param string $Participante Clave del usuario
+  * @return boolean. Devuelve verdadero si encuentra 1 o mas pinchos de un mismo
+  * participate con estado activo
+  * @access public
+  *
+  */
+
+  public function pinchoExistsAct($Participante) {
     $estadoPi="1";
     $db = PDOConnection::getInstance();
     $stmt = $db->prepare("SELECT * FROM pincho where ParticipanteEmail=? AND estadoPi=?");
@@ -176,7 +214,8 @@ class Pincho {
 
   /**
   *
-  * Comprueba si alguno de los parametros que vienen de la vista es nulo o menor del tamaño esperado
+  * Comprueba si alguno de los parametros que vienen de la vista es nulo o menor
+  * del tamaño esperado
   * @return Lanza una excepcion
   * @access public
   *
@@ -290,11 +329,11 @@ class Pincho {
   *
   */
 
-  public function updatePi() {
+  public function updatePi($idPi) {
     $db = PDOConnection::getInstance();
-    //print_r($this->estadoPi);die();
-    $stmt = $db->prepare("UPDATE pincho SET estadoPi=? where idPi=?");
-    $stmt->execute(array($this->estadoPi, $this->idPi));
+    print_r($this->nombrePi);die();
+    $stmt = $db->prepare("UPDATE pincho SET estadoPi=?, nombrePi=?, precioPi=?, ingredientesPi=?, cocineroPi=?, fotoPi=? where idPi=?");
+    $stmt->execute(array($this->estadoPi, $this->nombrePi, $this->precioPi, $this->ingredientesPi, $this->cocineroPi, $this->fotoPi, $idPi));
     //print_r($this->estadoPi);die();
   }
 
@@ -332,7 +371,7 @@ class Pincho {
 
   /**
   *
-  * Recoge la infrmacion de todos los pinchos con estado activo de
+  * Recoge la informacion de todos los pinchos con estado activo de
   * la base de datos y los introduce en un array
   * @return $pincho[] array. Devuelve un array con toda la iformacion de cada
   * pincho de la base de datos con estado activo
@@ -345,6 +384,41 @@ class Pincho {
     $db = PDOConnection::getInstance();
     $stmt = $db->prepare("SELECT * FROM pincho where estadoPi=?");
     $stmt->execute(array(($activo)));
+    $pinchos_db=$stmt->fetchAll(PDO::FETCH_ASSOC);
+    $pinchos=array();
+
+    foreach ($pinchos_db as $pincho) {
+      array_push($pinchos, new Pincho($pincho["idPi"],
+      $pincho["nombrePi"],
+      $pincho["precioPi"],
+      $pincho["ingredientesPi"],
+      $pincho["cocineroPi"],
+      $pincho["numvotosPopPi"],
+      $pincho["numvotosProfPi"],
+      $pincho["fotoPi"],
+      0,//indica si tiene errores la foto
+      $pincho["estadoPi"],
+      $pincho["participanteEmail"],
+      $pincho["numvotePi"]));
+    }
+    return $pinchos;
+  }
+
+  /**
+  *
+  * Recoge la informacion de todos los pinchos del participante actual que hay
+  * en la base de datos y los introduce en un array
+  * @return $pincho[] array. Devuelve un array con toda la informacion de cada
+  * pincho de la base de datos que haya creado el participante actual
+  * @access public
+  *
+  */
+
+  public function listarPiPart(){
+    $currentuser = $_SESSION["currentuser"];;
+    $db = PDOConnection::getInstance();
+    $stmt = $db->prepare("SELECT * FROM pincho where ParticipanteEmail=?");
+    $stmt->execute(array(($currentuser->getEmailU())));
     $pinchos_db=$stmt->fetchAll(PDO::FETCH_ASSOC);
     $pinchos=array();
 

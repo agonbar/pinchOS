@@ -38,14 +38,16 @@ class PinchoController extends DBController {
 		$codvototemp = new CodVoto();
 		$currentuser = $_SESSION["currentuser"];
 
+		$this->view->render("vistas", "altaPincho");//te muestra el formulario la primera vez
+
 		if($currentuser->getTipoU()=="P"){//commprueba que el usuario esta logeado
 
 			if(isset($_POST["nombrePi"])) {
 
-				if(!$pinchotemp->pinchoExists($currentuser->getEmailU())){//compueba si este participante ya metio algun pincho
+				if(!$pinchotemp->pinchoExistsAct($currentuser->getEmailU())){//compueba si este participante ya metio algun pincho
 					//print_r($currentuser);die();
 					// $ruta="../src/resources/img/pinchos/";//ruta carpeta donde queremos copiar las imagenes
-					//$numpincho = $pinchotemp->generateIdPi();//devuelve el id del pinchos
+					$idpincho = $pinchotemp->generarIdPi($currentuser->getEmailU());//devuelve el id del pinchos
 					// //print_r($numpincho);die();
 					// $fotoPiSize = $_FILES['fotoPi']['size'];
 					// print_r($fotoPiSize);die();
@@ -60,7 +62,7 @@ class PinchoController extends DBController {
 					$pinchotemp->setnumvotosProfPi("0");//inicializa a 0 el numero de votos dados por el JProfesional
 					$pinchotemp->setEstadoPi("0");//inicializa a true el estado del pincho
 					$pinchotemp->setNumVotePi("4");//indica el numero de codigos de votos
-					//$pinchotemp->setIdPi($numpincho);
+					$pinchotemp->setIdPi($idpincho);
 					$pinchotemp->setNombrePi($_POST["nombrePi"]);
 					$pinchotemp->setPrecioPi($_POST["precioPi"]);
 					$pinchotemp->setIngredientesPi($_POST["ingredientesPi"]);
@@ -74,20 +76,19 @@ class PinchoController extends DBController {
 						$pinchotemp->checkInfoPi();
 
 						//die();
+						//print_r($idpincho);die();
 						$pinchotemp->savePi();//die();
-						$codvototemp->genSaveCV($pinchotemp->getIdPi());//los codigos de votos de un pincho deben crearse DESPUES que el pincho
+
+						$codvototemp->generateCodVote($idpincho);//los codigos de votos de un pincho deben crearse DESPUES que el pincho
 
 						//mensaje de confirmación y redirige al metodo consultarPincho del controlador PinchoController
 						echo "<script> alert('Pincho registrado correctamente'); </script>";
-						//echo "<script>window.location.replace('index.php?controller=pincho&action=consultaPincho');</script>";
+						echo "<script>window.location.replace('index.php?controller=pincho&action=listadoPincho');</script>";
 					}
 					catch(ValidationException $ex){
 						$errors = $ex->getErrors();
 						$this->view->setVariable("errors", $errors);
 					}
-					print_r("	llega hasta la redireccion");die();
-					$this->view->setVariable("pincho", $pinchotemp);
-					$this->view->render("vistas", "consultaBajaPincho");
 					// Guarda el valor de la variable $pincho en la variable pincho accesible desde la vista
 				}
 				else{//si ya habia un pincho creado por ese participante
@@ -95,13 +96,11 @@ class PinchoController extends DBController {
 					echo "<script>window.location.replace('index.php?controller=pincho&action=listadoPincho');</script>";
 				}
 			}
-
-			$this->view->render("vistas", "altaPincho");//te muestra el formulario la primera vez
 		}else{
 			echo "<script> alert('NO eres un Participante, NO puedes dar de alta un pincho'); </script>";
 			echo "<script>window.location.replace('index.php?controller=pincho&action=listadoPincho');</script>";
-
 		}
+
 	}
 
 	/**
@@ -123,7 +122,7 @@ class PinchoController extends DBController {
 
 		if($currentuser){//commprueba que el usuario esta logeado
 			$pinchotemp->setEstadoPi("0");
-			$pinchotemp->updatePi();
+			$pinchotemp->updatePi($idPi);
 		}
 		echo "<script> alert('El pincho se ha dado de BAJA correctamente'); </script>";
 		echo "<script>window.location.replace('index.php?controller=pincho&action=listadoPincho');</script>";
@@ -140,13 +139,66 @@ class PinchoController extends DBController {
 	*/
 
 	public function modificacionPincho(){
+		$pinchotemp = new Pincho();
+		$codvototemp = new CodVoto();
+		$currentuser = $_SESSION["currentuser"];
+
 		if(isset($_GET["idPi"])){
 			$idPi = $_GET["idPi"];
 		}
+
 		$pinchotemp = $this->pincho->showDatesPi($idPi);
-		//$pinchotemp->update();
 		$this->view->setVariable("pincho", $pinchotemp);
-		$this->view->render("vistas", "modificacionPincho");
+		$this->view->render("vistas", "modificacionPincho");//te muestra el formulario la primera vez
+
+		if($currentuser->getTipoU()=="P"){//commprueba que el usuario esta logeado
+
+			if(isset($_POST["nombrePi"])){
+
+				if($pinchotemp->pinchoExists($currentuser->getEmailU())){//compueba si este participante ya metio algun pincho
+					//print_r($currentuser);die();
+					// $ruta="../src/resources/img/pinchos/";//ruta carpeta donde queremos copiar las imagenes
+					// //print_r($numpincho);die();
+					// $fotoPiSize = $_FILES['fotoPi']['size'];
+					// print_r($fotoPiSize);die();
+					// $fotoPi = $ruta.$_FILES['fotoPi']['name'];
+					// $fotoPiTemp = $_FILES['fotoPi']['tmp_name'];
+					// move_uploaded_file($fotoPiTemp,$fotoPi);//pasa la foto de la carpeta temporal a la del servidor web
+
+					$fotoPi="./resources/img/pinchos/pincho.jpg";
+					$fotoPiSize="2";
+					$pinchotemp->setFotoPi($fotoPi, $fotoPiSize);
+					$pinchotemp->setNombrePi($_POST["nombrePi"]);
+					$pinchotemp->setPrecioPi($_POST["precioPi"]);
+					$pinchotemp->setIngredientesPi($_POST["ingredientesPi"]);
+					$pinchotemp->setCocineroPi($_POST["cocineroPi"]);
+					//print_r($currentuser->getEmailU());die();
+
+					try{
+						//Hace todas las coprobaciones a la informacion introducida por el usuario
+						$pinchotemp->checkInfoPi();
+						print_r($pinchotemp->getIdPi());die();
+						$pinchotemp->updatePi($pinchotemp->getIdPi());//die();
+
+						//mensaje de confirmación y redirige al metodo consultarPincho del controlador PinchoController
+						echo "<script> alert('Pincho modificado correctamente'); </script>";
+						echo "<script>window.location.replace('index.php?controller=pincho&action=listadoPincho');</script>";
+					}
+					catch(ValidationException $ex){
+						$errors = $ex->getErrors();
+						$this->view->setVariable("errors", $errors);
+					}
+					// Guarda el valor de la variable $pincho en la variable pincho accesible desde la vista
+				}
+				else{//si ya habia un pincho creado por ese participante
+					echo "<script> alert('No has subido ningun pincho'); </script>";
+					echo "<script>window.location.replace('index.php?controller=pincho&action=listadoPincho');</script>";
+				}
+			}
+		}else{
+			echo "<script> alert('NO eres un Participante, NO puedes dar de alta un pincho'); </script>";
+			echo "<script>window.location.replace('index.php?controller=pincho&action=listadoPincho');</script>";
+		}
 	}
 
 	/**
@@ -204,6 +256,9 @@ class PinchoController extends DBController {
 		//print_r($currentuser->getTipoU());die();
 		if($currentuser->getTipoU() == "A"){
 			$arrayPinchos = $this->pincho->listarPi();
+			$this->view->setVariable("pinchos", $arrayPinchos);
+		}else if ($currentuser->getTipoU() == "P"){
+			$arrayPinchos = $this->pincho->listarPiPart();
 			$this->view->setVariable("pinchos", $arrayPinchos);
 		}else{
 			$arrayPinchos = $this->pincho->listarPiActivos();
@@ -264,7 +319,7 @@ class PinchoController extends DBController {
 
 		if($currentuser){//commprueba que el usuario esta logeado
 			$pinchotemp->setEstadoPi("1");
-			$pinchotemp->updatePi();
+			$pinchotemp->updatePi($idPi);
 		}
 		echo "<script> alert('El pincho se ha VALIDADO correctamente correctamente'); </script>";
 		echo "<script>window.location.replace('index.php?controller=pincho&action=listadoPincho');</script>";

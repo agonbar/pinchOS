@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 include(__DIR__."/../layouts/inicio.php");
 require_once(__DIR__."/../../core/ViewManager.php");
@@ -56,8 +55,8 @@ $pincho = $view->getVariable("pincho");
 									<?= isset($errors["ingredientesPi"])?$errors["ingredientesPi"]:"" ?><br>
 								</div>
 							</div>
-							<input type="submit" class="btn btn-primary col-md-offset-4" value= "Guardar modificación">
-							<a href="index.php?controller=pincho&action=consultaPincho" type="button" class="btn btn-primary " >Cancelar</a>
+							<input type="submit" class="btn btn-primary col-md-offset-3" value = "Guardar modificación">
+							<a href="index.php?controller=pincho&action=consultaPincho&idPi= <?=$pincho->getIdPi();?>" type="button" class="btn btn-primary col-md-offset-2">Cancelar</a>
 						</form>
 					</div>
 				</div>
