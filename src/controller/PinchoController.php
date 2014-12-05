@@ -46,7 +46,7 @@ class PinchoController extends DBController {
 			if(isset($_POST["nombrePi"])) {
 
 				if(!$pinchotemp->pinchoExistsAct($currentuser->getEmailU())){//compueba si este participante ya metio algun pincho
-					$ruta="../src/resources/img/pinchos/";//ruta carpeta donde queremos copiar las imagenes
+					$ruta="./resources/img/pinchos/";//ruta carpeta donde queremos copiar las imagenes
 					$idpincho = $pinchotemp->generarIdPi($currentuser->getEmailU());//devuelve el id del pinchos
 					$fotoPiSize = $_FILES['fotoPi']['size'];
 					$fotoPi = $ruta.$_FILES['fotoPi']['name'];
@@ -149,7 +149,7 @@ class PinchoController extends DBController {
 
 			if(isset($_POST["nombrePi"])){
 				if($pinchotemp->pinchoExists($currentuser->getEmailU())){//compueba si este participante ya metio algun pincho
-					$ruta="../src/resources/img/pinchos/";//ruta carpeta donde queremos copiar las imagenes
+					$ruta="./resources/img/pinchos/";//ruta carpeta donde queremos copiar las imagenes
 					$idpincho = $pinchotemp->generarIdPi($currentuser->getEmailU());//devuelve el id del pinchos
 					$fotoPiSize = $_FILES['fotoPi']['size'];
 					$fotoPi = $ruta.$_FILES['fotoPi']['name'];
