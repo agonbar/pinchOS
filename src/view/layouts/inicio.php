@@ -120,7 +120,7 @@ error_reporting(E_ALL);
 								<li class="dropdown">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-cog"></i></a>
 									<ul class="dropdown-menu">
-										<?php if ($currentuser->getTipoU() != 'A') { ?>
+										<?php if ($currentuser->getTipoU() != 'A' && $currentuser->getTipoU() != 'P') { ?>
 										<li><a href="index.php?controller=users&action=seleccionarPerfil">Mi perfil</a></li>
 										<li><a href="index.php?controller=users&action=seleccionarModificacion">Modificar mi perfil</a></li>
 										<?php } ?>
