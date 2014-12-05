@@ -106,7 +106,7 @@ class Participantes {
 
   public function modificarParticipante($email,$direccion,$telefono,$nombreLocal,$horario,$paginaWeb){
     $db = PDOConnection::getInstance();
-    $stmt = $db->prepare("UPDATE participante SET direccionP=?, telefonoP=?, nombreLocalP=?, horarioP=?, paginaWebP=? WHERE usuarioEmail=?");
-    $stmt->execute(array($direccion,$telefono,$nombreLocal,$horario,$paginaWeb,$email));
+    $stmt = $db->prepare("UPDATE participante SET fotoP=?, direccionP=?, telefonoP=?, nombreLocalP=?, horarioP=?, paginaWebP=? WHERE usuarioEmail=?");
+    $stmt->execute(array(md5($nombreLocal),$direccion,$telefono,$nombreLocal,$horario,$paginaWeb,$email));
   }
 }

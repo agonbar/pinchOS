@@ -76,7 +76,7 @@ $errors = $view->getVariable("errors");
             <div class="form-group separarformulario">
               <label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Fotografia</label>
               <input type="file" id="ejemplo_archivo_1"
-              value="<?= isset($_POST["fotoPi"])?$_POST["fotoPi"]:$participante[0]["fotoP"] ?>" name="fotoPi">
+              value="<?= isset($_POST[$participante[0]["fotoP"]])?$_POST[$participante[0]["fotoP"]]:$participante[0]["fotoP"] ?>" name="fotoPi">
               <?= isset($errors["fotoPi"])?$errors["fotoPi"]:"" ?><br>
               <p class="help-block">El tamano maximo permitido es de 3Mb</p></center>
             </div>
