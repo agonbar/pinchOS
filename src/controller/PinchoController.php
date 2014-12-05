@@ -195,7 +195,7 @@ class PinchoController extends DBController {
 				$this->view->render("vistas", "modificacionPincho");//te muestra el formulario la primera vez
 			}
 		}else{
-			echo "<script> alert('NO eres un Participante, NO puedes dar de alta un pincho'); </script>";
+			echo "<script> alert('NO eres un Participante, NO puedes dar de modificar un pincho'); </script>";
 			echo "<script>window.location.replace('index.php?controller=pincho&action=listadoPincho');</script>";
 		}
 	}
