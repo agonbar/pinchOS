@@ -58,7 +58,6 @@ error_reporting(E_ALL);
 								</a>
 								<ul class="list-unstyled collapse" id="menu3">
 									<li class="desplegable"><a href="index.php?controller=pincho&action=listadoPincho">Listado pincho</a></li>
-									<li class="desplegable"><a href="index.php?controller=pincho&action=altaPincho">Alta pincho</a></li>
 									<li class="desplegable"><a href="index.php?controller=pincho&action=busquedaPincho">Búsqueda pincho</a></li>
 								</ul>
 							</li>
