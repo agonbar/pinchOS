@@ -219,7 +219,7 @@ class PinchoController extends DBController {
 			$this->view->setVariable("pinchos", $arrayPinchos);
 			$this->view->render("vistas", "buscarPinchos");
 		}else{
-			$arrayPinchos = $this->pincho->listarPi();
+			$arrayPinchos = $this->pincho->listarPiActivos();
 			$this->view->setVariable("pinchos", $arrayPinchos);
 			$this->view->render("vistas", "buscarPinchos");
 		}

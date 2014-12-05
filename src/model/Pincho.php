@@ -452,19 +452,20 @@ class Pincho {
 
   public function searchPi($tipob,$param){
     $db = PDOConnection::getInstance();
+    $activo='1';
     if($tipob=='nombrePi'){
-      $stmt = $db->prepare("SELECT * FROM pincho where nombrePi=?");
-      $stmt->execute(array($param));
+      $stmt = $db->prepare("SELECT * FROM pincho where nombrePi=? AND estadoPi=?");
+      $stmt->execute(array($param,$activo));
     }else if($tipob=='precioPi'){
-      $stmt = $db->prepare("SELECT * FROM pincho where precioPi<?");
-      $stmt->execute(array($param));
+      $stmt = $db->prepare("SELECT * FROM pincho where precioPi<? AND estadoPi=?");
+      $stmt->execute(array($param,$activo));
     }else if($tipob=='ingredientesPi'){
       $param = '%'.$param.'%';
-      $stmt = $db->prepare("SELECT * FROM pincho where ingredientesPi LIKE ?");
-      $stmt->execute(array($param));
+      $stmt = $db->prepare("SELECT * FROM pincho where ingredientesPi LIKE ? AND estadoPi=?");
+      $stmt->execute(array($param,$activo));
     }else if ($tipob=='N'){
-      $stmt = $db->prepare("SELECT * FROM pincho");
-      $stmt->execute();
+      $stmt = $db->prepare("SELECT * FROM pincho where estadoPi=?");
+      $stmt->execute(array($activo));
     }
 
     $pinchos_db=$stmt->fetchAll(PDO::FETCH_ASSOC);
