@@ -25,15 +25,13 @@ $pincho = $view->getVariable("pincho");
 									<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 									<select class="form-control" name="tipo">
 										<option value="N">Escoge parametros...</option>
-										<option value="0">Por nombre</option>
-										<option value="1">Por precio</option>
+										<option value="nombrePi">Por nombre</option>
+										<option value="precioPi">Por precio</option>
 										<option value="2">Por Ingredientes</option>
 									</select>
 									</div>
 									<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12">
-									<a href="index.php?controller=pincho&action=consultaPincho"
-									type="button" class="btn btn-primary col-md-offset-2">
-									<i class="glyphicon glyphicon-search"></i></a>
+										<input type="submit" class="btn btn-primary col-md-offset-2">
 								</div>
 								</div>
 						</form>

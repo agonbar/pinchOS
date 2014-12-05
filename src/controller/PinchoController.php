@@ -152,24 +152,19 @@ class PinchoController extends DBController {
 
 			if(isset($_POST["nombrePi"])){
 				if($pinchotemp->pinchoExists($currentuser->getEmailU())){//compueba si este participante ya metio algun pincho
-					//print_r($currentuser);die();
-					// $ruta="../src/resources/img/pinchos/";//ruta carpeta donde queremos copiar las imagenes
-					// //print_r($numpincho);die();
-					// $fotoPiSize = $_FILES['fotoPi']['size'];
-					// print_r($fotoPiSize);die();
-					// $fotoPi = $ruta.$_FILES['fotoPi']['name'];
-					// $fotoPiTemp = $_FILES['fotoPi']['tmp_name'];
-					// move_uploaded_file($fotoPiTemp,$fotoPi);//pasa la foto de la carpeta temporal a la del servidor web
+					$ruta="../src/resources/img/pinchos/";//ruta carpeta donde queremos copiar las imagenes
+					$idpincho = $pinchotemp->generarIdPi($currentuser->getEmailU());//devuelve el id del pinchos
+					$fotoPiSize = $_FILES['fotoPi']['size'];
+					$fotoPi = $ruta.$_FILES['fotoPi']['name'];
+					$fotoPiTemp = $_FILES['fotoPi']['tmp_name'];
+					move_uploaded_file($fotoPiTemp,$fotoPi);//pasa la foto de la carpeta temporal a la del servidor web
 
-					$fotoPi="./resources/img/pinchos/pincho.jpg";
-					$fotoPiSize="2";
+					$fotoPi="./resources/img/pinchos/".$_FILES['fotoPi']['name'];
 					$pinchotemp->setFotoPi($fotoPi, $fotoPiSize);
 					$pinchotemp->setNombrePi($_POST["nombrePi"]);
 					$pinchotemp->setPrecioPi($_POST["precioPi"]);
 					$pinchotemp->setIngredientesPi($_POST["ingredientesPi"]);
 					$pinchotemp->setCocineroPi($_POST["cocineroPi"]);
-					//print_r($currentuser->getEmailU());die();
-
 
 					try{
 						//Hace todas las coprobaciones a la informacion introducida por el usuario
@@ -184,6 +179,9 @@ class PinchoController extends DBController {
 					catch(ValidationException $ex){
 						$errors = $ex->getErrors();
 						$this->view->setVariable("errors", $errors);
+						$pinchotemp = $this->pincho->showDatesPi($idPi);
+						$this->view->setVariable("pincho", $pinchotemp);
+						$this->view->render("vistas", "modificacionPincho");//te muestra el formulario la primera vez
 					}
 					// Guarda el valor de la variable $pincho en la variable pincho accesible desde la vista
 				}
@@ -213,7 +211,7 @@ class PinchoController extends DBController {
 
 	 	if(isset($_POST["parametro"])){
 		 	$parametro = $_POST["parametro"];
-		 	$tipo = = $_POST["tipo"];
+		 	$tipo = $_POST["tipo"];
 		 	print_r($tipo);die();
 	 	}
 
