@@ -5,6 +5,7 @@ $view = ViewManager::getInstance();
 $view->setVariable("title", "Login");
 $errors = $view->getVariable("errors");
 $pinchos = $view->getVariable("pinchos");
+$pincho = $view->getVariable("pincho");
 ?>
 <!--AQUI EMPIEZA LA VENTANA MODAL DE AÑADIR ALBUM -->
 <div class="margensup" >
@@ -17,18 +18,23 @@ $pinchos = $view->getVariable("pinchos");
 				<div class="col-lg-12">
 					<div class="input-group">
 						<form class="form-horizontal" role="form" method="POST" action="index.php?controller=pincho&action=busquedaPincho">
-							<div class="form-group separarformulario">
-
-								<div class="input-group-btn">
-									<input type="text" class="form-control" name= "bnombrePi" value= placeholder="Introcuce filtro para la busqueda...">
-									<button type="button" class="btn btn-default dropdown-toggle"data-toggle="dropdown">Buscar <span class="caret"></span></button>
-								<ul class="dropdown-menu pull-right" role="menu">
-									<li><a name=bnombrePi href="index.php?controller=pincho&action=busquedaPincho&bnombrePi=bnombrePi">Buscar por nombre</a></li>
-									<li><a href="index.php?controller=pincho&action=busquedaPincho">Buscar por precio</a></li>
-									<li><a href="index.php?controller=pincho&action=busquedaPincho">Buscar por ingredientes</a></li>
-								</ul>
+								<div class="form-group separarformulario">
+									<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+										<input class="form-control" placeholder="Introduce los parametros de busqueda..." name="nombrePi">
+										<a href="index.php?controller=pincho&action=consultaPincho" type="button" class="btn btn-default ">
+											Buscar por nombre
+											<i class="glyphicon glyphicon-search"></i>
+										</a>
+										<a href="index.php?controller=pincho&action=consultaPincho" type="button" class="btn btn-default ">
+											Buscar por precio
+											<i class="glyphicon glyphicon-search"></i>
+										</a>
+										<a href="index.php?controller=pincho&action=consultaPincho" type="button" class="btn btn-default ">
+											Buscar por ingredientes
+											<i class="glyphicon glyphicon-search"></i>
+										</a>
+									</div>
 								</div>
-							</div>
 						</form>
 				</div>
 			</div>
