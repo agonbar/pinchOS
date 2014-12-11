@@ -1,6 +1,14 @@
 /******************************************************************************************************************************
 MAIN STYLE
 *******************************************************************************************************************************/
+.fondo { 
+      background: url(portada.jpg) no-repeat center center fixed; 
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+}
+
 .featurette {
   background: #222334;
   padding: 50px 0;
@@ -46,7 +54,7 @@ body {
 }
 
 h3 {
-	color: black;
+	color: white;
 	font-weight: 800;
 }
 

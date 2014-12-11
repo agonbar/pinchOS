@@ -31,7 +31,7 @@
 
   </head>
   <!-- START BODY -->
-  <body class="nomobile">
+  <body class="fondo">
 
     <!-- START HEADER -->
     <section id="header">
@@ -90,13 +90,7 @@
         <div id="layer"></div>
         <!-- END LAYER -->
         <!-- START SLIDER -->
-        <div id="slider" class="rev_slider">
-            <ul>
-              <li data-transition="slideleft" data-slotamount="1">
-                <img src="./resources/img/portada/portada.jpg">
-              </li>
-            </ul>
-        </div>
+
         <!-- END SLIDER -->
     </section>
 
