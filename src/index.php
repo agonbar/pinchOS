@@ -40,7 +40,7 @@
                 <!-- HEADLINE -->
                 <h1 data-animated="GoIn"><b>CONCURSO DE PINCHOS</b>
                   <a href="index.php?controller=users&action=registro">
-                    <button type="button" class="btn btn-default btn-lg">ENTRA!!</button>
+                    <button type="button" class="btn btn-success btn-lg">ENTRA!!</button>
                   </a>
                 </h1>
             </header>
