@@ -46,7 +46,9 @@ $currentuser = $view->getVariable("currentusername");
             <td>Ingredientes</td>
             <td>Chef</td>
           </tr>
-          <?php foreach ($pinchos as $pincho): ?>
+          <?php
+          if($pinchos==null){echo"no tienes pinchos";}else{
+          foreach ($pinchos as $pincho): ?>
             <a href="pincho.php">
               <tr class="tablehover">
                 <td><img src="<?php echo $pincho["fotoPi"]; ?>" alt="./resources/img/participantes/<?php echo $pincho["fotoPi"]; ?>.jpg" class="img-thumbnail" height="50" width="50"></td>
@@ -56,7 +58,7 @@ $currentuser = $view->getVariable("currentusername");
                 <td><?php echo $pincho["cocineroPi"]; ?></td>
               </tr>
             </a>
-        <?php endforeach; ?>
+        <?php endforeach; }?>
       </table>
         <?php if ($currentuser->getEmailU() == $participante[0]["usuarioEmail"]) { ?>
           <div class="modalbox movedown">
