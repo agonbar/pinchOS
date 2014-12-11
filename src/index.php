@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+<?php
+  require_once(__DIR__."./core/ViewManager.php");
+  $view = ViewManager::getInstance();
+?>
 <html>
   <head>
   <head>
@@ -35,7 +38,11 @@
         <div class="container">
             <header>
                 <!-- HEADLINE -->
-                <h1 data-animated="GoIn"><b>CONCURSO DE PINCHOS</b></h1>
+                <h1 data-animated="GoIn"><b>CONCURSO DE PINCHOS</b>
+                  <a href="index.php?controller=users&action=registro">
+                    <button type="button" class="btn btn-default btn-lg">ENTRA!!</button>
+                  </a>
+                </h1>
             </header>
             <!-- START TIMER -->
             <div id="timer" data-animated="FadeIn">
@@ -60,7 +67,7 @@
             <div class="col-md-4 text-center">
               <div class="featurette-item">
                 <i class="icon-magnet">
-                  <a href="index.php?controller=pincho&action=listadoPincho">
+                  <a href="index.php?controller=participante&action=listarParticipantes">
                     <img src="./resources/img/portada/restaurante.jpg" alt="Imgen de un restaurante" class= "img-circle" width="190px" height="190px">
                   </a>
                 </i>
@@ -70,7 +77,7 @@
             <div class="col-md-4 text-center">
               <div class="featurette-item">
                 <i class="icon-shield">
-                  <a href="index.php?controller=pincho&action=listadoPincho">
+                  <a href="index.php?controller=concurso&action=consultarConcurso">
                     <img src="./resources/img/portada/concurso.jpg" alt="Imgen de las bases del concurso" class= "img-circle" width="190px" height="190px">
                   </a>
                 </i>
