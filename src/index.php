@@ -35,12 +35,6 @@
 
     <!-- START HEADER -->
     <section id="header">
-      <div class="login">
-        <div class="btn-group" role="group" aria-label="...">
-          <button type="button" class="btn btn-info">Login</button>
-          <button type="button" class="btn btn-info">Registro</button>
-        </div>
-      </div>
         <div class="container">
             <header>
                 <!-- HEADLINE -->
