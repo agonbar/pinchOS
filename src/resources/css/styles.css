@@ -222,14 +222,14 @@ h1,h2,h3 {
     text-shadow:0 0 1px rgba(0,0,0,.3);
 }
 .form-control {
-	
+
 }
 
 .panel textarea, .well textarea, textarea.form-control
 {
    resize: none;
 }
-  
+
 .badge{
    color:#3B5999;
    background-color:#fff;
@@ -238,7 +238,7 @@ h1,h2,h3 {
    background-color:#3B5999;
    color:#fff;
 }
-    
+
 .jumbotron {
   background-color:transparent;
 }
@@ -308,6 +308,21 @@ small.text-muted {
     position:relative;
   }
 
+}
+
+.login{
+  color: #FFF;
+  text-align: right;
+  position: relative;
+  z-index: 3;
+  padding: 25px 40px 0px 0px;
+}
+
+.btn{
+  color: rgba(255, 255, 255, .6);
+  background:none;
+  border: 2px solid rgba(255, 255, 255, .6);
+  border-radius: 5px;
 }
 
 
