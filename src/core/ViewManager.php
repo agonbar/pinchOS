@@ -40,7 +40,6 @@ class ViewManager {
     if ($flash==true) {
       if(!isset($_SESSION["viewmanager__flasharray__"])) {
         $_SESSION["viewmanager__flasharray__"][ $varname]=$value;
-        print_r($_SESSION["viewmanager__flasharray__"]);
       }else{
         $_SESSION["viewmanager__flasharray__"][$varname]=$value;
       }

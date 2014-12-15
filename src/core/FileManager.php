@@ -78,7 +78,6 @@ class FileManager {
     }
 
     public function get_file() {
-      print_r($_FILES['img-file']);
         if (isset($_FILES['userfile'])) {
             if (filesize($_FILES['userfile']['tmp_name']) > $this->max_filesize) {
                 trigger_error('El archivo supera el tamaño máximo', E_USER_ERROR);
