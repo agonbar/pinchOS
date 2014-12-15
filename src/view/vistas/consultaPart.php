@@ -60,7 +60,7 @@ $currentuser = $view->getVariable("currentusername");
             </a>
         <?php endforeach; }?>
       </table>
-        <?php if ($currentuser->getEmailU() == $participante[0]["usuarioEmail"]) { ?>
+        <?php if ($currentuser != null) if ($currentuser->getEmailU() == $participante[0]["usuarioEmail"]) { ?>
           <div class="modalbox movedown">
             <a href="index.php?controller=participante&action=bajaParticipante&id=<?=$participante[0]["usuarioEmail"]?>" class="btn btn-primary" role="button">Eliminar</a>
             <a href="index.php?controller=participante&action=modificarParticipante&id=<?=$participante[0]["usuarioEmail"]?>" class="btn btn-primary" role="button">Editar</a>

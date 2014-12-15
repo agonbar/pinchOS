@@ -11,7 +11,7 @@ $currentuser = $view->getVariable("currentusername");
 ini_set('display_errors', 'On');
 error_reporting(E_ALL);
 ?>
-<body>
+<body class="fondo">
 	<div class="wrapper">
 		<div class="box">
 			<div class="row row-offcanvas row-offcanvas-left">
