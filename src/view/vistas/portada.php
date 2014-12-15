@@ -41,7 +41,7 @@ include("./view/layouts/cabecera.php");
           <div class="featurette-item">
             <i class="icon-rocket">
               <a href="index.php?controller=pincho&action=listadoPincho">
-                <img src="./resources/img/pinchos/pincho2.jpg" alt="Imgen de pinchos" class= "img-circle" width="190px" height="190px">
+                <img src="./resources/img/pinchos/pincho2.jpg" alt="Imgen de pinchos" class= "img-circle" width="100%" height="100%">
               </a>
             </i>
             <h3>Pinchos de consurso</h3>
@@ -51,7 +51,7 @@ include("./view/layouts/cabecera.php");
           <div class="featurette-item">
             <i class="icon-magnet">
               <a href="index.php?controller=participante&action=listarParticipantes">
-                <img src="./resources/img/portada/restaurante.jpg" alt="Imgen de un restaurante" class= "img-circle" width="190px" height="190px">
+                <img src="./resources/img/portada/restaurante.jpg" alt="Imgen de un restaurante" class= "img-circle" width="100%" height="100%">
               </a>
             </i>
             <h3>Establecimientos participantes</h3>
@@ -61,7 +61,7 @@ include("./view/layouts/cabecera.php");
           <div class="featurette-item">
             <i class="icon-shield">
               <a href="index.php?controller=concurso&action=consultarConcurso">
-                <img src="./resources/img/portada/concurso.jpg" alt="Imgen de las bases del concurso" class= "img-circle" width="190px" height="190px">
+                <img src="./resources/img/portada/concurso.jpg" alt="Imgen de las bases del concurso" class= "img-circle" width="100%" height="100%">
               </a>
             </i>
             <h3>Bases de Concurso</h3>
@@ -71,14 +71,7 @@ include("./view/layouts/cabecera.php");
     </div>
     <!-- LAYER OVER THE SLIDER TO MAKE THE WHITE TEXTE READABLE -->
     <div id="layer"></div>
-    <!-- END LAYER -->
-    <!-- START SLIDER -->
-
-    <!-- END SLIDER -->
   </section>
-
-  <!-- END HEADER -->
-
   <!-- Bootstrap core JavaScript
   ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->

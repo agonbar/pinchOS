@@ -2,7 +2,7 @@
 MAIN STYLE
 *******************************************************************************************************************************/
 .fondo {
-      background: url(../img/portada/portada.jpg) no-repeat center center fixed; 
+      background: url(../img/portada/portada.jpg) no-repeat center center fixed;
       -webkit-background-size: cover;
       -moz-background-size: cover;
       -o-background-size: cover;
@@ -20,7 +20,7 @@ MAIN STYLE
 }
 
 .featurette-item > i {
-  border: 3px solid #ffffff;
+  border: 4px solid rgba(255, 255, 255, .6);
   border-radius: 50%;
   display: inline-block;
   font-size: 56px;
