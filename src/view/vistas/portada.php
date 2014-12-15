@@ -36,36 +36,34 @@ include("./view/layouts/cabecera.php");
         <div id="seconds" class="timer_box"></div>
       </div>
       <!-- END TIMER -->
-      <div class="row">
-        <div class="col-md-4  text-center">
-          <div class="featurette-item">
-            <i class="icon-rocket">
-              <a href="index.php?controller=pincho&action=listadoPincho">
-                <img src="./resources/img/pinchos/pincho2.jpg" alt="Imgen de pinchos" class= "img-circle" width="100%" height="100%">
-              </a>
-            </i>
-            <h3>Pinchos de consurso</h3>
-          </div>
+      <div class="col-md-4  text-center">
+        <div class="featurette-item">
+          <i class="icon-rocket">
+            <a href="index.php?controller=pincho&action=listadoPincho">
+              <img src="./resources/img/pinchos/pincho2.jpg" alt="Imgen de pinchos" class= "img-circle" width="100%" height="100%">
+            </a>
+          </i>
+          <h3>Pinchos de consurso</h3>
         </div>
-        <div class="col-md-4 text-center">
-          <div class="featurette-item">
-            <i class="icon-magnet">
-              <a href="index.php?controller=participante&action=listarParticipantes">
-                <img src="./resources/img/portada/restaurante.jpg" alt="Imgen de un restaurante" class= "img-circle" width="100%" height="100%">
-              </a>
-            </i>
-            <h3>Establecimientos participantes</h3>
-          </div>
+      </div>
+      <div class="col-md-4 text-center">
+        <div class="featurette-item">
+          <i class="icon-magnet">
+            <a href="index.php?controller=participante&action=listarParticipantes">
+              <img src="./resources/img/portada/restaurante.jpg" alt="Imgen de un restaurante" class= "img-circle" width="100%" height="100%">
+            </a>
+          </i>
+          <h3>Establecimientos participantes</h3>
         </div>
-        <div class="col-md-4 text-center">
-          <div class="featurette-item">
-            <i class="icon-shield">
-              <a href="index.php?controller=concurso&action=consultarConcurso">
-                <img src="./resources/img/portada/concurso.jpg" alt="Imgen de las bases del concurso" class= "img-circle" width="100%" height="100%">
-              </a>
-            </i>
-            <h3>Bases de Concurso</h3>
-          </div>
+      </div>
+      <div class="col-md-4 text-center">
+        <div class="featurette-item">
+          <i class="icon-shield">
+            <a href="index.php?controller=concurso&action=consultarConcurso">
+              <img src="./resources/img/portada/concurso.jpg" alt="Imgen de las bases del concurso" class= "img-circle" width="100%" height="100%">
+            </a>
+          </i>
+          <h3>Bases de Concurso</h3>
         </div>
       </div>
     </div>
@@ -75,11 +73,9 @@ include("./view/layouts/cabecera.php");
   <!-- Bootstrap core JavaScript
   ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
-  <script src="resources/js/jquery.min.js"></script>
-  <script type="text/javascript" src="resources/js/modernizr.custom.js"></script>
-  <script src="resources/js/bootstrap.min.js"></script>
+  <!--<script src="resources/js/soon/jquery.themepunch.revolution.min.js"></script>-->
+  <!--<script type="text/javascript" src="resources/js/modernizr.custom.js"></script>-->
   <script src="resources/js/soon/plugins.js"></script>
-  <script src="resources/js/soon/jquery.themepunch.revolution.min.js"></script>
   <script src="resources/js/soon/custom.js"></script>
 </body>
 <!-- END BODY -->
