@@ -49,7 +49,7 @@ include("./view/layouts/cabecera.php");
       <div class="col-md-4 text-center">
         <div class="featurette-item">
           <i class="icon-magnet">
-            <a href="index.php?controller=participante&action=listarParticipantes">
+            <a href="index.php?controller=participante&action=busquedaParticipante">
               <img src="./resources/img/portada/restaurante.jpg" alt="Imgen de un restaurante" class= "img-circle" width="100%" height="100%">
             </a>
           </i>
