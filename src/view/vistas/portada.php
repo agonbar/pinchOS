@@ -14,8 +14,8 @@ include("./view/layouts/cabecera.php");
 
   <!-- START HEADER -->
   <section id="header">
-
-    <div class="login">
+    
+    <div class="login" data-animated="FadeIn">
       <div class="btn-group" role="group" aria-label="...">
         <a href="index.php?controller=users&action=login" type="button" class="btn btn-info">Login</a>
         <a href="index.php?controller=users&action=registro" type="button" class="btn btn-info">Registro</a>
@@ -29,41 +29,42 @@ include("./view/layouts/cabecera.php");
       </header>
       <!-- START TIMER -->
       <div id="timer" data-animated="FadeIn">
-        <p id="message"></p>
         <div id="days" class="timer_box"></div>
         <div id="hours" class="timer_box"></div>
         <div id="minutes" class="timer_box"></div>
         <div id="seconds" class="timer_box"></div>
       </div>
       <!-- END TIMER -->
-      <div class="col-md-4  text-center">
-        <div class="featurette-item">
-          <i class="icon-rocket">
-            <a href="index.php?controller=pincho&action=listadoPincho">
-              <img src="./resources/img/pinchos/pincho2.jpg" alt="Imgen de pinchos" class= "img-circle" width="100%" height="100%">
-            </a>
-          </i>
-          <h3>Pinchos de consurso</h3>
+      <div id="links" data-animated="FadeIn">
+        <div class="col-md-4  text-center">
+          <div class="featurette-item">
+            <i class="icon-rocket">
+              <a href="index.php?controller=pincho&action=listadoPincho">
+                <img src="./resources/img/pinchos/pincho2.jpg" alt="Imgen de pinchos" class= "img-circle" width="100%" height="100%">
+              </a>
+            </i>
+            <h3>Pinchos de consurso</h3>
+          </div>
         </div>
-      </div>
-      <div class="col-md-4 text-center">
-        <div class="featurette-item">
-          <i class="icon-magnet">
-            <a href="index.php?controller=participante&action=busquedaParticipante">
-              <img src="./resources/img/portada/restaurante.jpg" alt="Imgen de un restaurante" class= "img-circle" width="100%" height="100%">
-            </a>
-          </i>
-          <h3>Establecimientos participantes</h3>
+        <div class="col-md-4 text-center">
+          <div class="featurette-item">
+            <i class="icon-magnet">
+              <a href="index.php?controller=participante&action=busquedaParticipante">
+                <img src="./resources/img/portada/restaurante.jpg" alt="Imgen de un restaurante" class= "img-circle" width="100%" height="100%">
+              </a>
+            </i>
+            <h3>Establecimientos participantes</h3>
+          </div>
         </div>
-      </div>
-      <div class="col-md-4 text-center">
-        <div class="featurette-item">
-          <i class="icon-shield">
-            <a href="index.php?controller=concurso&action=consultarConcurso">
-              <img src="./resources/img/portada/concurso.jpg" alt="Imgen de las bases del concurso" class= "img-circle" width="100%" height="100%">
-            </a>
-          </i>
-          <h3>Bases de Concurso</h3>
+        <div class="col-md-4 text-center">
+          <div class="featurette-item">
+            <i class="icon-shield">
+              <a href="index.php?controller=concurso&action=consultarConcurso">
+                <img src="./resources/img/portada/concurso.jpg" alt="Imgen de las bases del concurso" class= "img-circle" width="100%" height="100%">
+              </a>
+            </i>
+            <h3>Bases de Concurso</h3>
+          </div>
         </div>
       </div>
     </div>
