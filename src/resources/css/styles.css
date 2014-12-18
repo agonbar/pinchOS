@@ -284,23 +284,30 @@ h1,h2,h3 {
 }
 
 .modal-header, .modal-footer {
+  pointer-events: all;
   background-color:#f2f2f2;
   font-weight:800;
   font-size:12px;
 }
 
+.modal.show {
+  pointer-events: none;
+}
+
 .modal-footer i, .well i {
+  pointer-events: all;
   font-size:20px;
   color:#c0c0c0;
 }
 
 .modal-body {
+  pointer-events: all;
   padding:0px;
 }
 
 
-.modal-body textarea.form-control
-{
+.modal-body textarea.form-control{
+  pointer-events: all;
   resize: none;
   border:0;
   box-shadow:0 0 0;

@@ -6,7 +6,7 @@ $('#Login').click(function() {
 });
 
 $('#Registro').click(function() {
-  $("#registroModal").css("visibility", "visible");
+  $("#registroModal").css("visibility", "visible").hide().fadeIn("slow");
 });
 
 $('.close').click(function() {

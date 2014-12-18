@@ -37,7 +37,7 @@ include("registro.php");
         <div id="seconds" class="timer_box"></div>
       </div>
       <!-- END TIMER -->
-      <div id="links" data-animated="FadeIn">
+      <div id="links">
         <div class="col-md-4  text-center">
           <div class="featurette-item">
             <i class="icon-rocket">
