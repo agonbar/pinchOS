@@ -2,23 +2,19 @@
 $(document).ready(function(){/* off-canvas sidebar toggle */
 
 $('#Login').click(function() {
+  $("#header").hide().fadeOut("slow");
   $("#loginModal").css("visibility", "visible");
 });
 
 $('#Registro').click(function() {
-  $("#registroModal").css("visibility", "visible").hide().fadeIn("slow");
-  $(".fondo").css("visibility", "hidden").hide().fadeIn("slow");
+  $("#header").hide().fadeOut("slow");
+  $("#registroModal").css("visibility", "visible").fadeIn("slow");
 });
 
 $('.close').click(function() {
   $("#loginModal").css("visibility", "hidden");
   $("#registroModal").css("visibility", "hidden");
-  $(".fondo").css("visibility", "visible").hide().fadeIn("slow");
-});
-
-$('.container').click(function() {
-  $("#loginModal").css("visibility", "hidden");
-  $("#registroModal").css("visibility", "hidden");
+  $("#header").css("visibility", "visible").fadeIn("slow");
 });
 
 $('[data-toggle=offcanvas]').click(function() {
