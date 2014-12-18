@@ -2,6 +2,8 @@
 require_once(__DIR__."/../../core/ViewManager.php");
 $view = ViewManager::getInstance();
 include("./view/layouts/cabecera.php");
+include("login.php");
+include("registro.php");
 ?>
 <html>
 <head>
@@ -14,11 +16,11 @@ include("./view/layouts/cabecera.php");
 
   <!-- START HEADER -->
   <section id="header">
-    
+
     <div class="login" data-animated="FadeIn">
       <div class="btn-group" role="group" aria-label="...">
-        <a href="index.php?controller=users&action=login" type="button" class="btn btn-info">Login</a>
-        <a href="index.php?controller=users&action=registro" type="button" class="btn btn-info">Registro</a>
+        <button  type="button" class="btn btn-info" id="Login">Login</button >
+        <button  type="button" class="btn btn-info" id="Registro">Registro</button >
       </div>
     </div>
 

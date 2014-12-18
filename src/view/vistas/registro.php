@@ -7,7 +7,7 @@ $errors = $view->getVariable("errors");
 ?>
 <body>
   <!--login modal-->
-  <div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
+  <div id="registroModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">

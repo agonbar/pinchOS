@@ -15,7 +15,7 @@ COMMING SOON PAGE
     var hours = $('#hours');
     var minutes = $('#minutes');
     var seconds = $('#seconds');
-    
+
     setDate();
     function setDate(){
         var now = new Date();
@@ -43,7 +43,6 @@ COMMING SOON PAGE
             seconds.html('<h1>'+s+'</h1><p>Second'+(s>1?'s':''),'</p>');
             setTimeout(setDate, 1000);
 
-            message.html('OUR SITE IS NOT READY YET, BUT WE ARE COMING SOON');
         }
     }
 })(jQuery);
@@ -53,13 +52,13 @@ ANIMATIONS
 (function($) {
     "use strict";
     var isMobile = false;
-    if (navigator.userAgent.match(/Android/i) || 
+    if (navigator.userAgent.match(/Android/i) ||
         navigator.userAgent.match(/webOS/i) ||
-        navigator.userAgent.match(/iPhone/i) || 
-        navigator.userAgent.match(/iPad/i)|| 
-        navigator.userAgent.match(/iPod/i) || 
-        navigator.userAgent.match(/BlackBerry/i)) {                 
-        isMobile = true;            
+        navigator.userAgent.match(/iPhone/i) ||
+        navigator.userAgent.match(/iPad/i)||
+        navigator.userAgent.match(/iPod/i) ||
+        navigator.userAgent.match(/BlackBerry/i)) {
+        isMobile = true;
     }
     if (isMobile == true) {
         $('body').removeClass('nomobile');
@@ -85,36 +84,7 @@ ANIMATIONS
         });
     });
 })(jQuery);
-/******************************************************************************************************************************
-SLIDER
-*******************************************************************************************************************************/
-(function($) {
-    "use strict";
-    $("body.nomobile #slider").revolution(
-    {
-            delay:9000,
-            startheight:450,
-            startwidth:890,
 
-            thumbWidth:100,
-            thumbHeight:50,
-            thumbAmount:5,
-
-            onHoverStop:"on",
-            hideThumbs:200,
-            navigationType:"bullet",
-            navigationStyle:"round",
-            navigationArrows:"none",
-
-            touchenabled:"on",
-
-            navOffsetHorizontal:0,
-            navOffsetVertical:80,
-            shadow:undefined,
-            fullWidth:"on",
-            fullScreen:"on"
-    });
-})(jQuery);
 /******************************************************************************************************************************
 BOOTSTRAP
 *******************************************************************************************************************************/
@@ -129,6 +99,6 @@ PROGRESS BAR
 (function($) {
     "use strict";
     $("a.btn-progress").click(function(){
-        $('#bar-container').slideToggle(); 
+        $('#bar-container').slideToggle();
     });
 })(jQuery);

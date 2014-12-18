@@ -344,6 +344,10 @@ small.text-muted {
   border-radius: 5px;
 }
 
+#loginModal, #registroModal {
+  visibility: hidden;
+}
+
 
 /*
 * off canvas sidebar
