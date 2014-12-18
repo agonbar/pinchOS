@@ -7,11 +7,13 @@ $('#Login').click(function() {
 
 $('#Registro').click(function() {
   $("#registroModal").css("visibility", "visible").hide().fadeIn("slow");
+  $(".fondo").css("visibility", "hidden").hide().fadeIn("slow");
 });
 
 $('.close').click(function() {
   $("#loginModal").css("visibility", "hidden");
   $("#registroModal").css("visibility", "hidden");
+  $(".fondo").css("visibility", "visible").hide().fadeIn("slow");
 });
 
 $('.container').click(function() {
