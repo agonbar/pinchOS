@@ -16,7 +16,7 @@ class UsersController extends DBController {
 
     //Inicializa la variable
     $this->user = new User();
-	//Inicializa la variable
+    //Inicializa la variable
     $this->concurso = new Concurso();
   }
 
@@ -54,9 +54,6 @@ class UsersController extends DBController {
         $this->view->setVariable("errors", $errors);
       }
     }
-
-    // renderiza la vista (/view/vistas/login.php)
-    $this->view->render("vistas", "login");
   }
 
   /*Este metodo permite el registro de usuarios*/
@@ -86,7 +83,7 @@ class UsersController extends DBController {
 
           //mensaje de confirmación y redirige al método login del UsersController.php
           echo "<script> alert('Usuario creado correctamente'); </script>";
-          echo "<script>window.location.replace('index.php?controller=users&action=login');</script>";
+          echo "<script>window.location.replace('index.php');</script>";
 
           /*Si el correo ya existe muestra un mensaje de error*/
         } else {
@@ -100,10 +97,6 @@ class UsersController extends DBController {
         $this->view->setVariable("errors", $errors);
       }
     }
-
-    // renderiza la vista (/view/vistas/registro.php)
-    $this->view->render("vistas", "registro");
-
   }
 
 
@@ -111,22 +104,22 @@ class UsersController extends DBController {
   public function seleccionarVotacion() {
 
     if(!$_SESSION["currentuser"]){
-      echo "<script>window.location.replace('index.php?controller=users&action=login');</script>";
+      echo "<script>window.location.replace('index.php');</script>";
     }
     /*Datos del usuario actual*/
     $currentuser = $_SESSION["currentuser"];
 
-	$concu = $this->concurso->ver_datos();
+    $concu = $this->concurso->ver_datos();
 
-	//print_r($concu->getFechaInicioC());
-	//print_r(date("d-m-Y"));die();
+    //print_r($concu->getFechaInicioC());
+    //print_r(date("d-m-Y"));die();
 
-	if($concu->getFechaInicioC() > date("Y-m-d")){
-		throw new Exception("La fecha de votaciones todavia no ha empezado ");
-	 }
-	 if($concu->getFechaFinalC() < date("Y-m-d")){
-		throw new Exception("La fecha de votaciones ya ha terminado ");
-	 }
+    if($concu->getFechaInicioC() > date("Y-m-d")){
+      throw new Exception("La fecha de votaciones todavia no ha empezado ");
+    }
+    if($concu->getFechaFinalC() < date("Y-m-d")){
+      throw new Exception("La fecha de votaciones ya ha terminado ");
+    }
 
     if($currentuser->getTipoU() == 'J'){
       $this->view->redirect("popular", "votar");
@@ -144,7 +137,7 @@ class UsersController extends DBController {
   public function seleccionarPerfil() {
 
     if(!$_SESSION["currentuser"]){
-      echo "<script>window.location.replace('index.php?controller=users&action=login');</script>";
+      echo "<script>window.location.replace('index.php');</script>";
     }
 
     /*Datos del usuario actual*/
@@ -165,7 +158,7 @@ class UsersController extends DBController {
   public function seleccionarModificacion() {
 
     if(!$_SESSION["currentuser"]){
-      echo "<script>window.location.replace('index.php?controller=users&action=login');</script>";
+      echo "<script>window.location.replace('index.php');</script>";
     }
 
     /*Datos del usuario actual*/
@@ -186,7 +179,7 @@ class UsersController extends DBController {
   //Este metodo cierra la sesion y devuelve a login
   public function logout() {
     if(!$_SESSION["currentuser"]){
-      echo "<script>window.location.replace('index.php?controller=users&action=login');</script>";
+      echo "<script>window.location.replace('index.php');</script>";
     }
     session_destroy();
     $this->view->redirect("users", "login");

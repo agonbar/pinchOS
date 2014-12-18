@@ -12,7 +12,7 @@ class ConcursoController extends DBController {
 	/*Constructor*/
 	public function __construct() {
 		parent::__construct();
-		
+
 		//Inicializa la variable concurso
 		$this->concurso = new Concurso();
 	}
@@ -37,9 +37,9 @@ class ConcursoController extends DBController {
 	/* Este metodo hace que se muestren los valores actuales del concurso y
 	permite que el usuario administrador los modifique*/
 	public function modificarConcurso() {
-	
+
 		if(!$_SESSION["currentuser"]){
-			echo "<script>window.location.replace('index.php?controller=users&action=login');</script>";
+			echo "<script>window.location.replace('index.php');</script>";
 		}
 
 		$concu= new Concurso();
@@ -106,9 +106,9 @@ class ConcursoController extends DBController {
 
 	/*Funcion para crear un nuevo concurso*/
 	public function registro() {
-	
+
 		if(!$_SESSION["currentuser"]){
-			echo "<script>window.location.replace('index.php?controller=users&action=login');</script>";
+			echo "<script>window.location.replace('index.php');</script>";
 		}
 
 		$concu= new Concurso();

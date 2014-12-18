@@ -16,7 +16,7 @@ class PinchoController extends DBController {
 		parent::__construct();
 
 		if(!$_SESSION["currentuser"]){
-			echo "<script>window.location.replace('index.php?controller=users&action=login');</script>";
+			echo "<script>window.location.replace('index.php');</script>";
 		}
 
 		$this->pincho = new Pincho();

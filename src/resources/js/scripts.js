@@ -14,6 +14,11 @@ $('.close').click(function() {
   $("#registroModal").css("visibility", "hidden");
 });
 
+$('.container').click(function() {
+  $("#loginModal").css("visibility", "hidden");
+  $("#registroModal").css("visibility", "hidden");
+});
+
 $('[data-toggle=offcanvas]').click(function() {
   $(this).toggleClass('visible-xs text-center');
   $(this).find('i').toggleClass('glyphicon-chevron-right glyphicon-chevron-left');

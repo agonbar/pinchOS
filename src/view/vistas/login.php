@@ -24,7 +24,6 @@ $errors = $view->getVariable("errors");
             </div>
             <div class="form-group">
               <input type="submit" class="btn btn-primary btn-lg btn-block" value="Entrar">
-              <span class="pull-right"><a href="index.php?controller=users&action=registro">Registrate!</a></span>
             </div>
           </form>
         </div>
