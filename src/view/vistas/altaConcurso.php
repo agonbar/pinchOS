@@ -10,16 +10,34 @@ $errors = $view->getVariable("errors");
 			<div class="row" >
 				<h2 class="alineado">Crear Concurso</h2>
 			</div>
+			
 			<div class="row separacion">
 				<div class="column col-lg-10 col-md-10 col-sm-12 col-xs-12 ">
 					<form class="form-horizontal" method="POST" action="index.php?controller=concurso&action=registro" enctype="multipart/form-data">
-						<div class="form-group separarformulario">
-							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Nombre</label>
-							<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-								<input type="text" class="form-control" placeholder="Introduce un Nombre..." name="nombreC">
-								<?= isset($errors["nombreC"])?$errors["nombreC"]:"" ?><br>
+						<div class="separarformulario">
+							<div class="input-group">
+								<span class="input-group-addon">Nombre</span>
+								<input type="text" class="form-control" placeholder="Introduce un Nombre..." name="nombreC"> 
 							</div>
+							<?= isset($errors["nombreC"])?$errors["nombreC"]:"" ?>
 						</div>
+						<div class="separarformulario">
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Ciudad</label>
+							<div class="input-group">
+								<span class="input-group-addon"><span class="glyphicon glyphicon-home"></span></span>
+								<input type="text" class="form-control" placeholder="Introduce una Ciudad..." name="ciudadC"> 
+							</div>
+							<?= isset($errors["ciudadC"])?$errors["ciudadC"]:"" ?><br>
+						</div>
+						
+						<div class="separarformulario">
+							<div class="input-group">
+								<span class="input-group-addon"><span class="glyphicon glyphicon-home"></span></span>
+								<input type="text" class="form-control" placeholder="Introduce una Ciudad..." name="ciudadC"> 
+							</div>
+							<?= isset($errors["ciudadC"])?$errors["ciudadC"]:"" ?><br>
+						</div>
+							
 						<div class="form-group separarformulario">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Ciudad</label>
 							<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
