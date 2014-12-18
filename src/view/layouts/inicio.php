@@ -30,38 +30,38 @@ error_reporting(E_ALL);
 
 						<li class="nav-header">
 							<a href="#" data-toggle="collapse" data-target="#menu1">
-								<h5>Concurso <i class="glyphicon glyphicon-plus"></i></h5>
+								<h5>Concurso <i class="glyphicon glyphicon-chevron-right"></i></h5>
 							</a>
 							<ul class="list-unstyled collapse" id="menu1">
 								<?php if ($currentuser->getTipoU() == 'A') { ?>
-									<li class="desplegable "><a href="index.php?controller=concurso&action=registro">Crear concurso</a></li>
+									<li class="desplegable"><a href="index.php?controller=concurso&action=registro">Crear concurso</a></li>
 									<li class="desplegable"><a href="index.php?controller=concurso&action=modificarConcurso">Modificar concurso</a></li>
-									<?php } ?>
-									<li class="desplegable "><a href="index.php?controller=concurso&action=consultarConcurso">Consultar concurso</a></li>
-								</ul>
-							</li>
+								<?php } ?>
+								<li class="desplegable "><a href="index.php?controller=concurso&action=consultarConcurso">Consultar concurso</a></li>
+							</ul>
+						</li>
 
 							<li class="nav-header">
-								<!--<a href="#" data-toggle="collapse" data-target="#menu2">
-								<h5>Participantes <i class="glyphicon glyphicon-plus"></i></h5>
-							</a>
+								<a href="#" data-toggle="collapse" data-target="#menu2">
+									<h5>Participantes <i class="glyphicon glyphicon-chevron-right"></i></h5>
+								</a>
 							<ul class="list-unstyled collapse" id="menu2">
-							<li class="desplegable"><a href="index.php?controller=participante&action=listarParticipantes">Listado</a></li>
-							<li class="desplegable"><a href="index.php?controller=participante&action=busquedaParticipante">Búsqueda</a></li>
-						</ul>-->
-						<div class="featurette-item">
+								<li class="desplegable"><a href="index.php?controller=participante&action=listarParticipantes">Listado</a></li>
+								<li class="desplegable"><a href="index.php?controller=participante&action=busquedaParticipante">Búsqueda</a></li>
+							</ul>
+						<!--<div class="featurette-item">
 							<a href="index.php?controller=participante&action=busquedaParticipante">
 								<i class="icon-magnet">
 									<img src="./resources/img/portada/restaurante.jpg" alt="Imgen de un restaurante" class= "img-circle" width="100%" height="100%">
 									<h5>Establecimientos</h5>
 								</i>
 							</a>
-						</div>
+						</div>-->
 					</li>
 
 					<li class="nav-header">
 						<a href="#" data-toggle="collapse" data-target="#menu3">
-							<h5>Pinchos <i class="glyphicon glyphicon-plus"></i></h5>
+							<h5>Pinchos <i class="glyphicon glyphicon-chevron-right"></i></h5>
 						</a>
 						<ul class="list-unstyled collapse" id="menu3">
 							<?php if (($currentuser->getTipoU() == 'A') || ($currentuser->getTipoU() == 'P')) { ?>
@@ -74,7 +74,7 @@ error_reporting(E_ALL);
 						<?php if ($currentuser->getTipoU() == 'A') { ?>
 							<li class="nav-header">
 								<a href="#" data-toggle="collapse" data-target="#menu5">
-									<h5>Jurado Profesional <i class="glyphicon glyphicon-plus"></i></h5>
+									<h5>Jurado Profesional <i class="glyphicon glyphicon-chevron-right"></i></h5>
 								</a>
 								<ul class="list-unstyled collapse" id="menu5">
 									<li class="desplegable "><a href="index.php?controller=profesional&action=registrarProfesional">Crear J.Profesional</a></li>
@@ -108,28 +108,28 @@ error_reporting(E_ALL);
 									<li>
 										<?php if (($currentuser->getTipoU() == 'J') or ($currentuser->getTipoU() == 'S')) { ?>
 											<a href="index.php?controller=users&action=seleccionarVotacion"><i class="glyphicon glyphicon-plus"></i> Votar</a>
-											<?php } ?>
+										<?php } ?>
+									</li>
+									<li>
+										<?php if ($currentuser->getTipoU() == 'A') { ?>
+											<a href="index.php?controller=pincho&action=cerrarVotacion"><i class="glyphicon glyphicon-plus"></i> Cerrar concurso</a>
+										<?php } ?>
+									</li>
+								</ul>
+								<?php if ($currentuser->getTipoU() != NULL) { ?>
+									<ul class="nav navbar-nav navbar-right">
+										<li class="dropdown">
+											<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-cog"></i></a>
+											<ul class="dropdown-menu">
+												<?php if ($currentuser->getTipoU() != 'A' && $currentuser->getTipoU() != 'P') { ?>
+													<li><a href="index.php?controller=users&action=seleccionarPerfil">Mi perfil</a></li>
+													<li><a href="index.php?controller=users&action=seleccionarModificacion">Modificar mi perfil</a></li>
+												<?php } ?>
+												<li><a href="index.php?controller=users&action=logout">Salir</a></li>
+											</ul>
 										</li>
-										<li>
-											<?php if ($currentuser->getTipoU() == 'A') { ?>
-												<a href="index.php?controller=pincho&action=cerrarVotacion"><i class="glyphicon glyphicon-plus"></i> Cerrar concurso</a>
-												<?php } ?>
-											</li>
-										</ul>
-										<?php if ($currentuser->getTipoU() != NULL) { ?>
-											<ul class="nav navbar-nav navbar-right">
-												<li class="dropdown">
-													<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-cog"></i></a>
-													<ul class="dropdown-menu">
-														<?php if ($currentuser->getTipoU() != 'A' && $currentuser->getTipoU() != 'P') { ?>
-															<li><a href="index.php?controller=users&action=seleccionarPerfil">Mi perfil</a></li>
-															<li><a href="index.php?controller=users&action=seleccionarModificacion">Modificar mi perfil</a></li>
-															<?php } ?>
-															<li><a href="index.php?controller=users&action=logout">Salir</a></li>
-														</ul>
-													</li>
-												</ul>
-												<?php } ?>
-											</nav>
-										</div>
-										<!-- /top nav -->
+									</ul>
+								<?php } ?>
+							</nav>
+						</div>
+					<!-- /top nav -->
