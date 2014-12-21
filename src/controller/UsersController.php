@@ -54,6 +54,7 @@ class UsersController extends DBController {
         $this->view->setVariable("errors", $errors);
       }
     }
+	$this->view->render("vistas","login");
   }
 
   /*Este metodo permite el registro de usuarios*/
