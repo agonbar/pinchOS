@@ -66,9 +66,13 @@ $currentuser = $view->getVariable("currentusername");
           </form>
         </div>
       </div>
-	  <?php if ($currentuser->getTipoU() == 'A') { ?>
-      <a href="index.php?controller=concurso&action=modificarConcurso" type="button" class="btn btn-primary col-md-offset-5" >Modificar concurso</a>
-	  <?php } ?>
+	  
+	  <?php 
+	  if($currentuser != null){
+		if ($currentuser->getTipoU() == 'A') { ?>
+			<a href="index.php?controller=concurso&action=modificarConcurso" type="button" class="btn btn-primary col-md-offset-5" >Modificar concurso</a>
+		<?php } 
+	  }?>
     </div>
   </div>
 </div>
