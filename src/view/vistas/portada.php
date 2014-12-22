@@ -19,8 +19,10 @@ include("registro.php");
 
     <div class="login" data-animated="FadeIn">
       <div class="btn-group" role="group" aria-label="...">
-        <button  type="button" class="btn btn-info" id="Login">Login</button >
-        <button  type="button" class="btn btn-info" id="Registro">Registro</button >
+        <button  type="button" class="btn btn-info" id="Login">Login
+        </button >
+        <button  type="button" class="btn btn-info" id="Registro">Registro
+        </button >
       </div>
     </div>
 
@@ -73,6 +75,22 @@ include("registro.php");
     <!-- LAYER OVER THE SLIDER TO MAKE THE WHITE TEXTE READABLE -->
     <div id="layer"></div>
   </section>
+
+  <?php if(isset($errors["emailU"])) { ?>
+    <script>
+      $("#header").css("visibility", "hidden");
+      $("#registroModal").css("visibility", "visible");
+    </script>
+  <?php }; ?>
+
+  <?php if(isset($errors['email'])) { ?>
+    <script>
+      $("#header").css("visibility", "hidden");
+      $("#loginModal").css("visibility", "visible");
+    </script>
+    <?php }; ?>
+
+
   <!-- Bootstrap core JavaScript
   ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->

@@ -358,6 +358,10 @@ small.text-muted {
   visibility: hidden;
 }
 
+#header {
+  visibility: visible;
+}
+
 
 /*
 * off canvas sidebar
@@ -418,7 +422,7 @@ small.text-muted {
 	-moz-border-radius: 3px;
 	border-radius: 3px;
 	border:0 none;
-	
+
 }
 
 .btn2{
@@ -428,7 +432,7 @@ small.text-muted {
 .btn:hover {
 	color:#fff;
 }
-.btn-lg { 
+.btn-lg {
 	padding:16px 30px;
 	font-size:inherit;
 	font-family:cursive;
@@ -453,8 +457,3 @@ small.text-muted {
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary:active {
 	background: rgba(0,0,0,.9);
 }
-
-
-
-
-
