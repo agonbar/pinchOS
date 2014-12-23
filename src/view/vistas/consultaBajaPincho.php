@@ -60,15 +60,17 @@ $currentuser = $view->getVariable("currentusername");
 				</div>
 			</div>
 
-			<?php if ($currentuser->getTipoU() == 'A') { ?>
-				<a href="index.php?controller=pincho&action=validarPincho&idPi= <?=$pincho->getIdPi();?>" ><button type="button" class="btn btn-primary " >Validar pincho</button></a>
+			<?php if ($currentuser != null){?>
+				<?php if ($currentuser->getTipoU() == 'A') { ?>
+					<a href="index.php?controller=pincho&action=validarPincho&idPi= <?=$pincho->getIdPi();?>" ><button type="button" class="btn btn-primary " >Validar pincho</button></a>
 
-			<?php }?>
-			<?php if ( ($currentuser->getTipoU() == 'A') || ( ($currentuser->getTipoU() == 'P') && ( $currentuser->getEmailU() == $pincho->getParticipanteEmail() ) ) ){ ?>
-				<a href="index.php?controller=pincho&action=bajaPincho&idPi= <?=$pincho->getIdPi();?>" ><button type="button" class="btn btn-primary col-md-offset-2" >Eliminar pincho</button></a>
-			<?php }?>
-			<?php if ( ( ($currentuser->getTipoU() == 'P') && ( $currentuser->getEmailU() == $pincho->getParticipanteEmail() ) ) ){ ?>
-				<a href="index.php?controller=pincho&action=modificacionPincho&idPi= <?=$pincho->getIdPi();?>" type="button" class="btn btn-primary " >Modificar pincho</a>
+				<?php }?>
+				<?php if ( ($currentuser->getTipoU() == 'A') || ( ($currentuser->getTipoU() == 'P') && ( $currentuser->getEmailU() == $pincho->getParticipanteEmail() ) ) ){ ?>
+					<a href="index.php?controller=pincho&action=bajaPincho&idPi= <?=$pincho->getIdPi();?>" ><button type="button" class="btn btn-primary col-md-offset-2" >Eliminar pincho</button></a>
+				<?php }?>
+				<?php if ( ( ($currentuser->getTipoU() == 'P') && ( $currentuser->getEmailU() == $pincho->getParticipanteEmail() ) ) ){ ?>
+					<a href="index.php?controller=pincho&action=modificacionPincho&idPi= <?=$pincho->getIdPi();?>" type="button" class="btn btn-primary " >Modificar pincho</a>
+				<?php }?>
 			<?php }?>
 		</div>
 	</div>
