@@ -15,9 +15,9 @@ class PinchoController extends DBController {
 	public function __construct() {
 		parent::__construct();
 
-		if(!$_SESSION["currentuser"]){
+		/*if(!$_SESSION["currentuser"]){
 			echo "<script>window.location.replace('index.php');</script>";
-		}
+		}*/
 
 		$this->pincho = new Pincho();
 		$this->codvoto = new CodVoto();
@@ -244,18 +244,24 @@ class PinchoController extends DBController {
 	*/
 
 	public function listadoPincho(){
-		$currentuser = $_SESSION["currentuser"];
-		if($currentuser->getTipoU() == "A"){
-			$arrayPinchos = $this->pincho->listarPi();
-			$this->view->setVariable("pinchos", $arrayPinchos);
-		}else if ($currentuser->getTipoU() == "P"){
-			$arrayPinchos = $this->pincho->listarPiPart();
-			$this->view->setVariable("pinchos", $arrayPinchos);
+		if(isset($_SESSION["currentuser"])){
+			$currentuser = $_SESSION["currentuser"];
+			if($currentuser->getTipoU() == "A"){
+				$arrayPinchos = $this->pincho->listarPi();
+				$this->view->setVariable("pinchos", $arrayPinchos);
+			}else if ($currentuser->getTipoU() == "P"){
+				$arrayPinchos = $this->pincho->listarPiPart();
+				$this->view->setVariable("pinchos", $arrayPinchos);
+			}else{
+				$arrayPinchos = $this->pincho->listarPiActivos();
+				$this->view->setVariable("pinchos", $arrayPinchos);
+			}
+			$this->view->render("vistas", "listaPinchos");
 		}else{
 			$arrayPinchos = $this->pincho->listarPiActivos();
 			$this->view->setVariable("pinchos", $arrayPinchos);
+			$this->view->render("vistas", "listaPinchos");
 		}
-		$this->view->render("vistas", "listaPinchos");
 	}
 
 	/**
