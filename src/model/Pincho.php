@@ -339,15 +339,17 @@ class Pincho {
   /**
   *
   * Recoge la infrmacion de todos los pinchos de la base de datos y los introduce en un array
-  * @return $pincho[] array.Devuelve un array con toda la iformacion de cada pincho de la base de datos
+  * @return $pincho[] array.Devuelve un array con toda la iformacion de cada pincho
+  * de la base de datos que no esta validado
   * @access public
   *
   */
 
   public function listarPi(){
+    $noactivo = "0";
     $db = PDOConnection::getInstance();
-    $stmt = $db->prepare("SELECT * FROM pincho");
-    $stmt->execute();
+    $stmt = $db->prepare("SELECT * FROM pincho where estadoPi=?");
+    $stmt->execute(array(($noactivo)));
     $pinchos_db=$stmt->fetchAll(PDO::FETCH_ASSOC);
     $pinchos=array();
 
