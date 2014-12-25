@@ -15,70 +15,60 @@ $errors = $view->getVariable("errors");
 				<div class="column col-lg-10 col-md-10 col-sm-12 col-xs-12 ">
 					<form class="form-horizontal" method="POST" action="index.php?controller=concurso&action=registro" enctype="multipart/form-data">
 						<div class="separarformulario">
+							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Nombre</label>
 							<div class="input-group">
-								<span class="input-group-addon">Nombre</span>
+								<span class="input-group-addon"><span class="glyphicon glyphicon-bold"></span></span>
 								<input type="text" class="form-control" placeholder="Introduce un Nombre..." name="nombreC"> 
 							</div>
-							<?= isset($errors["nombreC"])?$errors["nombreC"]:"" ?>
+							<?= isset($errors["nombreC"])?$errors["nombreC"]:"" ?><br>
 						</div>
 						<div class="separarformulario">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Ciudad</label>
 							<div class="input-group">
-								<span class="input-group-addon"><span class="glyphicon glyphicon-home"></span></span>
+								<span class="input-group-addon"><span class="glyphicon glyphicon-map-marker"></span></span>
 								<input type="text" class="form-control" placeholder="Introduce una Ciudad..." name="ciudadC"> 
 							</div>
 							<?= isset($errors["ciudadC"])?$errors["ciudadC"]:"" ?><br>
 						</div>
-						
 						<div class="separarformulario">
-							<div class="input-group">
-								<span class="input-group-addon"><span class="glyphicon glyphicon-home"></span></span>
-								<input type="text" class="form-control" placeholder="Introduce una Ciudad..." name="ciudadC"> 
-							</div>
-							<?= isset($errors["ciudadC"])?$errors["ciudadC"]:"" ?><br>
-						</div>
-							
-						<div class="form-group separarformulario">
-							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Ciudad</label>
-							<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-								<input type="text" class="form-control" placeholder="Introduce una Ciudad..." name="ciudadC">
-								<?= isset($errors["ciudadC"])?$errors["ciudadC"]:"" ?><br>
-							</div>
-						</div>
-						<div class="form-group separarformulario">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Fecha de Inicio</label>
-							<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+							<div class="input-group">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
 								<input class="form-control" type="date" name="fechaInicioC">
-								<?= isset($errors["fechaInicioC"])?$errors["fechaInicioC"]:"" ?><br>
 							</div>
+							<?= isset($errors["fechaInicioC"])?$errors["fechaInicioC"]:"" ?><br>
 						</div>
-						<div class="form-group separarformulario">
+						<div class="separarformulario">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Fecha de Finalización</label>
-							<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+							<div class="input-group">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
 								<input class="form-control" type="date" name="fechaFinalC">
-								<?= isset($errors["fechaFinalC"])?$errors["fechaFinalC"]:"" ?><br>
 							</div>
+							<?= isset($errors["fechaFinalC"])?$errors["fechaFinalC"]:"" ?><br>
 						</div>
-						<div class="form-group separarformulario">
+						<div class="separarformulario">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Fecha de Finalistas</label>
-							<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+							<div class="input-group">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
 								<input class="form-control" type="date" name="fechaFinalistasC">
-								<?= isset($errors["fechaFinalistasC"])?$errors["fechaFinalistasC"]:"" ?><br>
 							</div>
+							<?= isset($errors["fechaFinalistasC"])?$errors["fechaFinalistasC"]:"" ?><br>
 						</div>
-						<div class="form-group separarformulario">
+						<div class="separarformulario">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Premio</label>
-							<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-								<input type="text" class="form-control" placeholder="Introduce un Premio..." name="premioC">
-								<?= isset($errors["premioC"])?$errors["premioC"]:"" ?><br>
+							<div class="input-group">
+								<span class="input-group-addon"><span class="glyphicon glyphicon-euro"></span></span>
+								<input type="text" class="form-control" placeholder="Introduce un Premio..." name="premioC"> 
 							</div>
+							<?= isset($errors["premioC"])?$errors["premioC"]:"" ?><br>
 						</div>
-						<div class="form-group separarformulario">
+						<div class="separarformulario">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Patrocinador</label>
-							<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-								<input type="text" class="form-control" placeholder="Introduce un Patrocinador..." name="patrocinadorC">
-								<?= isset($errors["patrocinadorC"])?$errors["patrocinadorC"]:"" ?><br>
+							<div class="input-group">
+								<span class="input-group-addon"><span class="glyphicon glyphicon-star"></span></span>
+								<input type="text" class="form-control" placeholder="Introduce un Patrocinador..." name="patrocinadorC"> 
 							</div>
+							<?= isset($errors["patrocinadorC"])?$errors["patrocinadorC"]:"" ?><br>
 						</div>
 				<div class="form-group separarformulario">
 					<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Bases</label>
