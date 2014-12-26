@@ -14,7 +14,7 @@
 	<title>PinchOs</title>
 	<meta name="generator" content="Bootply" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+	<link href="./resources/css/bootstrap.min.css" rel="stylesheet">
 	<!-- Si trabajas sin internet
 	<script src="resources/css/bootstrap.min.css"></script>
 -->

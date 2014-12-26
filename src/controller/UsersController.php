@@ -113,9 +113,6 @@ class UsersController extends DBController {
 
     $concu = $this->concurso->ver_datos();
 
-    //print_r($concu->getFechaInicioC());
-    //print_r(date("d-m-Y"));die();
-
     if($concu->getFechaInicioC() > date("Y-m-d")){
       throw new Exception("La fecha de votaciones todavia no ha empezado ");
     }

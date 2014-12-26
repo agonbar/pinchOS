@@ -49,6 +49,7 @@ $errors = $view->getVariable("errors");
 				</div>
 				<div class="form-group">
 				  <input type="submit" class="btn btn-primary btn-lg btn-block, btn2" value="Registrate">
+				  <a href="index.php?controller=users&action=portada" class="btn btn-primary btn-lg">Inicio</a>
 				</div>
           </form>
 		</div>
@@ -56,45 +57,7 @@ $errors = $view->getVariable("errors");
 		</div> <!-- /col -->
 	</div> <!-- /row -->
 </div>
-		
-		
-		
-		
-		
-		
-         <!-- <form class="form col-md-12 center-block" method="POST" action="index.php?controller=users&action=registro">
-            <div class="form-group">
-              <input type="text" class="form-control input-lg" placeholder="Email" name="emailU">
-              <?//= isset($errors["emailU"])?$errors["emailU"]:"" ?><br>
-            </div>
-            <div class="form-group">
-              <input type="text" class="form-control input-lg" placeholder="Nombre y apellidos" name="nombreU">
-              <?//= isset($errors["nombreU"])?$errors["nombreU"]:"" ?><br>
-            </div>
-            <div class="form-group">
-              <input type="password" class="form-control input-lg" placeholder="Contraseña" name="contrasenaU">
-              <?//= isset($errors["contrasenaU"])?$errors["contrasenaU"]:"" ?><br>
-            </div>
-            <div class="form-group">
-              <input type="password" class="form-control input-lg" placeholder="Repetir Contraseña" name="contrasenaU2">
-              <?//= isset($errors["contrasenaU2"])?$errors["contrasenaU2"]:"" ?><br>
-            </div>
-            <div class="form-group">
-              <select class="form-control" name="tipoU">
-                <option value="N">Selecciona un tipo...</option>
-                <option value="J">Jurado Popular</option>
-                <option value="P">Participante</option>
-              </select>
-              <?//= isset($errors["tipoU"])?$errors["tipoU"]:"" ?><br>
-            </div>
-            <div class="form-group">
-              <input type="submit" class="btn btn-primary btn-lg btn-block" value="Registrate">
-            </div>
-          </form>-->
-        <!--</div>
-        <div class="modal-footer"></div>
-      </div>
-    </div>-->
+
   </div>
 </body>
 </html>

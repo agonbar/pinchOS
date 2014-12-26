@@ -173,6 +173,15 @@ class Concurso {
 	if ($this->fechaInicioC < date("Y-m-d")) {
       $errors["fechaInicioC"] = "La fecha debe ser posterior al dia de hoy";
     }
+	if(!ereg("(20[0-9][0-9])-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])", $this->fechaInicioC)){
+		$errors["fechaInicioC"] = "La fecha introducida no tiene el formato correcto (YYYY-MM-DD)";
+	}
+	if(!ereg("(20[0-9][0-9])-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])", $this->fechaFinalC)){
+		$errors["fechaFinalC"] = "La fecha introducida no tiene el formato correcto (YYYY-MM-DD)";
+	}
+	if(!ereg("(20[0-9][0-9])-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])", $this->fechaFinalistasC)){
+		$errors["fechaFinalistasC"] = "La fecha introducida no tiene el formato correcto (YYYY-MM-DD)";
+	}
 	/*Error de fecha del concurso inferior a la actual*/
 	if ($this->fechaFinalC < $this->fechaFinalistasC) {
       $errors["fechaFinalC"] = "La fecha debe ser posterior a la de finalistas";
