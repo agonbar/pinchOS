@@ -12,7 +12,7 @@ $pincho = $view->getVariable("pincho");
 	<div class="column col-lg-10 col-md-10 col-sm-12 col-xs-12 col-md-offset-1" >
 		<div class="modalbox movedown">
 			<div class="row">
-				<h2 class="alineado">Listado de Pincho</h2>
+				<h2 class="alineado">Búsqueda de Pinchos</h2>
 			</div>
 			<ul>
 				<div class="col-lg-12">
@@ -31,7 +31,7 @@ $pincho = $view->getVariable("pincho");
 									</select>
 									</div>
 									<div class="col-lg-1 col-md-1 col-sm-12 col-xs-12">
-										<input type="submit" class="btn btn-default active col-md-offset-2" value = "Buscar">
+										<input type="submit" class="btn btn-default col-md-offset-2" value = "Buscar">
 								</div>
 								</div>
 						</form>

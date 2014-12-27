@@ -11,7 +11,7 @@ $pinchos = $view->getVariable("pinchos");
 	<div class="column col-lg-10 col-md-10 col-sm-12 col-xs-12 col-md-offset-1" >
 		<div class="modalbox movedown">
 			<div class="row">
-				<h2 class="alineado">Listado de Pincho</h2>
+				<h2 class="alineado">Listado de Pinchos</h2>
 			</div>
 			<ul class= "list-inline ">
 				<?php //bucle que lista los pinchos seleccionados
