@@ -115,8 +115,9 @@ error_reporting(E_ALL);
 										<?php } ?>
 									</li>
 								</ul>
-								<?php if ($currentuser->getTipoU() != NULL) { ?>
+
 									<ul class="nav navbar-nav navbar-right">
+										<?php if ($currentuser->getTipoU() != NULL) { ?>
 										<li class="dropdown">
 											<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-cog"></i></a>
 											<ul class="dropdown-menu">
@@ -127,8 +128,13 @@ error_reporting(E_ALL);
 												<li><a href="index.php?controller=users&action=logout">Salir</a></li>
 											</ul>
 										</li>
+										<?php } else{ ?>
+											<div class="form-group">
+												<a href="index.php?controller=users&action=portada" class="whitebtn" >Registrate</a>
+											</div>
+										<?php } ?>
 									</ul>
-								<?php } ?>
+
 							</nav>
 						</div>
 					<!-- /top nav -->
