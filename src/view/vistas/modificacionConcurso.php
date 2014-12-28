@@ -15,66 +15,72 @@ $concurso = $view->getVariable("concu");
       <div class="row separacion">
         <div class="column col-lg-10 col-md-10 col-sm-12 col-xs-12 ">
           <form class="form-horizontal" method="POST" action="index.php?controller=concurso&action=modificarConcurso" enctype="multipart/form-data">
-            <div class="form-group separarformulario">
-              <label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Nombre</label>
-              <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-                <input class="form-control" placeholder="<?=$concurso->getNombreC()?>" 
+			<div class="form-group separarformulario">
+				<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Nombre</label>
+				<div class="input-group">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-bold"></span></span>
+					<input class="form-control" placeholder="<?=$concurso->getNombreC()?>" 
 					value="<?= isset($_POST["nombreC"])?$_POST["nombreC"]:$concurso->getNombreC() ?>" name="nombreC">
-				<?= isset($errors["nombreC"])?$errors["nombreC"]:"" ?><br>
-              </div>
+				</div>
+				<div class="tab"><?= isset($errors["nombreC"])?$errors["nombreC"]:"" ?><br></div>
             </div>
             <div class="form-group separarformulario">
-              <label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Ciudad</label>
-              <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-                <input class="form-control" placeholder="<?=$concurso->getCiudadC()?>" 
+				<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Ciudad</label>
+				<div class="input-group">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-map-marker"></span></span>
+					<input class="form-control" placeholder="<?=$concurso->getCiudadC()?>" 
 					value="<?= isset($_POST["ciudadC"])?$_POST["ciudadC"]:$concurso->getCiudadC() ?>" name="ciudadC">
-				<?= isset($errors["ciudadC"])?$errors["ciudadC"]:"" ?><br>
               </div>
+			  <div class="tab"><?= isset($errors["ciudadC"])?$errors["ciudadC"]:"" ?><br></div>
             </div>
             <div class="form-group separarformulario">
-              <label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Fecha de Inicio</label>
-              <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-                <input class="form-control" type="date" placeholder="<?=$concurso->getFechaInicioC()?>" 
+				<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Fecha de Inicio</label>
+				<div class="input-group">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+					<input class="form-control" type="date" placeholder="<?=$concurso->getFechaInicioC()?>" 
 					value="<?= isset($_POST["fechaInicioC"])?$_POST["fechaInicioC"]:$concurso->getFechaInicioC() ?>" name="fechaInicioC">
-				<?= isset($errors["fechaInicioC"])?$errors["fechaInicioC"]:"" ?><br>
-              </div>
+				</div>
+				<div class="tab"><?= isset($errors["fechaInicioC"])?$errors["fechaInicioC"]:"" ?><br></div>
             </div>
 			<div class="form-group separarformulario">
-              <label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Fecha de Finalización</label>
-              <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-                <input class="form-control" type="date" placeholder="<?=$concurso->getFechaFinalC()?>" 
+				<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Fecha de Finalización</label>
+				<div class="input-group">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+					<input class="form-control" type="date" placeholder="<?=$concurso->getFechaFinalC()?>" 
 					value="<?= isset($_POST["fechaFinalC"])?$_POST["fechaFinalC"]:$concurso->getFechaFinalC() ?>" name="fechaFinalC">
-				<?= isset($errors["fechaFinalC"])?$errors["fechaFinalC"]:"" ?><br>
               </div>
+			  <div class="tab"><?= isset($errors["fechaFinalC"])?$errors["fechaFinalC"]:"" ?><br></div>
             </div>
 			<div class="form-group separarformulario">
-              <label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Fecha de Finalistas</label>
-              <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-                <input class="form-control" type="date" placeholder="<?=$concurso->getFechaFinalistasC()?>" 
+				<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Fecha de Finalistas</label>
+				<div class="input-group">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+					<input class="form-control" type="date" placeholder="<?=$concurso->getFechaFinalistasC()?>" 
 					value="<?= isset($_POST["fechaFinalistasC"])?$_POST["fechaFinalistasC"]:$concurso->getFechaFinalistasC() ?>" name="fechaFinalistasC">
-				<?= isset($errors["fechaFinalistasC"])?$errors["fechaFinalistasC"]:"" ?><br>
               </div>
+			  <div class="tab"><?= isset($errors["fechaFinalistasC"])?$errors["fechaFinalistasC"]:"" ?><br></div>
             </div>
             <div class="form-group separarformulario">
-              <label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Premio</label>
-              <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-                <input class="form-control" placeholder="<?=$concurso->getPremioC()?>" 
+				<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Premio</label>
+				<div class="input-group">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-euro"></span></span>
+					<input class="form-control" placeholder="<?=$concurso->getPremioC()?>" 
 					value="<?= isset($_POST["premioC"])?$_POST["premioC"]:$concurso->getPremioC() ?>" name="premioC">
-				<?= isset($errors["premioC"])?$errors["premioC"]:"" ?><br>
-              </div>
+				</div>
+				<div class="tab"><?= isset($errors["premioC"])?$errors["premioC"]:"" ?><br></div>
             </div>
             <div class="form-group separarformulario">
-			  <label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Patrocinador</label>
-			  <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-				<input class="form-control" placeholder="<?=$concurso->getPatrocinadorC()?>" 
+				<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Patrocinador</label>
+				<div class="input-group">
+					<span class="input-group-addon"><span class="glyphicon glyphicon-star"></span></span>
+					<input class="form-control" placeholder="<?=$concurso->getPatrocinadorC()?>" 
 					value="<?= isset($_POST["patrocinadorC"])?$_POST["patrocinadorC"]:$concurso->getPatrocinadorC() ?>" name="patrocinadorC">
-				<?= isset($errors["patrocinadorC"])?$errors["patrocinadorC"]:"" ?><br>
 			  </div>
+			  <div class="tab"><?= isset($errors["patrocinadorC"])?$errors["patrocinadorC"]:"" ?><br></div>
 			</div>
         <div class="form-group separarformulario">
           <label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Bases</label>
           <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-            <input type="textarea" class="form-control" rows="6" placeholder="<?=$concurso->getBasesC()?>" name="basesC"></textarea>
             <input type="file" id="archivo_1" name="basesC">
 			<?= isset($errors["basesC"])?$errors["basesC"]:"" ?><br>
           </div>
