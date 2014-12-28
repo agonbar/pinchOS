@@ -71,4 +71,20 @@ class CodVoto {
     //print_r($IdPi);die();
   }
 
+  public function generateMoreCV($IdPi, $numCV){
+    $db = PDOConnection::getInstance();
+    $stmt = $db->prepare("SELECT idCV FROM codVoto where pinchoId=?");//cuenta los codigos de voto de un pincho
+    $stmt->execute(array($IdPi));
+    $CV=$stmt->fetch(PDO::FETCH_ASSOC);
+    for ($i = 1; $i <= 4; $i++) {
+      $idCVtemp = $numCV+$i;
+      $IdVoto = $IdPi.$idCVtemp;
+      //print_r($IdVoto);die();
+      $stmt = $db->prepare("INSERT INTO codVoto values (?,?)");
+      $stmt->execute(array($IdVoto,$IdPi));
+
+    }
+    //print_r($IdPi);die();
+  }
+
 }

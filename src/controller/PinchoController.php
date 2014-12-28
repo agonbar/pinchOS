@@ -103,13 +103,16 @@ class PinchoController extends DBController {
 
 	public function generarVotos(){
 		$codvototemp = new CodVoto();
-		$pinchotemp = new Pincho();
 		if(isset($_GET["idPi"])){
 			$idPi = $_GET["idPi"];
 		}
-		$codvototemp->generateCodVote($idPi);
-		$numVotos=$pinchotemp->getNumVotePi()+4;
-		$pinchotemp->setNumVotePi($numVotos);
+		$pinchotemp = $this->pincho->showDatesPi($idPi);
+		$numV=$pinchotemp->getNumVotePi();
+
+		$numV+=4;
+		$codvototemp->generateMoreCV($idPi, $numV);
+
+		$pinchotemp->setNumVotePi($numV);
 		$pinchotemp->upDateVotoPi($idPi);
 		echo "<script> alert('Se han generado 4 codigos más para este pincho'); </script>";
 		echo "<script>window.location.replace('index.php?controller=pincho&action=listadoPincho');</script>";
