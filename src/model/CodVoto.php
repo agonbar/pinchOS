@@ -72,6 +72,7 @@ class CodVoto {
   }
 
   public function generateMoreCV($IdPi, $numCV){
+    print_r($numCV);die();
     $db = PDOConnection::getInstance();
     $stmt = $db->prepare("SELECT idCV FROM codVoto where pinchoId=?");//cuenta los codigos de voto de un pincho
     $stmt->execute(array($IdPi));

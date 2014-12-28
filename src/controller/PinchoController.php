@@ -109,12 +109,11 @@ class PinchoController extends DBController {
 		$pinchotemp = $this->pincho->showDatesPi($idPi);
 		$numV=$pinchotemp->getNumVotePi();
 
-		$numV+=4;
 		$codvototemp->generateMoreCV($idPi, $numV);
-
+		$numV+=4;print_r($numV);die();
 		$pinchotemp->setNumVotePi($numV);
 		$pinchotemp->upDateVotoPi($idPi);
-		echo "<script> alert('Se han generado 4 codigos más para este pincho'); </script>";
+		echo "<script> alert('Se han generado 4 codigos mas para este pincho'); </script>";
 		echo "<script>window.location.replace('index.php?controller=pincho&action=listadoPincho');</script>";
 	}
 
@@ -263,22 +262,30 @@ class PinchoController extends DBController {
 	public function listadoPincho(){
 		if(isset($_SESSION["currentuser"])){
 			$currentuser = $_SESSION["currentuser"];
-			if($currentuser->getTipoU() == "A"){
-				$arrayPinchos = $this->pincho->listarPi();
-				$this->view->setVariable("pinchos", $arrayPinchos);
-			}else if ($currentuser->getTipoU() == "P"){
+			if ($currentuser->getTipoU() == "P"){
 				$arrayPinchos = $this->pincho->listarPiPart();
 				$this->view->setVariable("pinchos", $arrayPinchos);
-			}else{
-				$arrayPinchos = $this->pincho->listarPiActivos();
-				$this->view->setVariable("pinchos", $arrayPinchos);
 			}
-			$this->view->render("vistas", "listaPinchos");
-		}else{
-			$arrayPinchos = $this->pincho->listarPiActivos();
-			$this->view->setVariable("pinchos", $arrayPinchos);
-			$this->view->render("vistas", "listaPinchos");
 		}
+		$arrayPinchos = $this->pincho->listarPiActivos();
+		$this->view->setVariable("pinchos", $arrayPinchos);
+		$this->view->render("vistas", "listaPinchos");
+
+	}
+
+	/**
+	*
+	* Funcion que devuelve el listado de todos los pichos inactivos.
+	* @access public
+	*
+	*/
+
+	public function listadoPinchoInact(){
+
+		$arrayPinchos = $this->pincho->listarPi();
+		$this->view->setVariable("pinchos", $arrayPinchos);
+		$this->view->render("vistas", "listaPinchos");
+
 	}
 
 	/**

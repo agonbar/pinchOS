@@ -171,9 +171,9 @@ INSERT INTO `participante` (`direccionP`, `telefonoP`, `nombreLocalP`, `horarioP
 ('Carballino', '633333333', 'Enxogo', 'De 9:00 a 23:00','www.enxogo.es','69c20c15cbe777332028b93499f9d4ab','pablo@gmail.com');
 
 INSERT INTO `pincho` (`idPi`, `nombrePi`, `precioPi`, `ingredientesPi`,`cocineroPi`,`numvotosPopPi`,`numvotosProfPi`, `fotoPi`,`estadoPi`,`participanteEmail`, `numvotePi`) VALUES
-('1', 'jamon', '1', 'patatas con huevos fritos','juan','2','0','./resources/img/pinchos/pincho.jpg','1','julian@gmail.com', '3'),
-('2', 'queso', '2', 'solomillo al ajillo con pepinillo', 'pepe','2','3','./resources/img/pinchos/pincho2.jpg','1','hector@gmail.com', '4'),
-('3', 'bacon', '3', 'salsa braba con caramelo gratinado en parmellano','carmen','2','4','./resources/img/pinchos/pincho3.jpg','1','marta@gmail.com', '4'),
+('1', 'jamon', '1', 'patatas con huevos fritos','juan','2','0','./resources/img/pinchos/pincho.jpg','1','julian@gmail.com', '5'),
+('2', 'queso', '2', 'solomillo al ajillo con pepinillo', 'pepe','2','3','./resources/img/pinchos/pincho2.jpg','1','hector@gmail.com', '5'),
+('3', 'bacon', '3', 'salsa braba con caramelo gratinado en parmellano','carmen','2','4','./resources/img/pinchos/pincho3.jpg','1','marta@gmail.com', '5'),
 ('4', 'mortadela', '2', 'quesitos finos y variados','roberto','0','0','./resources/img/pinchos/pincho4.jpg','1','pablo@gmail.com', '0');
 
 INSERT INTO `codVoto` (`idCV`, `pinchoId`) VALUES
