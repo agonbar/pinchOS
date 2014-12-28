@@ -17,27 +17,30 @@ $currentuser = $view->getVariable("currentusername");
 					<form class="form-horizontal" method="POST" action="index.php?controller=popular&action=verModificacion">
 						<div class="form-group separarformulario">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Nombre</label>
-							<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+							<div class="input-group">
+								<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
 								<input class="form-control" placeholder="<?=$currentuser->getNombreU()?>" name="nombreU" 
 									value="<?= isset($_POST["nombreU"])?$_POST["nombreU"]:$currentuser->getNombreU() ?>" >
-								<?= isset($errors["nombreU"])?$errors["nombreU"]:"" ?><br>
 							</div>
+							<div class="tab"><?= isset($errors["nombreC"])?$errors["nombreC"]:"" ?><br></div>
 						</div>
 						<div class="form-group separarformulario">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Contraseña</label>
-							<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+							<div class="input-group">
+								<span class="input-group-addon"><span class="glyphicon glyphicon-copyright-mark"></span></span>
 								<input class="form-control" placeholder="<?=$currentuser->getContrasenaU()?>" name="contrasenaU"
 									value="<?= isset($_POST["contrasenaU"])?$_POST["contrasenaU"]:$currentuser->getContrasenaU() ?>">
-								<?= isset($errors["contrasenaU"])?$errors["contrasenaU"]:"" ?><br>
 							</div>
+							<div class="tab"><?= isset($errors["contrasenaU"])?$errors["contrasenaU"]:"" ?><br></div>
 						</div>
 						<div class="form-group separarformulario">
 							<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Repetir Contraseña</label>
-							<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+							<div class="input-group">
+								<span class="input-group-addon"><span class="glyphicon glyphicon-copyright-mark"></span></span>
 								<input class="form-control" placeholder="<?=$currentuser->getContrasenaU()?>" name="contrasenaU2"
 									value="<?= isset($_POST["contrasenaU2"])?$_POST["contrasenaU2"]:$currentuser->getContrasenaU() ?>">
-								<?= isset($errors["contrasenaU2"])?$errors["contrasenaU2"]:"" ?><br>
 							</div>
+							<div class="tab"><?= isset($errors["contrasenaU2"])?$errors["contrasenaU2"]:"" ?><br></div>
 						</div>
 						 <input type="submit" class="btn btn-primary col-md-offset-5" value="Guardar modificación">
 					</form>

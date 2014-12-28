@@ -25,10 +25,10 @@ $contrasenaGenerada = $view->getVariable("contrasenaGenerada");
             <div class="separarformulario">
 				<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Nombre</label>
 				<div class="input-group">
-					<span class="input-group-addon"><span class="glyphicon glyphicon-bold"></span></span>
+					<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
 					<input class="form-control" placeholder="Introduce Nombre y Apellidos..." name="nombreU">
 				</div>
-			  <div class="tab"><?= isset($errors["nombreC"])?$errors["nombreC"]:"" ?><br></div>
+				<div class="tab"><?= isset($errors["nombreC"])?$errors["nombreC"]:"" ?><br></div>
             </div>
             <div class="separarformulario">
 				<label class="col-lg-2 col-md-2 col-sm-2 col-xs-12 control-label">Contraseña</label>
