@@ -101,6 +101,13 @@ class PinchoController extends DBController {
 
 	}
 
+	/**
+	*
+	* Funcion que genera 4 codigos de voto asociados a un pincho.
+	* @access public
+	*
+	*/
+
 	public function generarVotos(){
 		$codvototemp = new CodVoto();
 		if(isset($_GET["idPi"])){
@@ -110,7 +117,7 @@ class PinchoController extends DBController {
 		$numV=$pinchotemp->getNumVotePi();
 
 		$codvototemp->generateMoreCV($idPi, $numV);
-		$numV+=4;print_r($numV);die();
+		$numV+=4;
 		$pinchotemp->setNumVotePi($numV);
 		$pinchotemp->upDateVotoPi($idPi);
 		echo "<script> alert('Se han generado 4 codigos mas para este pincho'); </script>";
@@ -172,7 +179,12 @@ class PinchoController extends DBController {
 					$fotoPiTemp = $_FILES['fotoPi']['tmp_name'];
 					move_uploaded_file($fotoPiTemp,$fotoPi);//pasa la foto de la carpeta temporal a la del servidor web
 
-					$fotoPi="./resources/img/pinchos/".$_FILES['fotoPi']['name'];
+					if($ruta.$_FILES['fotoPi']['name'] == $ruta){
+						$pincho = $this->pincho->showDatesPi($idPi);
+						$fotoPi=$pincho->getFotoPi();
+					}else{
+						$fotoPi=$ruta.$_FILES['fotoPi']['name'];
+					}
 					$pinchotemp->setFotoPi($fotoPi, $fotoPiSize);
 					$pinchotemp->setNombrePi($_POST["nombrePi"]);
 					$pinchotemp->setPrecioPi($_POST["precioPi"]);
@@ -264,12 +276,17 @@ class PinchoController extends DBController {
 			$currentuser = $_SESSION["currentuser"];
 			if ($currentuser->getTipoU() == "P"){
 				$arrayPinchos = $this->pincho->listarPiPart();
-				$this->view->setVariable("pinchos", $arrayPinchos);
 			}
+			else{
+				$arrayPinchos = $this->pincho->listarPiActivos();
+			}
+			$this->view->setVariable("pinchos", $arrayPinchos);
+			$this->view->render("vistas", "listaPinchos");
+		}else{
+			$arrayPinchos = $this->pincho->listarPiActivos();
+			$this->view->setVariable("pinchos", $arrayPinchos);
+			$this->view->render("vistas", "listaPinchos");
 		}
-		$arrayPinchos = $this->pincho->listarPiActivos();
-		$this->view->setVariable("pinchos", $arrayPinchos);
-		$this->view->render("vistas", "listaPinchos");
 
 	}
 
