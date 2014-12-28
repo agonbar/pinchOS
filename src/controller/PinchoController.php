@@ -101,6 +101,20 @@ class PinchoController extends DBController {
 
 	}
 
+	public function generarVotos(){
+		$codvototemp = new CodVoto();
+		$pinchotemp = new Pincho();
+		if(isset($_GET["idPi"])){
+			$idPi = $_GET["idPi"];
+		}
+		$codvototemp->generateCodVote($idPi);
+		$numVotos=$pinchotemp->getNumVotePi()+4;
+		$pinchotemp->setNumVotePi($numVotos);
+		$pinchotemp->upDateVotoPi($idPi);
+		echo "<script> alert('Se han generado 4 codigos más para este pincho'); </script>";
+		echo "<script>window.location.replace('index.php?controller=pincho&action=listadoPincho');</script>";
+	}
+
 	/**
 	*
 	* Funcion que da debaja un pincho. La baja es solo cambiar el estado del
@@ -310,20 +324,27 @@ class PinchoController extends DBController {
 	*/
 
 	public function validarPincho(){
-		if(isset($_GET["idPi"])){
-			$idPi = $_GET["idPi"];
-		}
-		$pinchotemp = $this->pincho->showDatesPi($idPi);
-		$this->view->setVariable("pincho", $pinchotemp);
+		$concu = $this->concurso->ver_datos();
 
-		$currentuser = $_SESSION["currentuser"];
+		if($concu->getFechaInicioC() <= date("Y-m-d")){
+			echo "<script> alert('El concurso ya ha empezado, NO puedes validar pinchos'); </script>";
+			echo "<script>window.location.replace('index.php?controller=pincho&action=listadoPincho');</script>";
+		}else{
+			if(isset($_GET["idPi"])){
+				$idPi = $_GET["idPi"];
+			}
+			$pinchotemp = $this->pincho->showDatesPi($idPi);
+			$this->view->setVariable("pincho", $pinchotemp);
 
-		if($currentuser){//commprueba que el usuario esta logeado
-			$pinchotemp->setEstadoPi("1");
-			$pinchotemp->updatePi($idPi);
+			$currentuser = $_SESSION["currentuser"];
+
+			if($currentuser){//commprueba que el usuario esta logeado
+				$pinchotemp->setEstadoPi("1");
+				$pinchotemp->updatePi($idPi);
+			}
+			echo "<script> alert('El pincho se ha VALIDADO correctamente correctamente'); </script>";
+			echo "<script>window.location.replace('index.php?controller=pincho&action=listadoPincho');</script>";
 		}
-		echo "<script> alert('El pincho se ha VALIDADO correctamente correctamente'); </script>";
-		echo "<script>window.location.replace('index.php?controller=pincho&action=listadoPincho');</script>";
 	}
 }
 ?>

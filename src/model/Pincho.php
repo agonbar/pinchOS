@@ -338,6 +338,20 @@ class Pincho {
 
   /**
   *
+  * Actualiza la el numero de codigos de un pincho en la base de datos
+  * @access public
+  *
+  */
+
+  public function updateVotoPi($idPi) {
+    $db = PDOConnection::getInstance();
+    $stmt = $db->prepare("UPDATE pincho SET numvotePi=? where idPi=?");
+    $stmt->execute(array($this->numvotePi, $idPi));
+    //print_r($this->estadoPi);die();
+  }
+
+  /**
+  *
   * Recoge la infrmacion de todos los pinchos de la base de datos y los introduce en un array
   * @return $pincho[] array.Devuelve un array con toda la iformacion de cada pincho
   * de la base de datos que no esta validado
