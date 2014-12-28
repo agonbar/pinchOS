@@ -8,11 +8,11 @@ $errors = $view->getVariable("errors");
 <body>
   <!--login modal-->
   <div id="loginModal" class="modal show">
-	
+
 <div class="container">
 	<div class="row">
-		<div class="col-md-4 col-lg-4 text-center col-md-offset-4 col-lg-offset-4" id="login1">	
-		
+		<div class="col-md-4 col-lg-4 text-center col-md-offset-4 col-lg-offset-4" id="login1">
+
 		<div class="modal-body">
 			<form class="form col-md-12 center-block" method="POST" action="index.php?controller=users&action=login">
 			  <div class="form-group">
@@ -27,14 +27,14 @@ $errors = $view->getVariable("errors");
 			  </div>
 			</form>
 		</div>
-		
+
 		</div> <!-- /col -->
 	</div> <!-- /row -->
 </div>
-		
-		
-		
-		
+
+
+
+
      <!-- </div>
       <div class="modal-footer"></div>
     </div>-->
