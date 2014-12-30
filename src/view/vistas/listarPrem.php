@@ -18,7 +18,7 @@ $premiadosPro = $view->getVariable("premiadosPro");
           else {
           foreach ($premiadosPop as $premiado): ?>
           <li>
-            <a href="index.php?controller=pincho&action=consultaPincho&id=<?=$premiado["idPi"];?>">
+            <a href="index.php?controller=pincho&action=consultaPincho&idPi=<?=$premiado["idPi"];?>">
               <div><img src="<?php echo $premiado["fotoPi"]; ?>" alt="<?php echo $premiado["fotoPi"]; ?>" class="img-thumbnail" height="200" width="200"></div>
               <div class="caption">
                 <h4> <?php echo $premiado["nombrePi"]; ?>
@@ -35,7 +35,7 @@ $premiadosPro = $view->getVariable("premiadosPro");
         else {
         foreach ($premiadosPro as $premiado): ?>
         <li>
-          <a href="index.php?controller=pincho&action=consultaPincho&id=<?=$premiado["idPi"];?>">
+          <a href="index.php?controller=pincho&action=consultaPincho&idPi=<?=$premiado["idPi"];?>">
             <div><img src="<?php echo $premiado["fotoPi"]; ?>" alt="<?php echo $premiado["fotoPi"]; ?>" class="img-thumbnail" height="200" width="200"></div>
             <div class="caption">
               <h4> <?php echo $premiado["nombrePi"]; ?>

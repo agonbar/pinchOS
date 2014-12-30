@@ -20,7 +20,7 @@ class Concurso {
   /* Las bases del Concurso */
 
   private $basesC;
-  
+
   private $basesCTemp;
 
   /* La ciudad del Concurso */
@@ -30,11 +30,11 @@ class Concurso {
   /* La fecha del Concurso */
 
   private $fechaInicioC;
-  
+
    /* La fecha del Concurso */
 
   private $fechaFinalC;
-  
+
    /* La fecha del Concurso */
 
   private $fechaFinalistasC;
@@ -42,7 +42,7 @@ class Concurso {
   /* El premio del Concurso */
 
   private $premioC;
-  
+
   /* El premio del Concurso */
 
   private $patrocinadorC;
@@ -86,7 +86,7 @@ class Concurso {
   public function getBasesC() {
     return $this->basesC;
   }
-  
+
   public function setbasesC($basesC,$basesCTemp) {
     $this->basesC = $basesC;
     $this->basesCTemp = $basesCTemp;
@@ -112,7 +112,7 @@ class Concurso {
   public function setFechaInicioC($fechaInicioC) {
     $this->fechaInicioC = $fechaInicioC;
   }
-  
+
   /* Devuelve la fecha del Concurso */
   public function getFechaFinalC() {
     return $this->fechaFinalC;
@@ -122,7 +122,7 @@ class Concurso {
   public function setFechaFinalC($fechaFinalC) {
     $this->fechaFinalC = $fechaFinalC;
   }
-  
+
   /* Devuelve la fecha del Concurso */
   public function getFechaFinalistasC() {
     return $this->fechaFinalistasC;
@@ -142,7 +142,7 @@ class Concurso {
   public function setPremioC($premioC) {
     $this->premioC = $premioC;
   }
-  
+
   /* Devuelve el premio del Concurso */
   public function getPatrocinadorC() {
     return $this->patrocinadorC;
@@ -155,7 +155,7 @@ class Concurso {
 
   /* Comprueba si el Concurso es válido para registrarse en la base de datos,si no lo es devuelve un mensaje por cada tipo de error encontrado */
   public function checkIsValidForRegister() {
-  
+
     $errors = array();//Se inializa un array errors con los distintos errores que posteriormente serán mostrados si estos se producen
 	/*Error de longitud en el nombre*/
     if (strlen($this->nombreC) < 4) {
@@ -173,13 +173,13 @@ class Concurso {
 	if ($this->fechaInicioC < date("Y-m-d")) {
       $errors["fechaInicioC"] = "La fecha debe ser posterior al dia de hoy";
     }
-	if(!ereg("(20[0-9][0-9])-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])", $this->fechaInicioC)){
+	if(!preg_match("/(20[0-9][0-9])[-](0[1-9]|1[012])[-](0[1-9]|[12][0-9]|3[01])/", $this->fechaInicioC)){
 		$errors["fechaInicioC"] = "La fecha introducida no tiene el formato correcto (YYYY-MM-DD)";
 	}
-	if(!ereg("(20[0-9][0-9])-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])", $this->fechaFinalC)){
+	if(!preg_match("/(20[0-9][0-9])[-](0[1-9]|1[012])[-](0[1-9]|[12][0-9]|3[01])/", $this->fechaFinalC)){
 		$errors["fechaFinalC"] = "La fecha introducida no tiene el formato correcto (YYYY-MM-DD)";
 	}
-	if(!ereg("(20[0-9][0-9])-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])", $this->fechaFinalistasC)){
+	if(!preg_match("/(20[0-9][0-9])[-](0[1-9]|1[012])[-](0[1-9]|[12][0-9]|3[01])/", $this->fechaFinalistasC)){
 		$errors["fechaFinalistasC"] = "La fecha introducida no tiene el formato correcto (YYYY-MM-DD)";
 	}
 	/*Error de fecha del concurso inferior a la actual*/
@@ -249,7 +249,7 @@ class Concurso {
     $stmt = $db->prepare("SELECT * FROM concurso");
     $stmt->execute();
     $concursos_db=$stmt->fetch(PDO::FETCH_ASSOC);
-  
+
     if(sizeof($concursos_db)==0){
       return null;
     }else{
@@ -265,6 +265,6 @@ class Concurso {
 	  $concursos_db["patrocinadorC"]
        );
     }
-  } 
+  }
 
 }
