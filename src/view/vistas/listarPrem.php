@@ -14,11 +14,11 @@ $premiadosPro = $view->getVariable("premiadosPro");
         <h2 class="alineado">Listado de Premiados Populares</h2>
         <ul class= "list-inline ">
           <?php
-          if($premiadosPro == NULL) echo 'Aún no se ha terminado el concurso';
+          if($premiadosPro == NULL) echo '<h4 class="alineado">Lo sentimos, aún no han terminado estas votaciones</h4>';
           else {
           foreach ($premiadosPop as $premiado): ?>
           <li>
-            <a href="index.php?controller=pincho&action=consultaPincho&idPi=<?=$premiado["idPi"];?>">
+            <a href="index.php?controller=pincho&action=consultaPincho&id=<?=$premiado["idPi"];?>">
               <div><img src="<?php echo $premiado["fotoPi"]; ?>" alt="<?php echo $premiado["fotoPi"]; ?>" class="img-thumbnail" height="200" width="200"></div>
               <div class="caption">
                 <h4> <?php echo $premiado["nombrePi"]; ?>
@@ -29,13 +29,13 @@ $premiadosPro = $view->getVariable("premiadosPro");
         <?php endforeach;} ?><!-- fin while-->
       </ul>
       <h2 class="alineado">Listado de Finalistas/Premiados Profesionales</h2>
-      <ul class= "list-inline ">
+      <ul class= "list-inline">
         <?php
-        if($premiadosPro == NULL) echo 'Aún no se ha terminado el concurso';
+        if($premiadosPro == NULL) echo '<h4 class="alineado">Lo sentimos, aún han terminado estas votaciones</h4>';
         else {
         foreach ($premiadosPro as $premiado): ?>
         <li>
-          <a href="index.php?controller=pincho&action=consultaPincho&idPi=<?=$premiado["idPi"];?>">
+          <a href="index.php?controller=pincho&action=consultaPincho&id=<?=$premiado["idPi"];?>">
             <div><img src="<?php echo $premiado["fotoPi"]; ?>" alt="<?php echo $premiado["fotoPi"]; ?>" class="img-thumbnail" height="200" width="200"></div>
             <div class="caption">
               <h4> <?php echo $premiado["nombrePi"]; ?>

@@ -184,8 +184,10 @@ class UsersController extends DBController {
     $this->view->redirect("users", "login");
   }
 
-  public function portada(){
+  /*Este metodo redirige al menú de registro*/
+  public function registroPortada(){
+    $errors["tipoU"] = "";
+    $this->view->setVariable("errors", $errors);
     $this->view->render("vistas","portada");
   }
-
 }

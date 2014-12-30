@@ -76,7 +76,7 @@ include("registro.php");
     <div id="layer"></div>
   </section>
 
-  <?php if(isset($errors["emailU"])) { ?>
+  <?php if(isset($errors["emailU"]) || isset($errors["tipoU"]) || isset($errors["nombreU"]) || isset($errors["contrasenaU"]) || isset($errors["contrasenaU2"])) { ?>
     <script>
       $("#header").css("visibility", "hidden");
       $("#registroModal").css("visibility", "visible");
