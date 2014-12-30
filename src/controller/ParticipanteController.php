@@ -35,25 +35,6 @@ class ParticipanteController extends DBController {
 
   /**
   *
-  * Funcion que obtiene el listado de participantes, en caso de no haber,
-  * lanza una excepcion y notifica del problema, en caso de haber devuelve
-  * el array con los datos necesarios a la vista.
-  * @access public
-  *
-  */
-
-  public function listarParticipantes(){
-    $participantes_array = array();
-    $participantes_array = $this->participante->listarParticipantes();
-    if ($participantes_array == NULL) {
-      throw new Exception("No hay participantes");
-    }
-    $this->view->setVariable("participantes", $participantes_array);
-    $this->view->render("vistas", "listarPart");
-  }
-
-  /**
-  *
   * Funcion que obtiene el listado de participantes que cumplen un requisito,
   * en caso de no haber, lanza una excepcion y notifica del problema,
   * en caso de haber devuelve el array con los datos necesarios a la vista.
@@ -153,7 +134,7 @@ class ParticipanteController extends DBController {
         $errors = $ex->getErrors();
         $this->view->setVariable("errors", $errors);
       }
-      $this->listarParticipantes();
+      $this->busquedaParticipante();
     }
   }
 
@@ -169,6 +150,6 @@ class ParticipanteController extends DBController {
       $userEmail = $_GET["id"];
     }
     $this->participante->bajaParticipante($userEmail);
-    $this->listarParticipantes();
+    $this->busquedaParticipante();
   }
 }

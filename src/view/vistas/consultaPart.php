@@ -45,15 +45,13 @@ $currentuser = $view->getVariable("currentusername");
       <?php
       if($pinchos!=null){
         foreach ($pinchos as $pincho): ?>
-        <a href="pincho.php">
-          <tr class="tablehover">
-            <td><img src="<?php echo $pincho["fotoPi"]; ?>" alt="./resources/img/participantes/<?php echo $pincho["fotoPi"]; ?>.jpg" class="img-thumbnail" height="50" width="50"></td>
-            <td><?php echo $pincho["nombrePi"]; ?></td>
-            <td><?php echo $pincho["precioPi"]; ?>€</td>
-            <td><?php echo $pincho["ingredientesPi"]; ?></td>
-            <td><?php echo $pincho["cocineroPi"]; ?></td>
-          </tr>
-        </a>
+        <tr class="tablehover" onclick="window.location='index.php?controller=pincho&action=consultaPincho&idPi=<?=$pincho["idPi"];?>'">
+          <td><img src="<?php echo $pincho["fotoPi"]; ?>" alt="./resources/img/participantes/<?php echo $pincho["fotoPi"]; ?>.jpg" class="img-thumbnail" height="50" width="50"></td>
+          <td><?php echo $pincho["nombrePi"]; ?></td>
+          <td><?php echo $pincho["precioPi"]; ?>€</td>
+          <td><?php echo $pincho["ingredientesPi"]; ?></td>
+          <td><?php echo $pincho["cocineroPi"]; ?></td>
+        </tr>
       <?php endforeach; }?>
     </table>
     <?php if ($currentuser != null && $currentuser->getEmailU() == $participante[0]["usuarioEmail"]) { ?>
