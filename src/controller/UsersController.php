@@ -104,7 +104,7 @@ class UsersController extends DBController {
 
   /*Este metodo selecciona una vista según el tipo de usuario que es */
   public function seleccionarVotacion() {
-
+	
     if(!$_SESSION["currentuser"]){
       echo "<script>window.location.replace('index.php');</script>";
     }
@@ -112,23 +112,29 @@ class UsersController extends DBController {
     $currentuser = $_SESSION["currentuser"];
 
     $concu = $this->concurso->ver_datos();
-
+	$valido=true;
+	
     if($concu->getFechaInicioC() > date("Y-m-d")){
-      throw new Exception("La fecha de votaciones todavia no ha empezado ");
+		echo "<script> alert('La fecha de votaciones todavia no ha empezado'); </script>";
+		echo "<script>window.location.replace('index.php?controller=concurso&action=consultarConcurso');</script>";
+		$valido=false;
     }
     if($concu->getFechaFinalC() < date("Y-m-d")){
-      throw new Exception("La fecha de votaciones ya ha terminado ");
+		echo "<script> alert('La fecha de votaciones ya ha terminado'); </script>";
+		echo "<script>window.location.replace('index.php?controller=concurso&action=consultarConcurso');</script>";
+		$valido=false;
     }
 
-    if($currentuser->getTipoU() == 'J'){
+    if($currentuser->getTipoU() == 'J'  && $valido){
       $this->view->redirect("popular", "votar");
     }
-    if($currentuser->getTipoU() == 'S'){
+    if($currentuser->getTipoU() == 'S' && $valido){
       $this->view->redirect("profesional", "votar");
     }
     /*Si no es ninguno de los jurados muestra una excepcion*/
     if(($currentuser->getTipoU() != 'S') and ($currentuser->getTipoU() != 'J')){
-      throw new Exception("Solo puede votar el jurado");
+		echo "<script> alert('Solo puede votar el jurado'); </script>";
+		echo "<script>window.location.replace('index.php?controller=concurso&action=consultarConcurso');</script>";
     }
   }
 
