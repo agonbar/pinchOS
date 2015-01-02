@@ -15,12 +15,12 @@ $errors = $view->getVariable("errors");
           <h1 class="text-center">Registro</h1>
         </div>
         <div class="modal-body">-->
-		
-		
+
+
 <div class="container">
 	<div class="row">
-		<div class=" col-md-4 col-lg-4 text-center col-md-offset-4 col-lg-offset-4" id="registrar">	
-		
+		<div class=" col-md-4 col-lg-4 text-center col-md-offset-4 col-lg-offset-4" id="registrar">
+
 		<div class="modal-body">
 			<form class="form col-md-12 center-block" method="POST" action="index.php?controller=users&action=registro">
 				<div class="form-group">
@@ -49,11 +49,11 @@ $errors = $view->getVariable("errors");
 				</div>
 				<div class="form-group">
 				  <input type="submit" class="btn btn-primary btn-lg btn-block, btn2" value="Registrate">
-				  <a href="index.php?controller=users&action=portada" class="btn btn-primary btn-lg">Inicio</a>
+				  <a href="index.php?controller=users&action=portada" class="btn btn-primary btn-lg" class="inicio">Inicio</a>
 				</div>
           </form>
 		</div>
-		
+
 		</div> <!-- /col -->
 	</div> <!-- /row -->
 </div>

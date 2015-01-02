@@ -11,7 +11,7 @@ $('#Registro').click(function() {
   $("#registroModal").css("visibility", "visible").fadeIn("slow");
 });
 
-$('.close').click(function() {
+$('.inicio').click(function() {
   $("#loginModal").css("visibility", "hidden");
   $("#registroModal").css("visibility", "hidden");
   $("#header").css("visibility", "visible").fadeIn("slow");

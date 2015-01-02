@@ -108,27 +108,27 @@ class User {
   public function checkIsValidForRegister($contrasenaU2) {
 
     $errors = array();//Se inializa un array errors con los distintos errores que posteriormente serán mostrados si estos se producen
-	/*Error de longitud en el email*/
+    /*Error de longitud en el email*/
     if (strlen($this->emailU) < 5) {
       $errors["emailU"] = "El email debe contener al menos 5 caracteres de longitud";
     }
-	/*Error en la eleccion del tipo de usuario*/
+    /*Error en la eleccion del tipo de usuario*/
     if ($this->tipoU == 'N') {
       $errors["tipoU"] = "No has escogido el tipo de usuario";
     }
-	/*Error de longitud en el nombre*/
+    /*Error de longitud en el nombre*/
     if (strlen($this->nombreU) < 3) {
       $errors["nombreU"] = "El nombre debe contener al menos 3 caracteres de longitud";
     }
-	/*Error de longitud de la contraseña*/
+    /*Error de longitud de la contraseña*/
     if (strlen($this->contrasenaU) < 5) {
       $errors["contrasenaU"] = "La contraseña debe contener al menos 5 caracteres de longitud";
     }
-	/*Error que se produce cuando la contraseña y la contraseña repetida tienen valores diferentes*/
+    /*Error que se produce cuando la contraseña y la contraseña repetida tienen valores diferentes*/
     if ($this->contrasenaU != $contrasenaU2) {
       $errors["contrasenaU2"] = "Las contraseñas no coinciden";
     }
-	/*Si hay algún error en las anteriores comprobaciones muestra un mensaje*/
+    /*Si hay algún error en las anteriores comprobaciones muestra un mensaje*/
     if (sizeof($errors)>0){
       throw new ValidationException($errors, "El usuario no es válido");
     }
@@ -138,42 +138,42 @@ class User {
   public function checkIsValidForModificacionJPopu($contrasenaU2) {
 
     $errors = array(); //Se inializa un array errors con los distintos errores que posteriormente serán mostrados si estos se producen
-	/*Error de longitud en el nombre*/
+    /*Error de longitud en el nombre*/
     if (strlen($this->nombreU) < 3) {
       $errors["nombreU"] = "El nombre debe contener al menos 3 caracteres de longitud";
     }
-	/*Error de longitud en la contraseña*/
-	if (strlen($this->contrasenaU) < 5) {
+    /*Error de longitud en la contraseña*/
+    if (strlen($this->contrasenaU) < 5) {
       $errors["contrasenaU"] = "La contraseña debe contener al menos 5 caracteres de longitud";
     }
-	/*Error que se produce cuando la contraseña y la contraseña repetida tienen valores diferentes*/
-	if ($this->contrasenaU != $contrasenaU2) {
+    /*Error que se produce cuando la contraseña y la contraseña repetida tienen valores diferentes*/
+    if ($this->contrasenaU != $contrasenaU2) {
       $errors["contrasenaU2"] = "Las contraseñas no coinciden";
     }
-	/*Si hay algún error en las anteriores comprobaciones muestra un mensaje*/
+    /*Si hay algún error en las anteriores comprobaciones muestra un mensaje*/
     if (sizeof($errors)>0){
       throw new ValidationException($errors, "El usuario no es válido");
     }
 
   }
 
-   /* Comprueba si el Jurado Profesional es válido para registrarse en la base de datos,si no lo es devuelve un mensaje por cada tipo de error encontrado */
+  /* Comprueba si el Jurado Profesional es válido para registrarse en la base de datos,si no lo es devuelve un mensaje por cada tipo de error encontrado */
   public function checkIsValidForRegisterProf(){
 
     $errors = array();//Se inializa un array errors con los distintos errores que posteriormente serán mostrados si estos se producen
-	/*Error de longitud en el email*/
+    /*Error de longitud en el email*/
     if (strlen($this->emailU) < 5) {
       $errors["emailU"] = "El email debe contener al menos 5 caracteres de longitud";
     }
-	/*Error de longitud en el nombre*/
+    /*Error de longitud en el nombre*/
     if (strlen($this->nombreU) < 5) {
       $errors["nombreU"] = "El nombre debe contener al menos 5 caracteres de longitud";
     }
-	/*Error de longitud en la contraseña*/
+    /*Error de longitud en la contraseña*/
     if (strlen($this->contrasenaU) < 5) {
       $errors["contrasenaU"] = "La contraseña debe contener al menos 5 caracteres de longitud";
     }
-	/*Si hay algún error en las anteriores comprobaciones muestra un mensaje*/
+    /*Si hay algún error en las anteriores comprobaciones muestra un mensaje*/
     if (sizeof($errors)>0){
       throw new ValidationException($errors, "El usuario no es válido");
     }
@@ -184,9 +184,10 @@ class User {
     $db = PDOConnection::getInstance();
     $stmt = $db->prepare("INSERT INTO usuario values (?,?,?,?,?,?)");
     $stmt->execute(array($this->emailU, $this->contrasenaU, $this->tipoU, $this->estadoU, $this->nombreU, $this->concursoId));
-	
-    $stmt=$db->prepare("INSERT INTO participante values (?,?,?,?,?,?,?)");
-    $stmt->execute(array('a','a','a','a','a','a',$this->emailU));
+    if($this->tipoU == 'P'){
+      $stmt=$db->prepare("INSERT INTO participante values (?,?,?,?,?,?,?)");
+      $stmt->execute(array('Vacio','Vacio','Vacio','Vacio','Vacio','Vacio',$this->emailU));
+    }
   }
 
   /* Actualiza el User en la base de datos,para ello se hace un update de los distintos campos que contiene la tabla usuario*/
@@ -240,15 +241,15 @@ class User {
       $user_db["estadoU"],
       $user_db["nombreU"],
       $user_db["concursoId"]
-      );
-    }
+    );
   }
+}
 
- /*Sirve para poner un usuario como inactivo,para ello se actualiza el valor del estado a 0 en la base de datos(1 activo,0 inactivo)*/
-   public function updateEstado($currentuserEmail){
-	  $db = PDOConnection::getInstance();
-	  $stmt = $db->prepare("UPDATE usuario set estadoU='0' where emailU=?");
-	  $stmt->execute(array($currentuserEmail));
-	}
+/*Sirve para poner un usuario como inactivo,para ello se actualiza el valor del estado a 0 en la base de datos(1 activo,0 inactivo)*/
+public function updateEstado($currentuserEmail){
+  $db = PDOConnection::getInstance();
+  $stmt = $db->prepare("UPDATE usuario set estadoU='0' where emailU=?");
+  $stmt->execute(array($currentuserEmail));
+}
 
 }

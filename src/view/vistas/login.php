@@ -23,7 +23,7 @@ $errors = $view->getVariable("errors");
 			  </div>
 			  <div class="form-group">
 				<input type="submit" class="btn btn-primary btn-lg" value="Iniciar Sesión">
-				<a href="index.php?controller=users&action=portada" class="btn btn-primary btn-lg">Inicio</a>
+				<a href="index.php?controller=users&action=portada" class="btn btn-primary btn-lg" class="inicio">Inicio</a>
 			  </div>
 			</form>
 		</div>
