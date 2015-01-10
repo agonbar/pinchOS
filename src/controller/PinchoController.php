@@ -344,7 +344,8 @@ class PinchoController extends DBController {
 	public function cerrarVotacion(){
 		$concu = $this->concurso->ver_datos();
 		if($concu->getFechaFinalC() != date("Y-m-d") || $concu->getFechaFinalistasC() != date("Y-m-d")){
-			throw new Exception("No es fecha para cerrar el concurso");
+			echo "<script> alert('No es fecha para cerrar el concurso'); </script>";
+			echo "<script>window.location.replace('index.php?controller=concurso&action=consultarConcurso');</script>";
 		}
 		$this->pincho->crearFin();
 		$this-> listarPrem();
