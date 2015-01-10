@@ -72,7 +72,9 @@ $currentuser = $view->getVariable("currentusername");
 			 	}
 				if ( ( ($currentuser->getTipoU() == 'P') && ( $currentuser->getEmailU() == $pincho->getParticipanteEmail() ) ) ){ ?>
 					<a href="index.php?controller=pincho&action=modificacionPincho&idPi= <?=$pincho->getIdPi();?>" type="button" class="btn btn-primary " >Modificar pincho</a>
-					<a href="index.php?controller=pincho&action=bajaPincho&idPi= <?=$pincho->getIdPi();?>" ><button type="button" class="btn btn-primary col-md-offset-2" >Eliminar pincho</button></a>
+					<?php if ($pincho->getEstadoPi()==1){ ?>
+						<a href="index.php?controller=pincho&action=bajaPincho&idPi= <?=$pincho->getIdPi();?>" ><button type="button" class="btn btn-primary col-md-offset-2" >Eliminar pincho</button></a>
+					<?php }?>
 				<?php }?>
 				</div>
 			<?php }?>

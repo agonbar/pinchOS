@@ -333,7 +333,6 @@ class Pincho {
     $db = PDOConnection::getInstance();
     $stmt = $db->prepare("UPDATE pincho SET estadoPi=?, nombrePi=?, precioPi=?, ingredientesPi=?, cocineroPi=?, fotoPi=? where idPi=?");
     $stmt->execute(array($this->estadoPi, $this->nombrePi, $this->precioPi, $this->ingredientesPi, $this->cocineroPi, $this->fotoPi, $idPi));
-    //print_r($this->estadoPi);die();
   }
 
   /**
@@ -473,7 +472,7 @@ class Pincho {
       $stmt = $db->prepare("SELECT * FROM pincho where nombrePi=? AND estadoPi=?");
       $stmt->execute(array($param,$activo));
     }else if($tipob=='precioPi'){
-      $stmt = $db->prepare("SELECT * FROM pincho where precioPi<? AND estadoPi=?");
+      $stmt = $db->prepare("SELECT * FROM pincho where precioPi<=? AND estadoPi=?");
       $stmt->execute(array($param,$activo));
     }else if($tipob=='ingredientesPi'){
       $param = '%'.$param.'%';

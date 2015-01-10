@@ -54,13 +54,14 @@ error_reporting(E_ALL);
 									<h5>Pinchos <i class="glyphicon glyphicon-chevron-right"></i></h5>
 								</a>
 								<ul class="list-unstyled collapse" id="menu3">
-									<?php if (($currentuser->getTipoU() == 'A') || ($currentuser->getTipoU() == 'P')) { ?>
-										<li class="desplegable"><a href="index.php?controller=pincho&action=listadoPincho">Listado pincho activos</a></li>
+									<?php if ( ($currentuser->getTipoU() == 'A') ) { ?>
+										<li class="desplegable"><a href="index.php?controller=pincho&action=listadoPincho">Listado Activos</a></li>
+										<li class="desplegable"><a href="index.php?controller=pincho&action=listadoPinchoInact">Listado Inactivos</a></li>
 										<?php }?>
-										<?php if (($currentuser->getTipoU() == 'A') ) { ?>
-											<li class="desplegable"><a href="index.php?controller=pincho&action=listadoPinchoInact">Listado pincho Inactivos</a></li>
+										<?php if (($currentuser->getTipoU() == 'P') ) { ?>
+											<li class="desplegable"><a href="index.php?controller=pincho&action=listadoPincho">Listado</a></li>
 											<?php }?>
-											<li class="desplegable"><a href="index.php?controller=pincho&action=busquedaPincho">Búsqueda pincho</a></li>
+											<li class="desplegable"><a href="index.php?controller=pincho&action=busquedaPincho">Búsqueda</a></li>
 										</ul>
 									</li>
 

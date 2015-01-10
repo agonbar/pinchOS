@@ -50,10 +50,14 @@ class PinchoController extends DBController {
 					$idpincho = $pinchotemp->generarIdPi($currentuser->getEmailU());//devuelve el id del pinchos
 					$fotoPiSize = $_FILES['fotoPi']['size'];
 					$fotoPi = $ruta.$_FILES['fotoPi']['name'];
-					 $fotoPiTemp = $_FILES['fotoPi']['tmp_name'];
+					$fotoPiTemp = $_FILES['fotoPi']['tmp_name'];
+
+					$fotoPi=$ruta.$_FILES['fotoPi']['name'];
+					if (strlen($fotoPi)>=45){
+						$fotoPi= substr($fotoPi, 0, 40).'.jpg';
+					}
 					move_uploaded_file($fotoPiTemp,$fotoPi);//pasa la foto de la carpeta temporal a la del servidor web
 
-					$fotoPi="./resources/img/pinchos/".$_FILES['fotoPi']['name'];
 					//$fotoPiSize="2";
 					$pinchotemp->setFotoPi($fotoPi, $fotoPiSize);
 					$pinchotemp->setNumVotosPopPi("0");//inicializa a 0 el numero de votos dados por el JPopular
@@ -177,14 +181,18 @@ class PinchoController extends DBController {
 					$fotoPiSize = $_FILES['fotoPi']['size'];
 					$fotoPi = $ruta.$_FILES['fotoPi']['name'];
 					$fotoPiTemp = $_FILES['fotoPi']['tmp_name'];
-					move_uploaded_file($fotoPiTemp,$fotoPi);//pasa la foto de la carpeta temporal a la del servidor web
 
 					if($ruta.$_FILES['fotoPi']['name'] == $ruta){
 						$pincho = $this->pincho->showDatesPi($idPi);
 						$fotoPi=$pincho->getFotoPi();
 					}else{
 						$fotoPi=$ruta.$_FILES['fotoPi']['name'];
+						if (strlen($fotoPi)>=45){
+							$fotoPi= substr($fotoPi, 0, 40).'.jpg';
+						}
+						move_uploaded_file($fotoPiTemp,$fotoPi);//pasa la foto de la carpeta temporal a la del servidor web
 					}
+
 					$pinchotemp->setFotoPi($fotoPi, $fotoPiSize);
 					$pinchotemp->setNombrePi($_POST["nombrePi"]);
 					$pinchotemp->setPrecioPi($_POST["precioPi"]);
