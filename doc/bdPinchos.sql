@@ -6,10 +6,10 @@ DROP DATABASE IF EXISTS `pinchos`;
 CREATE DATABASE `pinchos` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
 
 -- creacion de usuario (dandole todos los privilegios)
-GRANT USAGE ON *.* TO 'pinchos'@'localhost';
-DROP USER 'pinchos'@'localhost';
-CREATE USER 'pinchos'@'localhost' IDENTIFIED BY 'pinchos';
-GRANT ALL PRIVILEGES ON `pinchos`.* TO 'pinchos'@'localhost' WITH GRANT OPTION;
+GRANT USAGE ON *.* TO 'pinchos'@'%';
+DROP USER 'pinchos'@'%';
+CREATE USER 'pinchos'@'%' IDENTIFIED BY 'pinchos';
+GRANT ALL PRIVILEGES ON `pinchos`.* TO 'pinchos'@'%' WITH GRANT OPTION;
 
 -- todas las consultas posteriores pertenecen a la base de datos FLABOO
 USE `pinchos`;
